@@ -1,0 +1,4165 @@
+{
+  "phase": "exploratory",
+  "repetitions": 3,
+  "warmups": 1,
+  "iterations": 64,
+  "startedAt": "2026-09-23T21:11:01.765Z",
+  "toolchain": {
+    "node": "v24.20.0"
+  },
+  "hardware": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "architecture": "x64",
+    "kernel": "6.18.51",
+    "logicalCpus": 32,
+    "ramBytes": 98613477376
+  },
+  "sourceSha256": {
+    "CMU-LICENSE.txt": "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a",
+    "background.js": "11f121e19fcd49add0d8684e581678ab245dbe087a7bc566ce1b78f13ff9763c",
+    "icon.svg": "9a239065122ec22504d4428157063aa79fefe504e3c1774264f52338fbd28526",
+    "manifest.json": "dac7a451d53da0ad907ac4380f84d1cedc04e6620fd2e556c9b9476bebc1d543",
+    "name-catalog.js": "75263bb976c806ecc8637147d92c96153728df02393e55c3260bb425281bc41c",
+    "name-generator.js": "b46190665e13a7ccfba4b56abc7873a3d57b4fd4edcea637b882b740764c366c",
+    "namer.js": "290b27898a3483436f6dd97d7609c56438b32f100ff7ecf5d1299980bb73c0bf",
+    "popup.css": "d37f05104466112ce92e29c00c5075b6423a8c87b43234313ca8b3f2b0d30c6d",
+    "popup.html": "f07d4c50c4414f7e86776730bc2f1daac708c42269b8f14231959a4c97fce937",
+    "popup.js": "1b1db23c7402c00004ada80dea1a7d2ba80048bda1b4ed89751c6e93f3a9875f",
+    "stacker.js": "5f3ffaa5981788149750caa9d1982c4d0a95dca0a3b50a461cbe833769d1e12c",
+    "candidate-two-pass.js": "b46190665e13a7ccfba4b56abc7873a3d57b4fd4edcea637b882b740764c366c",
+    "candidate-array.js": "ed95d745fea8831de3ad5ee60177268dfb49a1d83d14dc2ddee305fddf3c3876",
+    "candidate-typed-array.js": "d295d01993e7e88605bafa7acb609318151f70872b8b2a995dbf805e0414b6be",
+    "candidate-reservoir.js": "04e4999a21945d6aca1a13cb271eb302778443a84f152463bd8858754f4f9f04",
+    "candidate-reservoir-buffered.js": "060c2718719b493789f73bb5e303d05648a6a6e7bf782e2ee437522f78626234",
+    "candidate-rejection-8.js": "2fccb85b9ccb42d6027e822092e42a0b1ce36c7911cf909272736a7212b9fe04"
+  },
+  "scenarios": [
+    {
+      "name": "empty",
+      "titleCount": 0,
+      "eligible": 858
+    },
+    {
+      "name": "32-known",
+      "titleCount": 32,
+      "eligible": 170
+    },
+    {
+      "name": "256-known",
+      "titleCount": 256,
+      "eligible": 1
+    },
+    {
+      "name": "128-manual",
+      "titleCount": 128,
+      "eligible": 858
+    },
+    {
+      "name": "exhausted",
+      "titleCount": 858,
+      "eligible": 0
+    },
+    {
+      "name": "single-best-edge",
+      "titleCount": 669,
+      "eligible": 1
+    },
+    {
+      "name": "sparse-best-tier",
+      "titleCount": 263,
+      "eligible": 12
+    }
+  ],
+  "samples": [
+    {
+      "scenario": "empty",
+      "variant": "reservoir",
+      "block": 0,
+      "checksum": 7705,
+      "elapsedMs": 29.69999999999999,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "array",
+      "block": 0,
+      "checksum": 7767,
+      "elapsedMs": 0.5600000000000023,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "reservoir-buffered",
+      "block": 0,
+      "checksum": 7772,
+      "elapsedMs": 6.719999999999999,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "typed-array",
+      "block": 0,
+      "checksum": 7824,
+      "elapsedMs": 0.4200000000000159,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "rejection-8",
+      "block": 0,
+      "checksum": 7805,
+      "elapsedMs": 0.3400000000000034,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "two-pass",
+      "block": 0,
+      "checksum": 7864,
+      "elapsedMs": 0.4399999999999977,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "rejection-8",
+      "block": 1,
+      "checksum": 7802,
+      "elapsedMs": 0.28000000000000114,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "two-pass",
+      "block": 1,
+      "checksum": 7762,
+      "elapsedMs": 0.4000000000000057,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "reservoir-buffered",
+      "block": 1,
+      "checksum": 7761,
+      "elapsedMs": 7.200000000000017,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "reservoir",
+      "block": 1,
+      "checksum": 7657,
+      "elapsedMs": 30.59999999999999,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "array",
+      "block": 1,
+      "checksum": 7713,
+      "elapsedMs": 0.4800000000000182,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "typed-array",
+      "block": 1,
+      "checksum": 7862,
+      "elapsedMs": 0.37999999999999545,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "reservoir-buffered",
+      "block": 2,
+      "checksum": 7801,
+      "elapsedMs": 5.300000000000011,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "typed-array",
+      "block": 2,
+      "checksum": 7789,
+      "elapsedMs": 0.3199999999999932,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "reservoir",
+      "block": 2,
+      "checksum": 7761,
+      "elapsedMs": 27.980000000000015,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "two-pass",
+      "block": 2,
+      "checksum": 7814,
+      "elapsedMs": 0.39999999999997726,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "rejection-8",
+      "block": 2,
+      "checksum": 7825,
+      "elapsedMs": 0.2599999999999909,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "empty",
+      "variant": "array",
+      "block": 2,
+      "checksum": 7843,
+      "elapsedMs": 0.45999999999997954,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "typed-array",
+      "block": 0,
+      "checksum": 7867,
+      "elapsedMs": 1.3199999999999932,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "rejection-8",
+      "block": 0,
+      "checksum": 7824,
+      "elapsedMs": 2.480000000000018,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "two-pass",
+      "block": 0,
+      "checksum": 7765,
+      "elapsedMs": 1.339999999999975,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "reservoir",
+      "block": 0,
+      "checksum": 7907,
+      "elapsedMs": 11.279999999999973,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "array",
+      "block": 0,
+      "checksum": 7812,
+      "elapsedMs": 1.339999999999975,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "reservoir-buffered",
+      "block": 0,
+      "checksum": 7923,
+      "elapsedMs": 2.5399999999999636,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "reservoir",
+      "block": 1,
+      "checksum": 7807,
+      "elapsedMs": 12.45999999999998,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "reservoir-buffered",
+      "block": 1,
+      "checksum": 7856,
+      "elapsedMs": 2.420000000000016,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "array",
+      "block": 1,
+      "checksum": 7802,
+      "elapsedMs": 1.419999999999959,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "rejection-8",
+      "block": 1,
+      "checksum": 7868,
+      "elapsedMs": 1.419999999999959,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "typed-array",
+      "block": 1,
+      "checksum": 7918,
+      "elapsedMs": 1.339999999999918,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "two-pass",
+      "block": 1,
+      "checksum": 7905,
+      "elapsedMs": 1.3999999999999773,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "rejection-8",
+      "block": 2,
+      "checksum": 7907,
+      "elapsedMs": 1.4400000000000546,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "two-pass",
+      "block": 2,
+      "checksum": 7974,
+      "elapsedMs": 2.2799999999999727,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "reservoir",
+      "block": 2,
+      "checksum": 7826,
+      "elapsedMs": 11.5,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "reservoir-buffered",
+      "block": 2,
+      "checksum": 7853,
+      "elapsedMs": 2.9600000000000364,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "array",
+      "block": 2,
+      "checksum": 7913,
+      "elapsedMs": 1.4400000000000546,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "32-known",
+      "variant": "typed-array",
+      "block": 2,
+      "checksum": 7854,
+      "elapsedMs": 1.2999999999999543,
+      "eligible": 170,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "typed-array",
+      "block": 0,
+      "checksum": 7424,
+      "elapsedMs": 8.100000000000023,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "array",
+      "block": 0,
+      "checksum": 7424,
+      "elapsedMs": 8.559999999999945,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "rejection-8",
+      "block": 0,
+      "checksum": 7424,
+      "elapsedMs": 7.899999999999977,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "two-pass",
+      "block": 0,
+      "checksum": 7424,
+      "elapsedMs": 8.379999999999995,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "reservoir-buffered",
+      "block": 0,
+      "checksum": 7424,
+      "elapsedMs": 8.520000000000095,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "reservoir",
+      "block": 0,
+      "checksum": 7424,
+      "elapsedMs": 9.300000000000068,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "reservoir",
+      "block": 1,
+      "checksum": 7424,
+      "elapsedMs": 16.779999999999973,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "typed-array",
+      "block": 1,
+      "checksum": 7424,
+      "elapsedMs": 9.199999999999932,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "array",
+      "block": 1,
+      "checksum": 7424,
+      "elapsedMs": 9.319999999999936,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "rejection-8",
+      "block": 1,
+      "checksum": 7424,
+      "elapsedMs": 7.740000000000009,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "two-pass",
+      "block": 1,
+      "checksum": 7424,
+      "elapsedMs": 9.659999999999968,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "reservoir-buffered",
+      "block": 1,
+      "checksum": 7424,
+      "elapsedMs": 9.600000000000025,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "rejection-8",
+      "block": 2,
+      "checksum": 7424,
+      "elapsedMs": 17.25999999999999,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "reservoir",
+      "block": 2,
+      "checksum": 7424,
+      "elapsedMs": 9.040000000000076,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "typed-array",
+      "block": 2,
+      "checksum": 7424,
+      "elapsedMs": 9.240000000000007,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "reservoir-buffered",
+      "block": 2,
+      "checksum": 7424,
+      "elapsedMs": 9.039999999999964,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "two-pass",
+      "block": 2,
+      "checksum": 7424,
+      "elapsedMs": 9.08000000000004,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "256-known",
+      "variant": "array",
+      "block": 2,
+      "checksum": 7424,
+      "elapsedMs": 9.219999999999914,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "array",
+      "block": 0,
+      "checksum": 7850,
+      "elapsedMs": 11.939999999999827,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "rejection-8",
+      "block": 0,
+      "checksum": 7650,
+      "elapsedMs": 11.539999999999964,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "two-pass",
+      "block": 0,
+      "checksum": 7839,
+      "elapsedMs": 11.839999999999918,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "reservoir",
+      "block": 0,
+      "checksum": 7757,
+      "elapsedMs": 46.53999999999997,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "reservoir-buffered",
+      "block": 0,
+      "checksum": 7851,
+      "elapsedMs": 17.019999999999982,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "typed-array",
+      "block": 0,
+      "checksum": 7839,
+      "elapsedMs": 11.3599999999999,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "reservoir",
+      "block": 1,
+      "checksum": 7846,
+      "elapsedMs": 48.27999999999997,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "typed-array",
+      "block": 1,
+      "checksum": 7808,
+      "elapsedMs": 11.47999999999979,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "array",
+      "block": 1,
+      "checksum": 7823,
+      "elapsedMs": 11.819999999999936,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "rejection-8",
+      "block": 1,
+      "checksum": 7795,
+      "elapsedMs": 11.539999999999964,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "reservoir-buffered",
+      "block": 1,
+      "checksum": 7828,
+      "elapsedMs": 16.679999999999836,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "two-pass",
+      "block": 1,
+      "checksum": 7868,
+      "elapsedMs": 15.360000000000127,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "reservoir-buffered",
+      "block": 2,
+      "checksum": 7766,
+      "elapsedMs": 16.6400000000001,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "reservoir",
+      "block": 2,
+      "checksum": 7799,
+      "elapsedMs": 43.22000000000003,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "two-pass",
+      "block": 2,
+      "checksum": 7803,
+      "elapsedMs": 11.579999999999927,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "typed-array",
+      "block": 2,
+      "checksum": 7880,
+      "elapsedMs": 11.559999999999944,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "rejection-8",
+      "block": 2,
+      "checksum": 7840,
+      "elapsedMs": 11.599999999999907,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "128-manual",
+      "variant": "array",
+      "block": 2,
+      "checksum": 7914,
+      "elapsedMs": 11.899999999999864,
+      "eligible": 858,
+      "fallback": 0
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "reservoir",
+      "block": 0,
+      "checksum": 7808,
+      "elapsedMs": 26.199999999999815,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "reservoir-buffered",
+      "block": 0,
+      "checksum": 7808,
+      "elapsedMs": 27.039999999999964,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "typed-array",
+      "block": 0,
+      "checksum": 7808,
+      "elapsedMs": 32.11999999999989,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "two-pass",
+      "block": 0,
+      "checksum": 7808,
+      "elapsedMs": 26.720000000000027,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "array",
+      "block": 0,
+      "checksum": 7808,
+      "elapsedMs": 35.92000000000007,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "rejection-8",
+      "block": 0,
+      "checksum": 7808,
+      "elapsedMs": 26.240000000000236,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "reservoir",
+      "block": 1,
+      "checksum": 7808,
+      "elapsedMs": 31.7199999999998,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "two-pass",
+      "block": 1,
+      "checksum": 7808,
+      "elapsedMs": 25.019999999999985,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "typed-array",
+      "block": 1,
+      "checksum": 7808,
+      "elapsedMs": 28.360000000000127,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "reservoir-buffered",
+      "block": 1,
+      "checksum": 7808,
+      "elapsedMs": 29.919999999999614,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "array",
+      "block": 1,
+      "checksum": 7808,
+      "elapsedMs": 25.90000000000009,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "rejection-8",
+      "block": 1,
+      "checksum": 7808,
+      "elapsedMs": 31.379999999999654,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "typed-array",
+      "block": 2,
+      "checksum": 7808,
+      "elapsedMs": 25.980000000000015,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "two-pass",
+      "block": 2,
+      "checksum": 7808,
+      "elapsedMs": 29.11999999999989,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "reservoir-buffered",
+      "block": 2,
+      "checksum": 7808,
+      "elapsedMs": 30.159999999999854,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "array",
+      "block": 2,
+      "checksum": 7808,
+      "elapsedMs": 25.38000000000011,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "rejection-8",
+      "block": 2,
+      "checksum": 7808,
+      "elapsedMs": 29.7199999999998,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "exhausted",
+      "variant": "reservoir",
+      "block": 2,
+      "checksum": 7808,
+      "elapsedMs": 25.980000000000015,
+      "eligible": 0,
+      "fallback": 64
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "reservoir",
+      "block": 0,
+      "checksum": 8384,
+      "elapsedMs": 24.699999999999815,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "typed-array",
+      "block": 0,
+      "checksum": 8384,
+      "elapsedMs": 19.9399999999996,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "rejection-8",
+      "block": 0,
+      "checksum": 8384,
+      "elapsedMs": 26.259999999999764,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "array",
+      "block": 0,
+      "checksum": 8384,
+      "elapsedMs": 19.16000000000031,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "two-pass",
+      "block": 0,
+      "checksum": 8384,
+      "elapsedMs": 24.09999999999991,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "reservoir-buffered",
+      "block": 0,
+      "checksum": 8384,
+      "elapsedMs": 19.840000000000146,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "reservoir",
+      "block": 1,
+      "checksum": 8384,
+      "elapsedMs": 27.820000000000164,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "reservoir-buffered",
+      "block": 1,
+      "checksum": 8384,
+      "elapsedMs": 21.559999999999945,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "typed-array",
+      "block": 1,
+      "checksum": 8384,
+      "elapsedMs": 21.23999999999978,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "rejection-8",
+      "block": 1,
+      "checksum": 8384,
+      "elapsedMs": 27.179999999999836,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "two-pass",
+      "block": 1,
+      "checksum": 8384,
+      "elapsedMs": 23.079999999999927,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "array",
+      "block": 1,
+      "checksum": 8384,
+      "elapsedMs": 27.76000000000022,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "typed-array",
+      "block": 2,
+      "checksum": 8384,
+      "elapsedMs": 23.759999999999764,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "array",
+      "block": 2,
+      "checksum": 8384,
+      "elapsedMs": 28.019999999999985,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "rejection-8",
+      "block": 2,
+      "checksum": 8384,
+      "elapsedMs": 27.279999999999745,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "reservoir",
+      "block": 2,
+      "checksum": 8384,
+      "elapsedMs": 27.920000000000073,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "two-pass",
+      "block": 2,
+      "checksum": 8384,
+      "elapsedMs": 23.5,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "single-best-edge",
+      "variant": "reservoir-buffered",
+      "block": 2,
+      "checksum": 8384,
+      "elapsedMs": 27.659999999999854,
+      "eligible": 1,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "array",
+      "block": 0,
+      "checksum": 8158,
+      "elapsedMs": 8.88000000000011,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "typed-array",
+      "block": 0,
+      "checksum": 8093,
+      "elapsedMs": 8.759999999999764,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "rejection-8",
+      "block": 0,
+      "checksum": 8147,
+      "elapsedMs": 9.519999999999982,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "two-pass",
+      "block": 0,
+      "checksum": 8098,
+      "elapsedMs": 13.059999999999944,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "reservoir",
+      "block": 0,
+      "checksum": 8079,
+      "elapsedMs": 9.220000000000256,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "reservoir-buffered",
+      "block": 0,
+      "checksum": 8122,
+      "elapsedMs": 8.859999999999673,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "reservoir-buffered",
+      "block": 1,
+      "checksum": 8066,
+      "elapsedMs": 8.580000000000382,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "typed-array",
+      "block": 1,
+      "checksum": 8094,
+      "elapsedMs": 8.759999999999764,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "reservoir",
+      "block": 1,
+      "checksum": 8097,
+      "elapsedMs": 13.819999999999707,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "rejection-8",
+      "block": 1,
+      "checksum": 8126,
+      "elapsedMs": 9.279999999999744,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "two-pass",
+      "block": 1,
+      "checksum": 8142,
+      "elapsedMs": 9.220000000000256,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "array",
+      "block": 1,
+      "checksum": 8155,
+      "elapsedMs": 8.840000000000146,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "two-pass",
+      "block": 2,
+      "checksum": 8148,
+      "elapsedMs": 8.940000000000055,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "typed-array",
+      "block": 2,
+      "checksum": 8145,
+      "elapsedMs": 13.5,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "reservoir",
+      "block": 2,
+      "checksum": 8095,
+      "elapsedMs": 9,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "reservoir-buffered",
+      "block": 2,
+      "checksum": 8148,
+      "elapsedMs": 8.639999999999873,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "array",
+      "block": 2,
+      "checksum": 8115,
+      "elapsedMs": 8.639999999999873,
+      "eligible": 12,
+      "fallback": 0
+    },
+    {
+      "scenario": "sparse-best-tier",
+      "variant": "rejection-8",
+      "block": 2,
+      "checksum": 8131,
+      "elapsedMs": 9.400000000000093,
+      "eligible": 12,
+      "fallback": 0
+    }
+  ],
+  "nativeSamples": [
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 0,
+      "variant": "two-pass",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.9600000000000364,
+      "elapsedMs": 8.199999999999818,
+      "latencies": [
+        6.179999999999836
+      ],
+      "resetMs": 2.8200000000001637,
+      "titles": [
+        "dusty-pillow"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 0,
+      "variant": "reservoir",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.9600000000000364,
+      "elapsedMs": 8.440000000000055,
+      "latencies": [
+        6.480000000000018
+      ],
+      "resetMs": 0.14000000000032742,
+      "titles": [
+        "bubbly-lake"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 0,
+      "variant": "reservoir-buffered",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 5.6599999999998545,
+      "elapsedMs": 9.039999999999964,
+      "latencies": [
+        7.279999999999745
+      ],
+      "resetMs": 0.23999999999978172,
+      "titles": [
+        "silky-leaf"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 0,
+      "variant": "array",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.639999999999873,
+      "elapsedMs": 9.919999999999618,
+      "latencies": [
+        8.379999999999654
+      ],
+      "resetMs": 0.16000000000030923,
+      "titles": [
+        "sparkly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 0,
+      "variant": "rejection-8",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.180000000000291,
+      "elapsedMs": 11.840000000000146,
+      "latencies": [
+        10.38000000000011
+      ],
+      "resetMs": 0.13999999999987267,
+      "titles": [
+        "speckled-bowl"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 0,
+      "variant": "typed-array",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.3399999999996908,
+      "elapsedMs": 6.779999999999745,
+      "latencies": [
+        5.399999999999636
+      ],
+      "resetMs": 0.11999999999989086,
+      "titles": [
+        "little-blossom"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 1,
+      "variant": "reservoir",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.0400000000004184,
+      "elapsedMs": 8.460000000000036,
+      "latencies": [
+        6.299999999999727
+      ],
+      "resetMs": 3.5599999999999454,
+      "titles": [
+        "rustic-lantern"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 1,
+      "variant": "typed-array",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.6400000000003274,
+      "elapsedMs": 14.61999999999989,
+      "latencies": [
+        12.699999999999818
+      ],
+      "resetMs": 0.1999999999998181,
+      "titles": [
+        "bubbly-fountain"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 1,
+      "variant": "array",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.440000000000509,
+      "elapsedMs": 9.05999999999949,
+      "latencies": [
+        7.660000000000764
+      ],
+      "resetMs": 0.1000000000003638,
+      "titles": [
+        "dusty-violin"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 1,
+      "variant": "two-pass",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.100000000000364,
+      "elapsedMs": 10.300000000000182,
+      "latencies": [
+        8.260000000000218
+      ],
+      "resetMs": 0.1999999999998181,
+      "titles": [
+        "little-castle"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 1,
+      "variant": "rejection-8",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.680000000000291,
+      "elapsedMs": 6.699999999999818,
+      "latencies": [
+        5.279999999999745
+      ],
+      "resetMs": 2.4200000000000728,
+      "titles": [
+        "shiny-shell"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 1,
+      "variant": "reservoir-buffered",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.4200000000000728,
+      "elapsedMs": 6.520000000000437,
+      "latencies": [
+        4.799999999999272
+      ],
+      "resetMs": 0.15999999999985448,
+      "titles": [
+        "speckled-leaf"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 2,
+      "variant": "reservoir",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.0399999999999636,
+      "elapsedMs": 7.219999999999345,
+      "latencies": [
+        5.720000000000255
+      ],
+      "resetMs": 0.18000000000029104,
+      "titles": [
+        "snowy-birch"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 2,
+      "variant": "reservoir-buffered",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.6199999999998909,
+      "elapsedMs": 7.280000000000655,
+      "latencies": [
+        4.859999999999673
+      ],
+      "resetMs": 0.1999999999998181,
+      "titles": [
+        "windy-valley"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 2,
+      "variant": "typed-array",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.3400000000001455,
+      "elapsedMs": 6.460000000000036,
+      "latencies": [
+        5.119999999999891
+      ],
+      "resetMs": 0.13999999999941792,
+      "titles": [
+        "leafy-valley"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 2,
+      "variant": "array",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.2799999999997451,
+      "elapsedMs": 6,
+      "latencies": [
+        4.619999999999891
+      ],
+      "resetMs": 0.11999999999989086,
+      "titles": [
+        "tiny-violin"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 2,
+      "variant": "two-pass",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.480000000000473,
+      "elapsedMs": 6.100000000000364,
+      "latencies": [
+        4.519999999999527
+      ],
+      "resetMs": 0.13999999999941792,
+      "titles": [
+        "wavy-fern"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 2,
+      "variant": "rejection-8",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 3.9400000000005098,
+      "elapsedMs": 6.579999999999927,
+      "latencies": [
+        5.220000000000255
+      ],
+      "resetMs": 0.22000000000025463,
+      "titles": [
+        "mossy-birch"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 0,
+      "variant": "two-pass",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 17.300000000000182,
+      "elapsedMs": 111.5,
+      "latencies": [
+        60.69999999999982,
+        58.07999999999993,
+        70.29999999999927,
+        79.14000000000033,
+        78.88000000000011,
+        78.9399999999996,
+        75.73999999999978,
+        73.4399999999996,
+        77.68000000000029,
+        75.61999999999989,
+        73.32000000000062,
+        70.31999999999971,
+        67.94000000000051,
+        65.61999999999989,
+        63.14000000000033,
+        60.53999999999997
+      ],
+      "resetMs": 0.11999999999989086,
+      "titles": [
+        "tiny-eagle",
+        "calm-pond",
+        "frosty-stone",
+        "shiny-bell",
+        "sandy-shell",
+        "dotted-mitten",
+        "bright-lantern",
+        "little-fox",
+        "quiet-frog",
+        "mossy-pebble",
+        "muddy-garden",
+        "fluffy-feather",
+        "icy-birch",
+        "misty-waterfall",
+        "striped-candle",
+        "golden-blossom"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 0,
+      "variant": "rejection-8",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 19.979999999999563,
+      "elapsedMs": 106.68000000000028,
+      "latencies": [
+        68.32000000000062,
+        66.85999999999967,
+        71.71999999999935,
+        70.07999999999993,
+        69.15999999999985,
+        68.81999999999971,
+        72.35999999999967,
+        69.82000000000062,
+        67.38000000000011,
+        64.92000000000007,
+        62.46000000000003,
+        59.91999999999916,
+        56.51999999999953,
+        54.05999999999949,
+        51.96000000000003,
+        49.599999999999454
+      ],
+      "resetMs": 0.1999999999998181,
+      "titles": [
+        "shiny-frog",
+        "quiet-snail",
+        "tiny-daisy",
+        "bubbly-waterfall",
+        "misty-birch",
+        "curly-ribbon",
+        "striped-canoe",
+        "dusty-teapot",
+        "sleepy-beaver",
+        "speckled-shell",
+        "windy-valley",
+        "gliding-turtle",
+        "frosty-pine",
+        "smooth-pebble",
+        "calm-whale",
+        "dotted-butterfly"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 0,
+      "variant": "reservoir-buffered",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 26.24000000000069,
+      "elapsedMs": 167.1199999999999,
+      "latencies": [
+        65.38000000000011,
+        74.07999999999993,
+        72.79999999999927,
+        96.60000000000036,
+        99,
+        109.46000000000004,
+        107.55999999999948,
+        105.5600000000004,
+        111.10000000000036,
+        114.34000000000016,
+        112.13999999999942,
+        108.69999999999982,
+        111.92000000000009,
+        112.31999999999972,
+        112.86000000000058,
+        112.03999999999996
+      ],
+      "resetMs": 0.15999999999985448,
+      "titles": [
+        "icy-birch",
+        "shiny-feather",
+        "speckled-orchid",
+        "calm-swan",
+        "sparkly-teapot",
+        "snowy-hill",
+        "silver-candle",
+        "windy-castle",
+        "tiny-tower",
+        "muddy-lake",
+        "gliding-turtle",
+        "quiet-fox",
+        "grassy-valley",
+        "bright-flower",
+        "smooth-apple",
+        "golden-shell"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 0,
+      "variant": "array",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 22.340000000000146,
+      "elapsedMs": 122.48000000000047,
+      "latencies": [
+        63.76000000000022,
+        64.63999999999942,
+        64.18000000000029,
+        70.72000000000025,
+        73.63999999999942,
+        86.13999999999942,
+        84.65999999999985,
+        82.53999999999996,
+        88.41999999999916,
+        88.9399999999996,
+        87.08000000000084,
+        84.82000000000062,
+        83.17999999999938,
+        80.96000000000004,
+        78.01999999999953,
+        77.36000000000058
+      ],
+      "resetMs": 0.15999999999985448,
+      "titles": [
+        "silky-rabbit",
+        "leafy-valley",
+        "polished-pebble",
+        "little-stone",
+        "sleepy-koala",
+        "hazy-waterfall",
+        "dusty-bottle",
+        "smooth-feather",
+        "rocky-island",
+        "rustic-basket",
+        "tiny-squirrel",
+        "silver-star",
+        "dotted-butterfly",
+        "spotted-lizard",
+        "golden-pumpkin",
+        "sandy-hill"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 0,
+      "variant": "typed-array",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 23.539999999999964,
+      "elapsedMs": 81.61999999999989,
+      "latencies": [
+        48.73999999999978,
+        47.599999999999454,
+        46.76000000000022,
+        45.79999999999927,
+        50.80000000000018,
+        51.07999999999993,
+        51.13999999999942,
+        49.32000000000062,
+        47.340000000000146,
+        45.4399999999996,
+        42.89999999999963,
+        40.92000000000007,
+        38.89999999999963,
+        36.61999999999989,
+        34.31999999999971,
+        39.220000000000255
+      ],
+      "resetMs": 1.7000000000007276,
+      "titles": [
+        "tiny-violin",
+        "sparkly-candle",
+        "striped-ribbon",
+        "fluffy-swan",
+        "dotted-pillow",
+        "icy-castle",
+        "misty-garden",
+        "frosty-willow",
+        "little-maple",
+        "sleepy-heron",
+        "calm-turtle",
+        "sandy-hill",
+        "golden-feather",
+        "shiny-window",
+        "grassy-valley",
+        "quiet-cabin"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 0,
+      "variant": "reservoir",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 27.699999999999815,
+      "elapsedMs": 130.4400000000005,
+      "latencies": [
+        61.55999999999949,
+        62.780000000000655,
+        70.52000000000044,
+        71.02000000000044,
+        80.15999999999985,
+        82.92000000000007,
+        91.92000000000009,
+        89.80000000000018,
+        87.53999999999996,
+        85.53999999999996,
+        83.64000000000033,
+        84.81999999999971,
+        82.07999999999993,
+        83.46000000000004,
+        81.76000000000022,
+        79.76000000000022
+      ],
+      "resetMs": 0.15999999999985448,
+      "titles": [
+        "sandy-turtle",
+        "sparkly-lantern",
+        "hazy-hill",
+        "striped-candle",
+        "icy-pebble",
+        "wooden-fountain",
+        "calm-dolphin",
+        "quiet-koala",
+        "rustic-clock",
+        "sunny-valley",
+        "little-leaf",
+        "snowy-wagon",
+        "golden-pumpkin",
+        "breezy-garden",
+        "gliding-heron",
+        "spotted-rabbit"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 1,
+      "variant": "reservoir",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 15.800000000000182,
+      "elapsedMs": 157.3199999999997,
+      "latencies": [
+        84.75999999999931,
+        83.34000000000015,
+        88.88000000000011,
+        87.65999999999985,
+        97.23999999999978,
+        95.96000000000004,
+        92.42000000000009,
+        100.22000000000024,
+        90.19999999999982,
+        86.02000000000044,
+        87.97999999999956,
+        90.80000000000018,
+        88.82000000000062,
+        86.16000000000076,
+        83.94000000000051,
+        81.88000000000011
+      ],
+      "resetMs": 1.9000000000005457,
+      "titles": [
+        "snowy-garden",
+        "muddy-river",
+        "bubbly-pond",
+        "mossy-pine",
+        "calm-turtle",
+        "wooden-castle",
+        "golden-bell",
+        "round-flower",
+        "silver-willow",
+        "breezy-hill",
+        "striped-bowl",
+        "grassy-island",
+        "frosty-maple",
+        "sunny-lake",
+        "silky-kitten",
+        "speckled-leaf"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 1,
+      "variant": "typed-array",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 17.68000000000029,
+      "elapsedMs": 79.80000000000018,
+      "latencies": [
+        55.80000000000018,
+        54.89999999999963,
+        52.46000000000003,
+        51.88000000000011,
+        51,
+        50.44000000000051,
+        54.57999999999993,
+        50.70000000000073,
+        47.88000000000011,
+        45.53999999999997,
+        43.220000000000255,
+        40.81999999999971,
+        37.400000000000546,
+        34.76000000000022,
+        31.160000000000764,
+        28.079999999999927
+      ],
+      "resetMs": 0.15999999999985448,
+      "titles": [
+        "quiet-pond",
+        "calm-kitten",
+        "bright-star",
+        "hazy-river",
+        "mossy-bowl",
+        "tiny-valley",
+        "rocky-island",
+        "dotted-umbrella",
+        "little-lizard",
+        "wooden-boat",
+        "dusty-feather",
+        "misty-garden",
+        "sleepy-koala",
+        "silver-candle",
+        "crisp-leaf",
+        "smooth-spoon"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 1,
+      "variant": "rejection-8",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 21.360000000000586,
+      "elapsedMs": 116.42000000000009,
+      "latencies": [
+        63.69999999999982,
+        64.79999999999927,
+        71.84000000000015,
+        69.61999999999989,
+        71.02000000000044,
+        81.01999999999953,
+        81.38000000000011,
+        78.47999999999956,
+        76.31999999999971,
+        74.19999999999982,
+        78.21999999999935,
+        76.05999999999949,
+        73.88000000000011,
+        70.53999999999996,
+        68.23999999999978,
+        65.82000000000062
+      ],
+      "resetMs": 1.2199999999993452,
+      "titles": [
+        "polished-bell",
+        "muddy-river",
+        "leafy-castle",
+        "misty-oak",
+        "rustic-boat",
+        "calm-penguin",
+        "bubbly-pond",
+        "sparkly-candle",
+        "sleepy-otter",
+        "striped-ribbon",
+        "fluffy-feather",
+        "round-pebble",
+        "tiny-frog",
+        "little-flower",
+        "icy-hill",
+        "spotted-kitten"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 1,
+      "variant": "two-pass",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 29.859999999999673,
+      "elapsedMs": 144.8800000000001,
+      "latencies": [
+        64.30000000000018,
+        63.02000000000044,
+        75.22000000000025,
+        78.20000000000073,
+        87.77999999999975,
+        89.13999999999942,
+        87.31999999999971,
+        84.61999999999989,
+        82,
+        78.40000000000055,
+        85.18000000000029,
+        86.85999999999967,
+        83.88000000000011,
+        81.21999999999935,
+        76.53999999999996,
+        89.60000000000036
+      ],
+      "resetMs": 1.2799999999997451,
+      "titles": [
+        "windy-valley",
+        "frosty-willow",
+        "hazy-rainbow",
+        "tiny-flower",
+        "dusty-spoon",
+        "little-hill",
+        "wooden-wagon",
+        "golden-bell",
+        "sparkly-lantern",
+        "rustic-clock",
+        "striped-leaf",
+        "breezy-lake",
+        "icy-pebble",
+        "muddy-rabbit",
+        "sandy-bowl",
+        "snowy-cabin"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 1,
+      "variant": "reservoir-buffered",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 21.779999999999745,
+      "elapsedMs": 226.14000000000033,
+      "latencies": [
+        74.88000000000011,
+        73.11999999999989,
+        69.77999999999975,
+        74.46000000000004,
+        88.10000000000036,
+        88.31999999999971,
+        85.67999999999938,
+        82.80000000000018,
+        91.69999999999982,
+        90.19999999999982,
+        88.32000000000062,
+        102.69999999999982,
+        116.42000000000009,
+        131.5600000000004,
+        153.02000000000044,
+        162.73999999999978
+      ],
+      "resetMs": 1.7600000000002185,
+      "titles": [
+        "polished-teapot",
+        "little-rainbow",
+        "grassy-hill",
+        "woolly-pillow",
+        "snowy-valley",
+        "silver-candle",
+        "tiny-sunflower",
+        "frosty-cabin",
+        "misty-pine",
+        "sleepy-turtle",
+        "glowing-lantern",
+        "mossy-pebble",
+        "muddy-shell",
+        "calm-dolphin",
+        "spotted-butterfly",
+        "leafy-island"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 1,
+      "variant": "array",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 32.07999999999993,
+      "elapsedMs": 106.65999999999984,
+      "latencies": [
+        56.53999999999997,
+        64.36000000000058,
+        63.720000000000255,
+        64.03999999999996,
+        69.47999999999956,
+        72.15999999999985,
+        70.35999999999967,
+        68.35999999999967,
+        66.02000000000044,
+        63.720000000000255,
+        62,
+        69.92000000000007,
+        68.27999999999975,
+        66.15999999999985,
+        63.659999999999854,
+        61
+      ],
+      "resetMs": 0.17999999999938154,
+      "titles": [
+        "little-bell",
+        "fluffy-swan",
+        "quiet-turtle",
+        "breezy-cabin",
+        "tiny-rabbit",
+        "golden-candle",
+        "crisp-apple",
+        "rustic-window",
+        "silver-spoon",
+        "mossy-basket",
+        "calm-panda",
+        "dusty-bowl",
+        "smooth-violin",
+        "frosty-acorn",
+        "striped-snail",
+        "sparkly-star"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 2,
+      "variant": "array",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 11.960000000000036,
+      "elapsedMs": 82.26000000000022,
+      "latencies": [
+        55.02000000000044,
+        58.79999999999927,
+        58.02000000000044,
+        56.720000000000255,
+        55.32000000000062,
+        54.81999999999971,
+        52.46000000000003,
+        49.92000000000007,
+        50.88000000000011,
+        48.64000000000033,
+        46.26000000000022,
+        43.719999999999345,
+        41.07999999999993,
+        36.340000000000146,
+        33.160000000000764,
+        30.720000000000255
+      ],
+      "resetMs": 0.14000000000032742,
+      "titles": [
+        "spotted-leaf",
+        "tiny-pond",
+        "little-stone",
+        "fluffy-feather",
+        "round-moon",
+        "misty-hill",
+        "mossy-shell",
+        "leafy-cabin",
+        "frosty-river",
+        "quiet-lake",
+        "rustic-tower",
+        "speckled-frog",
+        "silky-rabbit",
+        "striped-butterfly",
+        "glowing-star",
+        "snowy-willow"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 2,
+      "variant": "reservoir-buffered",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 10.5,
+      "elapsedMs": 101.11999999999988,
+      "latencies": [
+        65.81999999999971,
+        68.70000000000073,
+        70.28000000000065,
+        70.38000000000011,
+        74.44000000000051,
+        76.11999999999989,
+        72.28000000000065,
+        69.92000000000007,
+        68.19999999999982,
+        66.35999999999967,
+        64.5,
+        59.659999999999854,
+        56.81999999999971,
+        54.85999999999967,
+        52.840000000000146,
+        47.81999999999971
+      ],
+      "resetMs": 0.1000000000003638,
+      "titles": [
+        "grassy-dune",
+        "silky-blossom",
+        "frosty-island",
+        "shiny-turtle",
+        "little-cabin",
+        "sandy-river",
+        "smooth-ribbon",
+        "speckled-feather",
+        "polished-spoon",
+        "muddy-stone",
+        "bright-comet",
+        "silver-teapot",
+        "sparkly-pebble",
+        "tiny-kitten",
+        "golden-acorn",
+        "misty-castle"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 2,
+      "variant": "two-pass",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 16.67999999999938,
+      "elapsedMs": 83.05999999999949,
+      "latencies": [
+        53.57999999999993,
+        57.74000000000069,
+        57.42000000000007,
+        55.220000000000255,
+        54.69999999999982,
+        54.46000000000003,
+        52.23999999999978,
+        49.9399999999996,
+        47.51999999999953,
+        44.19999999999982,
+        41.61999999999989,
+        45.76000000000022,
+        43.5600000000004,
+        40.96000000000003,
+        37.36000000000058,
+        34.61999999999989
+      ],
+      "resetMs": 0.1000000000003638,
+      "titles": [
+        "sunny-island",
+        "smooth-spoon",
+        "tiny-cherry",
+        "speckled-bowl",
+        "sleepy-swan",
+        "glassy-river",
+        "calm-frog",
+        "round-basket",
+        "icy-hill",
+        "silver-violin",
+        "snowy-wagon",
+        "golden-candle",
+        "woolly-pillow",
+        "frosty-pebble",
+        "sparkly-shell",
+        "dotted-window"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 2,
+      "variant": "reservoir",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 14.200000000000728,
+      "elapsedMs": 97.30000000000018,
+      "latencies": [
+        57.30000000000018,
+        58.14000000000033,
+        63.48000000000047,
+        64.32000000000062,
+        64.80000000000018,
+        65.40000000000055,
+        65.35999999999967,
+        70.15999999999985,
+        68.94000000000051,
+        67.44000000000051,
+        65.79999999999927,
+        63.88000000000011,
+        64.46000000000004,
+        62.96000000000003,
+        60.46000000000003,
+        57.720000000000255
+      ],
+      "resetMs": 1.680000000000291,
+      "titles": [
+        "spotted-butterfly",
+        "misty-meadow",
+        "little-oak",
+        "breezy-pond",
+        "tiny-blossom",
+        "frosty-waterfall",
+        "sandy-pebble",
+        "wooden-window",
+        "striped-umbrella",
+        "calm-lake",
+        "quiet-otter",
+        "round-moon",
+        "golden-star",
+        "hazy-tower",
+        "glowing-candle",
+        "mossy-castle"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 2,
+      "variant": "rejection-8",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 11.080000000000837,
+      "elapsedMs": 77.51999999999953,
+      "latencies": [
+        50.73999999999978,
+        54.73999999999978,
+        52.30000000000018,
+        52.02000000000044,
+        51.31999999999971,
+        50.98000000000047,
+        48.92000000000007,
+        45.74000000000069,
+        48.64000000000033,
+        46.4399999999996,
+        44,
+        41.5600000000004,
+        38.46000000000003,
+        36.340000000000146,
+        33.30000000000018,
+        30.520000000000437
+      ],
+      "resetMs": 0.1000000000003638,
+      "titles": [
+        "spotted-turtle",
+        "calm-swan",
+        "snowy-willow",
+        "polished-lantern",
+        "little-beaver",
+        "wavy-feather",
+        "mossy-shell",
+        "icy-leaf",
+        "rustic-basket",
+        "sandy-island",
+        "quiet-lake",
+        "striped-snail",
+        "hazy-garden",
+        "breezy-tower",
+        "shiny-pebble",
+        "smooth-wagon"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 2,
+      "variant": "typed-array",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 12.520000000000437,
+      "elapsedMs": 91.30000000000018,
+      "latencies": [
+        48.39999999999963,
+        53.97999999999956,
+        51.86000000000058,
+        51.68000000000029,
+        51.53999999999997,
+        51.840000000000146,
+        49.97999999999956,
+        47.91999999999916,
+        45.159999999999854,
+        43.18000000000029,
+        51.719999999999345,
+        50.779999999999745,
+        49.279999999999745,
+        47.69999999999982,
+        45.46000000000003,
+        48.82000000000062
+      ],
+      "resetMs": 0.2600000000002183,
+      "titles": [
+        "wooden-boat",
+        "spotted-kitten",
+        "breezy-hill",
+        "dusty-pine",
+        "round-clock",
+        "speckled-turtle",
+        "little-teapot",
+        "sandy-basket",
+        "tiny-sparrow",
+        "golden-moon",
+        "icy-leaf",
+        "striped-snail",
+        "misty-willow",
+        "shiny-ribbon",
+        "smooth-apple",
+        "silky-petal"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 0,
+      "variant": "reservoir-buffered",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 4.180000000000291,
+      "elapsedMs": 50.72000000000117,
+      "latencies": [
+        48.29999999999927
+      ],
+      "resetMs": 1.539999999999054,
+      "titles": [
+        "glowing-comet"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 0,
+      "variant": "rejection-8",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 3.899999999999636,
+      "elapsedMs": 51.18000000000029,
+      "latencies": [
+        48.400000000001455
+      ],
+      "resetMs": 2.219999999999345,
+      "titles": [
+        "glowing-comet"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 0,
+      "variant": "reservoir",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 3.2000000000007276,
+      "elapsedMs": 22.960000000000942,
+      "latencies": [
+        21.159999999999854
+      ],
+      "resetMs": 1.679999999998472,
+      "titles": [
+        "curly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 0,
+      "variant": "two-pass",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 5.639999999999418,
+      "elapsedMs": 25.859999999998763,
+      "latencies": [
+        24.159999999999854
+      ],
+      "resetMs": 0.18000000000029104,
+      "titles": [
+        "glowing-comet"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 0,
+      "variant": "array",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.6999999999989086,
+      "elapsedMs": 25.200000000000728,
+      "latencies": [
+        22.81999999999971
+      ],
+      "resetMs": 1.3799999999991996,
+      "titles": [
+        "glowing-comet"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 0,
+      "variant": "typed-array",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 5.299999999999272,
+      "elapsedMs": 46.6200000000008,
+      "latencies": [
+        42.219999999999345
+      ],
+      "resetMs": 0.1999999999989086,
+      "titles": [
+        "woolly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 1,
+      "variant": "typed-array",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 3.6599999999998545,
+      "elapsedMs": 30.799999999999272,
+      "latencies": [
+        27.460000000000942
+      ],
+      "resetMs": 1.1000000000003638,
+      "titles": [
+        "woolly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 1,
+      "variant": "reservoir",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 21.020000000000437,
+      "elapsedMs": 36.14000000000124,
+      "latencies": [
+        33.600000000000364
+      ],
+      "resetMs": 1.899999999999636,
+      "titles": [
+        "curly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 1,
+      "variant": "rejection-8",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 4.079999999999927,
+      "elapsedMs": 30.55999999999949,
+      "latencies": [
+        27.399999999999636
+      ],
+      "resetMs": 1.0400000000008731,
+      "titles": [
+        "curly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 1,
+      "variant": "array",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.3000000000010914,
+      "elapsedMs": 25.05999999999949,
+      "latencies": [
+        22.68000000000029
+      ],
+      "resetMs": 0.819999999999709,
+      "titles": [
+        "woolly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 1,
+      "variant": "two-pass",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 3.2999999999992724,
+      "elapsedMs": 31.920000000000073,
+      "latencies": [
+        27.31999999999971
+      ],
+      "resetMs": 0.31999999999970896,
+      "titles": [
+        "curly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 1,
+      "variant": "reservoir-buffered",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 3.1999999999989086,
+      "elapsedMs": 27.959999999999127,
+      "latencies": [
+        25.980000000001382
+      ],
+      "resetMs": 0.3600000000005821,
+      "titles": [
+        "woolly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 2,
+      "variant": "reservoir-buffered",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 5.859999999998763,
+      "elapsedMs": 56.099999999998545,
+      "latencies": [
+        52.92000000000007
+      ],
+      "resetMs": 1,
+      "titles": [
+        "woolly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 2,
+      "variant": "two-pass",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 3.899999999999636,
+      "elapsedMs": 58.06000000000131,
+      "latencies": [
+        55.719999999999345
+      ],
+      "resetMs": 0.5,
+      "titles": [
+        "glowing-comet"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 2,
+      "variant": "reservoir",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 3.5599999999994907,
+      "elapsedMs": 53.79999999999927,
+      "latencies": [
+        50.39999999999963
+      ],
+      "resetMs": 0.3000000000010914,
+      "titles": [
+        "curly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 2,
+      "variant": "array",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 3.6200000000008,
+      "elapsedMs": 33.18000000000029,
+      "latencies": [
+        30.7599999999984
+      ],
+      "resetMs": 1.0799999999999272,
+      "titles": [
+        "glowing-comet"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 2,
+      "variant": "rejection-8",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 15.279999999998836,
+      "elapsedMs": 58.73999999999978,
+      "latencies": [
+        56.039999999999054
+      ],
+      "resetMs": 0.2400000000016007,
+      "titles": [
+        "curly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 1,
+      "block": 2,
+      "variant": "typed-array",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 3.2000000000007276,
+      "elapsedMs": 25.1200000000008,
+      "latencies": [
+        22.020000000000437
+      ],
+      "resetMs": 1.179999999998472,
+      "titles": [
+        "curly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 0,
+      "variant": "reservoir",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 46.7599999999984,
+      "elapsedMs": 466.8600000000006,
+      "latencies": [
+        284.4999999999982,
+        325.21999999999935,
+        336.22000000000116,
+        376.6800000000021,
+        365.08000000000175,
+        356.119999999999,
+        341.5000000000018,
+        327.52000000000044,
+        313.09999999999854,
+        298.1399999999994,
+        305.6399999999976,
+        291.3999999999978,
+        278.35999999999876,
+        264.8200000000015,
+        250.4400000000005,
+        235.86000000000055
+      ],
+      "resetMs": 0.13999999999941792,
+      "titles": [
+        "glowing-comet",
+        "woolly-ribbon",
+        "glassy-pond",
+        "fluffy-sparrow",
+        "silky-kitten",
+        "grassy-dune",
+        "curly-ribbon",
+        "curly-fern",
+        "cozy-cabin",
+        "windy-tower",
+        "bubbly-fountain",
+        "sunny-window",
+        "woolly-mitten",
+        "glassy-bottle",
+        "sleepy-frog",
+        "rustic-bell"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 0,
+      "variant": "rejection-8",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 45.88000000000102,
+      "elapsedMs": 527.119999999999,
+      "latencies": [
+        303.5400000000009,
+        313.22000000000116,
+        352.1200000000026,
+        361.91999999999825,
+        392.41999999999825,
+        399.119999999999,
+        402.7999999999993,
+        384.15999999999985,
+        368.5399999999973,
+        354.64000000000306,
+        339.8199999999997,
+        332.3999999999978,
+        318.0600000000013,
+        300.2999999999993,
+        283.40000000000146,
+        263.59999999999854
+      ],
+      "resetMs": 0.18000000000029104,
+      "titles": [
+        "woolly-ribbon",
+        "glowing-comet",
+        "fluffy-sparrow",
+        "curly-ribbon",
+        "glassy-bottle",
+        "grassy-dune",
+        "silky-kitten",
+        "rippled-pond",
+        "wavy-fern",
+        "windy-tower",
+        "sunny-window",
+        "bubbly-fountain",
+        "cozy-mitten",
+        "sleepy-frog",
+        "leafy-birch",
+        "bright-orchid"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 0,
+      "variant": "two-pass",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 48.159999999999854,
+      "elapsedMs": 527.5399999999972,
+      "latencies": [
+        323.27999999999884,
+        336.46000000000276,
+        334.6800000000003,
+        359.3199999999997,
+        377.0199999999968,
+        387.5600000000013,
+        387.3600000000006,
+        370.2000000000007,
+        352.15999999999985,
+        329.7199999999975,
+        309.7000000000007,
+        298.0599999999977,
+        278.0600000000013,
+        258.7999999999993,
+        239.70000000000073,
+        222.52000000000044
+      ],
+      "resetMs": 0.22000000000116415,
+      "titles": [
+        "curly-ribbon",
+        "glowing-comet",
+        "rippled-pond",
+        "grassy-dune",
+        "fluffy-robin",
+        "silky-kitten",
+        "glassy-bottle",
+        "woolly-mitten",
+        "wavy-window",
+        "sunny-tower",
+        "bubbly-fountain",
+        "curly-fern",
+        "cozy-cabin",
+        "sleepy-beaver",
+        "snowy-birch",
+        "spotted-frog"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 0,
+      "variant": "typed-array",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 43.55999999999767,
+      "elapsedMs": 558.7200000000012,
+      "latencies": [
+        354.1800000000003,
+        369.35999999999694,
+        369.32000000000335,
+        388.4399999999987,
+        431.2999999999993,
+        419.4600000000027,
+        419.2200000000011,
+        398.7799999999989,
+        379.0200000000005,
+        361.119999999999,
+        350.97999999999956,
+        333.6800000000003,
+        317.5,
+        300.6800000000003,
+        294.72000000000116,
+        266.15999999999985
+      ],
+      "resetMs": 0.2599999999983993,
+      "titles": [
+        "curly-ribbon",
+        "glowing-comet",
+        "rippled-pond",
+        "silky-kitten",
+        "woolly-ribbon",
+        "grassy-dune",
+        "fluffy-sparrow",
+        "glassy-bottle",
+        "wavy-window",
+        "windy-tower",
+        "cozy-cabin",
+        "curly-fern",
+        "bubbly-fountain",
+        "woolly-mitten",
+        "feathery-flower",
+        "sleepy-owl"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 0,
+      "variant": "array",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 49.7599999999984,
+      "elapsedMs": 410.9799999999995,
+      "latencies": [
+        242.76000000000204,
+        238,
+        261.119999999999,
+        253.94000000000233,
+        282.2599999999984,
+        274.5400000000009,
+        280.34000000000015,
+        267.52000000000044,
+        254.8199999999997,
+        242.14000000000303,
+        228.53999999999724,
+        214.61999999999895,
+        212.13999999999945,
+        198.6800000000003,
+        184.86000000000055,
+        181.15999999999983
+      ],
+      "resetMs": 0.1400000000030559,
+      "titles": [
+        "woolly-ribbon",
+        "glowing-comet",
+        "fluffy-kitten",
+        "curly-ribbon",
+        "glassy-pond",
+        "grassy-dune",
+        "silky-flower",
+        "cozy-mitten",
+        "wavy-fern",
+        "sunny-tower",
+        "bubbly-fountain",
+        "glassy-bottle",
+        "leafy-birch",
+        "silver-candle",
+        "spotted-frog",
+        "speckled-mushroom"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 0,
+      "variant": "reservoir-buffered",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 43.27999999999883,
+      "elapsedMs": 462.0599999999977,
+      "latencies": [
+        227.95999999999913,
+        240.52000000000044,
+        301.64000000000306,
+        323.380000000001,
+        353.0600000000013,
+        345.3199999999997,
+        350.9599999999991,
+        338.3799999999974,
+        326.17999999999665,
+        312.84000000000015,
+        299.7800000000025,
+        298.6399999999994,
+        286.2999999999993,
+        273.9400000000023,
+        261,
+        248.4200000000019
+      ],
+      "resetMs": 0.2000000000007276,
+      "titles": [
+        "glowing-comet",
+        "woolly-ribbon",
+        "rippled-pond",
+        "silky-flower",
+        "fluffy-sparrow",
+        "curly-fern",
+        "grassy-dune",
+        "glassy-bottle",
+        "windy-tower",
+        "cozy-cabin",
+        "curly-ribbon",
+        "wavy-window",
+        "bubbly-fountain",
+        "woolly-mitten",
+        "speckled-birch",
+        "silky-kitten"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 1,
+      "variant": "reservoir",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 43.88000000000102,
+      "elapsedMs": 497.4800000000032,
+      "latencies": [
+        248.8199999999997,
+        281.8199999999997,
+        325.1399999999994,
+        341.2199999999975,
+        352.7000000000007,
+        382.7400000000016,
+        381.1800000000003,
+        370.619999999999,
+        358.0600000000013,
+        345.2199999999975,
+        330.0799999999981,
+        316.0599999999977,
+        314.2999999999993,
+        301.23999999999796,
+        298.22000000000116,
+        284.1200000000026
+      ],
+      "resetMs": 0.15999999999985448,
+      "titles": [
+        "glowing-comet",
+        "woolly-ribbon",
+        "fluffy-kitten",
+        "rippled-pond",
+        "grassy-dune",
+        "curly-ribbon",
+        "silky-flower",
+        "glassy-bottle",
+        "sunny-cabin",
+        "bubbly-fountain",
+        "wavy-window",
+        "curly-fern",
+        "windy-tower",
+        "cozy-mitten",
+        "spotted-orchid",
+        "sleepy-robin"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 1,
+      "variant": "array",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 44.2599999999984,
+      "elapsedMs": 482.84000000000015,
+      "latencies": [
+        293.4800000000032,
+        294.65999999999985,
+        299.7199999999975,
+        309.119999999999,
+        297.52000000000044,
+        323.08000000000175,
+        320.4599999999991,
+        312.1399999999994,
+        292.91999999999825,
+        289.3199999999997,
+        273.97999999999956,
+        258.880000000001,
+        244.5,
+        239.89999999999785,
+        228.1800000000003,
+        213.95999999999913
+      ],
+      "resetMs": 0.13999999999941792,
+      "titles": [
+        "woolly-ribbon",
+        "glowing-comet",
+        "silky-flower",
+        "grassy-dune",
+        "glassy-bottle",
+        "fluffy-sparrow",
+        "curly-fern",
+        "rippled-pond",
+        "windy-tower",
+        "bubbly-fountain",
+        "cozy-mitten",
+        "wavy-ribbon",
+        "sunny-cabin",
+        "sleepy-kitten",
+        "rustic-bell",
+        "leafy-birch"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 1,
+      "variant": "two-pass",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 48.02000000000044,
+      "elapsedMs": 477.8600000000006,
+      "latencies": [
+        290,
+        316.3000000000029,
+        352.3600000000006,
+        340.1800000000003,
+        362.119999999999,
+        351.5600000000013,
+        341.2000000000007,
+        327.2000000000007,
+        311.7000000000007,
+        296.3999999999978,
+        279,
+        259.5600000000013,
+        264.09999999999854,
+        251.76000000000204,
+        238.9399999999987,
+        225
+      ],
+      "resetMs": 0.13999999999941792,
+      "titles": [
+        "glowing-comet",
+        "curly-ribbon",
+        "glassy-pond",
+        "silky-kitten",
+        "woolly-ribbon",
+        "grassy-dune",
+        "fluffy-sparrow",
+        "wavy-window",
+        "curly-fern",
+        "glassy-bottle",
+        "sunny-tower",
+        "cozy-cabin",
+        "bubbly-fountain",
+        "woolly-mitten",
+        "speckled-mushroom",
+        "rustic-bell"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 1,
+      "variant": "reservoir-buffered",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 45.7599999999984,
+      "elapsedMs": 507.3999999999978,
+      "latencies": [
+        293.4200000000019,
+        303.40000000000146,
+        318.22000000000116,
+        330.4399999999987,
+        368.7999999999993,
+        384.9799999999995,
+        393.4399999999987,
+        383.2800000000025,
+        371.8799999999974,
+        358.1000000000022,
+        343.08000000000175,
+        328.1999999999971,
+        325.9599999999991,
+        308.72000000000116,
+        292.35999999999694,
+        276.52000000000044
+      ],
+      "resetMs": 0.42000000000189175,
+      "titles": [
+        "woolly-ribbon",
+        "glowing-comet",
+        "glassy-bottle",
+        "fluffy-sparrow",
+        "grassy-dune",
+        "rippled-pond",
+        "silky-flower",
+        "curly-ribbon",
+        "cozy-cabin",
+        "wavy-fern",
+        "sunny-window",
+        "bubbly-fountain",
+        "windy-tower",
+        "woolly-mitten",
+        "rustic-candle",
+        "silver-bell"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 1,
+      "variant": "rejection-8",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 52.92000000000189,
+      "elapsedMs": 416.3999999999978,
+      "latencies": [
+        257.97999999999956,
+        282.1200000000026,
+        281.8199999999997,
+        299.7000000000007,
+        323.2999999999993,
+        330.65999999999985,
+        320.46000000000276,
+        307.8600000000006,
+        292.90000000000146,
+        278.1399999999994,
+        264.5,
+        252.23999999999796,
+        237.60000000000215,
+        221.72000000000116,
+        208.22000000000116,
+        195.1800000000003
+      ],
+      "resetMs": 1.5800000000017462,
+      "titles": [
+        "curly-ribbon",
+        "glowing-comet",
+        "rippled-pond",
+        "fluffy-owl",
+        "glassy-bottle",
+        "woolly-ribbon",
+        "silky-kitten",
+        "grassy-dune",
+        "bubbly-fountain",
+        "curly-fern",
+        "cozy-mitten",
+        "sunny-tower",
+        "wavy-window",
+        "silver-bell",
+        "bright-orchid",
+        "fluffy-sparrow"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 1,
+      "variant": "typed-array",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 47.18000000000029,
+      "elapsedMs": 519.8199999999997,
+      "latencies": [
+        304.7800000000025,
+        328.52000000000044,
+        332.9400000000023,
+        341.46000000000276,
+        362.6399999999994,
+        346.6399999999994,
+        331.7000000000007,
+        315.2400000000016,
+        298.27999999999884,
+        280.58000000000175,
+        264.65999999999985,
+        247.78000000000247,
+        246.23999999999796,
+        227.88000000000105,
+        235.90000000000143,
+        266.2199999999975
+      ],
+      "resetMs": 0.08000000000174623,
+      "titles": [
+        "curly-ribbon",
+        "glowing-comet",
+        "glassy-pond",
+        "silky-flower",
+        "woolly-ribbon",
+        "fluffy-sparrow",
+        "grassy-dune",
+        "sunny-tower",
+        "curly-fern",
+        "bubbly-fountain",
+        "wavy-window",
+        "glassy-bottle",
+        "cozy-mitten",
+        "speckled-frog",
+        "bright-sunflower",
+        "snowy-pine"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 2,
+      "variant": "reservoir",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 46.04000000000087,
+      "elapsedMs": 442.84000000000015,
+      "latencies": [
+        270.9399999999987,
+        259.02000000000044,
+        271.6800000000003,
+        288,
+        306.91999999999825,
+        322.5,
+        308.2000000000007,
+        294.3600000000006,
+        279.4400000000023,
+        265.5,
+        246.58000000000175,
+        227.5799999999981,
+        233.7400000000016,
+        217.3199999999997,
+        200.84000000000017,
+        185.47999999999956
+      ],
+      "resetMs": 0.2400000000016007,
+      "titles": [
+        "curly-ribbon",
+        "glowing-comet",
+        "woolly-ribbon",
+        "fluffy-kitten",
+        "grassy-dune",
+        "glassy-pond",
+        "silky-flower",
+        "sunny-cabin",
+        "bubbly-fountain",
+        "cozy-mitten",
+        "curly-fern",
+        "windy-tower",
+        "glassy-bottle",
+        "wavy-window",
+        "rippled-pond",
+        "rustic-bell"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 2,
+      "variant": "array",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 44.37999999999738,
+      "elapsedMs": 447.40000000000146,
+      "latencies": [
+        239.05999999999767,
+        248.34000000000017,
+        261.77999999999884,
+        278.27999999999884,
+        316.8199999999997,
+        334.3999999999978,
+        341.5599999999977,
+        328.26000000000204,
+        315.52000000000044,
+        300.7800000000025,
+        287.02000000000044,
+        274.7999999999993,
+        261.27999999999884,
+        247.5,
+        233.95999999999913,
+        221.34000000000017
+      ],
+      "resetMs": 0.15999999999985448,
+      "titles": [
+        "woolly-ribbon",
+        "glowing-comet",
+        "rippled-pond",
+        "silky-flower",
+        "glassy-bottle",
+        "curly-ribbon",
+        "fluffy-owl",
+        "grassy-dune",
+        "cozy-cabin",
+        "curly-fern",
+        "windy-tower",
+        "sunny-window",
+        "bubbly-fountain",
+        "woolly-mitten",
+        "spotted-kitten",
+        "sleepy-sparrow"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 2,
+      "variant": "reservoir-buffered",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 43.68000000000029,
+      "elapsedMs": 462.3999999999978,
+      "latencies": [
+        342.0600000000013,
+        336.59999999999854,
+        353.40000000000146,
+        338.91999999999825,
+        338.9399999999987,
+        326.23999999999796,
+        319.58000000000175,
+        298.40000000000146,
+        279.47999999999956,
+        262.5599999999977,
+        245.41999999999825,
+        233.55999999999767,
+        214.47999999999956,
+        193.34000000000017,
+        175.7400000000016,
+        159.0799999999981
+      ],
+      "resetMs": 0.18000000000029104,
+      "titles": [
+        "curly-ribbon",
+        "glowing-comet",
+        "rippled-pond",
+        "fluffy-robin",
+        "silky-kitten",
+        "grassy-dune",
+        "woolly-mitten",
+        "glassy-bottle",
+        "sunny-cabin",
+        "curly-fern",
+        "wavy-window",
+        "bubbly-fountain",
+        "windy-tower",
+        "bright-orchid",
+        "sleepy-beaver",
+        "fluffy-owl"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 2,
+      "variant": "two-pass",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 38.05999999999767,
+      "elapsedMs": 436.6999999999971,
+      "latencies": [
+        251.23999999999796,
+        272.3199999999997,
+        273.2400000000016,
+        291.0600000000013,
+        309.22000000000116,
+        320.5400000000009,
+        335.2000000000007,
+        320.5599999999977,
+        301.8999999999978,
+        283.8199999999997,
+        268.73999999999796,
+        255.6800000000003,
+        243.65999999999983,
+        230.22000000000116,
+        216.73999999999796,
+        201.54000000000087
+      ],
+      "resetMs": 0.1000000000021828,
+      "titles": [
+        "curly-ribbon",
+        "glowing-comet",
+        "fluffy-owl",
+        "glassy-bottle",
+        "grassy-dune",
+        "silky-flower",
+        "rippled-pond",
+        "woolly-mitten",
+        "sunny-tower",
+        "cozy-cabin",
+        "bubbly-fountain",
+        "curly-fern",
+        "woolly-ribbon",
+        "wavy-window",
+        "speckled-frog",
+        "snowy-pine"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 2,
+      "variant": "typed-array",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 54.7599999999984,
+      "elapsedMs": 332.73999999999796,
+      "latencies": [
+        233.94000000000233,
+        245.13999999999945,
+        237.20000000000073,
+        230.36000000000055,
+        239.86000000000055,
+        260.97999999999956,
+        258.3600000000006,
+        241.61999999999895,
+        222.2400000000016,
+        203.63999999999945,
+        199.15999999999983,
+        181.5,
+        163.4399999999987,
+        150.0600000000013,
+        137.03999999999724,
+        123.30000000000292
+      ],
+      "resetMs": 0.08000000000174623,
+      "titles": [
+        "glowing-comet",
+        "curly-ribbon",
+        "silky-kitten",
+        "fluffy-owl",
+        "grassy-dune",
+        "woolly-mitten",
+        "rippled-pond",
+        "glassy-bottle",
+        "curly-fern",
+        "bubbly-fountain",
+        "sunny-window",
+        "woolly-ribbon",
+        "windy-tower",
+        "cozy-cabin",
+        "rustic-candle",
+        "spotted-frog"
+      ]
+    },
+    {
+      "contextGroups": 128,
+      "families": 16,
+      "block": 2,
+      "variant": "rejection-8",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 40.719999999997526,
+      "elapsedMs": 427.380000000001,
+      "latencies": [
+        294.02000000000044,
+        290.26000000000204,
+        285.4400000000023,
+        275.52000000000044,
+        288.119999999999,
+        292.08000000000175,
+        277.880000000001,
+        274.119999999999,
+        256.02000000000044,
+        237.41999999999825,
+        226.4200000000019,
+        210.44000000000233,
+        195.0600000000013,
+        178.22000000000116,
+        162.44000000000233,
+        146.65999999999983
+      ],
+      "resetMs": 0.11999999999898137,
+      "titles": [
+        "curly-ribbon",
+        "glowing-comet",
+        "woolly-mitten",
+        "glassy-pond",
+        "grassy-dune",
+        "fluffy-sparrow",
+        "silky-flower",
+        "bubbly-fountain",
+        "windy-tower",
+        "curly-fern",
+        "woolly-ribbon",
+        "glassy-bottle",
+        "wavy-window",
+        "sunny-cabin",
+        "speckled-snail",
+        "spotted-orchid"
+      ]
+    }
+  ],
+  "setup": [
+    {
+      "contextGroups": 0,
+      "elapsedMs": 248.34905199999957
+    },
+    {
+      "contextGroups": 128,
+      "elapsedMs": 2842.3203350000003
+    }
+  ],
+  "policy": "Fixed blocks and seeded shuffled candidate order; full chooseName includes preprocessing, RNG and allocation. Native creation-to-name completion includes constructors and APIs; setup/teardown reported separately. No paint, human outcome or statistical dominance claim.",
+  "browser": {
+    "version": "156.0",
+    "buildId": "20260909172920",
+    "geckodriver": "0.37.1"
+  },
+  "moduleUse": [
+    {
+      "first": {
+        "eligible": 858,
+        "kind": "pair",
+        "name": "silver-spoon"
+      },
+      "moduleAndFirstUseMs": 0.9400000000000012,
+      "variant": "two-pass"
+    },
+    {
+      "first": {
+        "eligible": 858,
+        "kind": "pair",
+        "name": "golden-feather"
+      },
+      "moduleAndFirstUseMs": 0.5199999999999996,
+      "variant": "array"
+    },
+    {
+      "first": {
+        "eligible": 858,
+        "kind": "pair",
+        "name": "tiny-valley"
+      },
+      "moduleAndFirstUseMs": 0.4400000000000013,
+      "variant": "typed-array"
+    },
+    {
+      "first": {
+        "eligible": 858,
+        "kind": "pair",
+        "name": "little-frog"
+      },
+      "moduleAndFirstUseMs": 1.0199999999999996,
+      "variant": "reservoir"
+    },
+    {
+      "first": {
+        "eligible": 858,
+        "kind": "pair",
+        "name": "little-bowl"
+      },
+      "moduleAndFirstUseMs": 0.7800000000000011,
+      "variant": "reservoir-buffered"
+    },
+    {
+      "first": {
+        "eligible": 858,
+        "kind": "pair",
+        "name": "bright-star"
+      },
+      "moduleAndFirstUseMs": 0.5199999999999996,
+      "variant": "rejection-8"
+    }
+  ],
+  "passed": true,
+  "finishedAt": "2026-09-23T21:11:28.867Z"
+}

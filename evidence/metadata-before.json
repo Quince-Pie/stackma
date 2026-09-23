@@ -1,0 +1,75 @@
+{
+  "source": "/tmp/stackma/artifacts/metadata-review-baseline/extension",
+  "sourceSha256": "78a7c20c134920614fa6193136fb7ea5f37c316c698acb7d23d2aaa38b360173",
+  "startedAt": "2026-09-23T17:38:57.496Z",
+  "results": [
+    {
+      "name": "native-empty-title-expanded-default-and-palette-exhaustion",
+      "passed": true,
+      "durationMs": 503.06648199999995,
+      "details": {
+        "colors": [
+          "blue",
+          "purple",
+          "cyan",
+          "orange",
+          "yellow",
+          "pink",
+          "green",
+          "gray",
+          "red",
+          "purple",
+          "red"
+        ]
+      }
+    },
+    {
+      "name": "late-parent-preserves-native-identity-and-all-metadata",
+      "passed": false,
+      "durationMs": 169.9338049999999,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 1790185139180014\n- 1790185139159086\n             ^\n"
+    },
+    {
+      "name": "late-parent-preserves-native-identity-and-all-metadata-private-fallback",
+      "passed": false,
+      "durationMs": 147.59795699999995,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 1790185139328030\n- 1790185139313010\n             ^\n"
+    },
+    {
+      "name": "existing-opener-metadata-takes-precedence-over-child-branch",
+      "passed": true,
+      "durationMs": 181.3708939999999
+    },
+    {
+      "name": "foreign-child-group-member-is-not-merged-with-ungrouped-opener",
+      "passed": true,
+      "durationMs": 382.087763
+    },
+    {
+      "name": "exclusive-child-split-companion-preserves-group-metadata",
+      "passed": false,
+      "durationMs": 188.755897,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 1790185140083081\n- 1790185140055064\n             ^\n"
+    },
+    {
+      "name": "exclusive-child-split-companion-preserves-group-metadata-private-fallback",
+      "passed": false,
+      "durationMs": 210.56733299999996,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 1790185140297079\n- 1790185140262055\n             ^\n"
+    },
+    {
+      "name": "native-new-tab-insertion-controls-collapse-without-metadata-overwrite",
+      "passed": true,
+      "durationMs": 121.81111999999985
+    }
+  ],
+  "browser": {
+    "version": "156.0",
+    "buildId": "20260909172920",
+    "geckodriver": "0.37.1",
+    "platform": "linux"
+  },
+  "extraExtensions": [],
+  "passed": false,
+  "finishedAt": "2026-09-23T17:39:00.436Z"
+}

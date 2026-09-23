@@ -1,0 +1,79 @@
+warning: Git tree '/tmp/stackma' is dirty
+
+> stackma@1.0.1 check
+> npm run typecheck && npm test && npm run lint
+
+
+> stackma@1.0.1 typecheck
+> tsc --noEmit
+
+
+> stackma@1.0.1 test
+> node --test tests/*.test.js
+
+✔ late parent preserves exclusive branch identity and metadata, order 1,2,3,4,5 (2.685778ms)
+✔ late parent preserves exclusive branch identity and metadata, order 2,3,1,4,5 (0.319898ms)
+✔ late parent preserves exclusive branch identity and metadata, order 1,4,2,3,5 (3.53988ms)
+✔ late parent preserves exclusive branch identity and metadata, order 4,2,3,5,1 (0.744132ms)
+✔ existing opener group and its metadata take precedence over a child branch (0.371235ms)
+✔ metadata edits made after membership reads survive the eventual native join (0.34764ms)
+✔ unrelated child-group member remains in its original group, order 1,4,2,3 (0.278369ms)
+✔ unrelated child-group member remains in its original group, order 1,2,3,4 (0.161456ms)
+✔ first exclusive child group in event order wins a merge of two branches (0.288768ms)
+✔ private-window mismatch fallback retains exclusive branch metadata (0.517923ms)
+✔ one failed membership probe is retried without losing metadata (0.280663ms)
+✔ persistent failed membership probes report failure and release the lane (0.329475ms)
+✔ opener closure during exclusivity probing does not replace the child group (0.221731ms)
+✔ ungrouped opener and child form a native group in their own window (1.555402ms)
+✔ child joins the opener existing group without touching unrelated groups (0.31099ms)
+✔ native inheritance that already satisfies the relation causes no mutation (0.224165ms)
+✔ missing, self, and malformed relationships cause no mutations (0.622852ms)
+✔ pinned endpoints are preserved and the relationship is skipped (0.252159ms)
+✔ relationships across windows and privacy boundaries do not move tabs (0.186083ms)
+✔ private group creation uses the source window despite a normal focused window (0.13169ms)
+✔ private existing-group joins work without focusing or crossing a window (0.429526ms)
+✔ private fallback recovers a transient descendant move failure (0.313535ms)
+✔ private fallback retains ancestry after partial success and recovery (0.867707ms)
+✔ persistent partial private fallback is bounded and reported without stranding later work (0.667077ms)
+✔ fallback keeps its expanded plan when one move implicitly relocates an ancestor (0.324166ms)
+✔ duplicate creation signals do not undo a later manual ungroup (0.114938ms)
+✔ simultaneous siblings share a group despite asynchronous opener reads (0.285812ms)
+✔ overlapping parent and descendant events preserve the complete chain (0.756927ms)
+✔ a late parent relation carries already accepted descendants into the final group (0.250445ms)
+✔ grouping a source own child cannot accept its skipped incoming relationship (0.194539ms)
+✔ a source observed outside its assigned group disowns the old incoming edge (0.174371ms)
+✔ a descendant manually reassigned before a late parent is not pulled back (0.142952ms)
+✔ a descendant moved to another window is not pulled back by a late parent (0.186374ms)
+✔ closing either endpoint during its read does not block later work (0.375934ms)
+✔ a single tab closing in a pending batch does not abandon surviving siblings (0.271615ms)
+✔ a transient mutation rejection is recovered with fresh browser state (0.14219ms)
+✔ persistent mutation rejection is bounded, reported, and does not strand the queue (0.299459ms)
+✔ unexpected read rejection is reported without an unhandled rejection (0.18967ms)
+✔ structured missing-tab errors are recognized across API realms (0.072538ms)
+✔ structured privacy errors still select the safe native-move fallback (0.09992ms)
+✔ a stalled window does not block an independent window (0.150847ms)
+✔ forget removes retained relationships and settled window queues (0.116111ms)
+✔ the unqueued opener-snapshot baseline has a sibling race (0.086504ms)
+✔ bounded sibling batching removes redundant API work under matched admission (2.501899ms)
+✔ batching and FIFO satisfy the independent forest oracle (seed 1) (1.994225ms)
+✔ batching and FIFO satisfy the independent forest oracle (seed 17) (1.009326ms)
+✔ batching and FIFO satisfy the independent forest oracle (seed 771) (1.288676ms)
+✔ batching and FIFO satisfy the independent forest oracle (seed 305419896) (0.86901ms)
+ℹ tests 48
+ℹ suites 0
+ℹ pass 48
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52.681794
+
+> stackma@1.0.1 lint
+> web-ext lint --source-dir extension --warnings-as-errors
+
+Validation Summary:
+
+errors          0              
+notices         0              
+warnings        0              
+

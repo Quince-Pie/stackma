@@ -1,0 +1,34 @@
+{
+  "version": "1.1.0",
+  "sourceSha256": "5bd6d065dd82eb48251ca96820d37ce8a528fd090ee8c3ba83be77ef09b46dc1",
+  "package": {
+    "path": "dist/stackma-1.1.0.xpi",
+    "sha256": "896566be9e7a9b83076690c43473bcbca83f85b5d20d7e10726a90e5067e830f",
+    "bytes": 23873,
+    "reproducibleBuild": true
+  },
+  "checks": {
+    "checkJs": true,
+    "unitAndContenderTests": 147,
+    "groupingAlternatives": 74,
+    "firefoxGeneral": 20,
+    "firefoxMetadata": 8,
+    "firefoxNamingAndPopup": 15,
+    "nativeIdCollisionFixture": true,
+    "mozillaLint": {
+      "errors": 0,
+      "warnings": 0,
+      "notices": 0
+    },
+    "packagedSourcesMatch": true
+  },
+  "engineeringQualification": "Scoped to Firefox156, documented native API boundaries, English pack en-v1, and the user retained-state priority; final corrected contenders compared.",
+  "humanOutcomeQualification": "Unestablished: no participant outcome study; a fixed protocol is supplied.",
+  "universalOptimality": "Not established and not claimed.",
+  "resourceBudget": {
+    "startUtc": "2026-09-23T20:29:00Z",
+    "deadlineUtc": "2026-09-23T22:19:00Z",
+    "completedUtc": "2026-09-23T22:05:17.031Z",
+    "scope": "110 elapsed minutes including all delegation, tooling, investigation, experiments and verification; at most four active agents."
+  }
+}

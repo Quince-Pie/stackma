@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stackma</title>
+  <link rel="stylesheet" href="popup.css">
+  <script type="module" src="popup.js"></script>
+  <main>
+    <h1><img src="icon.svg" width="28" height="28" alt="">Stackma</h1>
+    <p>Related tabs stack together automatically. New stacks get a familiar word pair, or a numbered name when distinct pairs run out.</p>
+    <p class="hint">Rename stacks in Firefox’s group menu. Pinned tabs and separate windows stay separate.</p>
+    <div id="issue" hidden role="status">
+      <p>A stack could not be grouped or named. You can edit it in Firefox’s tab menu. Details are in the extension’s developer console.</p>
+      <button id="dismiss" type="button">Dismiss notice</button>
+    </div>
+    <section aria-labelledby="groups-heading">
+      <h2 id="groups-heading">Open groups</h2>
+      <label for="search">Find a group by either word</label>
+      <input id="search" type="search" placeholder="Search group names" autocomplete="off" spellcheck="false">
+      <p id="result-count" class="hint" role="status">Loading groups…</p>
+      <p id="message" role="status" aria-live="polite" aria-atomic="true"></p>
+      <ul id="groups" aria-label="Tab groups"></ul>
+    </section>
+    <footer>No website content read. No data sent by Stackma.</footer>
+  </main>
+</html>

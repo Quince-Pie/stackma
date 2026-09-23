@@ -1,0 +1,30 @@
+{
+  "name": "stackma",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "web-ext lint --source-dir extension --warnings-as-errors",
+    "check": "npm run typecheck && npm test && npm run lint",
+    "test:firefox": "node scripts/firefox-test.js",
+    "test:metadata": "node scripts/metadata-test.js",
+    "test:naming": "node scripts/naming-test.js",
+    "test:native-ids": "node scripts/native-id-test.js",
+    "check:catalog": "node naming-data/build-pack.mjs --check && node scripts/compile-names.js --check",
+    "benchmark:naming": "node scripts/naming-benchmark.js --confirmation",
+    "test:alternatives": "node --test experiments/*.test.js",
+    "test:package": "node scripts/package-test.js",
+    "benchmark": "node scripts/benchmark.js --phase=confirmation",
+    "build": "node scripts/build.js"
+  },
+  "devDependencies": {
+    "@types/firefox-webext-browser": "143.0.0",
+    "typescript": "7.0.2",
+    "web-ext": "10.7.0"
+  }
+}

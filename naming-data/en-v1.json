@@ -1,0 +1,8495 @@
+{
+  "schemaVersion": 1,
+  "version": "en-v1",
+  "language": "en",
+  "spellingPolicy": "ASCII lowercase; US cozy and internationally used woolly; explicit variants",
+  "pronunciationScope": "CMU American English; accent coverage is incomplete",
+  "reviewStatus": "editorial-ai-reviewed; no human outcome study",
+  "provenance": {
+    "pronunciation": {
+      "source": "CMU Pronouncing Dictionary",
+      "repository": "https://github.com/cmusphinx/cmudict",
+      "revision": "74790861f652b15e4ac49015a90074ad62a27690",
+      "dictionaryUrl": "https://raw.githubusercontent.com/cmusphinx/cmudict/74790861f652b15e4ac49015a90074ad62a27690/cmudict.dict",
+      "dictionarySha256": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22",
+      "excerptSha256": "e4f211be179351235d79bb0f55171d6494100ce627d710fa962e211577d9da8d",
+      "licenseFile": "CMU-LICENSE.txt",
+      "licenseSha256": "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a"
+    },
+    "curationSha256": "8b3e1466de957c0aee60bdcff46bfe905cd5c615e8a24e83bcb7d17e7a1f7991",
+    "designReference": "/home/quince/Downloads/Pro.md supplied by the user",
+    "inspectedEngineeringPrecedent": "https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases"
+  },
+  "measurements": {
+    "componentFrequency": null,
+    "phraseFrequency": null,
+    "contextualDiversity": null,
+    "ageOfAcquisition": null,
+    "concretenessNorm": null,
+    "affectNorm": null,
+    "humanRecognitionOrRecall": null,
+    "note": "Null means unmeasured, not zero. No familiarity or memorability score is invented."
+  },
+  "confusionPolicy": {
+    "spelling": "Levenshtein distance <= 1 over canonical forms and explicit variants",
+    "sound": "Minimum Levenshtein distance <= 1 over all pinned CMU phoneme sequences after removing stress digits",
+    "semantic": "Explicit sets in curation.json; semanticFamily is an additional descriptive category, not measured confusion",
+    "interpretation": "Screening features, not probabilities or a validated cognitive distance"
+  },
+  "statistics": {
+    "adjectives": 47,
+    "nouns": 86,
+    "approvedPairs": 858,
+    "unrestrictedCartesianPairs": 4042,
+    "minCharacters": 7,
+    "maxCharacters": 18,
+    "minSyllables": 2,
+    "maxSyllables": 6,
+    "outsideSoftSyllableTarget": 34,
+    "note": "Statistics describe the approved set; they are not human-performance measurements."
+  },
+  "adjectives": [
+    {
+      "id": "breezy",
+      "word": "breezy",
+      "role": "adjective",
+      "sense": "moved or surrounded by a light wind",
+      "semanticFamily": "weather-air",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "R",
+          "IY1",
+          "Z",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "windy"
+      ],
+      "confusionReasons": {
+        "windy": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "bright",
+      "word": "bright",
+      "role": "adjective",
+      "sense": "visibly full of light or vivid appearance",
+      "semanticFamily": "light-intensity",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "R",
+          "AY1",
+          "T"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "glowing",
+        "sparkly"
+      ],
+      "confusionReasons": {
+        "glowing": [
+          "editorial-semantic-neighbor"
+        ],
+        "sparkly": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "bubbly",
+      "word": "bubbly",
+      "role": "adjective",
+      "sense": "containing visible bubbles",
+      "semanticFamily": "water-surface",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "AH1",
+          "B",
+          "L",
+          "IY0"
+        ],
+        [
+          "B",
+          "AH1",
+          "B",
+          "AH0",
+          "L",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2,
+        3
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "calm",
+      "word": "calm",
+      "role": "adjective",
+      "sense": "still or peacefully resting",
+      "semanticFamily": "resting-state",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "AA1",
+          "M"
+        ],
+        [
+          "K",
+          "AA1",
+          "L",
+          "M"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "quiet",
+        "sleepy"
+      ],
+      "confusionReasons": {
+        "quiet": [
+          "editorial-semantic-neighbor"
+        ],
+        "sleepy": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "cozy",
+      "word": "cozy",
+      "role": "adjective",
+      "sense": "warm and comfortably sheltered",
+      "semanticFamily": "comfort",
+      "spellingVariants": [
+        "cosy"
+      ],
+      "pronunciations": [
+        [
+          "K",
+          "OW1",
+          "Z",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "crisp",
+      "word": "crisp",
+      "role": "adjective",
+      "sense": "firm or dry enough to make a light crackling sound",
+      "semanticFamily": "firm-texture",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "R",
+          "IH1",
+          "S",
+          "P"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "curly",
+      "word": "curly",
+      "role": "adjective",
+      "sense": "having small rounded curls",
+      "semanticFamily": "curved-shape",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "ER1",
+          "L",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "rippled",
+        "wavy"
+      ],
+      "confusionReasons": {
+        "rippled": [
+          "editorial-semantic-neighbor"
+        ],
+        "wavy": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "dotted",
+      "word": "dotted",
+      "role": "adjective",
+      "sense": "decorated with small dots",
+      "semanticFamily": "small-dot-pattern",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "D",
+          "AA1",
+          "T",
+          "AH0",
+          "D"
+        ],
+        [
+          "D",
+          "AA1",
+          "T",
+          "IH0",
+          "D"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "speckled",
+        "spotted"
+      ],
+      "confusionReasons": {
+        "speckled": [
+          "editorial-semantic-neighbor"
+        ],
+        "spotted": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "dusty",
+      "word": "dusty",
+      "role": "adjective",
+      "sense": "lightly covered in dust",
+      "semanticFamily": "dust-covering",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "D",
+          "AH1",
+          "S",
+          "T",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "feathery",
+      "word": "feathery",
+      "role": "adjective",
+      "sense": "having a delicate featherlike outline or texture",
+      "semanticFamily": "fine-texture",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "F",
+          "EH1",
+          "DH",
+          "ER0",
+          "IY0"
+        ],
+        [
+          "F",
+          "EH1",
+          "DH",
+          "R",
+          "IY2"
+        ]
+      ],
+      "syllables": [
+        2,
+        3
+      ],
+      "confusableWith": [
+        "fluffy",
+        "woolly",
+        "feather"
+      ],
+      "confusionReasons": {
+        "fluffy": [
+          "editorial-semantic-neighbor"
+        ],
+        "woolly": [
+          "editorial-semantic-neighbor"
+        ],
+        "feather": [
+          "spelling-edit-distance-at-most-one",
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "fluffy",
+      "word": "fluffy",
+      "role": "adjective",
+      "sense": "soft and loosely rounded",
+      "semanticFamily": "soft-texture",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "F",
+          "L",
+          "AH1",
+          "F",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "feathery",
+        "woolly"
+      ],
+      "confusionReasons": {
+        "feathery": [
+          "editorial-semantic-neighbor"
+        ],
+        "woolly": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "frosty",
+      "word": "frosty",
+      "role": "adjective",
+      "sense": "covered in a light layer of frost",
+      "semanticFamily": "frozen-covering",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "F",
+          "R",
+          "AO1",
+          "S",
+          "T",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "icy",
+        "snowy"
+      ],
+      "confusionReasons": {
+        "icy": [
+          "editorial-semantic-neighbor"
+        ],
+        "snowy": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "glassy",
+      "word": "glassy",
+      "role": "adjective",
+      "sense": "smooth and reflective like glass",
+      "semanticFamily": "reflective-surface",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "G",
+          "L",
+          "AE1",
+          "S",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "grassy",
+        "polished",
+        "shiny",
+        "sparkly"
+      ],
+      "confusionReasons": {
+        "grassy": [
+          "spelling-edit-distance-at-most-one",
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ],
+        "polished": [
+          "editorial-semantic-neighbor"
+        ],
+        "shiny": [
+          "editorial-semantic-neighbor"
+        ],
+        "sparkly": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "gliding",
+      "word": "gliding",
+      "role": "adjective",
+      "sense": "moving smoothly through air or water",
+      "semanticFamily": "smooth-motion",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "G",
+          "L",
+          "AY1",
+          "D",
+          "IH0",
+          "NG"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "glowing",
+      "word": "glowing",
+      "role": "adjective",
+      "sense": "giving off a gentle visible light",
+      "semanticFamily": "light-emission",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "G",
+          "L",
+          "OW1",
+          "IH0",
+          "NG"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "bright",
+        "sparkly"
+      ],
+      "confusionReasons": {
+        "bright": [
+          "editorial-semantic-neighbor"
+        ],
+        "sparkly": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "golden",
+      "word": "golden",
+      "role": "adjective",
+      "sense": "golden in material or visible appearance",
+      "semanticFamily": "metal-appearance",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "G",
+          "OW1",
+          "L",
+          "D",
+          "AH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "silver"
+      ],
+      "confusionReasons": {
+        "silver": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "grassy",
+      "word": "grassy",
+      "role": "adjective",
+      "sense": "covered with growing grass",
+      "semanticFamily": "grass-covering",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "G",
+          "R",
+          "AE1",
+          "S",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "glassy"
+      ],
+      "confusionReasons": {
+        "glassy": [
+          "spelling-edit-distance-at-most-one",
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "hazy",
+      "word": "hazy",
+      "role": "adjective",
+      "sense": "seen through a light haze",
+      "semanticFamily": "mist-covering",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "HH",
+          "EY1",
+          "Z",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "misty",
+        "daisy"
+      ],
+      "confusionReasons": {
+        "misty": [
+          "editorial-semantic-neighbor"
+        ],
+        "daisy": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "icy",
+      "word": "icy",
+      "role": "adjective",
+      "sense": "covered in ice or containing visible ice",
+      "semanticFamily": "frozen-covering",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "AY1",
+          "S",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "frosty",
+        "snowy"
+      ],
+      "confusionReasons": {
+        "frosty": [
+          "editorial-semantic-neighbor"
+        ],
+        "snowy": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "leafy",
+      "word": "leafy",
+      "role": "adjective",
+      "sense": "having many growing leaves",
+      "semanticFamily": "leaf-covering",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "L",
+          "IY1",
+          "F",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "leaf"
+      ],
+      "confusionReasons": {
+        "leaf": [
+          "spelling-edit-distance-at-most-one",
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "little",
+      "word": "little",
+      "role": "adjective",
+      "sense": "small in physical size",
+      "semanticFamily": "small-size",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "L",
+          "IH1",
+          "T",
+          "AH0",
+          "L"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "tiny"
+      ],
+      "confusionReasons": {
+        "tiny": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "misty",
+      "word": "misty",
+      "role": "adjective",
+      "sense": "surrounded by a thin mist",
+      "semanticFamily": "mist-covering",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "M",
+          "IH1",
+          "S",
+          "T",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "hazy"
+      ],
+      "confusionReasons": {
+        "hazy": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "mossy",
+      "word": "mossy",
+      "role": "adjective",
+      "sense": "covered with growing moss",
+      "semanticFamily": "moss-covering",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "M",
+          "AO1",
+          "S",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "muddy",
+      "word": "muddy",
+      "role": "adjective",
+      "sense": "covered in or containing wet earth",
+      "semanticFamily": "mud-covering",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "M",
+          "AH1",
+          "D",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "polished",
+      "word": "polished",
+      "role": "adjective",
+      "sense": "made smooth and shiny by polishing",
+      "semanticFamily": "reflective-surface",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "P",
+          "AA1",
+          "L",
+          "IH0",
+          "SH",
+          "T"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "glassy",
+        "shiny",
+        "sparkly"
+      ],
+      "confusionReasons": {
+        "glassy": [
+          "editorial-semantic-neighbor"
+        ],
+        "shiny": [
+          "editorial-semantic-neighbor"
+        ],
+        "sparkly": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "quiet",
+      "word": "quiet",
+      "role": "adjective",
+      "sense": "making little sound",
+      "semanticFamily": "resting-state",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "W",
+          "AY1",
+          "AH0",
+          "T"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "calm",
+        "sleepy"
+      ],
+      "confusionReasons": {
+        "calm": [
+          "editorial-semantic-neighbor"
+        ],
+        "sleepy": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "rippled",
+      "word": "rippled",
+      "role": "adjective",
+      "sense": "having small visible waves",
+      "semanticFamily": "water-surface",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "R",
+          "IH1",
+          "P",
+          "AH0",
+          "L",
+          "D"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "curly",
+        "wavy"
+      ],
+      "confusionReasons": {
+        "curly": [
+          "editorial-semantic-neighbor"
+        ],
+        "wavy": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "rocky",
+      "word": "rocky",
+      "role": "adjective",
+      "sense": "having exposed rocks",
+      "semanticFamily": "rock-covering",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "R",
+          "AA1",
+          "K",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "round",
+      "word": "round",
+      "role": "adjective",
+      "sense": "having a visibly rounded outline",
+      "semanticFamily": "rounded-shape",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "R",
+          "AW1",
+          "N",
+          "D"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "rustic",
+      "word": "rustic",
+      "role": "adjective",
+      "sense": "having a simple countryside appearance",
+      "semanticFamily": "rural-style",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "R",
+          "AH1",
+          "S",
+          "T",
+          "IH0",
+          "K"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "sandy",
+      "word": "sandy",
+      "role": "adjective",
+      "sense": "covered with or containing sand",
+      "semanticFamily": "sand-covering",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "AE1",
+          "N",
+          "D",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "shiny",
+      "word": "shiny",
+      "role": "adjective",
+      "sense": "reflecting visible light from its surface",
+      "semanticFamily": "reflective-surface",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "SH",
+          "AY1",
+          "N",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "glassy",
+        "polished",
+        "sparkly",
+        "tiny"
+      ],
+      "confusionReasons": {
+        "glassy": [
+          "editorial-semantic-neighbor"
+        ],
+        "polished": [
+          "editorial-semantic-neighbor"
+        ],
+        "sparkly": [
+          "editorial-semantic-neighbor"
+        ],
+        "tiny": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "silky",
+      "word": "silky",
+      "role": "adjective",
+      "sense": "smooth and soft like silk",
+      "semanticFamily": "soft-texture",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "IH1",
+          "L",
+          "K",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "smooth"
+      ],
+      "confusionReasons": {
+        "smooth": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "silver",
+      "word": "silver",
+      "role": "adjective",
+      "sense": "made of silver or having a silver appearance",
+      "semanticFamily": "metal-appearance",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "IH1",
+          "L",
+          "V",
+          "ER0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "golden"
+      ],
+      "confusionReasons": {
+        "golden": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "sleepy",
+      "word": "sleepy",
+      "role": "adjective",
+      "sense": "appearing ready to sleep",
+      "semanticFamily": "resting-state",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "L",
+          "IY1",
+          "P",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "calm",
+        "quiet"
+      ],
+      "confusionReasons": {
+        "calm": [
+          "editorial-semantic-neighbor"
+        ],
+        "quiet": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "smooth",
+      "word": "smooth",
+      "role": "adjective",
+      "sense": "having an even surface",
+      "semanticFamily": "even-texture",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "M",
+          "UW1",
+          "DH"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "silky"
+      ],
+      "confusionReasons": {
+        "silky": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "snowy",
+      "word": "snowy",
+      "role": "adjective",
+      "sense": "covered by snow",
+      "semanticFamily": "snow-covering",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "N",
+          "OW1",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "frosty",
+        "icy"
+      ],
+      "confusionReasons": {
+        "frosty": [
+          "editorial-semantic-neighbor"
+        ],
+        "icy": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "sparkly",
+      "word": "sparkly",
+      "role": "adjective",
+      "sense": "reflecting small bright points of light",
+      "semanticFamily": "light-sparkle",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "P",
+          "AA1",
+          "R",
+          "K",
+          "L",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "bright",
+        "glassy",
+        "glowing",
+        "polished",
+        "shiny"
+      ],
+      "confusionReasons": {
+        "bright": [
+          "editorial-semantic-neighbor"
+        ],
+        "glassy": [
+          "editorial-semantic-neighbor"
+        ],
+        "glowing": [
+          "editorial-semantic-neighbor"
+        ],
+        "polished": [
+          "editorial-semantic-neighbor"
+        ],
+        "shiny": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "speckled",
+      "word": "speckled",
+      "role": "adjective",
+      "sense": "marked by small irregular spots",
+      "semanticFamily": "small-dot-pattern",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "P",
+          "EH1",
+          "K",
+          "AH0",
+          "L",
+          "D"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "dotted",
+        "spotted"
+      ],
+      "confusionReasons": {
+        "dotted": [
+          "editorial-semantic-neighbor"
+        ],
+        "spotted": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "spotted",
+      "word": "spotted",
+      "role": "adjective",
+      "sense": "marked by visible rounded patches",
+      "semanticFamily": "large-spot-pattern",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "P",
+          "AA1",
+          "T",
+          "IH0",
+          "D"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "dotted",
+        "speckled"
+      ],
+      "confusionReasons": {
+        "dotted": [
+          "editorial-semantic-neighbor"
+        ],
+        "speckled": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "striped",
+      "word": "striped",
+      "role": "adjective",
+      "sense": "marked by visible parallel bands",
+      "semanticFamily": "stripe-pattern",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "T",
+          "R",
+          "AY1",
+          "P",
+          "T"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "sunny",
+      "word": "sunny",
+      "role": "adjective",
+      "sense": "lit by the sun",
+      "semanticFamily": "sunlight",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "AH1",
+          "N",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "tiny",
+      "word": "tiny",
+      "role": "adjective",
+      "sense": "very small in physical size",
+      "semanticFamily": "small-size",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "T",
+          "AY1",
+          "N",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "little",
+        "shiny"
+      ],
+      "confusionReasons": {
+        "little": [
+          "editorial-semantic-neighbor"
+        ],
+        "shiny": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "wavy",
+      "word": "wavy",
+      "role": "adjective",
+      "sense": "having a gently bending outline or pattern",
+      "semanticFamily": "curved-shape",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "W",
+          "EY1",
+          "V",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "curly",
+        "rippled"
+      ],
+      "confusionReasons": {
+        "curly": [
+          "editorial-semantic-neighbor"
+        ],
+        "rippled": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "windy",
+      "word": "windy",
+      "role": "adjective",
+      "sense": "surrounded by a noticeable wind",
+      "semanticFamily": "weather-air",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "W",
+          "IH1",
+          "N",
+          "D",
+          "IY0"
+        ],
+        [
+          "W",
+          "AY1",
+          "N",
+          "D",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "breezy",
+        "window"
+      ],
+      "confusionReasons": {
+        "breezy": [
+          "editorial-semantic-neighbor"
+        ],
+        "window": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "wooden",
+      "word": "wooden",
+      "role": "adjective",
+      "sense": "made from wood",
+      "semanticFamily": "wood-material",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "W",
+          "UH1",
+          "D",
+          "AH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "woolly",
+      "word": "woolly",
+      "role": "adjective",
+      "sense": "made from wool or having a woollike texture",
+      "semanticFamily": "soft-texture",
+      "spellingVariants": [
+        "wooly"
+      ],
+      "pronunciations": [
+        [
+          "W",
+          "UH1",
+          "L",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "feathery",
+        "fluffy"
+      ],
+      "confusionReasons": {
+        "feathery": [
+          "editorial-semantic-neighbor"
+        ],
+        "fluffy": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    }
+  ],
+  "nouns": [
+    {
+      "id": "acorn",
+      "word": "acorn",
+      "role": "noun",
+      "sense": "the nut produced by an oak tree",
+      "semanticFamily": "tree-seed",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "EY1",
+          "K",
+          "AO0",
+          "R",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "apple",
+      "word": "apple",
+      "role": "noun",
+      "sense": "one round apple fruit",
+      "semanticFamily": "fruit",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "AE1",
+          "P",
+          "AH0",
+          "L"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "bamboo",
+      "word": "bamboo",
+      "role": "noun",
+      "sense": "one bamboo plant",
+      "semanticFamily": "tall-plant",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "AE0",
+          "M",
+          "B",
+          "UW1"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "basket",
+      "word": "basket",
+      "role": "noun",
+      "sense": "one woven carrying container",
+      "semanticFamily": "container",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "AE1",
+          "S",
+          "K",
+          "AH0",
+          "T"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "beaver",
+      "word": "beaver",
+      "role": "noun",
+      "sense": "one broad-tailed swimming rodent",
+      "semanticFamily": "water-mammal",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "IY1",
+          "V",
+          "ER0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "bell",
+      "word": "bell",
+      "role": "noun",
+      "sense": "one hollow ringing instrument",
+      "semanticFamily": "musical-object",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "EH1",
+          "L"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "bowl",
+        "shell"
+      ],
+      "confusionReasons": {
+        "bowl": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ],
+        "shell": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "birch",
+      "word": "birch",
+      "role": "noun",
+      "sense": "one birch tree",
+      "semanticFamily": "tree",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "ER1",
+          "CH"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "blossom",
+      "word": "blossom",
+      "role": "noun",
+      "sense": "one flower on a plant",
+      "semanticFamily": "flower",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "L",
+          "AA1",
+          "S",
+          "AH0",
+          "M"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "flower"
+      ],
+      "confusionReasons": {
+        "flower": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "boat",
+      "word": "boat",
+      "role": "noun",
+      "sense": "one small floating vessel",
+      "semanticFamily": "watercraft",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "OW1",
+          "T"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "bowl",
+        "canoe"
+      ],
+      "confusionReasons": {
+        "bowl": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ],
+        "canoe": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "bottle",
+      "word": "bottle",
+      "role": "noun",
+      "sense": "one narrow-necked container",
+      "semanticFamily": "container",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "AA1",
+          "T",
+          "AH0",
+          "L"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "bowl",
+      "word": "bowl",
+      "role": "noun",
+      "sense": "one open rounded dish",
+      "semanticFamily": "container",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "OW1",
+          "L"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "bell",
+        "boat",
+        "owl"
+      ],
+      "confusionReasons": {
+        "bell": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ],
+        "boat": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ],
+        "owl": [
+          "spelling-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "butterfly",
+      "word": "butterfly",
+      "role": "noun",
+      "sense": "one butterfly insect",
+      "semanticFamily": "winged-insect",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "B",
+          "AH1",
+          "T",
+          "ER0",
+          "F",
+          "L",
+          "AY2"
+        ]
+      ],
+      "syllables": [
+        3
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "cactus",
+      "word": "cactus",
+      "role": "noun",
+      "sense": "one cactus plant",
+      "semanticFamily": "succulent-plant",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "AE1",
+          "K",
+          "T",
+          "AH0",
+          "S"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "cabin",
+      "word": "cabin",
+      "role": "noun",
+      "sense": "one small house",
+      "semanticFamily": "building",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "AE1",
+          "B",
+          "AH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "candle",
+      "word": "candle",
+      "role": "noun",
+      "sense": "one wax light with a wick",
+      "semanticFamily": "light-object",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "AE1",
+          "N",
+          "D",
+          "AH0",
+          "L"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "lantern"
+      ],
+      "confusionReasons": {
+        "lantern": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "canoe",
+      "word": "canoe",
+      "role": "noun",
+      "sense": "one narrow paddled boat",
+      "semanticFamily": "watercraft",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "AH0",
+          "N",
+          "UW1"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "boat"
+      ],
+      "confusionReasons": {
+        "boat": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "castle",
+      "word": "castle",
+      "role": "noun",
+      "sense": "one stone castle building",
+      "semanticFamily": "building",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "AE1",
+          "S",
+          "AH0",
+          "L"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "cedar",
+      "word": "cedar",
+      "role": "noun",
+      "sense": "one cedar tree",
+      "semanticFamily": "tree",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "IY1",
+          "D",
+          "ER0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "cherry",
+      "word": "cherry",
+      "role": "noun",
+      "sense": "one cherry fruit",
+      "semanticFamily": "fruit",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "CH",
+          "EH1",
+          "R",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "clock",
+      "word": "clock",
+      "role": "noun",
+      "sense": "one physical clock",
+      "semanticFamily": "household-object",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "L",
+          "AA1",
+          "K"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "cloud",
+      "word": "cloud",
+      "role": "noun",
+      "sense": "one visible cloud in the sky",
+      "semanticFamily": "sky-phenomenon",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "L",
+          "AW1",
+          "D"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "clover",
+      "word": "clover",
+      "role": "noun",
+      "sense": "one clover plant",
+      "semanticFamily": "flowering-plant",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "L",
+          "OW1",
+          "V",
+          "ER0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "comet",
+      "word": "comet",
+      "role": "noun",
+      "sense": "one comet in the sky",
+      "semanticFamily": "celestial-object",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "AA1",
+          "M",
+          "AH0",
+          "T"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "cricket",
+      "word": "cricket",
+      "role": "noun",
+      "sense": "one chirping cricket insect",
+      "semanticFamily": "winged-insect",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "R",
+          "IH1",
+          "K",
+          "AH0",
+          "T"
+        ],
+        [
+          "K",
+          "R",
+          "IH1",
+          "K",
+          "IH0",
+          "T"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "daisy",
+      "word": "daisy",
+      "role": "noun",
+      "sense": "one daisy flower",
+      "semanticFamily": "flower",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "D",
+          "EY1",
+          "Z",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "hazy"
+      ],
+      "confusionReasons": {
+        "hazy": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "dolphin",
+      "word": "dolphin",
+      "role": "noun",
+      "sense": "one dolphin animal",
+      "semanticFamily": "sea-mammal",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "D",
+          "AA1",
+          "L",
+          "F",
+          "AH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "dune",
+      "word": "dune",
+      "role": "noun",
+      "sense": "one mound of windblown sand",
+      "semanticFamily": "landform",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "D",
+          "UW1",
+          "N"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "moon"
+      ],
+      "confusionReasons": {
+        "moon": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "eagle",
+      "word": "eagle",
+      "role": "noun",
+      "sense": "one eagle bird",
+      "semanticFamily": "bird-of-prey",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "IY1",
+          "G",
+          "AH0",
+          "L"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "feather",
+      "word": "feather",
+      "role": "noun",
+      "sense": "one bird feather",
+      "semanticFamily": "animal-part",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "F",
+          "EH1",
+          "DH",
+          "ER0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "feathery"
+      ],
+      "confusionReasons": {
+        "feathery": [
+          "spelling-edit-distance-at-most-one",
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "fern",
+      "word": "fern",
+      "role": "noun",
+      "sense": "one fern plant",
+      "semanticFamily": "leafy-plant",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "F",
+          "ER1",
+          "N"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "flower",
+      "word": "flower",
+      "role": "noun",
+      "sense": "one plant blossom",
+      "semanticFamily": "flower",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "F",
+          "L",
+          "AW1",
+          "ER0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "blossom"
+      ],
+      "confusionReasons": {
+        "blossom": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "fountain",
+      "word": "fountain",
+      "role": "noun",
+      "sense": "one fountain with flowing water",
+      "semanticFamily": "water-feature",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "F",
+          "AW1",
+          "N",
+          "T",
+          "AH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "fox",
+      "word": "fox",
+      "role": "noun",
+      "sense": "one fox animal",
+      "semanticFamily": "woodland-mammal",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "F",
+          "AA1",
+          "K",
+          "S"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "frog",
+      "word": "frog",
+      "role": "noun",
+      "sense": "one frog animal",
+      "semanticFamily": "amphibian",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "F",
+          "R",
+          "AA1",
+          "G"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "garden",
+      "word": "garden",
+      "role": "noun",
+      "sense": "one planted outdoor garden",
+      "semanticFamily": "cultivated-place",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "G",
+          "AA1",
+          "R",
+          "D",
+          "AH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "heron",
+      "word": "heron",
+      "role": "noun",
+      "sense": "one long-legged heron bird",
+      "semanticFamily": "water-bird",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "HH",
+          "EH1",
+          "R",
+          "AH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "hill",
+      "word": "hill",
+      "role": "noun",
+      "sense": "one raised area of land",
+      "semanticFamily": "landform",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "HH",
+          "IH1",
+          "L"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "island",
+      "word": "island",
+      "role": "noun",
+      "sense": "one area of land surrounded by water",
+      "semanticFamily": "landform",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "AY1",
+          "L",
+          "AH0",
+          "N",
+          "D"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "kitten",
+      "word": "kitten",
+      "role": "noun",
+      "sense": "one young cat",
+      "semanticFamily": "small-mammal",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "IH1",
+          "T",
+          "AH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "mitten"
+      ],
+      "confusionReasons": {
+        "mitten": [
+          "spelling-edit-distance-at-most-one",
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "koala",
+      "word": "koala",
+      "role": "noun",
+      "sense": "one koala animal",
+      "semanticFamily": "tree-mammal",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "K",
+          "OW0",
+          "AA1",
+          "L",
+          "AH0"
+        ]
+      ],
+      "syllables": [
+        3
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "lake",
+      "word": "lake",
+      "role": "noun",
+      "sense": "one inland body of water",
+      "semanticFamily": "still-water",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "L",
+          "EY1",
+          "K"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "pond"
+      ],
+      "confusionReasons": {
+        "pond": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "lantern",
+      "word": "lantern",
+      "role": "noun",
+      "sense": "one portable enclosed light",
+      "semanticFamily": "light-object",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "L",
+          "AE1",
+          "N",
+          "T",
+          "ER0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "candle"
+      ],
+      "confusionReasons": {
+        "candle": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "leaf",
+      "word": "leaf",
+      "role": "noun",
+      "sense": "one leaf from a plant",
+      "semanticFamily": "plant-part",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "L",
+          "IY1",
+          "F"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "leafy"
+      ],
+      "confusionReasons": {
+        "leafy": [
+          "spelling-edit-distance-at-most-one",
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "lizard",
+      "word": "lizard",
+      "role": "noun",
+      "sense": "one lizard animal",
+      "semanticFamily": "reptile",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "L",
+          "IH1",
+          "Z",
+          "ER0",
+          "D"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "maple",
+      "word": "maple",
+      "role": "noun",
+      "sense": "one maple tree",
+      "semanticFamily": "tree",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "M",
+          "EY1",
+          "P",
+          "AH0",
+          "L"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "meadow",
+      "word": "meadow",
+      "role": "noun",
+      "sense": "one open area of grass",
+      "semanticFamily": "grassland",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "M",
+          "EH1",
+          "D",
+          "OW2"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "mitten",
+      "word": "mitten",
+      "role": "noun",
+      "sense": "one mitten worn on a hand",
+      "semanticFamily": "clothing",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "M",
+          "IH1",
+          "T",
+          "AH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "kitten"
+      ],
+      "confusionReasons": {
+        "kitten": [
+          "spelling-edit-distance-at-most-one",
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "moon",
+      "word": "moon",
+      "role": "noun",
+      "sense": "one visible moon",
+      "semanticFamily": "celestial-object",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "M",
+          "UW1",
+          "N"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "dune"
+      ],
+      "confusionReasons": {
+        "dune": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "mushroom",
+      "word": "mushroom",
+      "role": "noun",
+      "sense": "one mushroom fruiting body",
+      "semanticFamily": "fungus",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "M",
+          "AH1",
+          "SH",
+          "R",
+          "UW0",
+          "M"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "oak",
+      "word": "oak",
+      "role": "noun",
+      "sense": "one oak tree",
+      "semanticFamily": "tree",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "OW1",
+          "K"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "orchid",
+      "word": "orchid",
+      "role": "noun",
+      "sense": "one orchid flower",
+      "semanticFamily": "flower",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "AO1",
+          "R",
+          "K",
+          "AH0",
+          "D"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "otter",
+      "word": "otter",
+      "role": "noun",
+      "sense": "one otter animal",
+      "semanticFamily": "water-mammal",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "AA1",
+          "T",
+          "ER0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "owl",
+      "word": "owl",
+      "role": "noun",
+      "sense": "one owl bird",
+      "semanticFamily": "bird-of-prey",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "AW1",
+          "L"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "bowl"
+      ],
+      "confusionReasons": {
+        "bowl": [
+          "spelling-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "panda",
+      "word": "panda",
+      "role": "noun",
+      "sense": "one panda animal",
+      "semanticFamily": "large-mammal",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "P",
+          "AE1",
+          "N",
+          "D",
+          "AH0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "pebble",
+      "word": "pebble",
+      "role": "noun",
+      "sense": "one small rounded stone",
+      "semanticFamily": "small-stone",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "P",
+          "EH1",
+          "B",
+          "AH0",
+          "L"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "petal",
+        "stone"
+      ],
+      "confusionReasons": {
+        "petal": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ],
+        "stone": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "penguin",
+      "word": "penguin",
+      "role": "noun",
+      "sense": "one penguin bird",
+      "semanticFamily": "water-bird",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "P",
+          "EH1",
+          "NG",
+          "G",
+          "W",
+          "AH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "petal",
+      "word": "petal",
+      "role": "noun",
+      "sense": "one petal of a flower",
+      "semanticFamily": "plant-part",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "P",
+          "EH1",
+          "T",
+          "AH0",
+          "L"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "pebble"
+      ],
+      "confusionReasons": {
+        "pebble": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "pillow",
+      "word": "pillow",
+      "role": "noun",
+      "sense": "one soft stuffed cushion",
+      "semanticFamily": "soft-furnishing",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "P",
+          "IH1",
+          "L",
+          "OW0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "willow"
+      ],
+      "confusionReasons": {
+        "willow": [
+          "spelling-edit-distance-at-most-one",
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "pine",
+      "word": "pine",
+      "role": "noun",
+      "sense": "one pine tree",
+      "semanticFamily": "tree",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "P",
+          "AY1",
+          "N"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "pond",
+      "word": "pond",
+      "role": "noun",
+      "sense": "one small body of still water",
+      "semanticFamily": "still-water",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "P",
+          "AA1",
+          "N",
+          "D"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "lake"
+      ],
+      "confusionReasons": {
+        "lake": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "pumpkin",
+      "word": "pumpkin",
+      "role": "noun",
+      "sense": "one round pumpkin fruit",
+      "semanticFamily": "fruit",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "P",
+          "AH1",
+          "M",
+          "P",
+          "K",
+          "IH0",
+          "N"
+        ],
+        [
+          "P",
+          "AH1",
+          "M",
+          "K",
+          "IH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "rabbit",
+      "word": "rabbit",
+      "role": "noun",
+      "sense": "one rabbit animal",
+      "semanticFamily": "small-mammal",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "R",
+          "AE1",
+          "B",
+          "AH0",
+          "T"
+        ],
+        [
+          "R",
+          "AE1",
+          "B",
+          "IH0",
+          "T"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "rainbow",
+      "word": "rainbow",
+      "role": "noun",
+      "sense": "one visible arc of light after rain",
+      "semanticFamily": "sky-phenomenon",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "R",
+          "EY1",
+          "N",
+          "B",
+          "OW2"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "ribbon",
+      "word": "ribbon",
+      "role": "noun",
+      "sense": "one narrow strip of decorative fabric",
+      "semanticFamily": "cloth-object",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "R",
+          "IH1",
+          "B",
+          "AH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "robin"
+      ],
+      "confusionReasons": {
+        "robin": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "river",
+      "word": "river",
+      "role": "noun",
+      "sense": "one natural flowing watercourse",
+      "semanticFamily": "flowing-water",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "R",
+          "IH1",
+          "V",
+          "ER0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "robin",
+      "word": "robin",
+      "role": "noun",
+      "sense": "one robin bird",
+      "semanticFamily": "small-bird",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "R",
+          "AA1",
+          "B",
+          "AH0",
+          "N"
+        ],
+        [
+          "R",
+          "AA1",
+          "B",
+          "IH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "ribbon"
+      ],
+      "confusionReasons": {
+        "ribbon": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "shell",
+      "word": "shell",
+      "role": "noun",
+      "sense": "one seashell",
+      "semanticFamily": "animal-part",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "SH",
+          "EH1",
+          "L"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "bell"
+      ],
+      "confusionReasons": {
+        "bell": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "snail",
+      "word": "snail",
+      "role": "noun",
+      "sense": "one snail animal",
+      "semanticFamily": "mollusk",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "N",
+          "EY1",
+          "L"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "sparrow",
+      "word": "sparrow",
+      "role": "noun",
+      "sense": "one sparrow bird",
+      "semanticFamily": "small-bird",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "P",
+          "EH1",
+          "R",
+          "OW0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "spoon",
+      "word": "spoon",
+      "role": "noun",
+      "sense": "one spoon utensil",
+      "semanticFamily": "utensil",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "P",
+          "UW1",
+          "N"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "squirrel",
+      "word": "squirrel",
+      "role": "noun",
+      "sense": "one squirrel animal",
+      "semanticFamily": "tree-mammal",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "K",
+          "W",
+          "ER1",
+          "AH0",
+          "L"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "star",
+      "word": "star",
+      "role": "noun",
+      "sense": "one visible star in the sky",
+      "semanticFamily": "celestial-object",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "T",
+          "AA1",
+          "R"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "stone",
+      "word": "stone",
+      "role": "noun",
+      "sense": "one stone small enough to picture as an object",
+      "semanticFamily": "small-stone",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "T",
+          "OW1",
+          "N"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [
+        "pebble"
+      ],
+      "confusionReasons": {
+        "pebble": [
+          "editorial-semantic-neighbor"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "sunflower",
+      "word": "sunflower",
+      "role": "noun",
+      "sense": "one sunflower plant",
+      "semanticFamily": "flower",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "AH1",
+          "N",
+          "F",
+          "L",
+          "AW2",
+          "ER0"
+        ]
+      ],
+      "syllables": [
+        3
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "swan",
+      "word": "swan",
+      "role": "noun",
+      "sense": "one swan bird",
+      "semanticFamily": "water-bird",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "S",
+          "W",
+          "AA1",
+          "N"
+        ],
+        [
+          "S",
+          "W",
+          "AO1",
+          "N"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "teapot",
+      "word": "teapot",
+      "role": "noun",
+      "sense": "one vessel for brewing tea",
+      "semanticFamily": "container",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "T",
+          "IY1",
+          "P",
+          "AA2",
+          "T"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "tower",
+      "word": "tower",
+      "role": "noun",
+      "sense": "one tall narrow building",
+      "semanticFamily": "building",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "T",
+          "AW1",
+          "ER0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "turtle",
+      "word": "turtle",
+      "role": "noun",
+      "sense": "one turtle animal",
+      "semanticFamily": "reptile",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "T",
+          "ER1",
+          "T",
+          "AH0",
+          "L"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "umbrella",
+      "word": "umbrella",
+      "role": "noun",
+      "sense": "one hand-held rain umbrella",
+      "semanticFamily": "handheld-object",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "AH0",
+          "M",
+          "B",
+          "R",
+          "EH1",
+          "L",
+          "AH0"
+        ],
+        [
+          "AH1",
+          "M",
+          "B",
+          "R",
+          "EH2",
+          "L",
+          "AH0"
+        ]
+      ],
+      "syllables": [
+        3
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "valley",
+      "word": "valley",
+      "role": "noun",
+      "sense": "one lower area of land between hills",
+      "semanticFamily": "landform",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "V",
+          "AE1",
+          "L",
+          "IY0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "violin",
+      "word": "violin",
+      "role": "noun",
+      "sense": "one violin instrument",
+      "semanticFamily": "musical-object",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "V",
+          "AY0",
+          "AH0",
+          "L",
+          "IH1",
+          "N"
+        ]
+      ],
+      "syllables": [
+        3
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "wagon",
+      "word": "wagon",
+      "role": "noun",
+      "sense": "one small wheeled wagon",
+      "semanticFamily": "land-vehicle",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "W",
+          "AE1",
+          "G",
+          "AH0",
+          "N"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "waterfall",
+      "word": "waterfall",
+      "role": "noun",
+      "sense": "one falling stream of water",
+      "semanticFamily": "water-feature",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "W",
+          "AO1",
+          "T",
+          "ER0",
+          "F",
+          "AO2",
+          "L"
+        ]
+      ],
+      "syllables": [
+        3
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "whale",
+      "word": "whale",
+      "role": "noun",
+      "sense": "one whale animal",
+      "semanticFamily": "sea-mammal",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "W",
+          "EY1",
+          "L"
+        ],
+        [
+          "HH",
+          "W",
+          "EY1",
+          "L"
+        ]
+      ],
+      "syllables": [
+        1
+      ],
+      "confusableWith": [],
+      "confusionReasons": {},
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "willow",
+      "word": "willow",
+      "role": "noun",
+      "sense": "one willow tree",
+      "semanticFamily": "tree",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "W",
+          "IH1",
+          "L",
+          "OW2"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "pillow"
+      ],
+      "confusionReasons": {
+        "pillow": [
+          "spelling-edit-distance-at-most-one",
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "id": "window",
+      "word": "window",
+      "role": "noun",
+      "sense": "one glazed opening in a building",
+      "semanticFamily": "building-part",
+      "spellingVariants": [],
+      "pronunciations": [
+        [
+          "W",
+          "IH1",
+          "N",
+          "D",
+          "OW0"
+        ]
+      ],
+      "syllables": [
+        2
+      ],
+      "confusableWith": [
+        "windy"
+      ],
+      "confusionReasons": {
+        "windy": [
+          "stressless-cmu-phoneme-edit-distance-at-most-one"
+        ]
+      },
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    }
+  ],
+  "pairs": [
+    {
+      "adjective": "breezy",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "breezy",
+      "noun": "garden"
+    },
+    {
+      "adjective": "breezy",
+      "noun": "hill"
+    },
+    {
+      "adjective": "breezy",
+      "noun": "island"
+    },
+    {
+      "adjective": "breezy",
+      "noun": "lake"
+    },
+    {
+      "adjective": "breezy",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "breezy",
+      "noun": "pond"
+    },
+    {
+      "adjective": "breezy",
+      "noun": "river"
+    },
+    {
+      "adjective": "breezy",
+      "noun": "tower"
+    },
+    {
+      "adjective": "breezy",
+      "noun": "valley"
+    },
+    {
+      "adjective": "bright",
+      "noun": "blossom"
+    },
+    {
+      "adjective": "bright",
+      "noun": "butterfly"
+    },
+    {
+      "adjective": "bright",
+      "noun": "candle"
+    },
+    {
+      "adjective": "bright",
+      "noun": "cloud"
+    },
+    {
+      "adjective": "bright",
+      "noun": "comet"
+    },
+    {
+      "adjective": "bright",
+      "noun": "daisy"
+    },
+    {
+      "adjective": "bright",
+      "noun": "flower"
+    },
+    {
+      "adjective": "bright",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "bright",
+      "noun": "moon"
+    },
+    {
+      "adjective": "bright",
+      "noun": "orchid"
+    },
+    {
+      "adjective": "bright",
+      "noun": "rainbow"
+    },
+    {
+      "adjective": "bright",
+      "noun": "star"
+    },
+    {
+      "adjective": "bright",
+      "noun": "sunflower"
+    },
+    {
+      "adjective": "bubbly",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "bubbly",
+      "noun": "lake"
+    },
+    {
+      "adjective": "bubbly",
+      "noun": "pond"
+    },
+    {
+      "adjective": "bubbly",
+      "noun": "river"
+    },
+    {
+      "adjective": "bubbly",
+      "noun": "waterfall"
+    },
+    {
+      "adjective": "calm",
+      "noun": "beaver"
+    },
+    {
+      "adjective": "calm",
+      "noun": "dolphin"
+    },
+    {
+      "adjective": "calm",
+      "noun": "fox"
+    },
+    {
+      "adjective": "calm",
+      "noun": "frog"
+    },
+    {
+      "adjective": "calm",
+      "noun": "heron"
+    },
+    {
+      "adjective": "calm",
+      "noun": "kitten"
+    },
+    {
+      "adjective": "calm",
+      "noun": "koala"
+    },
+    {
+      "adjective": "calm",
+      "noun": "lake"
+    },
+    {
+      "adjective": "calm",
+      "noun": "lizard"
+    },
+    {
+      "adjective": "calm",
+      "noun": "otter"
+    },
+    {
+      "adjective": "calm",
+      "noun": "owl"
+    },
+    {
+      "adjective": "calm",
+      "noun": "panda"
+    },
+    {
+      "adjective": "calm",
+      "noun": "penguin"
+    },
+    {
+      "adjective": "calm",
+      "noun": "pond"
+    },
+    {
+      "adjective": "calm",
+      "noun": "rabbit"
+    },
+    {
+      "adjective": "calm",
+      "noun": "river"
+    },
+    {
+      "adjective": "calm",
+      "noun": "swan"
+    },
+    {
+      "adjective": "calm",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "calm",
+      "noun": "whale"
+    },
+    {
+      "adjective": "cozy",
+      "noun": "basket"
+    },
+    {
+      "adjective": "cozy",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "cozy",
+      "noun": "garden"
+    },
+    {
+      "adjective": "cozy",
+      "noun": "mitten"
+    },
+    {
+      "adjective": "cozy",
+      "noun": "pillow"
+    },
+    {
+      "adjective": "crisp",
+      "noun": "apple"
+    },
+    {
+      "adjective": "crisp",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "curly",
+      "noun": "feather"
+    },
+    {
+      "adjective": "curly",
+      "noun": "fern"
+    },
+    {
+      "adjective": "curly",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "curly",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "curly",
+      "noun": "willow"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "bottle"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "butterfly"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "canoe"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "feather"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "lizard"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "mitten"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "pillow"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "shell"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "umbrella"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "dotted",
+      "noun": "window"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "acorn"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "basket"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "bell"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "boat"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "bottle"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "candle"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "castle"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "clock"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "dune"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "feather"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "hill"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "mitten"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "pine"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "pillow"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "shell"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "spoon"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "stone"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "tower"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "valley"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "violin"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "dusty",
+      "noun": "window"
+    },
+    {
+      "adjective": "feathery",
+      "noun": "cloud"
+    },
+    {
+      "adjective": "feathery",
+      "noun": "fern"
+    },
+    {
+      "adjective": "feathery",
+      "noun": "flower"
+    },
+    {
+      "adjective": "feathery",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "feathery",
+      "noun": "willow"
+    },
+    {
+      "adjective": "fluffy",
+      "noun": "cloud"
+    },
+    {
+      "adjective": "fluffy",
+      "noun": "feather"
+    },
+    {
+      "adjective": "fluffy",
+      "noun": "kitten"
+    },
+    {
+      "adjective": "fluffy",
+      "noun": "owl"
+    },
+    {
+      "adjective": "fluffy",
+      "noun": "pillow"
+    },
+    {
+      "adjective": "fluffy",
+      "noun": "rabbit"
+    },
+    {
+      "adjective": "fluffy",
+      "noun": "robin"
+    },
+    {
+      "adjective": "fluffy",
+      "noun": "sparrow"
+    },
+    {
+      "adjective": "fluffy",
+      "noun": "squirrel"
+    },
+    {
+      "adjective": "fluffy",
+      "noun": "swan"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "acorn"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "apple"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "bamboo"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "basket"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "bell"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "birch"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "boat"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "bottle"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "cactus"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "castle"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "cedar"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "cherry"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "clock"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "fern"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "garden"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "hill"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "island"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "lake"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "maple"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "oak"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "pine"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "pond"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "pumpkin"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "river"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "shell"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "spoon"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "stone"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "tower"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "valley"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "waterfall"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "willow"
+    },
+    {
+      "adjective": "frosty",
+      "noun": "window"
+    },
+    {
+      "adjective": "glassy",
+      "noun": "bottle"
+    },
+    {
+      "adjective": "glassy",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "glassy",
+      "noun": "lake"
+    },
+    {
+      "adjective": "glassy",
+      "noun": "pond"
+    },
+    {
+      "adjective": "glassy",
+      "noun": "river"
+    },
+    {
+      "adjective": "glassy",
+      "noun": "stone"
+    },
+    {
+      "adjective": "gliding",
+      "noun": "butterfly"
+    },
+    {
+      "adjective": "gliding",
+      "noun": "dolphin"
+    },
+    {
+      "adjective": "gliding",
+      "noun": "eagle"
+    },
+    {
+      "adjective": "gliding",
+      "noun": "feather"
+    },
+    {
+      "adjective": "gliding",
+      "noun": "heron"
+    },
+    {
+      "adjective": "gliding",
+      "noun": "otter"
+    },
+    {
+      "adjective": "gliding",
+      "noun": "owl"
+    },
+    {
+      "adjective": "gliding",
+      "noun": "penguin"
+    },
+    {
+      "adjective": "gliding",
+      "noun": "swan"
+    },
+    {
+      "adjective": "gliding",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "gliding",
+      "noun": "whale"
+    },
+    {
+      "adjective": "glowing",
+      "noun": "candle"
+    },
+    {
+      "adjective": "glowing",
+      "noun": "comet"
+    },
+    {
+      "adjective": "glowing",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "glowing",
+      "noun": "moon"
+    },
+    {
+      "adjective": "glowing",
+      "noun": "star"
+    },
+    {
+      "adjective": "golden",
+      "noun": "acorn"
+    },
+    {
+      "adjective": "golden",
+      "noun": "apple"
+    },
+    {
+      "adjective": "golden",
+      "noun": "bell"
+    },
+    {
+      "adjective": "golden",
+      "noun": "birch"
+    },
+    {
+      "adjective": "golden",
+      "noun": "blossom"
+    },
+    {
+      "adjective": "golden",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "golden",
+      "noun": "butterfly"
+    },
+    {
+      "adjective": "golden",
+      "noun": "candle"
+    },
+    {
+      "adjective": "golden",
+      "noun": "cherry"
+    },
+    {
+      "adjective": "golden",
+      "noun": "clock"
+    },
+    {
+      "adjective": "golden",
+      "noun": "daisy"
+    },
+    {
+      "adjective": "golden",
+      "noun": "feather"
+    },
+    {
+      "adjective": "golden",
+      "noun": "flower"
+    },
+    {
+      "adjective": "golden",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "golden",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "golden",
+      "noun": "maple"
+    },
+    {
+      "adjective": "golden",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "golden",
+      "noun": "moon"
+    },
+    {
+      "adjective": "golden",
+      "noun": "petal"
+    },
+    {
+      "adjective": "golden",
+      "noun": "pumpkin"
+    },
+    {
+      "adjective": "golden",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "golden",
+      "noun": "shell"
+    },
+    {
+      "adjective": "golden",
+      "noun": "spoon"
+    },
+    {
+      "adjective": "golden",
+      "noun": "star"
+    },
+    {
+      "adjective": "golden",
+      "noun": "sunflower"
+    },
+    {
+      "adjective": "golden",
+      "noun": "tower"
+    },
+    {
+      "adjective": "golden",
+      "noun": "violin"
+    },
+    {
+      "adjective": "golden",
+      "noun": "willow"
+    },
+    {
+      "adjective": "grassy",
+      "noun": "dune"
+    },
+    {
+      "adjective": "grassy",
+      "noun": "garden"
+    },
+    {
+      "adjective": "grassy",
+      "noun": "hill"
+    },
+    {
+      "adjective": "grassy",
+      "noun": "island"
+    },
+    {
+      "adjective": "grassy",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "grassy",
+      "noun": "valley"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "castle"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "garden"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "hill"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "island"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "lake"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "moon"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "pond"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "rainbow"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "river"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "star"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "tower"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "valley"
+    },
+    {
+      "adjective": "hazy",
+      "noun": "waterfall"
+    },
+    {
+      "adjective": "icy",
+      "noun": "birch"
+    },
+    {
+      "adjective": "icy",
+      "noun": "boat"
+    },
+    {
+      "adjective": "icy",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "icy",
+      "noun": "castle"
+    },
+    {
+      "adjective": "icy",
+      "noun": "cedar"
+    },
+    {
+      "adjective": "icy",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "icy",
+      "noun": "garden"
+    },
+    {
+      "adjective": "icy",
+      "noun": "hill"
+    },
+    {
+      "adjective": "icy",
+      "noun": "island"
+    },
+    {
+      "adjective": "icy",
+      "noun": "lake"
+    },
+    {
+      "adjective": "icy",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "icy",
+      "noun": "maple"
+    },
+    {
+      "adjective": "icy",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "icy",
+      "noun": "oak"
+    },
+    {
+      "adjective": "icy",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "icy",
+      "noun": "pine"
+    },
+    {
+      "adjective": "icy",
+      "noun": "pond"
+    },
+    {
+      "adjective": "icy",
+      "noun": "river"
+    },
+    {
+      "adjective": "icy",
+      "noun": "stone"
+    },
+    {
+      "adjective": "icy",
+      "noun": "tower"
+    },
+    {
+      "adjective": "icy",
+      "noun": "valley"
+    },
+    {
+      "adjective": "icy",
+      "noun": "waterfall"
+    },
+    {
+      "adjective": "icy",
+      "noun": "willow"
+    },
+    {
+      "adjective": "icy",
+      "noun": "window"
+    },
+    {
+      "adjective": "leafy",
+      "noun": "bamboo"
+    },
+    {
+      "adjective": "leafy",
+      "noun": "birch"
+    },
+    {
+      "adjective": "leafy",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "leafy",
+      "noun": "castle"
+    },
+    {
+      "adjective": "leafy",
+      "noun": "garden"
+    },
+    {
+      "adjective": "leafy",
+      "noun": "island"
+    },
+    {
+      "adjective": "leafy",
+      "noun": "maple"
+    },
+    {
+      "adjective": "leafy",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "leafy",
+      "noun": "oak"
+    },
+    {
+      "adjective": "leafy",
+      "noun": "tower"
+    },
+    {
+      "adjective": "leafy",
+      "noun": "valley"
+    },
+    {
+      "adjective": "leafy",
+      "noun": "willow"
+    },
+    {
+      "adjective": "little",
+      "noun": "acorn"
+    },
+    {
+      "adjective": "little",
+      "noun": "apple"
+    },
+    {
+      "adjective": "little",
+      "noun": "bamboo"
+    },
+    {
+      "adjective": "little",
+      "noun": "basket"
+    },
+    {
+      "adjective": "little",
+      "noun": "beaver"
+    },
+    {
+      "adjective": "little",
+      "noun": "bell"
+    },
+    {
+      "adjective": "little",
+      "noun": "birch"
+    },
+    {
+      "adjective": "little",
+      "noun": "blossom"
+    },
+    {
+      "adjective": "little",
+      "noun": "boat"
+    },
+    {
+      "adjective": "little",
+      "noun": "bottle"
+    },
+    {
+      "adjective": "little",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "little",
+      "noun": "butterfly"
+    },
+    {
+      "adjective": "little",
+      "noun": "cactus"
+    },
+    {
+      "adjective": "little",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "little",
+      "noun": "candle"
+    },
+    {
+      "adjective": "little",
+      "noun": "canoe"
+    },
+    {
+      "adjective": "little",
+      "noun": "castle"
+    },
+    {
+      "adjective": "little",
+      "noun": "cedar"
+    },
+    {
+      "adjective": "little",
+      "noun": "cherry"
+    },
+    {
+      "adjective": "little",
+      "noun": "clock"
+    },
+    {
+      "adjective": "little",
+      "noun": "cloud"
+    },
+    {
+      "adjective": "little",
+      "noun": "clover"
+    },
+    {
+      "adjective": "little",
+      "noun": "comet"
+    },
+    {
+      "adjective": "little",
+      "noun": "cricket"
+    },
+    {
+      "adjective": "little",
+      "noun": "daisy"
+    },
+    {
+      "adjective": "little",
+      "noun": "dolphin"
+    },
+    {
+      "adjective": "little",
+      "noun": "dune"
+    },
+    {
+      "adjective": "little",
+      "noun": "eagle"
+    },
+    {
+      "adjective": "little",
+      "noun": "feather"
+    },
+    {
+      "adjective": "little",
+      "noun": "fern"
+    },
+    {
+      "adjective": "little",
+      "noun": "flower"
+    },
+    {
+      "adjective": "little",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "little",
+      "noun": "fox"
+    },
+    {
+      "adjective": "little",
+      "noun": "frog"
+    },
+    {
+      "adjective": "little",
+      "noun": "garden"
+    },
+    {
+      "adjective": "little",
+      "noun": "heron"
+    },
+    {
+      "adjective": "little",
+      "noun": "hill"
+    },
+    {
+      "adjective": "little",
+      "noun": "island"
+    },
+    {
+      "adjective": "little",
+      "noun": "kitten"
+    },
+    {
+      "adjective": "little",
+      "noun": "koala"
+    },
+    {
+      "adjective": "little",
+      "noun": "lake"
+    },
+    {
+      "adjective": "little",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "little",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "little",
+      "noun": "lizard"
+    },
+    {
+      "adjective": "little",
+      "noun": "maple"
+    },
+    {
+      "adjective": "little",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "little",
+      "noun": "mitten"
+    },
+    {
+      "adjective": "little",
+      "noun": "moon"
+    },
+    {
+      "adjective": "little",
+      "noun": "mushroom"
+    },
+    {
+      "adjective": "little",
+      "noun": "oak"
+    },
+    {
+      "adjective": "little",
+      "noun": "orchid"
+    },
+    {
+      "adjective": "little",
+      "noun": "otter"
+    },
+    {
+      "adjective": "little",
+      "noun": "owl"
+    },
+    {
+      "adjective": "little",
+      "noun": "panda"
+    },
+    {
+      "adjective": "little",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "little",
+      "noun": "penguin"
+    },
+    {
+      "adjective": "little",
+      "noun": "petal"
+    },
+    {
+      "adjective": "little",
+      "noun": "pillow"
+    },
+    {
+      "adjective": "little",
+      "noun": "pine"
+    },
+    {
+      "adjective": "little",
+      "noun": "pond"
+    },
+    {
+      "adjective": "little",
+      "noun": "pumpkin"
+    },
+    {
+      "adjective": "little",
+      "noun": "rabbit"
+    },
+    {
+      "adjective": "little",
+      "noun": "rainbow"
+    },
+    {
+      "adjective": "little",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "little",
+      "noun": "river"
+    },
+    {
+      "adjective": "little",
+      "noun": "robin"
+    },
+    {
+      "adjective": "little",
+      "noun": "shell"
+    },
+    {
+      "adjective": "little",
+      "noun": "snail"
+    },
+    {
+      "adjective": "little",
+      "noun": "sparrow"
+    },
+    {
+      "adjective": "little",
+      "noun": "spoon"
+    },
+    {
+      "adjective": "little",
+      "noun": "squirrel"
+    },
+    {
+      "adjective": "little",
+      "noun": "star"
+    },
+    {
+      "adjective": "little",
+      "noun": "stone"
+    },
+    {
+      "adjective": "little",
+      "noun": "sunflower"
+    },
+    {
+      "adjective": "little",
+      "noun": "swan"
+    },
+    {
+      "adjective": "little",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "little",
+      "noun": "tower"
+    },
+    {
+      "adjective": "little",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "little",
+      "noun": "umbrella"
+    },
+    {
+      "adjective": "little",
+      "noun": "valley"
+    },
+    {
+      "adjective": "little",
+      "noun": "violin"
+    },
+    {
+      "adjective": "little",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "little",
+      "noun": "waterfall"
+    },
+    {
+      "adjective": "little",
+      "noun": "whale"
+    },
+    {
+      "adjective": "little",
+      "noun": "willow"
+    },
+    {
+      "adjective": "little",
+      "noun": "window"
+    },
+    {
+      "adjective": "misty",
+      "noun": "birch"
+    },
+    {
+      "adjective": "misty",
+      "noun": "boat"
+    },
+    {
+      "adjective": "misty",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "misty",
+      "noun": "castle"
+    },
+    {
+      "adjective": "misty",
+      "noun": "cedar"
+    },
+    {
+      "adjective": "misty",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "misty",
+      "noun": "garden"
+    },
+    {
+      "adjective": "misty",
+      "noun": "hill"
+    },
+    {
+      "adjective": "misty",
+      "noun": "island"
+    },
+    {
+      "adjective": "misty",
+      "noun": "lake"
+    },
+    {
+      "adjective": "misty",
+      "noun": "maple"
+    },
+    {
+      "adjective": "misty",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "misty",
+      "noun": "oak"
+    },
+    {
+      "adjective": "misty",
+      "noun": "pine"
+    },
+    {
+      "adjective": "misty",
+      "noun": "pond"
+    },
+    {
+      "adjective": "misty",
+      "noun": "river"
+    },
+    {
+      "adjective": "misty",
+      "noun": "tower"
+    },
+    {
+      "adjective": "misty",
+      "noun": "valley"
+    },
+    {
+      "adjective": "misty",
+      "noun": "waterfall"
+    },
+    {
+      "adjective": "misty",
+      "noun": "willow"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "basket"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "bell"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "birch"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "boat"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "canoe"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "castle"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "cedar"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "garden"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "hill"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "island"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "maple"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "oak"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "pine"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "shell"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "stone"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "tower"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "valley"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "waterfall"
+    },
+    {
+      "adjective": "mossy",
+      "noun": "willow"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "basket"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "beaver"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "boat"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "canoe"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "cricket"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "dune"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "fox"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "frog"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "garden"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "hill"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "island"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "lake"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "lizard"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "otter"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "pond"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "rabbit"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "river"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "shell"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "snail"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "stone"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "valley"
+    },
+    {
+      "adjective": "muddy",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "polished",
+      "noun": "bell"
+    },
+    {
+      "adjective": "polished",
+      "noun": "boat"
+    },
+    {
+      "adjective": "polished",
+      "noun": "bottle"
+    },
+    {
+      "adjective": "polished",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "polished",
+      "noun": "clock"
+    },
+    {
+      "adjective": "polished",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "polished",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "polished",
+      "noun": "shell"
+    },
+    {
+      "adjective": "polished",
+      "noun": "spoon"
+    },
+    {
+      "adjective": "polished",
+      "noun": "stone"
+    },
+    {
+      "adjective": "polished",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "polished",
+      "noun": "violin"
+    },
+    {
+      "adjective": "polished",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "beaver"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "cricket"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "dolphin"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "eagle"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "fox"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "frog"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "garden"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "heron"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "kitten"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "koala"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "lake"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "lizard"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "otter"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "owl"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "panda"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "penguin"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "pond"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "rabbit"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "river"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "robin"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "snail"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "sparrow"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "squirrel"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "swan"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "valley"
+    },
+    {
+      "adjective": "quiet",
+      "noun": "whale"
+    },
+    {
+      "adjective": "rippled",
+      "noun": "lake"
+    },
+    {
+      "adjective": "rippled",
+      "noun": "pond"
+    },
+    {
+      "adjective": "rippled",
+      "noun": "river"
+    },
+    {
+      "adjective": "rocky",
+      "noun": "garden"
+    },
+    {
+      "adjective": "rocky",
+      "noun": "hill"
+    },
+    {
+      "adjective": "rocky",
+      "noun": "island"
+    },
+    {
+      "adjective": "rocky",
+      "noun": "river"
+    },
+    {
+      "adjective": "rocky",
+      "noun": "valley"
+    },
+    {
+      "adjective": "rocky",
+      "noun": "waterfall"
+    },
+    {
+      "adjective": "round",
+      "noun": "acorn"
+    },
+    {
+      "adjective": "round",
+      "noun": "apple"
+    },
+    {
+      "adjective": "round",
+      "noun": "basket"
+    },
+    {
+      "adjective": "round",
+      "noun": "bell"
+    },
+    {
+      "adjective": "round",
+      "noun": "blossom"
+    },
+    {
+      "adjective": "round",
+      "noun": "bottle"
+    },
+    {
+      "adjective": "round",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "round",
+      "noun": "cactus"
+    },
+    {
+      "adjective": "round",
+      "noun": "candle"
+    },
+    {
+      "adjective": "round",
+      "noun": "cherry"
+    },
+    {
+      "adjective": "round",
+      "noun": "clock"
+    },
+    {
+      "adjective": "round",
+      "noun": "cloud"
+    },
+    {
+      "adjective": "round",
+      "noun": "flower"
+    },
+    {
+      "adjective": "round",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "round",
+      "noun": "island"
+    },
+    {
+      "adjective": "round",
+      "noun": "lake"
+    },
+    {
+      "adjective": "round",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "round",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "round",
+      "noun": "moon"
+    },
+    {
+      "adjective": "round",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "round",
+      "noun": "pillow"
+    },
+    {
+      "adjective": "round",
+      "noun": "pond"
+    },
+    {
+      "adjective": "round",
+      "noun": "pumpkin"
+    },
+    {
+      "adjective": "round",
+      "noun": "shell"
+    },
+    {
+      "adjective": "round",
+      "noun": "stone"
+    },
+    {
+      "adjective": "round",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "round",
+      "noun": "window"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "basket"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "bell"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "boat"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "candle"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "canoe"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "castle"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "clock"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "garden"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "spoon"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "tower"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "violin"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "rustic",
+      "noun": "window"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "basket"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "boat"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "bottle"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "canoe"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "dune"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "garden"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "hill"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "island"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "lake"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "pond"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "river"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "shell"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "stone"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "valley"
+    },
+    {
+      "adjective": "sandy",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "acorn"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "apple"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "bell"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "bottle"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "cherry"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "clock"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "feather"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "frog"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "lizard"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "shell"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "spoon"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "stone"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "violin"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "shiny",
+      "noun": "window"
+    },
+    {
+      "adjective": "silky",
+      "noun": "blossom"
+    },
+    {
+      "adjective": "silky",
+      "noun": "feather"
+    },
+    {
+      "adjective": "silky",
+      "noun": "flower"
+    },
+    {
+      "adjective": "silky",
+      "noun": "kitten"
+    },
+    {
+      "adjective": "silky",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "silky",
+      "noun": "mitten"
+    },
+    {
+      "adjective": "silky",
+      "noun": "petal"
+    },
+    {
+      "adjective": "silky",
+      "noun": "pillow"
+    },
+    {
+      "adjective": "silky",
+      "noun": "rabbit"
+    },
+    {
+      "adjective": "silky",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "silver",
+      "noun": "bell"
+    },
+    {
+      "adjective": "silver",
+      "noun": "birch"
+    },
+    {
+      "adjective": "silver",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "silver",
+      "noun": "candle"
+    },
+    {
+      "adjective": "silver",
+      "noun": "clock"
+    },
+    {
+      "adjective": "silver",
+      "noun": "feather"
+    },
+    {
+      "adjective": "silver",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "silver",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "silver",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "silver",
+      "noun": "moon"
+    },
+    {
+      "adjective": "silver",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "silver",
+      "noun": "shell"
+    },
+    {
+      "adjective": "silver",
+      "noun": "spoon"
+    },
+    {
+      "adjective": "silver",
+      "noun": "star"
+    },
+    {
+      "adjective": "silver",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "silver",
+      "noun": "tower"
+    },
+    {
+      "adjective": "silver",
+      "noun": "violin"
+    },
+    {
+      "adjective": "silver",
+      "noun": "willow"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "beaver"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "dolphin"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "eagle"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "fox"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "frog"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "heron"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "kitten"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "koala"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "lizard"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "otter"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "owl"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "panda"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "penguin"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "rabbit"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "robin"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "sparrow"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "squirrel"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "swan"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "sleepy",
+      "noun": "whale"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "acorn"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "apple"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "bamboo"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "bell"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "bottle"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "candle"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "canoe"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "cherry"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "feather"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "shell"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "spoon"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "stone"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "violin"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "smooth",
+      "noun": "window"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "basket"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "birch"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "boat"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "cactus"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "canoe"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "castle"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "cedar"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "garden"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "hill"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "island"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "maple"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "oak"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "pine"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "tower"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "valley"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "willow"
+    },
+    {
+      "adjective": "snowy",
+      "noun": "window"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "bell"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "blossom"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "butterfly"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "candle"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "clock"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "feather"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "flower"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "mitten"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "petal"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "pillow"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "shell"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "spoon"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "star"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "stone"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "umbrella"
+    },
+    {
+      "adjective": "sparkly",
+      "noun": "window"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "apple"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "birch"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "butterfly"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "feather"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "frog"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "lizard"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "mushroom"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "orchid"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "petal"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "shell"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "snail"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "stone"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "speckled",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "butterfly"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "feather"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "frog"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "kitten"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "lizard"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "mushroom"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "orchid"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "pillow"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "rabbit"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "shell"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "spotted",
+      "noun": "umbrella"
+    },
+    {
+      "adjective": "striped",
+      "noun": "bamboo"
+    },
+    {
+      "adjective": "striped",
+      "noun": "basket"
+    },
+    {
+      "adjective": "striped",
+      "noun": "boat"
+    },
+    {
+      "adjective": "striped",
+      "noun": "bottle"
+    },
+    {
+      "adjective": "striped",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "striped",
+      "noun": "butterfly"
+    },
+    {
+      "adjective": "striped",
+      "noun": "candle"
+    },
+    {
+      "adjective": "striped",
+      "noun": "canoe"
+    },
+    {
+      "adjective": "striped",
+      "noun": "feather"
+    },
+    {
+      "adjective": "striped",
+      "noun": "frog"
+    },
+    {
+      "adjective": "striped",
+      "noun": "kitten"
+    },
+    {
+      "adjective": "striped",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "striped",
+      "noun": "lizard"
+    },
+    {
+      "adjective": "striped",
+      "noun": "mitten"
+    },
+    {
+      "adjective": "striped",
+      "noun": "pillow"
+    },
+    {
+      "adjective": "striped",
+      "noun": "pumpkin"
+    },
+    {
+      "adjective": "striped",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "striped",
+      "noun": "shell"
+    },
+    {
+      "adjective": "striped",
+      "noun": "snail"
+    },
+    {
+      "adjective": "striped",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "striped",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "striped",
+      "noun": "umbrella"
+    },
+    {
+      "adjective": "striped",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "castle"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "dune"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "garden"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "hill"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "island"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "lake"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "pond"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "river"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "tower"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "valley"
+    },
+    {
+      "adjective": "sunny",
+      "noun": "window"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "acorn"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "apple"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "bamboo"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "basket"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "beaver"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "bell"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "birch"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "blossom"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "boat"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "bottle"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "butterfly"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "cactus"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "candle"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "canoe"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "castle"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "cedar"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "cherry"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "clock"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "cloud"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "clover"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "comet"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "cricket"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "daisy"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "dolphin"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "dune"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "eagle"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "feather"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "fern"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "flower"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "fox"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "frog"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "garden"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "heron"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "hill"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "island"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "kitten"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "koala"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "lake"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "lizard"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "maple"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "mitten"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "moon"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "mushroom"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "oak"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "orchid"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "otter"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "owl"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "panda"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "pebble"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "penguin"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "petal"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "pillow"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "pine"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "pond"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "pumpkin"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "rabbit"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "rainbow"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "river"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "robin"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "shell"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "snail"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "sparrow"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "spoon"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "squirrel"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "star"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "stone"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "sunflower"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "swan"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "teapot"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "tower"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "turtle"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "umbrella"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "valley"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "violin"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "waterfall"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "whale"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "willow"
+    },
+    {
+      "adjective": "tiny",
+      "noun": "window"
+    },
+    {
+      "adjective": "wavy",
+      "noun": "feather"
+    },
+    {
+      "adjective": "wavy",
+      "noun": "fern"
+    },
+    {
+      "adjective": "wavy",
+      "noun": "leaf"
+    },
+    {
+      "adjective": "wavy",
+      "noun": "ribbon"
+    },
+    {
+      "adjective": "wavy",
+      "noun": "willow"
+    },
+    {
+      "adjective": "wavy",
+      "noun": "window"
+    },
+    {
+      "adjective": "windy",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "windy",
+      "noun": "castle"
+    },
+    {
+      "adjective": "windy",
+      "noun": "dune"
+    },
+    {
+      "adjective": "windy",
+      "noun": "garden"
+    },
+    {
+      "adjective": "windy",
+      "noun": "hill"
+    },
+    {
+      "adjective": "windy",
+      "noun": "island"
+    },
+    {
+      "adjective": "windy",
+      "noun": "lake"
+    },
+    {
+      "adjective": "windy",
+      "noun": "meadow"
+    },
+    {
+      "adjective": "windy",
+      "noun": "pond"
+    },
+    {
+      "adjective": "windy",
+      "noun": "river"
+    },
+    {
+      "adjective": "windy",
+      "noun": "tower"
+    },
+    {
+      "adjective": "windy",
+      "noun": "valley"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "basket"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "boat"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "bowl"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "cabin"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "canoe"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "castle"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "clock"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "fountain"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "lantern"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "spoon"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "tower"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "violin"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "wagon"
+    },
+    {
+      "adjective": "wooden",
+      "noun": "window"
+    },
+    {
+      "adjective": "woolly",
+      "noun": "mitten"
+    },
+    {
+      "adjective": "woolly",
+      "noun": "pillow"
+    },
+    {
+      "adjective": "woolly",
+      "noun": "ribbon"
+    }
+  ],
+  "pairReviews": [
+    {
+      "adjective": "breezy",
+      "nouns": [
+        "cabin",
+        "garden",
+        "hill",
+        "island",
+        "lake",
+        "meadow",
+        "pond",
+        "river",
+        "tower",
+        "valley"
+      ],
+      "rationale": "A light wind moves through the named outdoor place or around the building.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "bright",
+      "nouns": [
+        "blossom",
+        "butterfly",
+        "candle",
+        "cloud",
+        "comet",
+        "daisy",
+        "flower",
+        "lantern",
+        "moon",
+        "orchid",
+        "rainbow",
+        "star",
+        "sunflower"
+      ],
+      "rationale": "The visible thing is luminous or vividly lit; no intelligence or operational status is intended.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "bubbly",
+      "nouns": [
+        "fountain",
+        "lake",
+        "pond",
+        "river",
+        "waterfall"
+      ],
+      "rationale": "Visible bubbles form in or on the water.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "calm",
+      "nouns": [
+        "beaver",
+        "dolphin",
+        "fox",
+        "frog",
+        "heron",
+        "kitten",
+        "koala",
+        "lake",
+        "lizard",
+        "otter",
+        "owl",
+        "panda",
+        "penguin",
+        "pond",
+        "rabbit",
+        "river",
+        "swan",
+        "turtle",
+        "whale"
+      ],
+      "rationale": "The animal is resting peacefully or the water is still.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "cozy",
+      "nouns": [
+        "basket",
+        "cabin",
+        "garden",
+        "mitten",
+        "pillow"
+      ],
+      "rationale": "The object or place supplies an immediately imaginable warm, sheltered setting.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "crisp",
+      "nouns": [
+        "apple",
+        "leaf"
+      ],
+      "rationale": "The apple is firm or the dry leaf crackles.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "curly",
+      "nouns": [
+        "feather",
+        "fern",
+        "leaf",
+        "ribbon",
+        "willow"
+      ],
+      "rationale": "A feather, frond, leaf, ribbon or willow branch bends into visible curls.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "dotted",
+      "nouns": [
+        "bottle",
+        "bowl",
+        "butterfly",
+        "canoe",
+        "feather",
+        "lizard",
+        "mitten",
+        "pillow",
+        "ribbon",
+        "shell",
+        "teapot",
+        "umbrella",
+        "wagon",
+        "window"
+      ],
+      "rationale": "The noun carries a natural or applied dot pattern.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "dusty",
+      "nouns": [
+        "acorn",
+        "basket",
+        "bell",
+        "boat",
+        "bottle",
+        "bowl",
+        "cabin",
+        "candle",
+        "castle",
+        "clock",
+        "dune",
+        "feather",
+        "hill",
+        "lantern",
+        "leaf",
+        "mitten",
+        "pebble",
+        "pine",
+        "pillow",
+        "ribbon",
+        "shell",
+        "spoon",
+        "stone",
+        "teapot",
+        "tower",
+        "valley",
+        "violin",
+        "wagon",
+        "window"
+      ],
+      "rationale": "A light dust layer covers the physical thing or place.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "feathery",
+      "nouns": [
+        "cloud",
+        "fern",
+        "flower",
+        "leaf",
+        "willow"
+      ],
+      "rationale": "The noun has a soft or finely divided outline resembling a feather.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "fluffy",
+      "nouns": [
+        "cloud",
+        "feather",
+        "kitten",
+        "owl",
+        "pillow",
+        "rabbit",
+        "robin",
+        "sparrow",
+        "squirrel",
+        "swan"
+      ],
+      "rationale": "The cloud or fabric is loosely soft, or the animal has visibly fluffed fur or feathers.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "frosty",
+      "nouns": [
+        "acorn",
+        "apple",
+        "bamboo",
+        "basket",
+        "bell",
+        "birch",
+        "boat",
+        "bottle",
+        "cabin",
+        "cactus",
+        "castle",
+        "cedar",
+        "cherry",
+        "clock",
+        "fern",
+        "fountain",
+        "garden",
+        "hill",
+        "island",
+        "lake",
+        "lantern",
+        "leaf",
+        "maple",
+        "meadow",
+        "oak",
+        "pebble",
+        "pine",
+        "pond",
+        "pumpkin",
+        "river",
+        "shell",
+        "spoon",
+        "stone",
+        "tower",
+        "valley",
+        "wagon",
+        "waterfall",
+        "willow",
+        "window"
+      ],
+      "rationale": "Outdoor frost makes a visible thin coating on the noun.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "glassy",
+      "nouns": [
+        "bottle",
+        "bowl",
+        "lake",
+        "pond",
+        "river",
+        "stone"
+      ],
+      "rationale": "The object or water surface has a smooth glasslike appearance.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "gliding",
+      "nouns": [
+        "butterfly",
+        "dolphin",
+        "eagle",
+        "feather",
+        "heron",
+        "otter",
+        "owl",
+        "penguin",
+        "swan",
+        "turtle",
+        "whale"
+      ],
+      "rationale": "The winged thing glides through air or the aquatic animal glides through water.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "glowing",
+      "nouns": [
+        "candle",
+        "comet",
+        "lantern",
+        "moon",
+        "star"
+      ],
+      "rationale": "A familiar source of visible light gives off a gentle glow.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "golden",
+      "nouns": [
+        "acorn",
+        "apple",
+        "bell",
+        "birch",
+        "blossom",
+        "bowl",
+        "butterfly",
+        "candle",
+        "cherry",
+        "clock",
+        "daisy",
+        "feather",
+        "flower",
+        "lantern",
+        "leaf",
+        "maple",
+        "meadow",
+        "moon",
+        "petal",
+        "pumpkin",
+        "ribbon",
+        "shell",
+        "spoon",
+        "star",
+        "sunflower",
+        "tower",
+        "violin",
+        "willow"
+      ],
+      "rationale": "The noun has a plausible gold material, finish, autumn appearance or warm reflected light.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "grassy",
+      "nouns": [
+        "dune",
+        "garden",
+        "hill",
+        "island",
+        "meadow",
+        "valley"
+      ],
+      "rationale": "The place has visible growing grass.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "hazy",
+      "nouns": [
+        "castle",
+        "garden",
+        "hill",
+        "island",
+        "lake",
+        "meadow",
+        "moon",
+        "pond",
+        "rainbow",
+        "river",
+        "star",
+        "tower",
+        "valley",
+        "waterfall"
+      ],
+      "rationale": "The noun is viewed through a light atmospheric haze.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "icy",
+      "nouns": [
+        "birch",
+        "boat",
+        "cabin",
+        "castle",
+        "cedar",
+        "fountain",
+        "garden",
+        "hill",
+        "island",
+        "lake",
+        "leaf",
+        "maple",
+        "meadow",
+        "oak",
+        "pebble",
+        "pine",
+        "pond",
+        "river",
+        "stone",
+        "tower",
+        "valley",
+        "waterfall",
+        "willow",
+        "window"
+      ],
+      "rationale": "Visible ice covers the physical thing or forms in the water.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "leafy",
+      "nouns": [
+        "bamboo",
+        "birch",
+        "cabin",
+        "castle",
+        "garden",
+        "island",
+        "maple",
+        "meadow",
+        "oak",
+        "tower",
+        "valley",
+        "willow"
+      ],
+      "rationale": "Leaves grow on the plant or surround or climb over the place or building.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "little",
+      "nouns": [
+        "acorn",
+        "apple",
+        "bamboo",
+        "basket",
+        "beaver",
+        "bell",
+        "birch",
+        "blossom",
+        "boat",
+        "bottle",
+        "bowl",
+        "butterfly",
+        "cactus",
+        "cabin",
+        "candle",
+        "canoe",
+        "castle",
+        "cedar",
+        "cherry",
+        "clock",
+        "cloud",
+        "clover",
+        "comet",
+        "cricket",
+        "daisy",
+        "dolphin",
+        "dune",
+        "eagle",
+        "feather",
+        "fern",
+        "flower",
+        "fountain",
+        "fox",
+        "frog",
+        "garden",
+        "heron",
+        "hill",
+        "island",
+        "kitten",
+        "koala",
+        "lake",
+        "lantern",
+        "leaf",
+        "lizard",
+        "maple",
+        "meadow",
+        "mitten",
+        "moon",
+        "mushroom",
+        "oak",
+        "orchid",
+        "otter",
+        "owl",
+        "panda",
+        "pebble",
+        "penguin",
+        "petal",
+        "pillow",
+        "pine",
+        "pond",
+        "pumpkin",
+        "rabbit",
+        "rainbow",
+        "ribbon",
+        "river",
+        "robin",
+        "shell",
+        "snail",
+        "sparrow",
+        "spoon",
+        "squirrel",
+        "star",
+        "stone",
+        "sunflower",
+        "swan",
+        "teapot",
+        "tower",
+        "turtle",
+        "umbrella",
+        "valley",
+        "violin",
+        "wagon",
+        "waterfall",
+        "whale",
+        "willow",
+        "window"
+      ],
+      "rationale": "A smaller physical instance of the concrete noun is easy to picture; this adjective has been paired individually with each listed noun.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "misty",
+      "nouns": [
+        "birch",
+        "boat",
+        "cabin",
+        "castle",
+        "cedar",
+        "fountain",
+        "garden",
+        "hill",
+        "island",
+        "lake",
+        "maple",
+        "meadow",
+        "oak",
+        "pine",
+        "pond",
+        "river",
+        "tower",
+        "valley",
+        "waterfall",
+        "willow"
+      ],
+      "rationale": "A thin mist visibly surrounds the outdoor thing or place.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "mossy",
+      "nouns": [
+        "basket",
+        "bell",
+        "birch",
+        "boat",
+        "bowl",
+        "cabin",
+        "canoe",
+        "castle",
+        "cedar",
+        "fountain",
+        "garden",
+        "hill",
+        "island",
+        "lantern",
+        "maple",
+        "oak",
+        "pebble",
+        "pine",
+        "shell",
+        "stone",
+        "tower",
+        "valley",
+        "wagon",
+        "waterfall",
+        "willow"
+      ],
+      "rationale": "Living moss grows on the exposed physical surface; the lantern is an outdoor weathered lantern.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "muddy",
+      "nouns": [
+        "basket",
+        "beaver",
+        "boat",
+        "bowl",
+        "canoe",
+        "cricket",
+        "dune",
+        "fox",
+        "frog",
+        "garden",
+        "hill",
+        "island",
+        "lake",
+        "lizard",
+        "otter",
+        "pebble",
+        "pond",
+        "rabbit",
+        "river",
+        "shell",
+        "snail",
+        "stone",
+        "turtle",
+        "valley",
+        "wagon"
+      ],
+      "rationale": "Wet earth marks the thing or animal, or is visible in the place or water.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "polished",
+      "nouns": [
+        "bell",
+        "boat",
+        "bottle",
+        "bowl",
+        "clock",
+        "lantern",
+        "pebble",
+        "shell",
+        "spoon",
+        "stone",
+        "teapot",
+        "violin",
+        "wagon"
+      ],
+      "rationale": "An accessible hard surface has been physically polished; no organizational maturity is implied.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "quiet",
+      "nouns": [
+        "beaver",
+        "cabin",
+        "cricket",
+        "dolphin",
+        "eagle",
+        "fox",
+        "frog",
+        "garden",
+        "heron",
+        "kitten",
+        "koala",
+        "lake",
+        "lizard",
+        "meadow",
+        "otter",
+        "owl",
+        "panda",
+        "penguin",
+        "pond",
+        "rabbit",
+        "river",
+        "robin",
+        "snail",
+        "sparrow",
+        "squirrel",
+        "swan",
+        "turtle",
+        "valley",
+        "whale"
+      ],
+      "rationale": "The animal or place makes little sound; the cricket is resting rather than chirping.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "rippled",
+      "nouns": [
+        "lake",
+        "pond",
+        "river"
+      ],
+      "rationale": "Small surface waves are visible on the water.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "rocky",
+      "nouns": [
+        "garden",
+        "hill",
+        "island",
+        "river",
+        "valley",
+        "waterfall"
+      ],
+      "rationale": "Exposed rocks form part of the place or watercourse.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "round",
+      "nouns": [
+        "acorn",
+        "apple",
+        "basket",
+        "bell",
+        "blossom",
+        "bottle",
+        "bowl",
+        "cactus",
+        "candle",
+        "cherry",
+        "clock",
+        "cloud",
+        "flower",
+        "fountain",
+        "island",
+        "lake",
+        "lantern",
+        "leaf",
+        "moon",
+        "pebble",
+        "pillow",
+        "pond",
+        "pumpkin",
+        "shell",
+        "stone",
+        "teapot",
+        "window"
+      ],
+      "rationale": "The object, flower or bounded place has a visibly rounded outline.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "rustic",
+      "nouns": [
+        "basket",
+        "bell",
+        "boat",
+        "bowl",
+        "cabin",
+        "candle",
+        "canoe",
+        "castle",
+        "clock",
+        "fountain",
+        "garden",
+        "lantern",
+        "spoon",
+        "teapot",
+        "tower",
+        "violin",
+        "wagon",
+        "window"
+      ],
+      "rationale": "The physical object or place has a simple handmade or countryside style.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "sandy",
+      "nouns": [
+        "basket",
+        "boat",
+        "bottle",
+        "bowl",
+        "canoe",
+        "dune",
+        "garden",
+        "hill",
+        "island",
+        "lake",
+        "pebble",
+        "pond",
+        "river",
+        "shell",
+        "stone",
+        "turtle",
+        "valley",
+        "wagon"
+      ],
+      "rationale": "Visible sand covers the thing or occurs at the water's edge or in the place.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "shiny",
+      "nouns": [
+        "acorn",
+        "apple",
+        "bell",
+        "bottle",
+        "bowl",
+        "cherry",
+        "clock",
+        "feather",
+        "frog",
+        "lantern",
+        "leaf",
+        "lizard",
+        "pebble",
+        "ribbon",
+        "shell",
+        "spoon",
+        "stone",
+        "teapot",
+        "turtle",
+        "violin",
+        "wagon",
+        "window"
+      ],
+      "rationale": "A smooth physical surface visibly reflects light.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "silky",
+      "nouns": [
+        "blossom",
+        "feather",
+        "flower",
+        "kitten",
+        "leaf",
+        "mitten",
+        "petal",
+        "pillow",
+        "rabbit",
+        "ribbon"
+      ],
+      "rationale": "The surface is smooth and soft to touch; cloth objects may be made from silk.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "silver",
+      "nouns": [
+        "bell",
+        "birch",
+        "bowl",
+        "candle",
+        "clock",
+        "feather",
+        "fountain",
+        "lantern",
+        "leaf",
+        "moon",
+        "ribbon",
+        "shell",
+        "spoon",
+        "star",
+        "teapot",
+        "tower",
+        "violin",
+        "willow"
+      ],
+      "rationale": "Silver material, a silver finish or pale reflective appearance supplies one coherent image.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "sleepy",
+      "nouns": [
+        "beaver",
+        "dolphin",
+        "eagle",
+        "fox",
+        "frog",
+        "heron",
+        "kitten",
+        "koala",
+        "lizard",
+        "otter",
+        "owl",
+        "panda",
+        "penguin",
+        "rabbit",
+        "robin",
+        "sparrow",
+        "squirrel",
+        "swan",
+        "turtle",
+        "whale"
+      ],
+      "rationale": "The animal appears ready to sleep; the adjective does not label a person.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "smooth",
+      "nouns": [
+        "acorn",
+        "apple",
+        "bamboo",
+        "bell",
+        "bottle",
+        "bowl",
+        "candle",
+        "canoe",
+        "cherry",
+        "feather",
+        "leaf",
+        "pebble",
+        "ribbon",
+        "shell",
+        "spoon",
+        "stone",
+        "teapot",
+        "turtle",
+        "violin",
+        "wagon",
+        "window"
+      ],
+      "rationale": "The visible or touchable surface is even, without a metaphorical service-quality claim.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "snowy",
+      "nouns": [
+        "basket",
+        "birch",
+        "boat",
+        "cabin",
+        "cactus",
+        "canoe",
+        "castle",
+        "cedar",
+        "fountain",
+        "garden",
+        "hill",
+        "island",
+        "lantern",
+        "maple",
+        "meadow",
+        "oak",
+        "pine",
+        "tower",
+        "valley",
+        "wagon",
+        "willow",
+        "window"
+      ],
+      "rationale": "Visible snow rests on the thing or covers the place.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "sparkly",
+      "nouns": [
+        "bell",
+        "blossom",
+        "bowl",
+        "butterfly",
+        "candle",
+        "clock",
+        "feather",
+        "flower",
+        "fountain",
+        "lantern",
+        "leaf",
+        "mitten",
+        "pebble",
+        "petal",
+        "pillow",
+        "ribbon",
+        "shell",
+        "spoon",
+        "star",
+        "stone",
+        "teapot",
+        "umbrella",
+        "window"
+      ],
+      "rationale": "Small reflected or emitted points of light, or a decorative glitter finish, are easy to picture.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "speckled",
+      "nouns": [
+        "apple",
+        "birch",
+        "bowl",
+        "butterfly",
+        "feather",
+        "frog",
+        "leaf",
+        "lizard",
+        "mushroom",
+        "orchid",
+        "pebble",
+        "petal",
+        "shell",
+        "snail",
+        "stone",
+        "teapot",
+        "turtle"
+      ],
+      "rationale": "Small natural or painted irregular marks cover the noun.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "spotted",
+      "nouns": [
+        "butterfly",
+        "feather",
+        "frog",
+        "kitten",
+        "leaf",
+        "lizard",
+        "mushroom",
+        "orchid",
+        "pebble",
+        "pillow",
+        "rabbit",
+        "ribbon",
+        "shell",
+        "teapot",
+        "turtle",
+        "umbrella"
+      ],
+      "rationale": "The noun has visible rounded patches; this means patterned, not detected or tracked.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "striped",
+      "nouns": [
+        "bamboo",
+        "basket",
+        "boat",
+        "bottle",
+        "bowl",
+        "butterfly",
+        "candle",
+        "canoe",
+        "feather",
+        "frog",
+        "kitten",
+        "leaf",
+        "lizard",
+        "mitten",
+        "pillow",
+        "pumpkin",
+        "ribbon",
+        "shell",
+        "snail",
+        "teapot",
+        "turtle",
+        "umbrella",
+        "wagon"
+      ],
+      "rationale": "Visible bands form a natural or decorative stripe pattern.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "sunny",
+      "nouns": [
+        "cabin",
+        "castle",
+        "dune",
+        "garden",
+        "hill",
+        "island",
+        "lake",
+        "meadow",
+        "pond",
+        "river",
+        "tower",
+        "valley",
+        "window"
+      ],
+      "rationale": "Sunlight visibly illuminates the place or the window.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "tiny",
+      "nouns": [
+        "acorn",
+        "apple",
+        "bamboo",
+        "basket",
+        "beaver",
+        "bell",
+        "birch",
+        "blossom",
+        "boat",
+        "bottle",
+        "bowl",
+        "butterfly",
+        "cactus",
+        "cabin",
+        "candle",
+        "canoe",
+        "castle",
+        "cedar",
+        "cherry",
+        "clock",
+        "cloud",
+        "clover",
+        "comet",
+        "cricket",
+        "daisy",
+        "dolphin",
+        "dune",
+        "eagle",
+        "feather",
+        "fern",
+        "flower",
+        "fountain",
+        "fox",
+        "frog",
+        "garden",
+        "heron",
+        "hill",
+        "island",
+        "kitten",
+        "koala",
+        "lake",
+        "lantern",
+        "leaf",
+        "lizard",
+        "maple",
+        "meadow",
+        "mitten",
+        "moon",
+        "mushroom",
+        "oak",
+        "orchid",
+        "otter",
+        "owl",
+        "panda",
+        "pebble",
+        "penguin",
+        "petal",
+        "pillow",
+        "pine",
+        "pond",
+        "pumpkin",
+        "rabbit",
+        "rainbow",
+        "ribbon",
+        "river",
+        "robin",
+        "shell",
+        "snail",
+        "sparrow",
+        "spoon",
+        "squirrel",
+        "star",
+        "stone",
+        "sunflower",
+        "swan",
+        "teapot",
+        "tower",
+        "turtle",
+        "umbrella",
+        "valley",
+        "violin",
+        "wagon",
+        "waterfall",
+        "whale",
+        "willow",
+        "window"
+      ],
+      "rationale": "A very small physical instance is straightforward to picture; a tiny whale or moon is relative to that kind of thing, not a toy.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "wavy",
+      "nouns": [
+        "feather",
+        "fern",
+        "leaf",
+        "ribbon",
+        "willow",
+        "window"
+      ],
+      "rationale": "The edge, branch or material has a visibly gentle wave shape; the window has wavy glass.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "windy",
+      "nouns": [
+        "cabin",
+        "castle",
+        "dune",
+        "garden",
+        "hill",
+        "island",
+        "lake",
+        "meadow",
+        "pond",
+        "river",
+        "tower",
+        "valley"
+      ],
+      "rationale": "A noticeable wind moves through or around the outdoor place or building.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "wooden",
+      "nouns": [
+        "basket",
+        "boat",
+        "bowl",
+        "cabin",
+        "canoe",
+        "castle",
+        "clock",
+        "fountain",
+        "lantern",
+        "spoon",
+        "tower",
+        "violin",
+        "wagon",
+        "window"
+      ],
+      "rationale": "The item has a wooden construction or frame; a wooden window has a wood frame and a wooden lantern has a wood frame around its light.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    },
+    {
+      "adjective": "woolly",
+      "nouns": [
+        "mitten",
+        "pillow",
+        "ribbon"
+      ],
+      "rationale": "The cloth object is made of wool or has a woollike surface.",
+      "interpretability": "editorially acceptable",
+      "familiarity": "not measured; ordinary collocations remain eligible",
+      "imageability": "editorially acceptable integrated image",
+      "appropriateness": "editorially acceptable as a non-secret tab-group label",
+      "reviewStatus": "editorial-ai-reviewed; no human outcome study"
+    }
+  ]
+}

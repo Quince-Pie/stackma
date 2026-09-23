@@ -1,0 +1,236 @@
+{
+  "startedAt": "2026-09-23T21:43:08.979Z",
+  "extensionSha256": "5bd6d065dd82eb48251ca96820d37ce8a528fd090ee8c3ba83be77ef09b46dc1",
+  "purpose": "Deterministically exercise Firefox's native tab-group ID collision path, not estimate its natural frequency.",
+  "sourceRevision": "3bf8f468258c2181f455e23d4ffcd6acb8f4cdb1",
+  "primaryBug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1960104",
+  "benchmarkAttribution": "This reproduction does not identify the cause of the earlier uninstrumented benchmark failure.",
+  "browser": {
+    "version": "156.0",
+    "buildId": "20260909172920"
+  },
+  "nativeCreation": {
+    "allIds": [
+      "1750000000000-84",
+      "1750000000000-39",
+      "1750000000000-94",
+      "1750000000000-94",
+      "1750000000000-62",
+      "1750000000000-68",
+      "1750000000000-44",
+      "1750000000000-21",
+      "1750000000000-74",
+      "1750000000000-67",
+      "1750000000000-100",
+      "1750000000000-29",
+      "1750000000000-4",
+      "1750000000000-56",
+      "1750000000000-18",
+      "1750000000000-15",
+      "1750000000000-84",
+      "1750000000000-53",
+      "1750000000000-60",
+      "1750000000000-59",
+      "1750000000000-59",
+      "1750000000000-61",
+      "1750000000000-6",
+      "1750000000000-62",
+      "1750000000000-22",
+      "1750000000000-22",
+      "1750000000000-35",
+      "1750000000000-44",
+      "1750000000000-70",
+      "1750000000000-57",
+      "1750000000000-27",
+      "1750000000000-27",
+      "1750000000000-57",
+      "1750000000000-27",
+      "1750000000000-36",
+      "1750000000000-60",
+      "1750000000000-17",
+      "1750000000000-62",
+      "1750000000000-35",
+      "1750000000000-6",
+      "1750000000000-45",
+      "1750000000000-29",
+      "1750000000000-22",
+      "1750000000000-92",
+      "1750000000000-71",
+      "1750000000000-8",
+      "1750000000000-28",
+      "1750000000000-21",
+      "1750000000000-55",
+      "1750000000000-69",
+      "1750000000000-61",
+      "1750000000000-48",
+      "1750000000000-14",
+      "1750000000000-95",
+      "1750000000000-15",
+      "1750000000000-75",
+      "1750000000000-20",
+      "1750000000000-89",
+      "1750000000000-69",
+      "1750000000000-76",
+      "1750000000000-41",
+      "1750000000000-93",
+      "1750000000000-29",
+      "1750000000000-82",
+      "1750000000000-58",
+      "1750000000000-33",
+      "1750000000000-39",
+      "1750000000000-50",
+      "1750000000000-19",
+      "1750000000000-31",
+      "1750000000000-30",
+      "1750000000000-89",
+      "1750000000000-48",
+      "1750000000000-49",
+      "1750000000000-35",
+      "1750000000000-61",
+      "1750000000000-45",
+      "1750000000000-95",
+      "1750000000000-58",
+      "1750000000000-73",
+      "1750000000000-79",
+      "1750000000000-94",
+      "1750000000000-9",
+      "1750000000000-70",
+      "1750000000000-95",
+      "1750000000000-58",
+      "1750000000000-81",
+      "1750000000000-88",
+      "1750000000000-61",
+      "1750000000000-33",
+      "1750000000000-88",
+      "1750000000000-90",
+      "1750000000000-89",
+      "1750000000000-61",
+      "1750000000000-12",
+      "1750000000000-50",
+      "1750000000000-95",
+      "1750000000000-60",
+      "1750000000000-19",
+      "1750000000000-43",
+      "1750000000000-21",
+      "1750000000000-5"
+    ],
+    "clockRestored": true,
+    "distinctElements": true,
+    "groupsWithSameId": 3,
+    "ids": [
+      "1750000000000-94",
+      "1750000000000-94"
+    ],
+    "lookupReturnsFirst": true,
+    "tabCounts": [
+      1,
+      1
+    ],
+    "tabIds": [
+      4,
+      5
+    ],
+    "titles": [
+      "collision-2",
+      "collision-3"
+    ]
+  },
+  "extensionAPI": {
+    "groups": [
+      {
+        "collapsed": false,
+        "color": "blue",
+        "id": 1750000000000094,
+        "title": "collision-2",
+        "windowId": 27
+      },
+      {
+        "collapsed": false,
+        "color": "blue",
+        "id": 1750000000000094,
+        "title": "collision-3",
+        "windowId": 27
+      },
+      {
+        "collapsed": false,
+        "color": "blue",
+        "id": 1750000000000094,
+        "title": "collision-81",
+        "windowId": 27
+      }
+    ],
+    "retrieved": {
+      "collapsed": false,
+      "color": "blue",
+      "id": 1750000000000094,
+      "title": "collision-2",
+      "windowId": 27
+    },
+    "tabGroupIds": [
+      1750000000000094,
+      1750000000000094
+    ],
+    "updated": {
+      "collapsed": false,
+      "color": "blue",
+      "id": 1750000000000094,
+      "title": "update-by-ambiguous-id",
+      "windowId": 27
+    }
+  },
+  "afterUpdate": [
+    {
+      "color": "blue",
+      "id": "1750000000000-94",
+      "title": "update-by-ambiguous-id"
+    },
+    {
+      "color": "blue",
+      "id": "1750000000000-94",
+      "title": "collision-3"
+    }
+  ],
+  "popupGuard": {
+    "allCopyEnabled": true,
+    "allOpenDisabled": true,
+    "matchingRows": 3,
+    "message": "Firefox cannot distinguish some groups. Open those groups from Firefox’s tab bar."
+  },
+  "namerGuard": {
+    "reportedErrors": [
+      "Error: Firefox returned an ambiguous group ID; its name was left unchanged"
+    ],
+    "nativeTitles": [
+      "",
+      ""
+    ]
+  },
+  "membershipGuard": {
+    "childTabId": 105,
+    "reportedErrors": [
+      "Error: Firefox reported duplicate native group ID: 1750000000000094"
+    ],
+    "sourceTabId": 5,
+    "windowId": 27,
+    "nativeState": {
+      "childGrouped": false,
+      "childInSourceWindow": true,
+      "distinctElements": true,
+      "memberTabIds": [
+        [
+          4
+        ],
+        [
+          5
+        ]
+      ],
+      "nativeTitles": [
+        "",
+        ""
+      ]
+    }
+  },
+  "extensionSha256After": "5bd6d065dd82eb48251ca96820d37ce8a528fd090ee8c3ba83be77ef09b46dc1",
+  "passed": true,
+  "finishedAt": "2026-09-23T21:43:11.160Z"
+}

@@ -1,0 +1,1897 @@
+{
+  "phase": "confirmation",
+  "cacheComparison": true,
+  "repetitions": 12,
+  "warmups": 2,
+  "iterations": 64,
+  "startedAt": "2026-09-23T21:28:21.893Z",
+  "toolchain": {
+    "node": "v24.20.0"
+  },
+  "hardware": {
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "architecture": "x64",
+    "kernel": "6.18.51",
+    "logicalCpus": 32,
+    "ramBytes": 98613477376
+  },
+  "sourceSha256": {
+    "burst-namer.js": "4f2782c679ce552a0f4ec34a55ec4ab4e59bd02a500519acfb285d7c843e584d",
+    "CMU-LICENSE.txt": "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a",
+    "background.js": "11f121e19fcd49add0d8684e581678ab245dbe087a7bc566ce1b78f13ff9763c",
+    "icon.svg": "9a239065122ec22504d4428157063aa79fefe504e3c1774264f52338fbd28526",
+    "manifest.json": "dac7a451d53da0ad907ac4380f84d1cedc04e6620fd2e556c9b9476bebc1d543",
+    "name-catalog.js": "75263bb976c806ecc8637147d92c96153728df02393e55c3260bb425281bc41c",
+    "name-generator.js": "c5f0549ab7ed7050c555d573700a13b0165c230de5caa25814f9b939ab8682b7",
+    "namer.js": "290b27898a3483436f6dd97d7609c56438b32f100ff7ecf5d1299980bb73c0bf",
+    "popup.css": "d37f05104466112ce92e29c00c5075b6423a8c87b43234313ca8b3f2b0d30c6d",
+    "popup.html": "f07d4c50c4414f7e86776730bc2f1daac708c42269b8f14231959a4c97fce937",
+    "popup.js": "1b1db23c7402c00004ada80dea1a7d2ba80048bda1b4ed89751c6e93f3a9875f",
+    "stacker.js": "5f3ffaa5981788149750caa9d1982c4d0a95dca0a3b50a461cbe833769d1e12c",
+    "candidate-fresh-context.js": "c5f0549ab7ed7050c555d573700a13b0165c230de5caa25814f9b939ab8682b7",
+    "candidate-burst-context.js": "c5f0549ab7ed7050c555d573700a13b0165c230de5caa25814f9b939ab8682b7"
+  },
+  "scenarios": [
+    {
+      "name": "empty",
+      "titleCount": 0,
+      "eligible": 858
+    },
+    {
+      "name": "32-known",
+      "titleCount": 32,
+      "eligible": 170
+    },
+    {
+      "name": "256-known",
+      "titleCount": 256,
+      "eligible": 1
+    },
+    {
+      "name": "128-manual",
+      "titleCount": 128,
+      "eligible": 858
+    },
+    {
+      "name": "exhausted",
+      "titleCount": 858,
+      "eligible": 0
+    },
+    {
+      "name": "single-best-edge",
+      "titleCount": 669,
+      "eligible": 1
+    },
+    {
+      "name": "sparse-best-tier",
+      "titleCount": 263,
+      "eligible": 12
+    }
+  ],
+  "samples": [],
+  "nativeSamples": [
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 0,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2,
+      "elapsedMs": 10.21999999999997,
+      "idleIndexRecords": 0,
+      "latencies": [
+        8.439999999999998
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.160000000000025,
+      "titles": [
+        "sleepy-swan"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 0,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.8600000000000136,
+      "elapsedMs": 10.379999999999995,
+      "idleIndexRecords": 0,
+      "latencies": [
+        8.019999999999982
+      ],
+      "peakIndexRecords": 1,
+      "resetMs": 3.740000000000009,
+      "titles": [
+        "frosty-cedar"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 1,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.6399999999999864,
+      "elapsedMs": 11.240000000000007,
+      "idleIndexRecords": 0,
+      "latencies": [
+        9.300000000000011
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.19999999999998863,
+      "titles": [
+        "silky-pillow"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 1,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.1200000000000043,
+      "elapsedMs": 5.0400000000000205,
+      "idleIndexRecords": 0,
+      "latencies": [
+        3.900000000000034
+      ],
+      "peakIndexRecords": 1,
+      "resetMs": 0.0999999999999659,
+      "titles": [
+        "frosty-hill"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 2,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.5600000000000025,
+      "elapsedMs": 8.579999999999984,
+      "idleIndexRecords": 0,
+      "latencies": [
+        7.71999999999997
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.10000000000002274,
+      "titles": [
+        "mossy-canoe"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 2,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.6199999999999477,
+      "elapsedMs": 11.5,
+      "idleIndexRecords": 0,
+      "latencies": [
+        9.860000000000014
+      ],
+      "peakIndexRecords": 1,
+      "resetMs": 0.160000000000025,
+      "titles": [
+        "sleepy-koala"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 3,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.9400000000000546,
+      "elapsedMs": 8.379999999999995,
+      "idleIndexRecords": 0,
+      "latencies": [
+        7.399999999999977
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.10000000000002274,
+      "titles": [
+        "snowy-oak"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 3,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.5799999999999272,
+      "elapsedMs": 12.840000000000032,
+      "idleIndexRecords": 0,
+      "latencies": [
+        9.579999999999927
+      ],
+      "peakIndexRecords": 1,
+      "resetMs": 0.34000000000003183,
+      "titles": [
+        "sparkly-shell"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 4,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.259999999999991,
+      "elapsedMs": 7.159999999999968,
+      "idleIndexRecords": 0,
+      "latencies": [
+        5.2999999999999545
+      ],
+      "peakIndexRecords": 1,
+      "resetMs": 0.2799999999999727,
+      "titles": [
+        "calm-otter"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 4,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.2999999999999543,
+      "elapsedMs": 7.760000000000105,
+      "idleIndexRecords": 0,
+      "latencies": [
+        6.339999999999918
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.1999999999999318,
+      "titles": [
+        "quiet-owl"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 5,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.3799999999999957,
+      "elapsedMs": 6.800000000000068,
+      "idleIndexRecords": 0,
+      "latencies": [
+        5.259999999999991
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.12000000000000456,
+      "titles": [
+        "little-pumpkin"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 5,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 0.9600000000000364,
+      "elapsedMs": 4.840000000000032,
+      "idleIndexRecords": 0,
+      "latencies": [
+        3.800000000000068
+      ],
+      "peakIndexRecords": 1,
+      "resetMs": 0.12000000000000456,
+      "titles": [
+        "sparkly-blossom"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 6,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.8799999999999957,
+      "elapsedMs": 8.720000000000027,
+      "idleIndexRecords": 0,
+      "latencies": [
+        6.82000000000005
+      ],
+      "peakIndexRecords": 1,
+      "resetMs": 3.199999999999932,
+      "titles": [
+        "rocky-hill"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 6,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.2799999999999727,
+      "elapsedMs": 7.360000000000014,
+      "idleIndexRecords": 0,
+      "latencies": [
+        5.539999999999964
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.17999999999994998,
+      "titles": [
+        "frosty-cabin"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 7,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 0.8399999999999181,
+      "elapsedMs": 4.639999999999986,
+      "idleIndexRecords": 0,
+      "latencies": [
+        3.5599999999999454
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.15999999999996817,
+      "titles": [
+        "dusty-cabin"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 7,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1,
+      "elapsedMs": 4.319999999999936,
+      "idleIndexRecords": 0,
+      "latencies": [
+        3.580000000000041
+      ],
+      "peakIndexRecords": 1,
+      "resetMs": 0.10000000000002274,
+      "titles": [
+        "silver-clock"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 8,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 5.600000000000023,
+      "elapsedMs": 5.3799999999999955,
+      "idleIndexRecords": 0,
+      "latencies": [
+        4.600000000000023
+      ],
+      "peakIndexRecords": 1,
+      "resetMs": 0.15999999999996817,
+      "titles": [
+        "mossy-island"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 8,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 1.5199999999999818,
+      "elapsedMs": 10.91999999999996,
+      "idleIndexRecords": 0,
+      "latencies": [
+        9.120000000000005
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.15999999999996817,
+      "titles": [
+        "shiny-lizard"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 9,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.1000000000000227,
+      "elapsedMs": 16.120000000000005,
+      "idleIndexRecords": 0,
+      "latencies": [
+        13.799999999999956
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 3.339999999999918,
+      "titles": [
+        "smooth-window"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 9,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2,
+      "elapsedMs": 23.659999999999968,
+      "idleIndexRecords": 0,
+      "latencies": [
+        20.91999999999996
+      ],
+      "peakIndexRecords": 1,
+      "resetMs": 0.2799999999999727,
+      "titles": [
+        "feathery-fern"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 10,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 6.540000000000077,
+      "elapsedMs": 9.480000000000018,
+      "idleIndexRecords": 0,
+      "latencies": [
+        6.960000000000036
+      ],
+      "peakIndexRecords": 1,
+      "resetMs": 1.759999999999991,
+      "titles": [
+        "sunny-tower"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 10,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 2.019999999999982,
+      "elapsedMs": 9.220000000000027,
+      "idleIndexRecords": 0,
+      "latencies": [
+        7.519999999999982
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.1999999999999318,
+      "titles": [
+        "sunny-tower"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 11,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 5.560000000000059,
+      "elapsedMs": 32.07999999999993,
+      "idleIndexRecords": 0,
+      "latencies": [
+        30.460000000000036
+      ],
+      "peakIndexRecords": 1,
+      "resetMs": 0.4800000000000182,
+      "titles": [
+        "tiny-tower"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 1,
+      "block": 11,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 1,
+        "session.set": 1,
+        "tabGroups.get": 2,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1,
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 3.560000000000173,
+      "elapsedMs": 76.39999999999998,
+      "idleIndexRecords": 0,
+      "latencies": [
+        73.53999999999996
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.2799999999999727,
+      "titles": [
+        "smooth-bamboo"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 0,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 26.38000000000011,
+      "elapsedMs": 164.0999999999999,
+      "idleIndexRecords": 0,
+      "latencies": [
+        87.70000000000027,
+        87.82000000000016,
+        91.81999999999972,
+        94.03999999999996,
+        100.34000000000016,
+        100.90000000000008,
+        97.75999999999976,
+        103.11999999999988,
+        102.14000000000031,
+        100.11999999999988,
+        97.26000000000022,
+        93.90000000000008,
+        92.13999999999989,
+        98.77999999999976,
+        97.15999999999984,
+        94.92000000000009
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.2799999999999727,
+      "titles": [
+        "misty-willow",
+        "tiny-heron",
+        "striped-snail",
+        "sparkly-candle",
+        "mossy-cabin",
+        "sandy-canoe",
+        "icy-garden",
+        "dusty-teapot",
+        "quiet-penguin",
+        "smooth-spoon",
+        "shiny-apple",
+        "breezy-lake",
+        "sleepy-panda",
+        "round-bottle",
+        "leafy-oak",
+        "silky-blossom"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 0,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 1,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 19.320000000000164,
+      "elapsedMs": 137.26000000000022,
+      "idleIndexRecords": 0,
+      "latencies": [
+        68.67999999999984,
+        69.23999999999978,
+        67.77999999999975,
+        74.22000000000025,
+        72.20000000000027,
+        71.23999999999978,
+        68.09999999999991,
+        64.81999999999971,
+        60.54000000000042,
+        64.32000000000016,
+        66.41999999999962,
+        65.80000000000018,
+        66.17999999999984,
+        65.64000000000033,
+        76.32000000000016,
+        74.12000000000035
+      ],
+      "peakIndexRecords": 16,
+      "resetMs": 1.7399999999997815,
+      "titles": [
+        "sparkly-star",
+        "calm-river",
+        "golden-leaf",
+        "sunny-tower",
+        "polished-boat",
+        "sleepy-eagle",
+        "bright-blossom",
+        "muddy-valley",
+        "round-moon",
+        "bubbly-fountain",
+        "frosty-maple",
+        "spotted-feather",
+        "tiny-koala",
+        "misty-birch",
+        "dotted-window",
+        "little-clover"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 1,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 24.800000000000185,
+      "elapsedMs": 119.80000000000018,
+      "idleIndexRecords": 0,
+      "latencies": [
+        57.11999999999989,
+        60.42000000000007,
+        60,
+        59.08000000000038,
+        67.46000000000004,
+        68.85999999999967,
+        80.53999999999996,
+        79.80000000000018,
+        77.40000000000009,
+        75.44000000000005,
+        78.12000000000035,
+        76.11999999999989,
+        73.98000000000002,
+        70.88000000000011,
+        68.55999999999995,
+        66.09999999999991
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.2199999999997999,
+      "titles": [
+        "mossy-valley",
+        "leafy-willow",
+        "glowing-moon",
+        "icy-stone",
+        "round-flower",
+        "golden-birch",
+        "tiny-acorn",
+        "striped-kitten",
+        "smooth-bell",
+        "muddy-beaver",
+        "little-mitten",
+        "frosty-basket",
+        "wooden-canoe",
+        "speckled-snail",
+        "sparkly-star",
+        "bright-orchid"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 1,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 1,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 18.88000000000011,
+      "elapsedMs": 86.30000000000018,
+      "idleIndexRecords": 0,
+      "latencies": [
+        51.51999999999998,
+        60.24000000000024,
+        59.24000000000024,
+        64.09999999999991,
+        64.27999999999975,
+        64.46000000000004,
+        62.36000000000013,
+        60.2199999999998,
+        56.98000000000002,
+        54.70000000000027,
+        52.440000000000055,
+        50.19999999999982,
+        47.720000000000255,
+        45.07999999999993,
+        42.2199999999998,
+        40.340000000000146
+      ],
+      "peakIndexRecords": 16,
+      "resetMs": 0.29999999999972715,
+      "titles": [
+        "silky-ribbon",
+        "calm-river",
+        "fluffy-swan",
+        "curly-leaf",
+        "golden-blossom",
+        "little-garden",
+        "snowy-cactus",
+        "tiny-eagle",
+        "misty-willow",
+        "hazy-hill",
+        "silver-candle",
+        "sleepy-squirrel",
+        "smooth-turtle",
+        "sparkly-umbrella",
+        "polished-violin",
+        "frosty-lake"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 2,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 1,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 24.5,
+      "elapsedMs": 139.0999999999999,
+      "idleIndexRecords": 0,
+      "latencies": [
+        58.86000000000013,
+        66.86000000000013,
+        66.26000000000022,
+        66.59999999999991,
+        78.5,
+        91.55999999999996,
+        88.94000000000005,
+        108.2800000000002,
+        107.03999999999996,
+        102.79999999999971,
+        100.12000000000036,
+        97.46000000000004,
+        94.7800000000002,
+        91.88000000000012,
+        87.84000000000015,
+        84.67999999999984
+      ],
+      "peakIndexRecords": 16,
+      "resetMs": 0.22000000000025463,
+      "titles": [
+        "speckled-birch",
+        "frosty-cabin",
+        "calm-swan",
+        "dusty-shell",
+        "spotted-leaf",
+        "striped-mitten",
+        "little-hill",
+        "shiny-feather",
+        "tiny-butterfly",
+        "sleepy-eagle",
+        "muddy-dune",
+        "quiet-panda",
+        "misty-pine",
+        "golden-meadow",
+        "breezy-lake",
+        "snowy-castle"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 2,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 20.480000000000015,
+      "elapsedMs": 85.46000000000004,
+      "idleIndexRecords": 0,
+      "latencies": [
+        56.98000000000002,
+        56.01999999999998,
+        53.96000000000003,
+        54.18000000000029,
+        54.76000000000022,
+        61.19999999999982,
+        58.98000000000002,
+        55.41999999999962,
+        52.83999999999969,
+        50.440000000000055,
+        48.03999999999997,
+        45.81999999999971,
+        42.41999999999962,
+        40.559999999999945,
+        37.059999999999945,
+        33.820000000000164
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.15999999999985448,
+      "titles": [
+        "muddy-shell",
+        "sparkly-feather",
+        "icy-valley",
+        "sleepy-kitten",
+        "sandy-stone",
+        "rippled-lake",
+        "round-island",
+        "little-acorn",
+        "wooden-cabin",
+        "silky-blossom",
+        "frosty-pebble",
+        "quiet-meadow",
+        "silver-star",
+        "cozy-garden",
+        "wavy-fern",
+        "tiny-lizard"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 3,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 1,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 20.960000000000036,
+      "elapsedMs": 109.07999999999991,
+      "idleIndexRecords": 0,
+      "latencies": [
+        71.65999999999985,
+        80.10000000000036,
+        82.42000000000007,
+        81.92000000000007,
+        86.31999999999971,
+        86.94000000000005,
+        84.67999999999984,
+        82.15999999999985,
+        79.70000000000027,
+        77.13999999999987,
+        72.96000000000004,
+        69.63999999999987,
+        66.19999999999982,
+        62.64000000000033,
+        58.09999999999991,
+        54.67999999999984
+      ],
+      "peakIndexRecords": 16,
+      "resetMs": 0.11999999999989086,
+      "titles": [
+        "speckled-feather",
+        "shiny-apple",
+        "quiet-owl",
+        "silky-leaf",
+        "striped-candle",
+        "golden-ribbon",
+        "little-cherry",
+        "rustic-cabin",
+        "gliding-turtle",
+        "smooth-wagon",
+        "sleepy-heron",
+        "windy-castle",
+        "bubbly-river",
+        "leafy-maple",
+        "snowy-window",
+        "woolly-mitten"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 3,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 17.68000000000029,
+      "elapsedMs": 90.34000000000016,
+      "idleIndexRecords": 0,
+      "latencies": [
+        57.20000000000027,
+        61.48000000000002,
+        61.20000000000027,
+        61.53999999999997,
+        62.0600000000004,
+        66.65999999999985,
+        64.53999999999996,
+        62.26000000000022,
+        59.90000000000009,
+        57.66000000000031,
+        54.2199999999998,
+        51.7199999999998,
+        48.83999999999969,
+        45.68000000000029,
+        42.18000000000029,
+        37.86000000000013
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.1799999999998363,
+      "titles": [
+        "sleepy-lizard",
+        "frosty-clock",
+        "quiet-river",
+        "little-penguin",
+        "silver-lantern",
+        "rocky-waterfall",
+        "mossy-wagon",
+        "shiny-spoon",
+        "tiny-island",
+        "silky-feather",
+        "cozy-pillow",
+        "golden-ribbon",
+        "smooth-candle",
+        "hazy-hill",
+        "calm-owl",
+        "spotted-frog"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 4,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 17.039999999999964,
+      "elapsedMs": 117.07999999999991,
+      "idleIndexRecords": 0,
+      "latencies": [
+        71.17999999999984,
+        82.64000000000033,
+        89.2800000000002,
+        88.12000000000035,
+        87.22000000000025,
+        87.24000000000024,
+        85.03999999999996,
+        82.66000000000031,
+        85.44000000000005,
+        82.73999999999978,
+        79.29999999999973,
+        74.51999999999998,
+        69.55999999999995,
+        65.7199999999998,
+        62.09999999999991,
+        58.90000000000009
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.18000000000029104,
+      "titles": [
+        "little-penguin",
+        "sandy-boat",
+        "frosty-pumpkin",
+        "speckled-bowl",
+        "icy-lake",
+        "sleepy-dolphin",
+        "leafy-willow",
+        "rustic-basket",
+        "windy-pond",
+        "shiny-pebble",
+        "breezy-tower",
+        "muddy-fox",
+        "spotted-umbrella",
+        "tiny-cactus",
+        "smooth-stone",
+        "misty-castle"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 4,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 1,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 18.26000000000022,
+      "elapsedMs": 83.4399999999996,
+      "idleIndexRecords": 0,
+      "latencies": [
+        53.69999999999982,
+        52.38000000000011,
+        57.2199999999998,
+        57.2199999999998,
+        57.120000000000346,
+        57.10000000000037,
+        55.059999999999945,
+        52.11999999999989,
+        48.02000000000044,
+        43.03999999999997,
+        40.16000000000031,
+        37.2199999999998,
+        34.460000000000036,
+        38.63999999999987,
+        35.13999999999987,
+        32.48000000000002
+      ],
+      "peakIndexRecords": 16,
+      "resetMs": 0.20000000000027285,
+      "titles": [
+        "round-teapot",
+        "sleepy-robin",
+        "leafy-tower",
+        "windy-castle",
+        "quiet-frog",
+        "frosty-bamboo",
+        "rocky-river",
+        "little-moon",
+        "smooth-acorn",
+        "dusty-bowl",
+        "icy-stone",
+        "shiny-feather",
+        "muddy-garden",
+        "snowy-meadow",
+        "bright-comet",
+        "tiny-valley"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 5,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 22.460000000000036,
+      "elapsedMs": 92.11999999999988,
+      "idleIndexRecords": 0,
+      "latencies": [
+        56.81999999999971,
+        60.659999999999854,
+        61.440000000000055,
+        61.13999999999987,
+        59.26000000000022,
+        64.87999999999965,
+        64.96000000000004,
+        62.73999999999978,
+        60.38000000000011,
+        56.76000000000022,
+        54.09999999999991,
+        51.379999999999654,
+        49.51999999999998,
+        46.74000000000024,
+        44.440000000000055,
+        40.82000000000016
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.1999999999998181,
+      "titles": [
+        "silver-tower",
+        "bubbly-waterfall",
+        "little-turtle",
+        "calm-penguin",
+        "snowy-castle",
+        "spotted-frog",
+        "round-candle",
+        "misty-hill",
+        "muddy-beaver",
+        "quiet-sparrow",
+        "wooden-lantern",
+        "smooth-stone",
+        "sparkly-pillow",
+        "speckled-butterfly",
+        "shiny-ribbon",
+        "icy-boat"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 5,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 1,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 24.26000000000022,
+      "elapsedMs": 119.01999999999998,
+      "idleIndexRecords": 0,
+      "latencies": [
+        68.22000000000025,
+        73.13999999999987,
+        77.44000000000005,
+        82.77999999999975,
+        82.12000000000035,
+        80.44000000000005,
+        76.03999999999996,
+        70.7199999999998,
+        68.0600000000004,
+        65.30000000000018,
+        60.940000000000055,
+        67.05999999999995,
+        65.05999999999995,
+        62.840000000000146,
+        60.11999999999989,
+        56
+      ],
+      "peakIndexRecords": 16,
+      "resetMs": 0.23999999999978172,
+      "titles": [
+        "spotted-frog",
+        "sunny-castle",
+        "smooth-cherry",
+        "fluffy-squirrel",
+        "sandy-valley",
+        "tiny-spoon",
+        "sparkly-ribbon",
+        "muddy-wagon",
+        "dotted-pillow",
+        "leafy-birch",
+        "wooden-clock",
+        "misty-boat",
+        "silky-petal",
+        "shiny-acorn",
+        "quiet-lizard",
+        "little-bamboo"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 6,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 10.760000000000218,
+      "elapsedMs": 75.84000000000015,
+      "idleIndexRecords": 0,
+      "latencies": [
+        52.440000000000055,
+        51.23999999999978,
+        50.220000000000255,
+        49.79999999999973,
+        49.17999999999984,
+        48.82000000000016,
+        50.879999999999654,
+        49.20000000000027,
+        46.89999999999963,
+        44.51999999999998,
+        42.17999999999984,
+        39.220000000000255,
+        35.57999999999993,
+        33.01999999999998,
+        30.559999999999945,
+        27.920000000000073
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.5599999999999454,
+      "titles": [
+        "rustic-wagon",
+        "frosty-spoon",
+        "sandy-bottle",
+        "tiny-garden",
+        "striped-turtle",
+        "dusty-stone",
+        "little-boat",
+        "dotted-bowl",
+        "golden-daisy",
+        "icy-waterfall",
+        "mossy-bell",
+        "snowy-tower",
+        "fluffy-sparrow",
+        "shiny-window",
+        "calm-kitten",
+        "sparkly-ribbon"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 6,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 1,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 10.960000000000036,
+      "elapsedMs": 107.48000000000002,
+      "idleIndexRecords": 0,
+      "latencies": [
+        62.159999999999854,
+        71.48000000000002,
+        69.76000000000022,
+        69.7199999999998,
+        69.05999999999995,
+        77.63999999999987,
+        76.03999999999996,
+        73.66000000000031,
+        70.89999999999964,
+        68.2199999999998,
+        65.66000000000031,
+        62.98000000000002,
+        59.440000000000055,
+        57,
+        54.53999999999997,
+        56.840000000000146
+      ],
+      "peakIndexRecords": 16,
+      "resetMs": 0.11999999999989086,
+      "titles": [
+        "dusty-valley",
+        "misty-hill",
+        "snowy-basket",
+        "muddy-snail",
+        "curly-leaf",
+        "mossy-canoe",
+        "little-robin",
+        "sparkly-petal",
+        "calm-fox",
+        "sleepy-dolphin",
+        "hazy-castle",
+        "golden-clock",
+        "icy-window",
+        "rustic-violin",
+        "striped-teapot",
+        "tiny-maple"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 7,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 1,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 20.859999999999673,
+      "elapsedMs": 81.63999999999987,
+      "idleIndexRecords": 0,
+      "latencies": [
+        58,
+        57.13999999999987,
+        54.26000000000022,
+        53.90000000000009,
+        53.11999999999989,
+        59.2800000000002,
+        56.76000000000022,
+        52.82000000000062,
+        49.7199999999998,
+        46.98000000000002,
+        44.26000000000022,
+        41.599999999999454,
+        38.14000000000033,
+        35.460000000000036,
+        32.339999999999236,
+        29.020000000000437
+      ],
+      "peakIndexRecords": 16,
+      "resetMs": 0.15999999999985448,
+      "titles": [
+        "snowy-tower",
+        "bright-flower",
+        "tiny-clover",
+        "frosty-cherry",
+        "smooth-wagon",
+        "striped-frog",
+        "sleepy-eagle",
+        "little-clock",
+        "shiny-bell",
+        "dusty-acorn",
+        "silver-violin",
+        "windy-hill",
+        "icy-willow",
+        "glassy-stone",
+        "misty-garden",
+        "spotted-orchid"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 7,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 9.820000000000618,
+      "elapsedMs": 80.92000000000007,
+      "idleIndexRecords": 0,
+      "latencies": [
+        46.6200000000008,
+        46.64000000000033,
+        48.220000000000255,
+        57.279999999999745,
+        57.19999999999982,
+        57.30000000000018,
+        55.46000000000003,
+        57.26000000000022,
+        55.38000000000011,
+        53.11999999999989,
+        50.05999999999949,
+        48.07999999999993,
+        46,
+        44,
+        41.94000000000051,
+        39.97999999999956
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.22000000000025463,
+      "titles": [
+        "sparkly-butterfly",
+        "quiet-snail",
+        "tiny-star",
+        "woolly-mitten",
+        "bright-lantern",
+        "icy-garden",
+        "mossy-hill",
+        "sandy-canoe",
+        "little-teapot",
+        "sunny-dune",
+        "striped-pillow",
+        "breezy-cabin",
+        "dusty-pine",
+        "spotted-ribbon",
+        "leafy-castle",
+        "rustic-window"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 8,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 9.140000000000327,
+      "elapsedMs": 66.40000000000055,
+      "idleIndexRecords": 0,
+      "latencies": [
+        43.89999999999963,
+        44.780000000000655,
+        45.11999999999989,
+        45.47999999999956,
+        49.39999999999963,
+        49.42000000000007,
+        47.64000000000033,
+        46.82000000000062,
+        44.86000000000058,
+        42.88000000000011,
+        40.52000000000044,
+        37.840000000000146,
+        35.0600000000004,
+        32.35999999999967,
+        29.360000000000586,
+        26.580000000000837
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.07999999999992724,
+      "titles": [
+        "silky-blossom",
+        "tiny-pond",
+        "dusty-feather",
+        "little-hill",
+        "frosty-garden",
+        "speckled-lizard",
+        "sparkly-lantern",
+        "feathery-leaf",
+        "snowy-canoe",
+        "shiny-frog",
+        "hazy-star",
+        "rustic-spoon",
+        "bubbly-waterfall",
+        "gliding-dolphin",
+        "fluffy-swan",
+        "calm-kitten"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 8,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 1,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 14.039999999999964,
+      "elapsedMs": 85.68000000000029,
+      "idleIndexRecords": 0,
+      "latencies": [
+        60.10000000000037,
+        62.61999999999989,
+        63.75999999999931,
+        67.47999999999956,
+        66.15999999999985,
+        64.65999999999985,
+        62.61999999999989,
+        60.279999999999745,
+        57,
+        54.68000000000029,
+        52.19999999999982,
+        49.88000000000011,
+        47.74000000000069,
+        45.17999999999938,
+        42.400000000000546,
+        39.66000000000077
+      ],
+      "peakIndexRecords": 16,
+      "resetMs": 0.07999999999992724,
+      "titles": [
+        "little-butterfly",
+        "cozy-cabin",
+        "frosty-window",
+        "speckled-shell",
+        "misty-pond",
+        "windy-tower",
+        "shiny-wagon",
+        "rustic-bowl",
+        "silky-rabbit",
+        "tiny-sparrow",
+        "crisp-leaf",
+        "sleepy-panda",
+        "striped-kitten",
+        "bright-sunflower",
+        "dusty-castle",
+        "leafy-garden"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 9,
+      "variant": "fresh-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 16,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 16
+      },
+      "cleanupMs": 13.88000000000011,
+      "elapsedMs": 83.15999999999985,
+      "idleIndexRecords": 0,
+      "latencies": [
+        59.68000000000029,
+        60.23999999999978,
+        60.18000000000029,
+        60.55999999999949,
+        59.51999999999953,
+        65.48000000000047,
+        62.69999999999982,
+        58.720000000000255,
+        53.4399999999996,
+        48.719999999999345,
+        45.68000000000029,
+        42.86000000000058,
+        39.89999999999963,
+        36.35999999999967,
+        33.75999999999931,
+        31.11999999999989
+      ],
+      "peakIndexRecords": 0,
+      "resetMs": 0.11999999999989086,
+      "titles": [
+        "sunny-tower",
+        "leafy-bamboo",
+        "little-lizard",
+        "tiny-meadow",
+        "dusty-stone",
+        "striped-umbrella",
+        "wavy-ribbon",
+        "quiet-pond",
+        "spotted-leaf",
+        "speckled-turtle",
+        "round-cherry",
+        "windy-valley",
+        "hazy-hill",
+        "glowing-moon",
+        "golden-petal",
+        "sparkly-teapot"
+      ]
+    },
+    {
+      "contextGroups": 0,
+      "families": 16,
+      "block": 9,
+      "variant": "burst-context",
+      "calls": {
+        "session.get": 16,
+        "session.set": 16,
+        "tabGroups.get": 32,
+        "tabGroups.query": 1,
+        "tabGroups.update": 16,
+        "tabs.get": 32,
+        "tabs.group": 16,
+        "windows.getAll": 1
+      },
+      "cleanupMs": 17.519999999999527,
+      "elapsedMs": 65.47999999999956,
+      "idleIndexRecords": 0,
+      "latencies": [
+        43.63999999999942,
+        42.94000000000051,
+        41.19999999999982,
+        41.17999999999938,
+        44.36000000000058,
+        44.340000000000146,
+        42.80000000000018,
+        40.89999999999963,
+        38.42000000000007,
+        36.780000000000655,
+        34.779999999999745,
+        32.51999999999953,
+        31.840000000000146,
+        29.719999999999345,
+        29.019999999999527,
+        27.280000000000655
+      ],
+      "peakIndexRecords": 16,
+      "resetMs": 0.07999999999992724,
+      "titles": [
+        "golden-birch",
+        "sunny-garden",
+        "little-pond",
+        "bright-cloud",
+        "silky-mitten",
+        "snowy-cactus",
+        "muddy-island",
+        "quiet-fox",
+        "misty-hill",
+        "wavy-willow",
+        "tiny-pillow",
+        "grassy-valley",
+        "sleepy-heron",
+        "hazy-meadow",
+        "wooden-wagon",
+        "shiny-pebble"
+      ]
+    }
+  ],
+  "setup": [
+    {
+      "contextGroups": 0,
+      "elapsedMs": 224.08864600000015
+    }
+  ],
+  "policy": "Fixed blocks and seeded shuffled candidate order; full chooseName includes preprocessing, RNG and allocation. Native creation-to-name completion includes constructors and APIs; setup/teardown reported separately. No paint, human outcome or statistical dominance claim.",
+  "browser": {
+    "version": "156.0",
+    "buildId": "20260909172920",
+    "geckodriver": "0.37.1"
+  },
+  "moduleUse": [
+    {
+      "first": {
+        "eligible": 858,
+        "kind": "pair",
+        "name": "round-apple"
+      },
+      "moduleAndFirstUseMs": 2.620000000000001,
+      "variant": "fresh-context"
+    },
+    {
+      "first": {
+        "eligible": 858,
+        "kind": "pair",
+        "name": "tiny-cherry"
+      },
+      "moduleAndFirstUseMs": 0.7399999999999984,
+      "variant": "burst-context"
+    }
+  ],
+  "passed": false,
+  "failure": "Error: POST /session/3da4e398-7b00-4dcb-ba2c-bb044606bee9/execute/sync: Error: Unique family oracle failed",
+  "finishedAt": "2026-09-23T21:28:27.809Z"
+}

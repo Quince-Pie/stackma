@@ -1,0 +1,89 @@
+{
+  "source": "/tmp/stackma/extension",
+  "sourceSha256": "5bd6d065dd82eb48251ca96820d37ce8a528fd090ee8c3ba83be77ef09b46dc1",
+  "startedAt": "2026-09-23T21:44:43.886Z",
+  "results": [
+    {
+      "name": "native-empty-title-expanded-default-and-palette-exhaustion",
+      "passed": true,
+      "durationMs": 457.665624,
+      "details": {
+        "colors": [
+          "blue",
+          "purple",
+          "cyan",
+          "orange",
+          "yellow",
+          "pink",
+          "green",
+          "gray",
+          "red",
+          "orange",
+          "red"
+        ]
+      }
+    },
+    {
+      "name": "late-parent-preserves-native-identity-and-all-metadata",
+      "passed": true,
+      "durationMs": 205.44210900000007,
+      "details": {
+        "metadata": {
+          "collapsed": true,
+          "color": "purple",
+          "id": "1790199885553-97",
+          "name": "Research — 日本語",
+          "saveOnWindowClose": false
+        }
+      }
+    },
+    {
+      "name": "late-parent-preserves-native-identity-and-all-metadata-private-fallback",
+      "passed": true,
+      "durationMs": 340.0299580000001,
+      "details": {
+        "metadata": {
+          "collapsed": true,
+          "color": "purple",
+          "id": "1790199885866-78",
+          "name": "Research — 日本語",
+          "saveOnWindowClose": false
+        }
+      }
+    },
+    {
+      "name": "existing-opener-metadata-takes-precedence-over-child-branch",
+      "passed": true,
+      "durationMs": 273.23322800000005
+    },
+    {
+      "name": "foreign-child-group-member-is-not-merged-with-ungrouped-opener",
+      "passed": true,
+      "durationMs": 166.42557799999986
+    },
+    {
+      "name": "exclusive-child-split-companion-preserves-group-metadata",
+      "passed": true,
+      "durationMs": 228.06857500000024
+    },
+    {
+      "name": "exclusive-child-split-companion-preserves-group-metadata-private-fallback",
+      "passed": true,
+      "durationMs": 189.62993200000028
+    },
+    {
+      "name": "native-new-tab-insertion-controls-collapse-without-metadata-overwrite",
+      "passed": true,
+      "durationMs": 142.6073980000001
+    }
+  ],
+  "browser": {
+    "version": "156.0",
+    "buildId": "20260909172920",
+    "geckodriver": "0.37.1",
+    "platform": "linux"
+  },
+  "extraExtensions": [],
+  "passed": true,
+  "finishedAt": "2026-09-23T21:44:46.968Z"
+}

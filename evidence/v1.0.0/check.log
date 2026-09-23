@@ -1,0 +1,66 @@
+warning: Git tree '/tmp/stackma' is dirty
+
+> stackma@1.0.0 check
+> npm run typecheck && npm test && npm run lint
+
+
+> stackma@1.0.0 typecheck
+> tsc --noEmit
+
+
+> stackma@1.0.0 test
+> node --test tests/*.test.js
+
+✔ ungrouped opener and child form a native group in their own window (1.601422ms)
+✔ child joins the opener existing group without touching unrelated groups (0.308656ms)
+✔ native inheritance that already satisfies the relation causes no mutation (0.643171ms)
+✔ missing, self, and malformed relationships cause no mutations (0.161857ms)
+✔ pinned endpoints are preserved and the relationship is skipped (0.257519ms)
+✔ relationships across windows and privacy boundaries do not move tabs (0.220659ms)
+✔ private group creation uses the source window despite a normal focused window (0.138053ms)
+✔ private existing-group joins work without focusing or crossing a window (0.432682ms)
+✔ private fallback recovers a transient descendant move failure (0.325839ms)
+✔ private fallback retains ancestry after partial success and recovery (0.65822ms)
+✔ persistent partial private fallback is bounded and reported without stranding later work (0.568951ms)
+✔ fallback keeps its expanded plan when one move implicitly relocates an ancestor (0.322373ms)
+✔ duplicate creation signals do not undo a later manual ungroup (0.103206ms)
+✔ simultaneous siblings share a group despite asynchronous opener reads (0.296894ms)
+✔ overlapping parent and descendant events preserve the complete chain (0.738793ms)
+✔ a late parent relation carries already accepted descendants into the final group (0.180283ms)
+✔ grouping a source own child cannot accept its skipped incoming relationship (0.134666ms)
+✔ a source observed outside its assigned group disowns the old incoming edge (0.137962ms)
+✔ a descendant manually reassigned before a late parent is not pulled back (0.089049ms)
+✔ a descendant moved to another window is not pulled back by a late parent (0.079621ms)
+✔ closing either endpoint during its read does not block later work (0.315389ms)
+✔ a single tab closing in a pending batch does not abandon surviving siblings (0.220159ms)
+✔ a transient mutation rejection is recovered with fresh browser state (0.152129ms)
+✔ persistent mutation rejection is bounded, reported, and does not strand the queue (0.312925ms)
+✔ unexpected read rejection is reported without an unhandled rejection (0.189911ms)
+✔ structured missing-tab errors are recognized across API realms (0.0738ms)
+✔ structured privacy errors still select the safe native-move fallback (0.10005ms)
+✔ a stalled window does not block an independent window (0.159192ms)
+✔ forget removes retained relationships and settled window queues (0.116381ms)
+✔ the unqueued opener-snapshot baseline has a sibling race (0.08444ms)
+✔ bounded sibling batching removes redundant API work under matched admission (2.630778ms)
+✔ batching and FIFO satisfy the independent forest oracle (seed 1) (1.986184ms)
+✔ batching and FIFO satisfy the independent forest oracle (seed 17) (0.808045ms)
+✔ batching and FIFO satisfy the independent forest oracle (seed 771) (1.336359ms)
+✔ batching and FIFO satisfy the independent forest oracle (seed 305419896) (1.16366ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 55.654222
+
+> stackma@1.0.0 lint
+> web-ext lint --source-dir extension --warnings-as-errors
+
+Validation Summary:
+
+errors          0              
+notices         0              
+warnings        0              
+

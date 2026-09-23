@@ -1,0 +1,175 @@
+{
+  "sourceSha256": "b4a75a14476696b3cf8ae840131222656d87ad6cffc436d2cd2ed576685a4674",
+  "startedAt": "2026-09-23T16:31:25.825Z",
+  "results": [
+    {
+      "name": "split-view-group-creation",
+      "passed": true,
+      "durationMs": 48.78667499999983
+    },
+    {
+      "name": "private-split-view-fallback-and-group-metadata",
+      "passed": true,
+      "durationMs": 184.19067200000018
+    },
+    {
+      "name": "container-identities",
+      "passed": true,
+      "durationMs": 41.28877499999999
+    },
+    {
+      "name": "create",
+      "passed": true,
+      "durationMs": 181.5147539999998,
+      "details": {
+        "tabs": 2
+      }
+    },
+    {
+      "name": "inherit",
+      "passed": true,
+      "durationMs": 18.49811999999997,
+      "details": {
+        "tabs": 2
+      }
+    },
+    {
+      "name": "burst",
+      "passed": true,
+      "durationMs": 1049.6276280000002,
+      "details": {
+        "tabs": 97
+      }
+    },
+    {
+      "name": "chain",
+      "passed": true,
+      "durationMs": 188.43086600000015,
+      "details": {
+        "tabs": 25
+      }
+    },
+    {
+      "name": "pins",
+      "passed": true,
+      "durationMs": 313.6841679999998,
+      "details": {
+        "tabs": 4
+      }
+    },
+    {
+      "name": "background-window",
+      "passed": true,
+      "durationMs": 177.40791200000012,
+      "details": {
+        "tabs": 2
+      }
+    },
+    {
+      "name": "private-fallback",
+      "passed": true,
+      "durationMs": 141.88511300000027,
+      "details": {
+        "tabs": 3
+      }
+    },
+    {
+      "name": "late-parent",
+      "passed": true,
+      "durationMs": 38.12501800000018,
+      "details": {
+        "tabs": 3
+      }
+    },
+    {
+      "name": "native-session-window-restore",
+      "passed": true,
+      "durationMs": 261.18531200000007
+    },
+    {
+      "name": "link",
+      "passed": true,
+      "durationMs": 94.53957900000023,
+      "details": {
+        "childId": 161,
+        "childWindow": 1,
+        "openerTabId": 160,
+        "sourceId": 160,
+        "sourceWindow": 1
+      }
+    },
+    {
+      "name": "noreferrer",
+      "passed": true,
+      "durationMs": 102.20427599999994,
+      "details": {
+        "childId": 163,
+        "childWindow": 1,
+        "openerTabId": 162,
+        "sourceId": 162,
+        "sourceWindow": 1
+      }
+    },
+    {
+      "name": "iframe",
+      "passed": true,
+      "durationMs": 91.37542100000019,
+      "details": {
+        "childId": 165,
+        "childWindow": 1,
+        "openerTabId": 164,
+        "sourceId": 164,
+        "sourceWindow": 1
+      }
+    },
+    {
+      "name": "window.open",
+      "passed": true,
+      "durationMs": 132.69021500000053,
+      "details": {
+        "childId": 167,
+        "childWindow": 1,
+        "openerTabId": 166,
+        "sourceId": 166,
+        "sourceWindow": 1
+      }
+    },
+    {
+      "name": "separate-window",
+      "passed": true,
+      "durationMs": 214.80105600000024,
+      "details": {
+        "childId": 169,
+        "childWindow": 376,
+        "openerTabId": null,
+        "sourceId": 168,
+        "sourceWindow": 1
+      }
+    },
+    {
+      "name": "wake",
+      "passed": true,
+      "durationMs": 96.69343500000014,
+      "details": {
+        "childId": 171,
+        "childWindow": 1,
+        "openerTabId": 170,
+        "sourceId": 170,
+        "sourceWindow": 1
+      }
+    },
+    {
+      "name": "named-target-reuse",
+      "passed": true,
+      "durationMs": 353.09542899999997
+    }
+  ],
+  "extraExtensions": [],
+  "browser": {
+    "version": "156.0",
+    "buildId": "20260909172920",
+    "geckodriver": "0.37.1",
+    "platform": "linux"
+  },
+  "passed": true
+}

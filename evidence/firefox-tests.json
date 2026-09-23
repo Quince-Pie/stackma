@@ -1,0 +1,188 @@
+{
+  "sourceSha256": "5bd6d065dd82eb48251ca96820d37ce8a528fd090ee8c3ba83be77ef09b46dc1",
+  "startedAt": "2026-09-23T21:44:37.708Z",
+  "results": [
+    {
+      "name": "split-view-group-creation",
+      "passed": true,
+      "durationMs": 69.85871799999995
+    },
+    {
+      "name": "private-split-view-fallback-and-group-metadata",
+      "passed": true,
+      "durationMs": 181.08222999999998
+    },
+    {
+      "name": "container-identities",
+      "passed": true,
+      "durationMs": 42.62516800000003
+    },
+    {
+      "name": "create",
+      "passed": true,
+      "durationMs": 183.19680799999992,
+      "details": {
+        "tabs": 2
+      }
+    },
+    {
+      "name": "inherit",
+      "passed": true,
+      "durationMs": 20.562824999999975,
+      "details": {
+        "tabs": 2
+      }
+    },
+    {
+      "name": "burst",
+      "passed": true,
+      "durationMs": 981.9893860000002,
+      "details": {
+        "tabs": 97
+      }
+    },
+    {
+      "name": "chain",
+      "passed": true,
+      "durationMs": 166.79233599999998,
+      "details": {
+        "tabs": 25
+      }
+    },
+    {
+      "name": "pins",
+      "passed": true,
+      "durationMs": 282.98784399999977,
+      "details": {
+        "tabs": 4
+      }
+    },
+    {
+      "name": "background-window",
+      "passed": true,
+      "durationMs": 122.81655099999989,
+      "details": {
+        "tabs": 2
+      }
+    },
+    {
+      "name": "private-fallback",
+      "passed": true,
+      "durationMs": 161.91357500000004,
+      "details": {
+        "tabs": 3
+      }
+    },
+    {
+      "name": "late-parent",
+      "passed": true,
+      "durationMs": 56.89017599999988,
+      "details": {
+        "tabs": 3
+      }
+    },
+    {
+      "name": "native-session-window-restore",
+      "passed": true,
+      "durationMs": 270.46167200000036
+    },
+    {
+      "name": "navigation-source-without-tab-opener",
+      "passed": true,
+      "durationMs": 84.28996099999995,
+      "details": {
+        "childId": 161,
+        "childWindow": 1,
+        "openerTabId": null,
+        "sourceId": 160,
+        "sourceWindow": 1,
+        "onCreatedOpener": null
+      }
+    },
+    {
+      "name": "link",
+      "passed": true,
+      "durationMs": 91.537914,
+      "details": {
+        "childId": 163,
+        "childWindow": 1,
+        "openerTabId": 162,
+        "sourceId": 162,
+        "sourceWindow": 1
+      }
+    },
+    {
+      "name": "noreferrer",
+      "passed": true,
+      "durationMs": 91.75485600000002,
+      "details": {
+        "childId": 165,
+        "childWindow": 1,
+        "openerTabId": 164,
+        "sourceId": 164,
+        "sourceWindow": 1
+      }
+    },
+    {
+      "name": "iframe",
+      "passed": true,
+      "durationMs": 99.29394199999979,
+      "details": {
+        "childId": 167,
+        "childWindow": 1,
+        "openerTabId": 166,
+        "sourceId": 166,
+        "sourceWindow": 1
+      }
+    },
+    {
+      "name": "window.open",
+      "passed": true,
+      "durationMs": 92.82633299999998,
+      "details": {
+        "childId": 169,
+        "childWindow": 1,
+        "openerTabId": 168,
+        "sourceId": 168,
+        "sourceWindow": 1
+      }
+    },
+    {
+      "name": "separate-window",
+      "passed": true,
+      "durationMs": 145.86007900000004,
+      "details": {
+        "childId": 171,
+        "childWindow": 380,
+        "openerTabId": null,
+        "sourceId": 170,
+        "sourceWindow": 1
+      }
+    },
+    {
+      "name": "wake",
+      "passed": true,
+      "durationMs": 100.75973799999974,
+      "details": {
+        "childId": 173,
+        "childWindow": 1,
+        "openerTabId": 172,
+        "sourceId": 172,
+        "sourceWindow": 1
+      }
+    },
+    {
+      "name": "named-target-reuse",
+      "passed": true,
+      "durationMs": 360.657005
+    }
+  ],
+  "extraExtensions": [],
+  "browser": {
+    "version": "156.0",
+    "buildId": "20260909172920",
+    "geckodriver": "0.37.1",
+    "platform": "linux"
+  },
+  "passed": true
+}

@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "path": "dist/stackma-1.1.0.xpi",
+  "bytes": 23873,
+  "sha256": "896566be9e7a9b83076690c43473bcbca83f85b5d20d7e10726a90e5067e830f",
+  "firefox": "156.0",
+  "buildId": "20260909172920",
+  "files": {
+    "CMU-LICENSE.txt": "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a",
+    "background.js": "6242296d37ee7a4914ce8fb2eeca1b0dd92a516e14293f1694f047291f7c6162",
+    "group-id-guard.js": "aaa384ab2de262a5bb9ba10283e5d290fbe6d0aac573cabafc2d5b156e7639a0",
+    "icon.svg": "9a239065122ec22504d4428157063aa79fefe504e3c1774264f52338fbd28526",
+    "manifest.json": "dac7a451d53da0ad907ac4380f84d1cedc04e6620fd2e556c9b9476bebc1d543",
+    "name-catalog.js": "75263bb976c806ecc8637147d92c96153728df02393e55c3260bb425281bc41c",
+    "name-generator.js": "c5f0549ab7ed7050c555d573700a13b0165c230de5caa25814f9b939ab8682b7",
+    "namer.js": "e53870bc54b3705dc50f05d0d331eafe86fdc394ffe7f0cace45e1034e3b84c7",
+    "popup.css": "d37f05104466112ce92e29c00c5075b6423a8c87b43234313ca8b3f2b0d30c6d",
+    "popup.html": "f07d4c50c4414f7e86776730bc2f1daac708c42269b8f14231959a4c97fce937",
+    "popup.js": "9df20baa7b0b26908ad1c7960de2c0604f6a708af29f57390ac0fe5801ac7108",
+    "stacker.js": "d38cad80d7fc15bd27dcf6174a7e64452fdacff7ea1f6b3e756a3e4dd846d9b2"
+  },
+  "checks": [
+    "temporary XPI installation",
+    "every packaged source file matches",
+    "real opener grouping",
+    "native approved name assignment"
+  ]
+}

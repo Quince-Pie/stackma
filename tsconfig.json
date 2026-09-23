@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "noEmit": true,
+    "target": "ES2024",
+    "module": "NodeNext",
+    "lib": ["ES2024", "DOM"],
+    "types": ["firefox-webext-browser"],
+    "skipLibCheck": true
+  },
+  "include": ["extension/**/*.js"]
+}

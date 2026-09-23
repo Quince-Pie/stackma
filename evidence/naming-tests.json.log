@@ -1,0 +1,40 @@
+1790199870438	geckodriver	INFO	Listening on 127.0.0.1:39179
+1790199870475	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_REMOTE_ALLOW_SYSTEM ... efox" "--marionette" "-headless" "-no-remote" "-profile" "/tmp/nix-shell.JEMUq2/stackma-firefox-6NRQOC/rust_mozprofileZPcg2s"
+*** You are running in headless mode.
+1790199870700	Marionette	INFO	Marionette enabled
+JavaScript error: moz-src:///browser/components/customizableui/CustomizableUI.sys.mjs, line 6410: Error: Area nav-bar not yet restored
+1790199870762	Marionette	INFO	Listening on port 36291
+Read port: 36291
+console.error: Policies: 
+  Download failed - ERROR_NETWORK_FAILURE - https://addons.mozilla.org/firefox/downloads/latest/2785662/latest.xpi
+console.error: Policies: 
+  Download failed - ERROR_NETWORK_FAILURE - https://addons.mozilla.org/firefox/downloads/latest/youtube-recommended-videos/latest.xpi
+console.error: Policies: 
+  Download failed - ERROR_NETWORK_FAILURE - https://addons.mozilla.org/firefox/downloads/latest/2749605/latest.xpi
+console.error: Policies: 
+  Download failed - ERROR_NETWORK_FAILURE - https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+JavaScript error: , line 0: AbortError: Actor 'AboutPrivateBrowsing' destroyed before query 'ShouldShowSearchBanner' was resolved
+JavaScript error: , line 0: AbortError: Actor 'ASRouter' destroyed before query 'PBNEWTAB_MESSAGE_REQUEST' was resolved
+JavaScript error: , line 0: AbortError: Actor 'Conduits' destroyed before query 'RunListener' was resolved
+JavaScript error: , line 0: AbortError: Actor 'Conduits' destroyed before query 'RunListener' was resolved
+JavaScript error: , line 0: AbortError: Actor 'Conduits' destroyed before query 'RunListener' was resolved
+JavaScript error: , line 0: AbortError: Actor 'Conduits' destroyed before query 'RunListener' was resolved
+JavaScript error: , line 0: AbortError: Actor 'Conduits' destroyed before query 'RunListener' was resolved
+JavaScript error: , line 0: AbortError: Actor 'Conduits' destroyed before query 'RunListener' was resolved
+JavaScript error: , line 0: AbortError: Actor 'Conduits' destroyed before query 'RunListener' was resolved
+1790199876225	Marionette	INFO	Stopped listening on port 36291
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface" of null
+1790199876553	webdriver::server	INFO	Shutting down

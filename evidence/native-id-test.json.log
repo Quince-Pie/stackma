@@ -1,0 +1,43 @@
+1790199788984	geckodriver	INFO	Listening on 127.0.0.1:37607
+1790199789018	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_REMOTE_ALLOW_SYSTEM ... efox" "--marionette" "-headless" "-no-remote" "-profile" "/tmp/nix-shell.iWcP4r/stackma-firefox-f6HoVk/rust_mozprofile3kDn3V"
+*** You are running in headless mode.
+1790199789246	Marionette	INFO	Marionette enabled
+JavaScript error: moz-src:///browser/components/customizableui/CustomizableUI.sys.mjs, line 6410: Error: Area nav-bar not yet restored
+1790199789305	Marionette	INFO	Listening on port 45067
+Read port: 45067
+console.error: Policies: 
+  Download failed - ERROR_NETWORK_FAILURE - https://addons.mozilla.org/firefox/downloads/latest/2785662/latest.xpi
+console.error: Policies: 
+  Download failed - ERROR_NETWORK_FAILURE - https://addons.mozilla.org/firefox/downloads/latest/youtube-recommended-videos/latest.xpi
+console.error: Policies: 
+  Download failed - ERROR_NETWORK_FAILURE - https://addons.mozilla.org/firefox/downloads/latest/2749605/latest.xpi
+console.error: Policies: 
+  Download failed - ERROR_NETWORK_FAILURE - https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+1790199791162	Marionette	INFO	Stopped listening on port 45067
+JavaScript warning: resource://newtab/data/content/vendor.bundle.js, line 1: Script terminated by timeout at:
+a.r@resource://newtab/data/content/vendor.bundle.js:1:408066
+@resource://newtab/data/content/vendor.bundle.js:1:408206
+@resource://newtab/data/content/vendor.bundle.js:1:408599
+@resource://newtab/data/content/vendor.bundle.js:1:408603
+
+JavaScript error: resource://newtab/data/content/activity-stream.bundle.js, line 1797: TypeError: can't access property "PureComponent", external_React_default() is undefined
+console.error: RSLoader: 
+  Failed to retrieve recipes from Remote Settings
+  Message: Error: Could not sync nimbus-secure-experiments: get-exception
+  Stack:
+    RemoteSettingsSyncError@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:1426:5
+getRecipesFromCollection@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:698:13
+observe@resource://gre/modules/AsyncShutdown.sys.mjs:586:17
+quit@chrome://remote/content/shared/Browser.sys.mjs:102:22
+quit@chrome://remote/content/marionette/driver.sys.mjs:2927:44
+dispatch@chrome://remote/content/marionette/server.sys.mjs:317:49
+execute@chrome://remote/content/marionette/server.sys.mjs:289:16
+onPacket/<@chrome://remote/content/marionette/server.sys.mjs:262:20
+onPacket@chrome://remote/content/marionette/server.sys.mjs:263:9
+_onJSONObjectReady/<@chrome://remote/content/marionette/transport.sys.mjs:493:20
+
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface", aWindow.docShell is null
+JavaScript error: resource://gre/modules/PrivateBrowsingUtils.sys.mjs, line 50: TypeError: can't access property "QueryInterface", aWindow.docShell is null
+JavaScript error: resource://gre/modules/UrlClassifierListManager.sys.mjs, line 627: NS_ERROR_NOT_INITIALIZED: Component returned failure code: 0xc1f30001 (NS_ERROR_NOT_INITIALIZED) [nsIUrlClassifierDBService.getTables]
+1790199791787	webdriver::server	INFO	Shutting down

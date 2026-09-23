@@ -1,0 +1,130 @@
+{
+  "source": "/tmp/stackma/extension",
+  "sourceSha256": "5bd6d065dd82eb48251ca96820d37ce8a528fd090ee8c3ba83be77ef09b46dc1",
+  "scriptSha256": "ddade45b8ee331bf649514786d302251b1931fdee3399604856e96cc5222e375",
+  "vocabularySha256": "d048b5d068a01ae4cc49c698df4869d2af2a89130574f3e31f5cfa296d64c95f",
+  "startedAt": "2026-09-23T21:44:30.435Z",
+  "results": [
+    {
+      "name": "only-required-permissions-and-no-host-access",
+      "passed": true,
+      "durationMs": 11.196686999999883,
+      "details": {
+        "permissions": {
+          "data_collection": [],
+          "origins": [],
+          "permissions": [
+            "webNavigation",
+            "tabGroups",
+            "storage"
+          ]
+        },
+        "version": "1.1.0"
+      }
+    },
+    {
+      "name": "new-related-group-gets-an-approved-stable-name",
+      "passed": true,
+      "durationMs": 341.8855349999999,
+      "details": {
+        "title": "leafy-castle",
+        "color": "blue"
+      }
+    },
+    {
+      "name": "preexisting-named-group-remains-authoritative",
+      "passed": true,
+      "durationMs": 568.4265580000001
+    },
+    {
+      "name": "preexisting-blank-group-remains-authoritative",
+      "passed": true,
+      "durationMs": 494.12858299999994
+    },
+    {
+      "name": "manual-rename-and-color-survive-new-descendants",
+      "passed": true,
+      "durationMs": 325.2694999999999
+    },
+    {
+      "name": "manual-clear-and-color-survive-new-descendants",
+      "passed": true,
+      "durationMs": 302.323899
+    },
+    {
+      "name": "late-parent-reuse-keeps-generated-identity-without-naming-hook",
+      "passed": true,
+      "durationMs": 316.92598499999986
+    },
+    {
+      "name": "concurrent-families-across-normal-windows-have-distinct-names",
+      "passed": true,
+      "durationMs": 351.09664900000007,
+      "details": {
+        "titles": [
+          "golden-acorn",
+          "dotted-window",
+          "spotted-orchid",
+          "hazy-tower",
+          "round-pumpkin",
+          "speckled-stone",
+          "tiny-violin",
+          "smooth-ribbon"
+        ]
+      }
+    },
+    {
+      "name": "private-creation-with-normal-focus-and-separated-history",
+      "passed": true,
+      "durationMs": 292.5210400000001,
+      "details": {
+        "normalName": "quiet-river",
+        "privateName": "tiny-lantern"
+      }
+    },
+    {
+      "name": "event-page-suspension-preserves-native-title-and-session-history",
+      "passed": true,
+      "durationMs": 329.98902799999996
+    },
+    {
+      "name": "closing-private-window-removes-its-recent-names",
+      "passed": true,
+      "durationMs": 135.1093810000002
+    },
+    {
+      "name": "extension-reload-keeps-native-names-and-avoids-live-collisions",
+      "passed": true,
+      "durationMs": 354.53408000000036
+    },
+    {
+      "name": "popup-full-labels-literal-component-search-and-permissionless-copy",
+      "passed": true,
+      "durationMs": 293.3216309999998,
+      "details": {
+        "fullNameCharacters": 182,
+        "copiedWithoutClipboardPermission": true
+      }
+    },
+    {
+      "name": "popup-isolates-normal-and-private-group-labels",
+      "passed": true,
+      "durationMs": 385.1264630000005
+    },
+    {
+      "name": "popup-opens-the-explicitly-selected-native-group",
+      "passed": true,
+      "durationMs": 198.28953699999965
+    }
+  ],
+  "browser": {
+    "version": "156.0",
+    "buildId": "20260909172920",
+    "geckodriver": "0.37.1",
+    "platform": "linux"
+  },
+  "extraExtensions": [],
+  "sourceSha256After": "5bd6d065dd82eb48251ca96820d37ce8a528fd090ee8c3ba83be77ef09b46dc1",
+  "passed": true,
+  "finishedAt": "2026-09-23T21:44:36.223Z"
+}

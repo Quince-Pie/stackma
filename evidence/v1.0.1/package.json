@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "path": "dist/stackma-1.0.1.xpi",
+  "bytes": 7066,
+  "sha256": "e8e33dbc850d0a812abd0456874ad3bd3f4a77fda893025cb6ceda41693d68de",
+  "firefox": "156.0",
+  "buildId": "20260909172920",
+  "files": {
+    "background.js": "8bf0f281505e918d014b8eeb3e57793521f65b0dd1167d58cd5d2d866a6a0a22",
+    "icon.svg": "9a239065122ec22504d4428157063aa79fefe504e3c1774264f52338fbd28526",
+    "manifest.json": "da93fa1853404e5812700ef07d47762a9f99dad2c329a5b96bd23c42859f3118",
+    "popup.css": "f0c0ec708cfb6a8c3635e3f4abd13d427efd280f5af78124dcf41bc992b971e7",
+    "popup.html": "2fdac7b770e439265159547cc04fcc1bc3bde2832877fc60e19667a6c3a6ceb5",
+    "popup.js": "7b1283c6edcc340ad9124d8289cadc360e28f6578ec5a04d4d3ff3be61fb4524",
+    "stacker.js": "dbc6a88ca320d641799148b0135e868de3a8e78777a54b2d558524b9be46419c"
+  },
+  "checks": [
+    "temporary XPI installation",
+    "every packaged source file matches",
+    "real opener grouping"
+  ]
+}

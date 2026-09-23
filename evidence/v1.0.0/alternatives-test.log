@@ -1,0 +1,73 @@
+warning: Git tree '/tmp/stackma' is dirty
+
+> stackma@1.0.0 test:alternatives
+> node --test experiments/*.test.js
+
+✔ ungrouped opener and child form a native group in their own window (1.720188ms)
+✔ child joins the opener existing group without touching unrelated groups (0.339185ms)
+✔ native inheritance that already satisfies the relation causes no mutation (0.228684ms)
+✔ missing, self, and malformed relationships cause no mutations (0.125989ms)
+✔ pinned endpoints are preserved and the relationship is skipped (0.253401ms)
+✔ relationships across windows and privacy boundaries do not move tabs (0.189109ms)
+✔ private group creation uses the source window despite a normal focused window (0.143342ms)
+✔ private existing-group joins work without focusing or crossing a window (0.569131ms)
+✔ private fallback recovers a transient descendant move failure (0.431129ms)
+✔ private fallback retains ancestry after partial success and recovery (1.03704ms)
+✔ persistent partial private fallback is bounded and reported without stranding later work (0.669983ms)
+✔ fallback keeps its expanded plan when one move implicitly relocates an ancestor (0.363631ms)
+✔ duplicate creation signals do not undo a later manual ungroup (0.114207ms)
+✔ simultaneous siblings share a group despite asynchronous opener reads (0.293247ms)
+✔ overlapping parent and descendant events preserve the complete chain (0.436219ms)
+✔ a late parent relation carries already accepted descendants into the final group (0.204939ms)
+✔ grouping a source own child cannot accept its skipped incoming relationship (0.412874ms)
+✔ a source observed outside its assigned group disowns the old incoming edge (0.189971ms)
+✔ a descendant manually reassigned before a late parent is not pulled back (0.107484ms)
+✔ a descendant moved to another window is not pulled back by a late parent (0.09986ms)
+✔ closing either endpoint during its read does not block later work (0.39454ms)
+✔ a single tab closing in a pending batch does not abandon surviving siblings (0.195962ms)
+✔ a transient mutation rejection is recovered with fresh browser state (0.122292ms)
+✔ persistent mutation rejection is bounded, reported, and does not strand the queue (0.378069ms)
+✔ unexpected read rejection is reported without an unhandled rejection (0.197716ms)
+✔ structured missing-tab errors are recognized across API realms (0.069231ms)
+✔ structured privacy errors still select the safe native-move fallback (0.111041ms)
+✔ a stalled window does not block an independent window (0.134265ms)
+✔ forget removes retained relationships and settled window queues (0.119948ms)
+✔ the unqueued opener-snapshot baseline has a sibling race (0.07919ms)
+✔ bounded sibling batching removes redundant API work under matched admission (2.849062ms)
+✔ batching and FIFO satisfy the independent forest oracle (seed 1) (1.872818ms)
+✔ batching and FIFO satisfy the independent forest oracle (seed 17) (1.152339ms)
+✔ batching and FIFO satisfy the independent forest oracle (seed 771) (4.508735ms)
+✔ batching and FIFO satisfy the independent forest oracle (seed 305419896) (1.686674ms)
+✔ dependency candidate lets disjoint roots progress in the same window (0.259523ms)
+✔ merging components waits for both earlier tails (2.795681ms)
+✔ private fallback excludes ordinary mutations and their eligibility reads (1.715038ms)
+✔ split-view mutation waits for active readers and rereads under its exclusive permit (0.967869ms)
+✔ multiple simultaneous privacy escalations do not deadlock the window gate (0.431019ms)
+✔ disjoint lineage components may share native groups without racing membership (0.150255ms)
+✔ siblings accumulated behind an active component still coalesce across event turns (4.552508ms)
+✔ component identity follows moved ancestry and waits for a descendant new child (0.567839ms)
+✔ query threshold 2: siblings agrees with per-tab reads (3.418604ms)
+✔ query threshold 2: chain agrees with per-tab reads (2.796873ms)
+✔ query threshold 2: independent agrees with per-tab reads (1.793497ms)
+✔ query threshold 2: late-parent agrees with per-tab reads (14.091348ms)
+✔ query threshold 2: many-idle agrees with per-tab reads (1.476765ms)
+✔ query threshold 2: private agrees with per-tab reads (0.412754ms)
+✔ query threshold 2: cross-window agrees with per-tab reads (0.241328ms)
+✔ query threshold 2: pinned agrees with per-tab reads (0.583949ms)
+✔ query threshold 16: siblings agrees with per-tab reads (0.41558ms)
+✔ query threshold 16: chain agrees with per-tab reads (1.441358ms)
+✔ query threshold 16: independent agrees with per-tab reads (1.48441ms)
+✔ query threshold 16: late-parent agrees with per-tab reads (7.134022ms)
+✔ query threshold 16: many-idle agrees with per-tab reads (1.076485ms)
+✔ query threshold 16: private agrees with per-tab reads (0.248823ms)
+✔ query threshold 16: cross-window agrees with per-tab reads (0.466216ms)
+✔ query threshold 16: pinned agrees with per-tab reads (0.314838ms)
+✔ query failure is retried and then reported without losing queue progress (0.392927ms)
+ℹ tests 60
+ℹ suites 0
+ℹ pass 60
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 86.820386

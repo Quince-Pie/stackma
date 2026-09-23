@@ -1,0 +1,756 @@
+[
+  {
+    "scope": "selector-us",
+    "scenario": "empty",
+    "variant": "two-pass",
+    "median": 6.406250000000391,
+    "min": 5.625000000000213,
+    "max": 7.187500000000568,
+    "p95": 7.187500000000568
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "empty",
+    "variant": "array",
+    "median": 7.656250000000142,
+    "min": 6.562500000000249,
+    "max": 57.81249999999982,
+    "p95": 57.81249999999982
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "empty",
+    "variant": "typed-array",
+    "median": 5.000000000000782,
+    "min": 4.374999999999574,
+    "max": 5.937499999999929,
+    "p95": 5.937499999999929
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "empty",
+    "variant": "reservoir",
+    "median": 484.2187500000001,
+    "min": 411.8750000000003,
+    "max": 660.9374999999993,
+    "p95": 660.9374999999993
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "empty",
+    "variant": "reservoir-buffered",
+    "median": 86.56249999999943,
+    "min": 84.37499999999964,
+    "max": 112.18750000000011,
+    "p95": 112.18750000000011
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "empty",
+    "variant": "rejection-8",
+    "median": 4.8437500000000355,
+    "min": 4.062499999999858,
+    "max": 5.625000000000213,
+    "p95": 5.625000000000213
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "32-known",
+    "variant": "two-pass",
+    "median": 22.96874999999865,
+    "min": 21.562500000001705,
+    "max": 95.31249999999858,
+    "p95": 95.31249999999858
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "32-known",
+    "variant": "array",
+    "median": 22.499999999999076,
+    "min": 20.312500000002842,
+    "max": 39.374999999999716,
+    "p95": 39.374999999999716
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "32-known",
+    "variant": "typed-array",
+    "median": 21.250000000000213,
+    "min": 19.687499999999858,
+    "max": 23.4375,
+    "p95": 23.4375
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "32-known",
+    "variant": "reservoir",
+    "median": 143.28124999999932,
+    "min": 97.18750000000043,
+    "max": 180.31249999999943,
+    "p95": 180.31249999999943
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "32-known",
+    "variant": "reservoir-buffered",
+    "median": 39.0625,
+    "min": 37.81250000000114,
+    "max": 69.06250000000114,
+    "p95": 69.06250000000114
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "32-known",
+    "variant": "rejection-8",
+    "median": 21.406249999998295,
+    "min": 19.062500000000426,
+    "max": 48.12499999999886,
+    "p95": 48.12499999999886
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "256-known",
+    "variant": "two-pass",
+    "median": 136.71875,
+    "min": 115.62499999999787,
+    "max": 236.2499999999983,
+    "p95": 236.2499999999983
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "256-known",
+    "variant": "array",
+    "median": 129.06249999999986,
+    "min": 116.56250000000057,
+    "max": 194.06250000000114,
+    "p95": 194.06250000000114
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "256-known",
+    "variant": "typed-array",
+    "median": 134.53124999999844,
+    "min": 113.74999999999602,
+    "max": 256.56250000000114,
+    "p95": 256.56250000000114
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "256-known",
+    "variant": "reservoir",
+    "median": 143.28124999999758,
+    "min": 120.31250000000426,
+    "max": 238.74999999999957,
+    "p95": 238.74999999999957
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "256-known",
+    "variant": "reservoir-buffered",
+    "median": 136.40625000000384,
+    "min": 115.3125000000017,
+    "max": 144.999999999996,
+    "p95": 144.999999999996
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "256-known",
+    "variant": "rejection-8",
+    "median": 132.8125,
+    "min": 118.43749999999886,
+    "max": 232.18749999999488,
+    "p95": 232.18749999999488
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "128-manual",
+    "variant": "two-pass",
+    "median": 196.25000000000273,
+    "min": 183.7500000000034,
+    "max": 282.18750000000625,
+    "p95": 282.18750000000625
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "128-manual",
+    "variant": "array",
+    "median": 197.65625000000142,
+    "min": 184.062499999996,
+    "max": 273.1249999999932,
+    "p95": 273.1249999999932
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "128-manual",
+    "variant": "typed-array",
+    "median": 192.96875000000213,
+    "min": 183.125000000004,
+    "max": 309.062499999996,
+    "p95": 309.062499999996
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "128-manual",
+    "variant": "reservoir",
+    "median": 707.656250000003,
+    "min": 660.9374999999957,
+    "max": 873.1250000000017,
+    "p95": 873.1250000000017
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "128-manual",
+    "variant": "reservoir-buffered",
+    "median": 273.1250000000074,
+    "min": 261.2499999999969,
+    "max": 414.68749999999943,
+    "p95": 414.68749999999943
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "128-manual",
+    "variant": "rejection-8",
+    "median": 196.40624999999545,
+    "min": 187.5,
+    "max": 275.0000000000057,
+    "p95": 275.0000000000057
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "exhausted",
+    "variant": "two-pass",
+    "median": 480.7812499999997,
+    "min": 398.7500000000068,
+    "max": 536.5625000000023,
+    "p95": 536.5625000000023
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "exhausted",
+    "variant": "array",
+    "median": 472.187500000004,
+    "min": 401.25000000000455,
+    "max": 552.5000000000091,
+    "p95": 552.5000000000091
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "exhausted",
+    "variant": "typed-array",
+    "median": 482.0312499999986,
+    "min": 393.7499999999971,
+    "max": 521.8749999999943,
+    "p95": 521.8749999999943
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "exhausted",
+    "variant": "reservoir",
+    "median": 465.46874999999943,
+    "min": 438.74999999999886,
+    "max": 535.9375000000028,
+    "p95": 535.9375000000028
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "exhausted",
+    "variant": "reservoir-buffered",
+    "median": 487.8124999999969,
+    "min": 409.68749999998977,
+    "max": 554.0625000000006,
+    "p95": 554.0625000000006
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "exhausted",
+    "variant": "rejection-8",
+    "median": 482.96874999999056,
+    "min": 388.4374999999949,
+    "max": 545.0000000000017,
+    "p95": 545.0000000000017
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "single-best-edge",
+    "variant": "two-pass",
+    "median": 365.0000000000091,
+    "min": 330.93750000000455,
+    "max": 443.1249999999807,
+    "p95": 443.1249999999807
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "single-best-edge",
+    "variant": "array",
+    "median": 402.1874999999966,
+    "min": 325.93750000000915,
+    "max": 431.2500000000057,
+    "p95": 431.2500000000057
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "single-best-edge",
+    "variant": "typed-array",
+    "median": 337.5000000000057,
+    "min": 324.99999999998863,
+    "max": 411.5625000000023,
+    "p95": 411.5625000000023
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "single-best-edge",
+    "variant": "reservoir",
+    "median": 366.40625000001137,
+    "min": 328.4374999999784,
+    "max": 413.7499999999932,
+    "p95": 413.7499999999932
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "single-best-edge",
+    "variant": "reservoir-buffered",
+    "median": 346.25000000001194,
+    "min": 330.93750000000455,
+    "max": 424.99999999998295,
+    "p95": 424.99999999998295
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "single-best-edge",
+    "variant": "rejection-8",
+    "median": 340.1562499999926,
+    "min": 319.68749999998636,
+    "max": 409.6875000000182,
+    "p95": 409.6875000000182
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "sparse-best-tier",
+    "variant": "two-pass",
+    "median": 133.59375000000284,
+    "min": 111.87499999999773,
+    "max": 235.0000000000136,
+    "p95": 235.0000000000136
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "sparse-best-tier",
+    "variant": "array",
+    "median": 133.28125000001023,
+    "min": 112.50000000001137,
+    "max": 202.4999999999864,
+    "p95": 202.4999999999864
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "sparse-best-tier",
+    "variant": "typed-array",
+    "median": 130.15624999999886,
+    "min": 110.62499999999886,
+    "max": 210.9375,
+    "p95": 210.9375
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "sparse-best-tier",
+    "variant": "reservoir",
+    "median": 137.18749999999602,
+    "min": 120.00000000000455,
+    "max": 230.93750000001026,
+    "p95": 230.93750000001026
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "sparse-best-tier",
+    "variant": "reservoir-buffered",
+    "median": 138.12500000000227,
+    "min": 119.3749999999909,
+    "max": 207.1875000000034,
+    "p95": 207.1875000000034
+  },
+  {
+    "scope": "selector-us",
+    "scenario": "sparse-best-tier",
+    "variant": "rejection-8",
+    "median": 137.50000000000284,
+    "min": 120.62499999998977,
+    "max": 217.81250000000796,
+    "p95": 217.81250000000796
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "0/1",
+    "variant": "two-pass",
+    "median": 7.899999999999636,
+    "min": 5.200000000000728,
+    "max": 12.05999999999949,
+    "p95": 12.05999999999949,
+    "eventP95": 10.040000000000871,
+    "cleanupMedian": 1.590000000001055,
+    "resetMedian": 0.13000000000101863
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "0/1",
+    "variant": "array",
+    "median": 8.400000000000546,
+    "min": 5.480000000001382,
+    "max": 10.959999999999129,
+    "p95": 10.959999999999129,
+    "eventP95": 9.299999999999272,
+    "cleanupMedian": 1.5000000000009095,
+    "resetMedian": 0.13999999999941792
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "0/1",
+    "variant": "typed-array",
+    "median": 7.449999999999818,
+    "min": 4.319999999999709,
+    "max": 11.040000000000871,
+    "p95": 11.040000000000871,
+    "eventP95": 8.040000000000873,
+    "cleanupMedian": 1.5299999999997453,
+    "resetMedian": 0.11000000000058208
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "0/1",
+    "variant": "reservoir",
+    "median": 9.770000000000437,
+    "min": 7.719999999999345,
+    "max": 16.100000000000364,
+    "p95": 16.100000000000364,
+    "eventP95": 12.039999999999054,
+    "cleanupMedian": 1.949999999999818,
+    "resetMedian": 0.14000000000032742
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "0/1",
+    "variant": "reservoir-buffered",
+    "median": 7.849999999999454,
+    "min": 4.739999999999782,
+    "max": 11.159999999999854,
+    "p95": 11.159999999999854,
+    "eventP95": 9.319999999999707,
+    "cleanupMedian": 1.5299999999997453,
+    "resetMedian": 0.13000000000010914
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "0/1",
+    "variant": "rejection-8",
+    "median": 7.920000000000073,
+    "min": 4.360000000000582,
+    "max": 10.94000000000051,
+    "p95": 10.94000000000051,
+    "eventP95": 8.700000000000728,
+    "cleanupMedian": 1.6099999999996726,
+    "resetMedian": 0.13000000000010914
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "0/16",
+    "variant": "two-pass",
+    "median": 94.80999999999949,
+    "min": 81.20000000000073,
+    "max": 196.8199999999997,
+    "p95": 196.8199999999997,
+    "eventP95": 119.68000000000028,
+    "cleanupMedian": 18.159999999999854,
+    "resetMedian": 0.1499999999996362
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "0/16",
+    "variant": "array",
+    "median": 110.51000000000022,
+    "min": 86.56000000000131,
+    "max": 136.65999999999983,
+    "p95": 136.65999999999983,
+    "eventP95": 96.06000000000132,
+    "cleanupMedian": 16.899999999997817,
+    "resetMedian": 0.15999999999985448
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "0/16",
+    "variant": "typed-array",
+    "median": 113.53999999999905,
+    "min": 78.52000000000044,
+    "max": 183.36000000000055,
+    "p95": 183.36000000000055,
+    "eventP95": 115.31999999999972,
+    "cleanupMedian": 17.669999999998254,
+    "resetMedian": 0.22999999999865395
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "0/16",
+    "variant": "reservoir",
+    "median": 126.19999999999891,
+    "min": 93.65999999999984,
+    "max": 187.0799999999981,
+    "p95": 187.0799999999981,
+    "eventP95": 125.93999999999868,
+    "cleanupMedian": 14.389999999999418,
+    "resetMedian": 0.1500000000014552
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "0/16",
+    "variant": "reservoir-buffered",
+    "median": 104.30999999999949,
+    "min": 88.52000000000044,
+    "max": 147.27999999999884,
+    "p95": 147.27999999999884,
+    "eventP95": 90.53999999999904,
+    "cleanupMedian": 17.780000000000655,
+    "resetMedian": 0.1499999999996362
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "0/16",
+    "variant": "rejection-8",
+    "median": 114.5,
+    "min": 73.80000000000291,
+    "max": 200.8199999999997,
+    "p95": 200.8199999999997,
+    "eventP95": 115.02000000000044,
+    "cleanupMedian": 19.73999999999978,
+    "resetMedian": 0.18999999999959982
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "128/1",
+    "variant": "two-pass",
+    "median": 25.63000000000102,
+    "min": 19.779999999998836,
+    "max": 68.41999999999825,
+    "p95": 68.41999999999825,
+    "eventP95": 66.40000000000146,
+    "cleanupMedian": 2.859999999996944,
+    "resetMedian": 0.43000000000029104
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "128/1",
+    "variant": "array",
+    "median": 29.730000000001382,
+    "min": 20.12000000000262,
+    "max": 68.52000000000044,
+    "p95": 68.52000000000044,
+    "eventP95": 66.05999999999767,
+    "cleanupMedian": 3.530000000000655,
+    "resetMedian": 0.22999999999592546
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "128/1",
+    "variant": "typed-array",
+    "median": 28.730000000001382,
+    "min": 20.639999999999414,
+    "max": 55.02000000000044,
+    "p95": 55.02000000000044,
+    "eventP95": 51.72000000000117,
+    "cleanupMedian": 5.100000000000364,
+    "resetMedian": 0.5999999999985448
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "128/1",
+    "variant": "reservoir",
+    "median": 38.81999999999971,
+    "min": 17.260000000002037,
+    "max": 58.61999999999898,
+    "p95": 58.61999999999898,
+    "eventP95": 55.60000000000218,
+    "cleanupMedian": 3.7999999999992724,
+    "resetMedian": 0.4500000000043656
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "128/1",
+    "variant": "reservoir-buffered",
+    "median": 25.600000000000364,
+    "min": 21.760000000002037,
+    "max": 61.18000000000029,
+    "p95": 61.18000000000029,
+    "eventP95": 56.919999999998254,
+    "cleanupMedian": 3.5499999999992724,
+    "resetMedian": 0.18000000000029104
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "128/1",
+    "variant": "rejection-8",
+    "median": 29.679999999998472,
+    "min": 22.69999999999709,
+    "max": 73.41999999999825,
+    "p95": 73.41999999999825,
+    "eventP95": 59.87999999999738,
+    "cleanupMedian": 3.4200000000018917,
+    "resetMedian": 0.25
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "128/16",
+    "variant": "two-pass",
+    "median": 481.4599999999955,
+    "min": 366.90000000000146,
+    "max": 657.8400000000111,
+    "p95": 657.8400000000111,
+    "eventP95": 441.9799999999959,
+    "cleanupMedian": 46.38999999999578,
+    "resetMedian": 0.22999999999956344
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "128/16",
+    "variant": "array",
+    "median": 521.6599999999999,
+    "min": 408.1599999999962,
+    "max": 687.6999999999971,
+    "p95": 687.6999999999971,
+    "eventP95": 449.3199999999997,
+    "cleanupMedian": 48.38000000000102,
+    "resetMedian": 0.1900000000023283
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "128/16",
+    "variant": "typed-array",
+    "median": 515.0400000000009,
+    "min": 459.45999999999185,
+    "max": 601.4000000000087,
+    "p95": 601.4000000000087,
+    "eventP95": 434.09999999999854,
+    "cleanupMedian": 47.2599999999984,
+    "resetMedian": 0.21000000000276486
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "128/16",
+    "variant": "reservoir",
+    "median": 483.9099999999962,
+    "min": 360.3399999999965,
+    "max": 594.5199999999968,
+    "p95": 594.5199999999968,
+    "eventP95": 414.8599999999933,
+    "cleanupMedian": 46.93999999999505,
+    "resetMedian": 0.21999999999752617
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "128/16",
+    "variant": "reservoir-buffered",
+    "median": 511.5400000000009,
+    "min": 390.2799999999989,
+    "max": 606.6200000000026,
+    "p95": 606.6200000000026,
+    "eventP95": 418.8000000000029,
+    "cleanupMedian": 47.55000000000291,
+    "resetMedian": 0.19000000000596629
+  },
+  {
+    "scope": "native-ms",
+    "scenario": "128/16",
+    "variant": "rejection-8",
+    "median": 520.7799999999988,
+    "min": 401.9400000000023,
+    "max": 662,
+    "p95": 662,
+    "eventP95": 447.3600000000006,
+    "cleanupMedian": 47.2599999999984,
+    "resetMedian": 0.1900000000023283
+  },
+  {
+    "scope": "cache-native-ms",
+    "scenario": "0/1",
+    "variant": "fresh-context",
+    "median": 6.559999999999974,
+    "min": 4.2000000000000455,
+    "max": 98.79999999999995,
+    "p95": 98.79999999999995,
+    "contextQueries": 1,
+    "retainedRows": 0
+  },
+  {
+    "scope": "cache-native-ms",
+    "scenario": "0/1",
+    "variant": "burst-context",
+    "median": 6.25,
+    "min": 4.860000000000014,
+    "max": 10.439999999999998,
+    "p95": 10.439999999999998,
+    "contextQueries": 1,
+    "retainedRows": 1
+  },
+  {
+    "scope": "cache-native-ms",
+    "scenario": "0/16",
+    "variant": "fresh-context",
+    "median": 109.45999999999958,
+    "min": 73.42000000000007,
+    "max": 164.2800000000002,
+    "p95": 164.2800000000002,
+    "contextQueries": 16,
+    "retainedRows": 0
+  },
+  {
+    "scope": "cache-native-ms",
+    "scenario": "0/16",
+    "variant": "burst-context",
+    "median": 96.37000000000012,
+    "min": 66.34000000000015,
+    "max": 136.65999999999983,
+    "p95": 136.65999999999983,
+    "contextQueries": 7,
+    "retainedRows": 16
+  },
+  {
+    "scope": "cache-native-ms",
+    "scenario": "128/1",
+    "variant": "fresh-context",
+    "median": 25.21000000000049,
+    "min": 21.040000000000873,
+    "max": 63.4399999999996,
+    "p95": 63.4399999999996,
+    "contextQueries": 1,
+    "retainedRows": 0
+  },
+  {
+    "scope": "cache-native-ms",
+    "scenario": "128/1",
+    "variant": "burst-context",
+    "median": 29.789999999999964,
+    "min": 20.840000000000146,
+    "max": 63.42000000000007,
+    "p95": 63.42000000000007,
+    "contextQueries": 1,
+    "retainedRows": 129
+  },
+  {
+    "scope": "cache-native-ms",
+    "scenario": "128/16",
+    "variant": "fresh-context",
+    "median": 485.54999999999745,
+    "min": 400.8999999999997,
+    "max": 624.6000000000022,
+    "p95": 624.6000000000022,
+    "contextQueries": 16,
+    "retainedRows": 0
+  },
+  {
+    "scope": "cache-native-ms",
+    "scenario": "128/16",
+    "variant": "burst-context",
+    "median": 468.52000000000044,
+    "min": 390.9200000000001,
+    "max": 600.659999999998,
+    "p95": 600.659999999998,
+    "contextQueries": 7,
+    "retainedRows": 144
+  }
+]
