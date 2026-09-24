@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Stackma",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Automatically stack new related tabs in Firefox\u2019s native tab groups. Preserve pinned tabs and separate windows.",
   "permissions": [
     "webNavigation",
