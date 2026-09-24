@@ -100,11 +100,13 @@ Within `nix develop`, workflow checks are `node scripts/ci/check-workflows.js`,
 The [CI record](docs/ci.md) explains the source/changelog audit, verification and
 remaining GitHub-hosted execution boundary.
 
-[Releasing Stackma](docs/releases.md) starts with **Actions → Prepare release**:
-enter a new version such as `v1.1.1`, approve CI if requested, and merge the generated
-version PR. **Release** then verifies the merged source, creates its tag, submits
+[Releasing Stackma](docs/releases.md) starts with **Actions → Release**
+(`prepare-release.yml`): enter a new version such as `v1.1.2`, approve CI if
+requested, and merge the generated version PR. **Publish release** then verifies
+the merged source, creates its tag, submits
 to the existing Mozilla listing, verifies the signed XPI in Firefox, and publishes
-an immutable GitHub Release. The guide covers secrets and approval-time recovery.
+an immutable GitHub Release. Do not create tags or GitHub Releases manually.
+The guide covers secrets, recovery, and the unusable `v1.1.1` release.
 Ordinary CI runs remain read-only and do not release the extension.
 
 ## Operational limits

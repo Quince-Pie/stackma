@@ -64,7 +64,8 @@ export async function prepareRelease({ github, tag, mainCommit, cwd = process.cw
   const current = (await metadataAt(mainCommit, cwd)).map(text => JSON.parse(text));
   validateMetadata(`v${current[0].version}`, ...current);
   requireIncrease(current[0].version, version);
-  assert(!await github.get(`git/ref/tags/${tag}`), "Version already has a tag; use Release to resume it");
+  assert(!await github.get(`git/ref/tags/${tag}`),
+    "Version already has a tag. If its source versions match, use Publish release to resume it. Otherwise start Release with a new unused version. Published immutable tag names cannot be reused, even after deletion.");
   const branch = `release/${tag}`;
   const owner = github.repository.split("/")[0];
   const pulls = await github.get(`pulls?state=all&head=${encodeURIComponent(`${owner}:${branch}`)}&base=main&per_page=100`);
@@ -106,7 +107,7 @@ export async function prepareRelease({ github, tag, mainCommit, cwd = process.cw
   if (!pull) {
     pull = await github.post("pulls", {
       head: branch, base: "main", title: `release: Prepare ${tag}`,
-      body: `${marker}\n\nPrepare Stackma ${version} for the existing Mozilla listing. This updates only the manifest, package version, and root lockfile versions.\n\nApprove the bot-triggered CI run if GitHub requests it, review the changes, and merge this PR. Merging starts Release: it verifies the exact merged source, creates ${tag}, submits or resumes Mozilla signing, and publishes the verified package after approval.\n\nIf signing needs more review time, rerun the original Release run after Mozilla approval. See [the release guide](https://github.com/${github.repository}/blob/main/docs/releases.md).\n`,
+      body: `${marker}\n\nPrepare Stackma ${version} for the existing Mozilla listing. This updates only the manifest, package version, and root lockfile versions.\n\nApprove the bot-triggered CI run if GitHub requests it, review the changes, and merge this PR. Merging starts Publish release: it verifies the exact merged source, creates ${tag}, submits or resumes Mozilla signing, and publishes the verified package after approval. Do not create a tag or GitHub Release manually.\n\nIf signing needs more review time, rerun the original Publish release run after Mozilla approval. See [the release guide](https://github.com/${github.repository}/blob/main/docs/releases.md).\n`,
     });
   }
   assert.equal(pull.state, "open");
@@ -121,12 +122,12 @@ export async function prepareRelease({ github, tag, mainCommit, cwd = process.cw
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
-  assert.equal(process.env.GITHUB_REF, "refs/heads/main", "Run Prepare release from main");
+  assert.equal(process.env.GITHUB_REF, "refs/heads/main", "Run Release (prepare-release.yml) from main");
   const result = await prepareRelease({
     github: new RepositoryGitHub(process.env.GITHUB_REPOSITORY, process.env.GH_TOKEN),
     tag: process.env.RELEASE_TAG, mainCommit: process.env.GITHUB_SHA,
   });
   await appendFile(process.env.GITHUB_STEP_SUMMARY,
-    `Release PR ready: [${result.tag} — #${result.number}](${result.url}).\n\nApprove CI if requested, then review and merge. Release runs automatically after merge.\n`);
+    `Release PR ready: [${result.tag} — #${result.number}](${result.url}).\n\nApprove CI if requested, then review and merge. Publish release runs automatically after merge; it creates the tag and GitHub Release. Do not create either manually.\n`);
   console.log(`Release PR ready: ${result.url}`);
 }

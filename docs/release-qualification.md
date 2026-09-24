@@ -4,6 +4,8 @@ The original publication qualification below remains the record for signing and
 publication. [Release preparation](release-preparation.md) supersedes its manual
 version/tag initiation policy: the user selected an explicit version PR followed
 by release after merge. It revisits the previously omitted release/version bots.
+The later [policy review](release-policy-review.md) corrects the version-component
+limit and makes preparation the primary **Release** entry point.
 
 Reviewed 2026-09-24 against baseline `2a73512`. Scope: GitHub.com, hosted Ubuntu
 24.04 x86-64, the existing listed Stackma add-on, stable version tags, and Firefox

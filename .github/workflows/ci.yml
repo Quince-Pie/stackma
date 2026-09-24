@@ -92,6 +92,9 @@ jobs:
       - name: Record the tested environment
         run: nix develop --no-update-lock-file --command node scripts/ci/record-environment.js
 
+      - name: Test Firefox and AMO version boundaries
+        run: nix develop --no-update-lock-file --command node scripts/release/check-version-format.js
+
       - name: Test native grouping
         run: nix develop --no-update-lock-file --command npm run test:firefox
 

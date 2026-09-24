@@ -1,16 +1,27 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { validateMetadata, versionFromTag } from "../../scripts/release/package.js";
+import { validateMetadata, VersionMismatchError, versionFromTag } from "../../scripts/release/package.js";
 import { readPayload, signatureFiles, verifyPayload } from "../../scripts/release/archive.js";
 import { verifyQueuePolicy } from "../../scripts/ci/check-workflows.js";
 import { archive, temporary } from "./fixtures.js";
 
-test("Firefox stable tags have bounded canonical numeric components", () => {
-  for (const tag of ["v0.0.0", "v1.1.1", "v65535.65535.65535"]) assert.equal(versionFromTag(tag), tag.slice(1));
-  for (const tag of ["v01.1.1", "v1.2", "v1.2.3-beta", "v65536.0.0", "v1.1.1\n", "--help", "v1.0.0;false", "v999999999999999999999.0.0"]) {
+test("stable release tags follow AMO's nine-digit components, without Chrome's 16-bit cap", () => {
+  for (const tag of ["v0.0.0", "v1.1.1", "v65535.65535.65535", "v65536.0.0", "v999999999.999999999.999999999"]) assert.equal(versionFromTag(tag), tag.slice(1));
+  for (const tag of ["v01.1.1", "v1.2", "v1.2.3-beta", "v1000000000.0.0", "v1.1.1\n", "--help", "v1.0.0;false", "v999999999999999999999.0.0"]) {
     assert.throws(() => versionFromTag(tag));
   }
+});
+
+test("version mismatches identify all four fields and preserve identity error precedence", () => {
+  const manifest = { version: "1.1.0", browser_specific_settings: { gecko: { id: "wrong", strict_min_version: "156.0" } } };
+  const pkg = { version: "1.1.2" }, lock = { version: "1.1.3", packages: { "": { version: "1.1.4" } } };
+  assert.throws(() => validateMetadata("v1.1.1", manifest, pkg, lock), error => {
+    assert(error instanceof VersionMismatchError);
+    for (const field of ["extension/manifest.json version", "package.json version", "package-lock.json version", 'package-lock.json packages[""].version']) assert(error.message.includes(field));
+    for (const version of ["1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4"]) assert(error.message.includes(version));
+    return true;
+  });
 });
 
 test("every declared version and the stable add-on identity must agree", () => {

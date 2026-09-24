@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import test from "node:test";
 import { bumpVersions, prepareRelease, requireIncrease, versionPaths, versionTree } from "../../scripts/release/prepare.js";
 import { ensureTag, RepositoryGitHub } from "../../scripts/release/repository.js";
@@ -81,7 +82,7 @@ test("version bump changes only four intended fields, with numeric ordering and 
   wanted[0].version = wanted[1].version = wanted[2].version = wanted[2].packages[""].version = "1.1.1";
   assert.deepEqual(actual, wanted);
   for (const [before, after] of [["1.9.9", "1.10.0"], ["1.65535.65535", "2.0.0"], ["0.0.0", "0.0.1"]]) requireIncrease(before, after);
-  for (const tag of ["v1.1.0", "v1.0.65535", "v01.1.1", "v1.1.1-beta", "v65536.0.0", "v1.1.1\n", "$(false)"]) {
+  for (const tag of ["v1.1.0", "v1.0.65535", "v01.1.1", "v1.1.1-beta", "v1000000000.0.0", "v1.1.1\n", "$(false)"]) {
     assert.throws(() => bumpVersions(tag, initial.map(serialize)));
   }
   const bad = structuredClone(initial); bad[2].packages[""].version = "0.0.0";
@@ -195,7 +196,7 @@ test("tag creation is recoverable and never changes an existing tag", async t =>
   await ensureTag(f.github, "v1.1.1", f.mainCommit, { create: true });
   assert.equal(f.calls.length, 1);
   await assert.rejects(() => ensureTag(f.github, "v1.1.1", "b".repeat(40), { create: true }), /never move/u);
-  await assert.rejects(() => ensureTag(f.github, "v1.1.2", f.mainCommit), /Prepare release/u);
+  await assert.rejects(() => ensureTag(f.github, "v1.1.2", f.mainCommit), /Release \(prepare-release.yml\)/u);
   assert.equal(f.calls.length, 1);
 });
 
@@ -219,7 +220,7 @@ test("manual release resolution explains missing tags and resolves annotated or 
   const f = await fixture(t);
   const options = { eventName: "workflow_dispatch", event: {}, repository: f.github.repository,
     workflowRef: "refs/heads/main", mainCommit: f.mainCommit, tag: "v1.1.1", cwd: f.cwd };
-  await assert.rejects(() => resolveRelease(options), /Prepare release/u);
+  await assert.rejects(() => resolveRelease(options), /Release \(prepare-release.yml\)/u);
   const prepared = await prepareRelease(f.options);
   await f.git("merge", "--ff-only", prepared.head);
   options.mainCommit = prepared.head;
@@ -229,6 +230,31 @@ test("manual release resolution explains missing tags and resolves annotated or 
     await f.git("tag", "-d", "v1.1.1");
   }
   await assert.rejects(() => resolveRelease({ ...options, workflowRef: "refs/heads/other" }), /main/u);
+});
+
+test("a tag on old version files exits with recovery instructions, no release output and no retagging", async t => {
+  const f = await fixture(t);
+  await f.git("tag", "v1.1.1");
+  const eventPath = `${f.cwd}/event.json`, output = `${f.cwd}/output`, summary = `${f.cwd}/summary`;
+  await writeFile(eventPath, "{}");
+  await assert.rejects(() => run(process.execPath, [resolve("scripts/release/resolve.js")], {
+    cwd: f.cwd, timeout: 10_000,
+    env: { ...process.env, GITHUB_EVENT_NAME: "workflow_dispatch", GITHUB_EVENT_PATH: eventPath,
+      GITHUB_REPOSITORY: f.github.repository, GITHUB_REF: "refs/heads/main", GITHUB_SHA: f.mainCommit,
+      RELEASE_TAG: "v1.1.1", GITHUB_OUTPUT: output, GITHUB_STEP_SUMMARY: summary },
+  }), error => {
+    assert.equal(error.code, 1);
+    assert.match(error.stderr, /::error title=Release version mismatch::/u);
+    assert.match(error.stderr, /1\.1\.0/u);
+    assert.match(error.stderr, /prepare-release.yml/u);
+    assert.match(error.stderr, /cannot be reused even after deletion/u);
+    assert(!error.stderr.includes("triggerUncaughtException"));
+    assert(!error.stdout.includes("Release resolved"));
+    return true;
+  });
+  assert.match(await readFile(summary, "utf8"), /Creating a tag does not update version files/u);
+  await assert.rejects(() => readFile(output), { code: "ENOENT" });
+  assert.equal(await f.git("rev-parse", "refs/tags/v1.1.1"), f.mainCommit);
 });
 
 test("a release commit outside the selected main history cannot be tagged or published", async t => {

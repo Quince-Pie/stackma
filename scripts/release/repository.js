@@ -26,7 +26,7 @@ export async function ensureTag(github, tag, commit, { create = false } = {}) {
   assert.match(commit, /^[a-f0-9]{40}$/u);
   const existing = await github.get(`git/ref/tags/${tag}`);
   if (!existing) {
-    assert(create, `Tag ${tag} does not exist. Run Prepare release to create a release PR first.`);
+    assert(create, `Tag ${tag} does not exist. Run Release (prepare-release.yml) to create a version PR first.`);
     await github.post("git/refs", { ref: `refs/tags/${tag}`, sha: commit });
   }
   // A lost response is recovered on rerun; never repeat a write blindly.

@@ -1,0 +1,149 @@
+{
+  "date": "2026-09-24T04:15:57.886Z",
+  "baseline": "6611e237beb647e400262a0d030030858c36990b",
+  "budget": {
+    "started": "2026-09-24T03:47:48Z",
+    "limitMinutes": 45,
+    "elapsedMinutes": 28.16,
+    "scope": "Includes interrupted incident work, reference review, license clarification, implementation and final affected verification."
+  },
+  "recommendation": {
+    "path": "/tmp/RELEASE-RECOMMENDATION.md",
+    "sha256": "4d5e112ba5b1b0d5d2ca9b267a53ad77c4327ecef987cb5b4fdbdb40b4749b44",
+    "assessment": "Sensible conditional reference policy; neither a proven universal optimum nor a tested Stackma implementation. Applicable claims reviewed and documented; unrelated ecosystem examples were not exhaustively certified."
+  },
+  "observations": {
+    "tag": "v1.1.1",
+    "tagCommit": "6611e237beb647e400262a0d030030858c36990b",
+    "sourceVersion": "1.1.0",
+    "githubRelease": {
+      "id": 395301544,
+      "immutable": true,
+      "uploadedAssets": 0,
+      "url": "https://github.com/Quince-Pie/stackma/releases/tag/v1.1.1"
+    },
+    "failedRun": {
+      "id": 35952833704,
+      "resolution": "failed",
+      "verify": "skipped",
+      "tag": "skipped",
+      "sign": "skipped",
+      "publish": "skipped"
+    },
+    "preparationRuns": 0,
+    "releasePullRequests": 0,
+    "tagV112": "absent at inspection",
+    "amo": {
+      "readOnly": true,
+      "states": [
+        {
+          "version": "1.1.1",
+          "exists": false
+        },
+        {
+          "version": "1.1.2",
+          "exists": false
+        }
+      ]
+    },
+    "environments": [],
+    "actionsPrPermission": "Not readable without administrative authentication; setup instructions provided."
+  },
+  "filesSha256": {
+    ".github/workflows/ci.yml": "3441ea71b66a49aedb91e709360597ece9369768ee303dddda398315eee61a59",
+    ".github/workflows/prepare-release.yml": "a8db92590121e8d66c2be320d38a6d149fef3a440570c8c406a41dcc34dcf802",
+    ".github/workflows/release.yml": "795aa3b70e8cdbb7383cfadd97fee65a1c44ccbbdb007699decb6fad7b612981",
+    "README.md": "3c20b834e7fb062718e8db5af0723488e1ab254375ecbd9da8399f8798430884",
+    "docs/release-preparation.md": "54f1fb437c3a9b02adfb4d3d92af24c25a88cbe4f6088a06c8a0c6601546f1f8",
+    "docs/release-qualification.md": "a270d291db493421094696d0acb22d3dfab326ed08baf3733167a9a4adbb7c0f",
+    "docs/releases.md": "9b971f0f5345503db2baf6f04ecbea44d4fcb71ca3bb5b249173caa9ab4e2b59",
+    "docs/release-policy-review.md": "bdcfcdcc544b9542b019cc6aae8329a774f827b2e6d14f550c3a56fe3e91f7ae",
+    "scripts/release/package.js": "84747407660cfa79a60feda0dc81b57288bed149793df7e4794b916e5c439eee",
+    "scripts/release/prepare.js": "9654ad8aff15110ea8e3aa1d79d507e43a2322a523a5dfba38d4966cb4aa0bdf",
+    "scripts/release/repository.js": "fe50a5266f4b18953a7c95ea5d08c73de9a2c3895b5c37090c5c401f2d4abadc",
+    "scripts/release/resolve.js": "5d749db5d9ba0b7a590d94052cb22e3acfff7c53a39ed0f3184290ecf429a198",
+    "scripts/release/check-version-format.js": "5c298ef180af46666c1d732eb43d9e2203105284214840a5d310e3cd625b3e80",
+    "tests/release/package.test.js": "636c641db91cd40b5a59f2d65c1fbb8cfd4dd367c8947435210678d6229e5803",
+    "tests/release/prepare.test.js": "e50e6482d28567d97ce8c1b0ca629ef1e6bf52c54bd7768034bb8b53cee83995"
+  },
+  "checks": [
+    {
+      "command": "nix develop --no-update-lock-file --command npm run test:release",
+      "exitCode": 0,
+      "tests": 79,
+      "passed": 79,
+      "failed": 0,
+      "logSha256": "3d2de42bef04a57b156b3509ee44b8aae36587eb9ed5475bce232e57f02bd661"
+    },
+    {
+      "command": "nix develop --no-update-lock-file --command node scripts/ci/check-workflows.js",
+      "exitCode": 0
+    },
+    {
+      "command": "nix develop --no-update-lock-file --command zizmor --offline --persona=pedantic .github/workflows",
+      "exitCode": 0,
+      "findings": 0,
+      "existingIgnoredSelfRepositoryFinding": 1
+    },
+    {
+      "command": "nix develop --no-update-lock-file --command node scripts/release/check-version-format.js",
+      "exitCode": 0,
+      "passed": true,
+      "firefox": "156.0",
+      "buildId": "20260909172920",
+      "checks": [
+        {
+          "version": "65536.0.0",
+          "lint": true,
+          "temporaryFirefoxInstall": true,
+          "actual": "65536.0.0"
+        },
+        {
+          "version": "999999999.999999999.999999999",
+          "lint": true,
+          "temporaryFirefoxInstall": true,
+          "actual": "999999999.999999999.999999999"
+        }
+      ]
+    },
+    {
+      "command": "cmp LICENSE extension/LICENSE",
+      "exitCode": 0
+    },
+    {
+      "command": "cmp naming-data/CMU-LICENSE.txt extension/CMU-LICENSE.txt",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "environment": {
+    "node": "v24.20.0",
+    "git": "git version 2.55.0",
+    "webExt": "10.7.0",
+    "addonsLinter": "10.13.0"
+  },
+  "license": {
+    "changed": false,
+    "projectCopyright": "Quince Pie <pie@quince.org>",
+    "licenseDocumentAuthor": "Sam Hocevar",
+    "rootMatchesPackage": true,
+    "cmuNoticeMatchesPackage": true
+  },
+  "acceptance": {
+    "localChecks": "passed",
+    "qualification": "Source-backed application of the reference policy to existing Stackma mechanisms; no new architecture or empirical performance claim.",
+    "universalOptimality": "not established",
+    "hostedEndToEnd": "unverified",
+    "pending": "Repository setup and first authorized v1.1.2 preparation/merge/signing/publication run."
+  },
+  "remoteMutationsPerformed": false,
+  "preserved": [
+    "Pre-existing extension/icon.png",
+    "Existing v1.1.1 tag and immutable release",
+    "Project and third-party license files",
+    "Local .env (read only for owner-visible AMO version GETs; no credential values recorded)"
+  ]
+}

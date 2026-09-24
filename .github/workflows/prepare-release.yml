@@ -1,10 +1,11 @@
-name: Prepare release
+name: Release
+run-name: Prepare ${{ inputs.version }} for review
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: New release version (vMAJOR.MINOR.PATCH, for example v1.1.1)
+        description: New version (e.g. v1.1.2). Creates a PR; do not create a tag or GitHub Release first.
         type: string
         required: true
 

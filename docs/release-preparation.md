@@ -1,5 +1,10 @@
 # Release preparation qualification
 
+This is the original preparation design record. The
+[policy review and corrections](release-policy-review.md) supersede its workflow
+display names and its mistaken 65535 version-component limit. Current operator
+instructions are in [Releasing Stackma](releases.md).
+
 Reviewed 2026-09-24 against `538841aaab029d984e31e469ebf42fc275322460`.
 The original manual publication command required a version update and a pushed
 tag. Entering `v1.1.1` failed because that tag did not exist; all four version

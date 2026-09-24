@@ -1,7 +1,8 @@
 # Releasing Stackma
 
-The **Prepare release** workflow creates a version-update PR. Merging that PR
-starts **Release**, which submits a stable version to the existing **listed**
+The **Release** workflow (`prepare-release.yml`) creates a version-update PR.
+Merging that PR starts **Publish release** (`release.yml`), which submits a stable
+version to the existing **listed**
 [Stackma add-on](https://addons.mozilla.org/firefox/addon/stackma/), waits for
 Mozilla approval, verifies the signed package in Firefox 156, and publishes an
 immutable GitHub Release. Ordinary pushes, unrelated PRs and CI builds do not
@@ -46,28 +47,30 @@ the other service or an atomic “attach source only if still empty” operation
 ## Make a release
 
 1. Make sure the intended source and these workflows are committed and pushed to
-   `main`. In **Actions → Prepare release → Run workflow**, select **main** and
-   enter a new version, for example **`v1.1.1`**. Do not create a tag first.
+   `main`. In **Actions → Release → Run workflow**, select **main** and
+   enter a new version, for example **`v1.1.2`**. This is `prepare-release.yml`.
+   **Do not create a tag or use GitHub's Releases → Draft a new release page.**
+   The workflow creates the tag and GitHub Release at the appropriate stages.
 2. Open the PR linked in the run summary. It updates the manifest, package version,
    and both root versions in the lockfile. Dependencies and the add-on ID stay the
    same. Approve CI if requested, review the PR, and merge it after checks pass.
    Merge, squash and rebase merges are supported. Merging authorizes release.
-3. **Release** starts automatically for the merged release PR. It verifies the
+3. **Publish release** starts automatically for the merged release PR. It verifies the
    exact merged commit, creates the matching tag after CI passes, and continues
    through Mozilla signing and GitHub publication. Complete any environment
    approvals configured in your repository.
 4. If Mozilla needs more review time, wait for approval and **rerun the original
-   Release run**. Existing submissions and matching assets are reconciled.
+   Publish release run**. Existing submissions and matching assets are reconciled.
 
 The CLI equivalent of step 1 is:
 
 ```sh
-gh workflow run prepare-release.yml --ref main -f version=v1.1.1
+gh workflow run prepare-release.yml --ref main -f version=v1.1.2
 ```
 
-**Release → Run workflow** remains available for an **existing** tag, for example
+**Publish release → Run workflow** remains available for an **existing prepared** tag, for example
 to resume publication. Entering a new version there does not prepare it. A missing
-tag now produces instructions to use **Prepare release**, instead of Git's
+tag now produces instructions to use **Release** (`prepare-release.yml`), instead of Git's
 `fatal: Needed a single revision` error. If verification failed before the tag was
 created, rerun the original merged-PR run, which retains authority to create it.
 
@@ -101,7 +104,8 @@ base, which must remain in the merged history. This also permits a merge queue
 to include later non-version commits. A separate write job creates/reconciles the
 tag only after CI passes.
 Tag, manifest and npm versions must agree. Versions use
-three canonical numeric components, each at most 65535. Firefox 156 and the
+three canonical numeric components, each at most 999999999 (AMO's nine-digit
+limit, not the Chrome Web Store's 65535 limit). Firefox 156 and the
 existing `stackma@extensions.local` identity remain fixed requirements.
 
 CI performs the source, catalog, installer, release-policy and browser checks,
@@ -140,12 +144,31 @@ universal optimality.
 
 ## Recovery and limits
 
+### The accidentally published v1.1.1
+
+The manually published [v1.1.1 release](https://github.com/Quince-Pie/stackma/releases/tag/v1.1.1)
+is immutable, has no uploaded assets, and points to `6611e23`, whose manifest and
+npm versions are still `1.1.0`. The failed workflow stopped during resolution;
+its CI, tagging, Mozilla submission and publication jobs were skipped. Renaming a
+tag does not update the versions inside its source.
+
+Use **`v1.1.2`** through **Release** (`prepare-release.yml`) for the correction.
+GitHub [does not permit reuse of an immutable release's tag name, even after deletion](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases).
+Leave `v1.1.1` in place; deleting or moving it is not part of this recovery.
+There is no need to create a replacement release page manually.
+
+The workflow used to display preparation as **Prepare release** and publication
+as **Release**. Those names made the wrong entry point look like the normal way
+to start. The current names put new-release preparation under **Release**, with
+the advanced existing-tag path under **Publish release**. The workflow filenames
+are unchanged, so CLI commands using the filenames retain their meaning.
+
 | Condition | Result and recovery |
 | --- | --- |
-| Preparation loses a response after creating a branch or PR | Rerun **Prepare release** for the same version. It reads existing state and reuses exact matches. |
+| Preparation loses a response after creating a branch or PR | Rerun **Release** (`prepare-release.yml`) for the same version. It reads existing state and reuses exact matches. |
 | Preparation creates a branch but PR permission is missing | Enable Actions PR creation, then rerun preparation. The existing branch is preserved. |
 | Release PR is closed without merging | No release. Reopen it explicitly to resume; preparation does not reopen it. |
-| Tag creation succeeds but its response is lost | Rerun the original Release run. The tag must match the verified commit. |
+| Tag creation succeeds but its response is lost | Rerun the original **Publish release** run. The tag must match the verified commit. |
 | AMO review exceeds the 20-minute polling budget | No GitHub publication. The AMO version/source remain available. Rerun after review. |
 | Submission response is lost | Fail without repeating the write. Rerun queries the version before submitting anything. |
 | Same version has different code, license or source | Fail without replacing it. Choose a new version or resolve the discrepancy explicitly. |
@@ -202,6 +225,7 @@ node scripts/package-test.js --signed --xpi=path/to/signed.xpi --output=artifact
 ```
 
 See [preparation design and verification](release-preparation.md),
+[the release-policy review and corrections](release-policy-review.md),
 [the publication qualification](release-qualification.md) and
 [verification evidence](../evidence/release/validation.json). Code, local tests,
 negative signature enforcement and read-only production AMO inspection are
