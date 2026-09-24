@@ -1,11 +1,17 @@
 {
   "manifest_version": 3,
   "name": "Stackma",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Automatically stack new related tabs in Firefox’s native tab groups. Preserve pinned tabs and separate windows.",
-  "permissions": ["webNavigation", "tabGroups", "storage"],
+  "permissions": [
+    "webNavigation",
+    "tabGroups",
+    "storage"
+  ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": [
+      "background.js"
+    ],
     "type": "module"
   },
   "action": {
@@ -13,12 +19,19 @@
     "default_popup": "popup.html",
     "default_icon": "icon.svg"
   },
-  "icons": { "48": "icon.svg", "96": "icon.svg" },
+  "icons": {
+    "48": "icon.svg",
+    "96": "icon.svg"
+  },
   "browser_specific_settings": {
     "gecko": {
       "id": "stackma@extensions.local",
       "strict_min_version": "156.0",
-      "data_collection_permissions": { "required": ["none"] }
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
     }
   }
 }
