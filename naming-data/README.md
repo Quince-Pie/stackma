@@ -85,7 +85,9 @@ CMU's complete copyright notice, redistribution conditions and disclaimer are in
 `CMU-LICENSE.txt`. Retain that file in source distributions and reproduce it in
 the extension package when distributing generated pronunciation data or derived
 metadata. The original editorial selections, senses and pair decisions are
-project-authored. EFF vocabulary is not copied into this pack.
+project-authored and covered by the project's [WTFPL license](../LICENSE).
+That grant does not replace the CMU terms for the pronunciation data or
+derived metadata. EFF vocabulary is not copied into this pack.
 
 CMU is an American English resource and explicitly does not guarantee complete
 accuracy. It does not establish correctness for every accent. The pack includes

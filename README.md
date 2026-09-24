@@ -136,3 +136,13 @@ The supplied design is implemented and engineering-tested; the vocabulary and
 similarity thresholds have not undergone a human outcome study. Better recall or
 fewer wrong-group selections remain unestablished. The broader behavioral SOTA
 claim is provisional, with a [fixed evaluation protocol](docs/naming-human-evaluation.md).
+
+## License
+
+Copyright (C) 2026 Quince Pie <pie@quince.org>.
+Stackma's original code and project-authored material are licensed under
+[WTFPL, Version 2](LICENSE).
+
+The CMU pronunciation data and derived metadata retain their separate
+[CMU license](naming-data/CMU-LICENSE.txt), including its notice and disclaimer
+requirements. Both license files are included in the extension package.
