@@ -1,0 +1,118 @@
+{
+  "date": "2026-09-24T03:38:18.747Z",
+  "baseline": "538841aaab029d984e31e469ebf42fc275322460",
+  "budget": {
+    "minutes": 50,
+    "started": "2026-09-24T03:07:25Z",
+    "completed": "2026-09-24T03:38:18.747Z",
+    "elapsedMinutes": 30.9,
+    "scope": "Includes source/changelog review, implementation, fault tests, self-review and documentation. No delegation."
+  },
+  "contract": "Explicit version creates a reviewable PR; human merge triggers exact-commit CI, create-only tag, existing listed AMO signing and immutable publication. Existing refs and PRs are never rewritten.",
+  "filesSha256": {
+    ".github/workflows/prepare-release.yml": "bab309096ae478669fb6191a52d99d6acd5aab02924629d6a35ae6a79673005b",
+    ".github/workflows/release.yml": "c48619b8a7b672e3ec14c36a045015359536bffca545c8ba78297712638b6a27",
+    ".github/actionlint.yaml": "1f5f6cbf19750158a672cfc01f73bb3c0e7be2e511955538b8d7e8b60d3e7c68",
+    "scripts/ci/check-workflows.js": "f2fbd8b704359f8d493c5fbc69be5bd54dcfb6cee1b3e6758d565d3fded1713d",
+    "scripts/release/package.js": "60cd950d3f43e4e3f310d92e2fe0670783e58aa6a5a35dbe4f740c0d8b225c71",
+    "scripts/release/repository.js": "37987c5d1efba586625a4a992b904c380114e586f9a051637904ae124f2698a9",
+    "scripts/release/prepare.js": "b68a2f0382ac1cf3ea77464456f893e737facfe3d9a6c8d1b891ad0b32d3d637",
+    "scripts/release/resolve.js": "f1753fa5d7ee170f9c06ebc65038d6a174ddc677ee10484bd0b432b89c750760",
+    "scripts/release/tag.js": "ee9a21e227f8d9e03d03fd30d22da6b56587f2e91cdc479f2b660aca8672cd61",
+    "tests/release/package.test.js": "53c8f612ba42c78ee11f6f70775b68c7ca4e3f782ef3703ae3ffbe07b25242b0",
+    "tests/release/prepare.test.js": "f82cb30a15c3c439b22907f0b24c48f0f6d9979844c6339a9183a9d08c265eb2",
+    "README.md": "b8374c6c0f5d5cf98b2940bd6220a6918c552fe02ddd16beed6846113dd8c7fc",
+    "docs/releases.md": "e6e758589b09c675e6f495d3eac85a558340e2be0141d6816486721bedf70fdc",
+    "docs/release-qualification.md": "cee5d1e5aedbfad6c51c4b843aa4f07cc37488133567084b708f4520b14a3aed",
+    "docs/release-preparation.md": "3983d8a6e4cc64890bd3ec0c5e98cd6869726264aef73f24585cd1b7e611f169"
+  },
+  "environment": {
+    "system": "linux 6.18.51 x64",
+    "node": "v24.20.0",
+    "git": "git version 2.55.0",
+    "npm": "11.19.0",
+    "actionlint": "1.7.12\ninstalled by building from source\nbuilt with go1.26.7 compiler for linux/amd64",
+    "zizmor": "zizmor 1.30.1",
+    "shellcheck": "ShellCheck - shell script analysis tool\nversion: 0.11.0\nlicense: GNU General Public License, version 3\nwebsite: https://www.shellcheck.net"
+  },
+  "checks": [
+    {
+      "command": "nix develop --no-update-lock-file --command npm run check",
+      "exitCode": 0,
+      "typecheck": true,
+      "portableTests": 153,
+      "webExt": {
+        "errors": 0,
+        "warnings": 0,
+        "notices": 0
+      },
+      "scope": "Unchanged extension source; completed in this session before the final release-resolver edit, which is outside this target."
+    },
+    {
+      "command": "nix develop --no-update-lock-file --command npm run test:release",
+      "exitCode": 0,
+      "tests": 77,
+      "passed": 77,
+      "failed": 0,
+      "logSha256": "49960b9ff640a2431edaed7c5d9258af7325f6c1ec46c40e54f3ad6e356401ff"
+    },
+    {
+      "command": "nix develop --no-update-lock-file --command npm run test:ci",
+      "exitCode": 0,
+      "tests": 9,
+      "passed": 9,
+      "failed": 0,
+      "logSha256": "226325f7e0837647302ad401a0c5913185abdf5b50ae82a1c67d40bcfcb8882b"
+    },
+    {
+      "command": "nix develop --no-update-lock-file --command node scripts/ci/check-workflows.js",
+      "exitCode": 0,
+      "scope": "actionlint and both concurrency.queue policy guards"
+    },
+    {
+      "command": "nix develop --no-update-lock-file --command zizmor --offline --persona=pedantic .github/workflows",
+      "exitCode": 0,
+      "findings": 0,
+      "existingIgnoredSelfRepositoryFinding": 1
+    },
+    {
+      "command": "nix develop --no-update-lock-file --command shellcheck scripts/ci/*.sh",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "sourceVersions": {
+    "releasePleaseAction": "5.0.0",
+    "releasePleaseLibrary": "17.11.2",
+    "changesetsAction": "2.1.2",
+    "createPullRequest": "8.1.1",
+    "releaseIt": "21.1.0",
+    "githubRest": "2026-03-10",
+    "checkout": "7.0.1"
+  },
+  "findings": {
+    "localContractChecks": "passed",
+    "architectureQualification": "Supported within documented repository and recovery scope; no empirical performance ranking or universal optimality claim.",
+    "liveAcceptance": "unverified",
+    "liveGates": [
+      "Repository allows Actions to create PRs",
+      "Bot-PR CI approval and a reviewed merge",
+      "GitHub-hosted exact merge-commit verification and tag creation",
+      "AMO approval and signed-package verification",
+      "Immutable GitHub publication and asset attestations"
+    ]
+  },
+  "remoteMutationsPerformed": false,
+  "preserved": [
+    "extension/icon.png (pre-existing untracked file)",
+    ".env and environment credentials (not read or staged for this change)"
+  ],
+  "notes": [
+    "Earlier exploratory checks were superseded after correcting the merge-group before-version comparison. The release suite was rerun on the delivered resolver.",
+    "No new runtime dependency or secret was added. Version remains 1.1.0 locally; the workflow prepares the operator-selected next version.",
+    "No published release or GitHub-hosted end-to-end success is asserted."
+  ]
+}

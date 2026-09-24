@@ -71,9 +71,11 @@ test("archive cancellation and repeated failures release open descriptors", asyn
 });
 
 test("queue bridge rejects malformed or cancellation-changing policies that actionlint cannot parse", async () => {
-  const workflow = await readFile(".github/workflows/release.yml", "utf8");
-  verifyQueuePolicy(workflow);
-  for (const bad of [workflow.replace("queue: max", "queue: invalid"), workflow.replace("cancel-in-progress: false", "cancel-in-progress: true"), `${workflow}\nother:\n  queue: max\n`]) {
-    assert.throws(() => verifyQueuePolicy(bad));
+  for (const [file, group] of [["release.yml", "stackma-release"], ["prepare-release.yml", "stackma-release-preparation"]]) {
+    const workflow = await readFile(`.github/workflows/${file}`, "utf8");
+    verifyQueuePolicy(workflow, group);
+    for (const bad of [workflow.replace("queue: max", "queue: invalid"), workflow.replace("cancel-in-progress: false", "cancel-in-progress: true"), `${workflow}\nother:\n  queue: max\n`]) {
+      assert.throws(() => verifyQueuePolicy(bad, group));
+    }
   }
 });

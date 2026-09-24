@@ -1,0 +1,44 @@
+name: Prepare release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: New release version (vMAJOR.MINOR.PATCH, for example v1.1.1)
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stackma-release-preparation
+  cancel-in-progress: false
+  queue: max
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  prepare:
+    name: Prepare a reviewed version update
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write # Create the release branch; never update main or an existing ref.
+      pull-requests: write # Create the version PR; never merge or approve it.
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+      - name: Install the locked release tools
+        run: bash scripts/ci/install-nix.sh
+      - name: Prepare or recover the release PR
+        env:
+          RELEASE_TAG: ${{ inputs.version }}
+          GH_TOKEN: ${{ github.token }}
+        run: nix develop .#release --no-update-lock-file --command node scripts/release/prepare.js

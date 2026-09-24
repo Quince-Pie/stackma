@@ -1,10 +1,13 @@
 name: Release
 
 on:
+  pull_request:
+    types: [closed]
+    branches: [main]
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing stable tag on main (vMAJOR.MINOR.PATCH)
+        description: Existing tag to publish or resume (use Prepare release for a new version)
         type: string
         required: true
 
@@ -22,14 +25,20 @@ defaults:
 
 jobs:
   resolve:
-    name: Resolve the release tag
+    name: Resolve the approved release source
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.pull_request.merged == true &&
+       github.event.pull_request.head.repo.full_name == github.repository &&
+       startsWith(github.event.pull_request.head.ref, 'release/v'))
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 10
     outputs:
       commit: ${{ steps.resolve.outputs.commit }}
       tag: ${{ steps.resolve.outputs.tag }}
+      create-tag: ${{ steps.resolve.outputs.create-tag }}
     steps:
-      - name: Require dispatch from main
+      - name: Require release from main
         env:
           WORKFLOW_REF: ${{ github.ref }}
         run: '[[ "$WORKFLOW_REF" == refs/heads/main ]]'
@@ -38,16 +47,13 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           ref: ${{ github.sha }}
-      - name: Resolve an existing tag in the approved main history
+      - name: Install the locked release tools
+        run: bash scripts/ci/install-nix.sh
+      - name: Resolve the merged release PR or an existing tag
         id: resolve
         env:
           RELEASE_TAG: ${{ inputs.tag }}
-          MAIN_COMMIT: ${{ github.sha }}
-        run: |
-          [[ "$RELEASE_TAG" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]
-          commit=$(git rev-parse --verify "refs/tags/${RELEASE_TAG}^{commit}")
-          git merge-base --is-ancestor "$commit" "$MAIN_COMMIT"
-          printf 'commit=%s\ntag=%s\n' "$commit" "$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+        run: nix develop .#release --no-update-lock-file --command node scripts/release/resolve.js
 
   verify:
     name: Verify the release commit
@@ -58,9 +64,31 @@ jobs:
       ref: ${{ needs.resolve.outputs.commit }}
       release-tag: ${{ needs.resolve.outputs.tag }}
 
+  tag:
+    name: Tag the verified release commit
+    needs: [resolve, verify]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write # Create only the verified tag; existing tags must match.
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - name: Install the locked release tools
+        run: bash scripts/ci/install-nix.sh
+      - name: Create or reconcile the exact tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.resolve.outputs.tag }}
+          RELEASE_COMMIT: ${{ needs.resolve.outputs.commit }}
+          CREATE_TAG: ${{ needs.resolve.outputs.create-tag }}
+        run: nix develop .#release --no-update-lock-file --command node scripts/release/tag.js
+
   sign:
     name: Sign and verify with Mozilla
-    needs: [resolve, verify]
+    needs: [resolve, verify, tag]
     runs-on: ubuntu-24.04
     environment: release-signing
     timeout-minutes: 35

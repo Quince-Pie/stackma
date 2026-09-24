@@ -1,9 +1,11 @@
 # Releasing Stackma
 
-The **Release** workflow submits a stable version to the existing **listed**
+The **Prepare release** workflow creates a version-update PR. Merging that PR
+starts **Release**, which submits a stable version to the existing **listed**
 [Stackma add-on](https://addons.mozilla.org/firefox/addon/stackma/), waits for
 Mozilla approval, verifies the signed package in Firefox 156, and publishes an
-immutable GitHub Release. Normal pushes and CI builds do not release anything.
+immutable GitHub Release. Ordinary pushes, unrelated PRs and CI builds do not
+release anything. You choose the version; commit messages do not choose it.
 
 ## One-time GitHub setup
 
@@ -25,6 +27,16 @@ immutable GitHub Release. Normal pushes and CI builds do not release anything.
    environment files are ignored by Git. Keep `.env` out of commits. No GitHub
    PAT, AMO password, additional signing certificate, or npm publishing token is
    required. Publication uses the job's short-lived `GITHUB_TOKEN`.
+4. Under **Settings → Actions → General → Workflow permissions**, enable
+   **Allow GitHub Actions to create and approve pull requests**. Preparation
+   needs permission to create PRs; it never approves or merges them. Branch/tag
+   rules must permit creation of `release/v*` branches and `v*` tags by the
+   workflow. No protection bypass or force push is used.
+
+GitHub now allows bot-created PRs to run CI with collaborator approval. If the PR
+shows **Approve and run**, approve that run and wait for the checks before merging.
+This uses the built-in token; adding a PAT solely to trigger PR CI is unnecessary.
+See [GitHub's June 2026 change](https://github.blog/changelog/2026-06-11-bot-created-pull-requests-can-run-workflows-if-approved/).
 
 Do not simultaneously edit the same version's source/license in the Mozilla
 Developer Hub or publish the same GitHub release through another client. This
@@ -33,16 +45,39 @@ the other service or an atomic “attach source only if still empty” operation
 
 ## Make a release
 
-1. Choose a new stable `MAJOR.MINOR.PATCH` version. Set it in
-   `extension/manifest.json` and `package.json`; update `package-lock.json` with
-   `npm install --package-lock-only --ignore-scripts`. Keep the existing add-on ID.
-2. Commit the intended source and release automation on `main`. Run the checks
-   described below. Create and push the matching tag, for example `v1.1.1`.
-   Tags must already exist and point into the `main` history selected for dispatch.
-3. In GitHub **Actions → Release → Run workflow**, select branch **main** and enter
-   the tag. The workflow never invents a tag, bumps a version, or changes a listing.
+1. Make sure the intended source and these workflows are committed and pushed to
+   `main`. In **Actions → Prepare release → Run workflow**, select **main** and
+   enter a new version, for example **`v1.1.1`**. Do not create a tag first.
+2. Open the PR linked in the run summary. It updates the manifest, package version,
+   and both root versions in the lockfile. Dependencies and the add-on ID stay the
+   same. Approve CI if requested, review the PR, and merge it after checks pass.
+   Merge, squash and rebase merges are supported. Merging authorizes release.
+3. **Release** starts automatically for the merged release PR. It verifies the
+   exact merged commit, creates the matching tag after CI passes, and continues
+   through Mozilla signing and GitHub publication. Complete any environment
+   approvals configured in your repository.
 4. If Mozilla needs more review time, wait for approval and **rerun the original
-   workflow run**. The workflow reconciles the existing version and draft assets.
+   Release run**. Existing submissions and matching assets are reconciled.
+
+The CLI equivalent of step 1 is:
+
+```sh
+gh workflow run prepare-release.yml --ref main -f version=v1.1.1
+```
+
+**Release → Run workflow** remains available for an **existing** tag, for example
+to resume publication. Entering a new version there does not prepare it. A missing
+tag now produces instructions to use **Prepare release**, instead of Git's
+`fatal: Needed a single revision` error. If verification failed before the tag was
+created, rerun the original merged-PR run, which retains authority to create it.
+
+Prepare one version at a time, merging its PR before preparing the next. A repeat
+preparation reuses the exact existing PR without resetting its branch. An observed
+manual edit, closed PR, duplicate PR history, or conflicting tag stops preparation
+for explicit resolution. To abandon a version, close its PR; it will not release.
+Do not reuse that version's reserved branch for unrelated work. The workflow does
+not automatically delete branches; GitHub's optional delete-after-merge setting
+works because release uses the event's merge commit, not the remaining branch.
 
 On 2026-09-24, read-only authenticated checks confirmed that **1.1.0** was already
 listed and awaiting review, with custom WTFPL metadata. Its uploaded package
@@ -54,8 +89,18 @@ during development of this workflow.
 
 ## What the workflow verifies
 
-The read-only job resolves the tag to a commit and reuses the existing CI workflow
-at that exact checkout. Tag, manifest and npm versions must agree. Versions use
+Preparation computes an expected Git tree in an isolated index using only three
+committed JSON files. It preserves every other tracked file and leaves local work
+untouched. GitHub's returned tree must match. Ref creation uses create-if-absent;
+an existing branch or tag is never moved. Preparation uses no Mozilla credentials.
+
+The read-only resolution job validates a merged, same-repository release PR on
+`main`, or resolves an existing manual tag, and reuses CI at that exact checkout.
+Automatic releases require a version increase over the recorded preparation
+base, which must remain in the merged history. This also permits a merge queue
+to include later non-version commits. A separate write job creates/reconciles the
+tag only after CI passes.
+Tag, manifest and npm versions must agree. Versions use
 three canonical numeric components, each at most 65535. Firefox 156 and the
 existing `stackma@extensions.local` identity remain fixed requirements.
 
@@ -97,6 +142,10 @@ universal optimality.
 
 | Condition | Result and recovery |
 | --- | --- |
+| Preparation loses a response after creating a branch or PR | Rerun **Prepare release** for the same version. It reads existing state and reuses exact matches. |
+| Preparation creates a branch but PR permission is missing | Enable Actions PR creation, then rerun preparation. The existing branch is preserved. |
+| Release PR is closed without merging | No release. Reopen it explicitly to resume; preparation does not reopen it. |
+| Tag creation succeeds but its response is lost | Rerun the original Release run. The tag must match the verified commit. |
 | AMO review exceeds the 20-minute polling budget | No GitHub publication. The AMO version/source remain available. Rerun after review. |
 | Submission response is lost | Fail without repeating the write. Rerun queries the version before submitting anything. |
 | Same version has different code, license or source | Fail without replacing it. Choose a new version or resolve the discrepancy explicitly. |
@@ -115,10 +164,11 @@ to a later service write. Coordinated publishing and protected tags are material
 operating assumptions. Checks detect observed conflicts; they cannot prevent all
 concurrent administrative changes after a check.
 
-Runs queue without canceling an in-progress release; GitHub retains up to 100
-pending runs. Job runtime limits are 5 minutes for resolution, 20 for CI, 35 for
-signing/browser verification, and 20 for publication. Queue/approval waiting time
-is separate. Network calls, archive reads and child processes have additional
+Preparation and publication have separate queues, each retaining up to 100 pending
+runs without canceling active work. Job runtime limits are 10 minutes each for
+preparation, resolution and tag creation, 20 for CI, 35 for signing/browser
+verification, and 20 for publication. Queue/approval waiting time is separate.
+Network calls, archive reads and child processes have additional
 deadlines. Downloads are bounded at AMO's 200 MB archive/source limit. ZIP members
 are streamed with expected-size checks, rather than expanded into an unbounded
 buffer. GitHub history recovery is bounded at 10,000 releases and 16 nested tag
@@ -151,7 +201,8 @@ The ordinary package command uses temporary installation. The release gate uses:
 node scripts/package-test.js --signed --xpi=path/to/signed.xpi --output=artifacts/signed-package.json
 ```
 
-See [the source and design qualification](release-qualification.md) and
+See [preparation design and verification](release-preparation.md),
+[the publication qualification](release-qualification.md) and
 [verification evidence](../evidence/release/validation.json). Code, local tests,
 negative signature enforcement and read-only production AMO inspection are
 verified. A real AMO mutation/approval, GitHub-hosted release run, and immutable

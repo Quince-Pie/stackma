@@ -8,7 +8,7 @@ export const run = promisify(execFile);
 export const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
 export function versionFromTag(tag) {
   assert.equal(tag.trim(), tag, "Whitespace is not permitted in a release tag");
-  assert.match(tag, /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/u, "Use an existing stable vMAJOR.MINOR.PATCH tag");
+  assert.match(tag, /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/u, "Use a stable vMAJOR.MINOR.PATCH version, for example v1.1.1");
   const version = tag.slice(1);
   assert(version.split(".").every(part => Number(part) <= 65535), "Firefox version components must fit 16 bits");
   return version;
