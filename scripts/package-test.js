@@ -5,7 +5,8 @@ import { dirname, resolve } from "node:path";
 import { FirefoxDriver } from "./webdriver.js";
 
 const manifest = JSON.parse(await readFile("extension/manifest.json", "utf8"));
-const path = `dist/stackma-${manifest.version}.xpi`;
+const signed = process.argv.includes("--signed");
+const path = process.argv.find(arg => arg.startsWith("--xpi="))?.slice("--xpi=".length) ?? `dist/stackma-${manifest.version}.xpi`;
 const output = resolve(process.argv.find(arg => arg.startsWith("--output="))?.slice("--output=".length) ?? "evidence/package.json");
 await mkdir(dirname(output), { recursive: true });
 const files = (await readdir("extension")).sort();
@@ -13,8 +14,19 @@ const expected = {};
 for (const file of files) expected[file] = createHash("sha256").update(await readFile(`extension/${file}`)).digest("hex");
 let driver;
 try {
-  driver = await FirefoxDriver.start();
-  const id = await driver.installAddon(path);
+  driver = await FirefoxDriver.start({ prefs: { "xpinstall.signatures.required": true } });
+  const id = await driver.installAddon(path, { temporary: !signed });
+  if (signed) {
+    const signature = await driver.chrome(async addonId => {
+      const { AddonManager } = ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
+      const addon = await AddonManager.getAddonByID(addonId);
+      return {
+        signed: addon.signedState === AddonManager.SIGNEDSTATE_SIGNED,
+        temporary: addon.temporarilyInstalled, active: addon.isActive,
+      };
+    }, id);
+    assert.deepEqual(signature, { signed: true, temporary: false, active: true }, "Mozilla signature and permanent installation are required");
+  }
   const result = await driver.addon(id, async (browser, files) => {
     const actual = {};
     for (const file of files) {
@@ -45,7 +57,7 @@ try {
     passed: true, path, bytes: (await stat(path)).size, sha256: digest,
     firefox: driver.capabilities.browserVersion,
     buildId: driver.capabilities["moz:buildID"], files: expected,
-    checks: ["temporary XPI installation", "every packaged source file matches", "real opener grouping", "native approved name assignment"],
+    checks: [signed ? "permanent XPI installation with verified Mozilla signature" : "temporary XPI installation", "every packaged source file matches", "real opener grouping", "native approved name assignment"],
   };
   await writeFile(output, JSON.stringify(report, null, 2) + "\n");
   console.log(`Packaged extension passed: ${report.bytes} bytes, SHA-256 ${digest}`);

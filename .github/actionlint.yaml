@@ -1,0 +1,9 @@
+# GitHub supports concurrency.queue; actionlint 1.7.12 (including upstream
+# main inspected 2026-09-24) does not yet parse it. scripts/ci/check-workflows.js
+# checks this repository's exact queue policy before actionlint runs.
+# Remove this single-message exception when actionlint adds support.
+# https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#concurrency
+paths:
+  .github/workflows/release.yml:
+    ignore:
+      - '^unexpected key "queue" for "concurrency" section\.'

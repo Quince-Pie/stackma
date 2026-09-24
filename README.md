@@ -94,11 +94,17 @@ updates. Minor/patch updates are grouped; majors remain separately reviewable.
 Updates require review and are not merged automatically. The Firefox baseline
 and checksum-pinned Nix bootstrap are reviewed manually when changed.
 
-Within `nix develop`, workflow checks are `actionlint`,
+Within `nix develop`, workflow checks are `node scripts/ci/check-workflows.js`,
 `zizmor --offline --persona=pedantic .github/workflows`, and
 `shellcheck scripts/ci/*.sh`. The Linux installer tests run with `npm run test:ci`.
 The [CI record](docs/ci.md) explains the source/changelog audit, verification and
 remaining GitHub-hosted execution boundary.
+
+[Releasing Stackma](docs/releases.md) describes the separate manual release flow:
+verify an existing version tag, submit to the existing Mozilla listing, resume
+review when needed, verify the signed XPI in Firefox, and publish an immutable
+GitHub Release. It includes environment-secret setup and recovery instructions.
+Ordinary CI runs remain read-only and do not release the extension.
 
 ## Operational limits
 

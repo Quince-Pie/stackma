@@ -165,9 +165,9 @@ export class FirefoxDriver {
       this.#request(method, `/session/${this.sessionId}${path}`, body));
   }
 
-  async installAddon(path, { allowPrivateBrowsing = true } = {}) {
+  async installAddon(path, { allowPrivateBrowsing = true, temporary = true } = {}) {
     return this.command("POST", "/moz/addon/install", {
-      path: resolve(path), temporary: true, allowPrivateBrowsing,
+      path: resolve(path), temporary, allowPrivateBrowsing,
     });
   }
 

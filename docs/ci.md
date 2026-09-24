@@ -1,5 +1,11 @@
 # Continuous integration contract and verification
 
+The original CI verification record below is historical. The later
+[release integration](releases.md) adds a reusable entry point, release-policy
+tests and the narrowly scoped workflow-syntax bridge invoked with
+`node scripts/ci/check-workflows.js`. Its tools and results are recorded separately
+in [release qualification](release-qualification.md).
+
 ## Scope and budget
 
 Add validation and maintenance for Stackma's existing Firefox 156 extension.

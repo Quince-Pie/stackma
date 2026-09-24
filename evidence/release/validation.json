@@ -1,0 +1,184 @@
+{
+  "reviewedAt": "2026-09-24T02:03:27.637Z",
+  "baseCommit": "2a73512a153f64102b5387fbf289c6aa2ed4dae2",
+  "status": "Locally verified implementation; first authorized hosted publication remains an acceptance gate",
+  "files": {
+    ".github/workflows/ci.yml": "c6bed2ab47128e8f152bbd83115294d210108c6b2c951bff32102f22db9829b6",
+    ".gitignore": "3a2562d0568a896e99c54ea5bfb241619781ef3ce96c3dfae6328c3eaf53423c",
+    "README.md": "85eb119d50deca77e79336dd4687d1efc9ad48d105358ed69482ac87afda5187",
+    "docs/ci.md": "1a6fdcfedb29b9d95e6cd17e24bfbf67bd56ff7cbe480f0491d07562c7eeadb7",
+    "flake.nix": "9d333eda455c7c40a077b1eacf9f060e822da99be486334f228e7876152d9b52",
+    "package-lock.json": "39eee3b7522b9a9574e94e8385fd039f9cf02e4096d67fb69b67e3b1df20468d",
+    "package.json": "bd447856cd5a6c0afe032cbdc4d71eabec97d5fb4fb9347510d09b033a44f076",
+    "scripts/package-test.js": "2b9915243fb48f536831040eb2d497d816649061ccfc3868de638811f97932d1",
+    "scripts/webdriver.js": "0476a68136d3c8597191c3e0129e74829217f4c92f521e05ca7698d6db51384c",
+    ".github/actionlint.yaml": "0bd791b90e5f4edca30b268c8b19f92df8f04c60ecc817e0819f94ffc67091a9",
+    ".github/workflows/release.yml": "a8c58f1469676bd4ad7019f53b88ef7fb8fdd89c647fde14a7de231c8a74faaa",
+    "scripts/ci/check-workflows.js": "66cd857f8ac869d97432584869e01f9530e5918d7bf5503afaf4e7d6201705ed",
+    "docs/releases.md": "67722f48f38ac34fc70771ac5922f5ca6fb45dbec7552dde27ee9e2242f2a80f",
+    "docs/release-qualification.md": "359d44d21773cf39656b4aec3a6df920396865853e32ec09085a9ad638a73853",
+    "tests/release/package.test.js": "ffc4a144789c815b5eb95ec7d9e1a543a1bcface7186e62a7d78f303015be4bf",
+    "tests/release/fixtures.js": "106e0de27e15b13851cc618ec9ce0d3fd9d752917dbf47d1afa93f66f6757dfc",
+    "tests/release/stage.test.js": "8a39c9a2abe5f2ce74f22075f8cbeeadf26279417f9a48c80b9652683bc39445",
+    "tests/release/amo.test.js": "21183fd5fd81c8baaf5b3a613603b4122aa31356bb90c289cc4d42b2602f70df",
+    "scripts/release/amo.js": "8bf27ec12b2fbda349fc447bd3ebafd757198b29c86f5dbaf02eb4ddeb20536b",
+    "tests/release/github.test.js": "a4f2d54bbdb296ea84c6b1492cafb858ebe559f779869c7a9f358931ed81053d",
+    "scripts/release/github.js": "28b08d1c89ecc2a8278e9475f2b5bd246e4b38784d2bd88e94f40e47c06b6835",
+    "scripts/release/publish.js": "6842fbe16be2ca923ddeba737428d899fd0030db8cf88c49658fc64ec899d821",
+    "scripts/release/package.js": "197196a5c3a6eac9508b3da00ece63606da3c67de023d75e88f58e0b59c8447e",
+    "scripts/release/stage.js": "4ab23742b81e63e39595d510b03f50cb4bfbbd901e1eac4be8fdc419fb8fc15d",
+    "scripts/release/assemble.js": "4f5b7b6b5362339be8a9d47deaac4024db9d6a96ef2faa265a8ed87b79c4c899",
+    "scripts/release/sign.js": "9e5615a4aa2247eb1fe23df6d6ff530a3971aeefcc745438d1322269cf14fdc6",
+    "scripts/release/archive.js": "734d63f2911921a17bae6f0edee8abd691a37911a476a973794a3f6a422747ef"
+  },
+  "qualification": {
+    "scope": "GitHub.com Ubuntu24.04 x86-64, listed Stackma, stable tags, Firefox156, coordinated publishing and immutable-release setting configured",
+    "sourceAndChangelogReview": "docs/release-qualification.md",
+    "operatingGuide": "docs/releases.md",
+    "selection": "Explicit per-version license ownership, one verification path, bounded recovery, separate credentials, ID-bound writes",
+    "universalOptimality": "Not established or claimed",
+    "performance": "Mechanism/data-movement bounds only; no latency, RSS or empirical dominance claim"
+  },
+  "environment": {
+    "date": "2026-09-24T01:18:31.681Z",
+    "commit": "04741a71741ee90f03417ebc660b0050311e0102",
+    "architecture": "x64",
+    "kernel": "6.18.51",
+    "logicalCpus": 32,
+    "memoryBytes": 98613477376,
+    "node": "v24.20.0",
+    "npm": "11.19.0",
+    "nix": "nix (Nix) 2.34.8",
+    "firefox": "Mozilla Firefox 156.0",
+    "geckodriver": "geckodriver 0.37.1\n\nThe source code of this program is available from\ntesting/geckodriver in https://hg.mozilla.org/mozilla-central.\n\nThis program is subject to the terms of the Mozilla Public License 2.0.\nYou can obtain a copy of the license at https://mozilla.org/MPL/2.0/.",
+    "actionlint": "1.7.12\ninstalled by building from source\nbuilt with go1.26.7 compiler for linux/amd64",
+    "zizmor": "zizmor 1.30.1",
+    "git": "git version 2.55.0",
+    "webExt": "10.7.0",
+    "yauzl": "3.4.0",
+    "githubCli": "2.101.0",
+    "scope": "Native regression environment; commit identifies its isolated local fixture"
+  },
+  "checks": {
+    "cleanNpmCiIgnoreScripts": true,
+    "strictTypecheck": true,
+    "mozillaLint": true,
+    "portableTests": 147,
+    "installerTests": 9,
+    "releaseTests": 50,
+    "alternativeTests": 74,
+    "browserCases": {
+      "firefox": 20,
+      "metadata": 8,
+      "naming": 15
+    },
+    "nativeIdFixture": true,
+    "actionlintWithQueueBridge": true,
+    "zizmorOfflinePedantic": true,
+    "nixfmt": true,
+    "shellcheck": true,
+    "allFourLinuxShellEvaluations": true,
+    "reproducibleBuild": true,
+    "temporaryPackageInstall": true,
+    "permanentUnsignedRejected": true,
+    "permanentSignedControlAccepted": true,
+    "sourceArchiveRepeatability": true,
+    "environmentFilesExcluded": true,
+    "credentialValuesAbsentFromTaskFiles": true,
+    "preexistingIconPreserved": true
+  },
+  "package": {
+    "passed": true,
+    "path": "dist/stackma-1.1.0.xpi",
+    "bytes": 24528,
+    "sha256": "dd9fac410b814dab597c03ecf39f9c5db35675c9f43cfd0a8630e250bc944ea1",
+    "firefox": "156.0",
+    "buildId": "20260909172920",
+    "files": {
+      "CMU-LICENSE.txt": "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a",
+      "LICENSE": "e5bbd815aebeda8a9c6632d1f6307bb942e07c7d3fa2191691b14709428ecc59",
+      "background.js": "6242296d37ee7a4914ce8fb2eeca1b0dd92a516e14293f1694f047291f7c6162",
+      "group-id-guard.js": "aaa384ab2de262a5bb9ba10283e5d290fbe6d0aac573cabafc2d5b156e7639a0",
+      "icon.svg": "9a239065122ec22504d4428157063aa79fefe504e3c1774264f52338fbd28526",
+      "manifest.json": "dac7a451d53da0ad907ac4380f84d1cedc04e6620fd2e556c9b9476bebc1d543",
+      "name-catalog.js": "75263bb976c806ecc8637147d92c96153728df02393e55c3260bb425281bc41c",
+      "name-generator.js": "c5f0549ab7ed7050c555d573700a13b0165c230de5caa25814f9b939ab8682b7",
+      "namer.js": "e53870bc54b3705dc50f05d0d331eafe86fdc394ffe7f0cace45e1034e3b84c7",
+      "popup.css": "d37f05104466112ce92e29c00c5075b6423a8c87b43234313ca8b3f2b0d30c6d",
+      "popup.html": "f07d4c50c4414f7e86776730bc2f1daac708c42269b8f14231959a4c97fce937",
+      "popup.js": "9df20baa7b0b26908ad1c7960de2c0604f6a708af29f57390ac0fe5801ac7108",
+      "stacker.js": "d38cad80d7fc15bd27dcf6174a7e64452fdacff7ea1f6b3e756a3e4dd846d9b2"
+    },
+    "checks": [
+      "temporary XPI installation",
+      "every packaged source file matches",
+      "real opener grouping",
+      "native approved name assignment"
+    ]
+  },
+  "integration": {
+    "fixtureCommit": "bf8b46654f5496aa68627a2fb70a05b099de1003",
+    "fixtureScope": "Isolated local repository constructed from the task tree; not a root project commit or GitHub-hosted runner",
+    "sourceArchive": {
+      "bytes": 545165,
+      "sha256": "a298ad25a4f7b182dbcfb8abcd76ddcfc5aed80161895bb5f21814e6e4b1978b"
+    },
+    "finalizedAfterFixture": [
+      "tests/release/github.test.js",
+      "scripts/release/github.js"
+    ],
+    "finalizationChecks": "Fresh 50-case release suite covers publication history refresh and failure-body cleanup after staging; unaffected browser/package evidence remains applicable"
+  },
+  "productionReadOnly": {
+    "addonId": "stackma@extensions.local",
+    "version": "1.1.0",
+    "channel": "listed",
+    "statusAtInspection": "unreviewed",
+    "listingStatusAtInspection": "nominated",
+    "customLicenseName": "WTFPL",
+    "sourceAttached": false,
+    "uploadedPackageSha256": "30e45b6588efd608929288d6006e52b915f80e54cce6139f1101f2dce0d26e38",
+    "payloadDifference": "Uploaded package omits project LICENSE and has differently formatted manifest bytes",
+    "remoteMutationsPerformed": false
+  },
+  "signatureControls": {
+    "positive": {
+      "passed": true,
+      "scope": "Public AMO-signed control for Firefox signature gate; not a signed Stackma release",
+      "addon": {
+        "active": true,
+        "id": "uBlock0@raymondhill.net",
+        "signed": true,
+        "temporary": false
+      },
+      "version": "1.75.0",
+      "sha256": "sha256:5b74415860456370644bd80f16125e865b0e6c356bb5dfcfb84069967eaa5287",
+      "firefox": "156.0"
+    },
+    "negative": {
+      "rejected": true,
+      "error": "ERROR_SIGNEDSTATE_REQUIRED",
+      "scope": "Unsigned Stackma XPI under permanent-install/signature-enforcement gate"
+    }
+  },
+  "remainingGates": [
+    "GitHub environments and secrets configured by owner; immutable releases enabled before publication",
+    "First real AMO upload/create/source-attachment/approval and signed Stackma verification",
+    "First GitHub-hosted artifact transfer, release publication and attestation verification"
+  ],
+  "attestationControl": {
+    "attempted": "gh release verify-asset for the existing immutable cli/cli v2.101.0 checksum asset",
+    "result": "Could not run: local GitHub CLI authentication is absent; no verification success claimed"
+  },
+  "evaluatorRepairs": [
+    "actionlint1.7.12 rejects supported concurrency.queue; exact policy bridge and negative tests retain validation",
+    "Whitespace ZIP fixture now explicitly uses UTF-8; rejection may occur at encoding/name policy before a whitespace-specific diagnostic"
+  ],
+  "budget": {
+    "started": "2026-09-24T00:42:06Z",
+    "deadline": "2026-09-24T02:07:06Z",
+    "minutes": 85,
+    "elapsedMinutes": 81.36,
+    "includes": "source and changelog qualification, bounded delegation, implementation, verification and review"
+  }
+}

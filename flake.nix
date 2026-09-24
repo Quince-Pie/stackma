@@ -30,10 +30,18 @@
               nodejs_24
               geckodriver
               zip
+              gitMinimal
               nixfmt
               actionlint
               zizmor
               shellcheck
+            ];
+          };
+          release = pkgs.mkShellNoCC {
+            packages = with pkgs; [
+              nodejs_24
+              gitMinimal
+              gh
             ];
           };
         }
