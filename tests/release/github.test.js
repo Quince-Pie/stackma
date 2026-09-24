@@ -185,7 +185,7 @@ test("failed GitHub reads cancel their bodies and distinguish absence from autho
 });
 
 test("public AMO eligibility is revalidated without forwarding GitHub or AMO credentials",async()=>{
-  const record={id:"stackma@extensions.local",channel:"listed",version:"1.1.1",versionId:42,signed:{sha256:"a".repeat(64),bytes:100},license:{sha256:sha256("terms")}};
+  const record={id:"stackma@extensions.local",channel:"listed",version:"1.1.1",versionId:42,signed:{sha256:"a".repeat(64),bytes:100},license:{sha256:sha256("terms"),apiSha256:sha256("terms")}};
   const addon={guid:record.id,status:"public",is_disabled:false};
   const version={id:42,version:record.version,channel:"listed",license:{text:{"en-US":"terms"}},file:{status:"public",hash:`sha256:${record.signed.sha256}`,size:100}};
   const fake=async(url,options)=>{assert.equal(options.headers,undefined);return Response.json(url.includes("versions/")?version:addon);};
@@ -201,4 +201,23 @@ test("AMO approval withdrawal between staging and publication preserves the draf
   const f=await fixture(t);let checks=0;
   await assert.rejects(()=>publishRelease({...f.options,amoCheck:async()=>{if(++checks===2)throw new Error("approval withdrawn");}}),/approval withdrawn/u);
   assert.equal(f.history[0].draft,true);assert.equal(f.history[0].assets.length,4);
+});
+
+test("anonymous publication checks the same rendered license without accepting changed links or terms", async () => {
+  const raw = "Copyright <sam@hocevar.net>\nUnchanged terms";
+  const api = 'Copyright &lt;<a href="/" rel="nofollow">sam@hocevar.net</a>&gt;\nUnchanged terms';
+  const record = { id: "stackma@extensions.local", channel: "listed", version: "1.1.2", versionId: 42,
+    signed: { sha256: "a".repeat(64), bytes: 100 }, license: { sha256: sha256(raw), apiSha256: sha256(api) } };
+  const addon = { guid: record.id, status: "public", is_disabled: false };
+  const version = { id: 42, version: record.version, channel: "listed", license: { text: { "en-US": api } },
+    file: { status: "public", hash: `sha256:${record.signed.sha256}`, size: 100 } };
+  const fake = async (url, options) => {
+    assert.equal(options.headers, undefined);
+    return Response.json(url.includes("versions/") ? version : addon);
+  };
+  await checkAmoPublication(record, fake);
+  for (const text of [api.replace("Unchanged", "Changed"), api.replace('href="/"', 'href="https://evil.invalid/"')]) {
+    version.license.text["en-US"] = text;
+    await assert.rejects(() => checkAmoPublication(record, fake), /license changed/u);
+  }
 });

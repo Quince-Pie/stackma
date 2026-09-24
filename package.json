@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@types/firefox-webext-browser": "143.0.0",
+    "parse5": "8.0.1",
     "typescript": "7.0.2",
     "web-ext": "10.7.0",
     "yauzl": "3.4.0"

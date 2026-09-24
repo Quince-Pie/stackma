@@ -4,6 +4,7 @@ import { setTimeout as delay } from "node:timers/promises";
 import Client, { JwtApiAuth } from "web-ext/util/submit-addon";
 import { sha256 } from "./package.js";
 import { verifyPayload } from "./archive.js";
+import { matchesAmoLicense } from "./license.js";
 
 const origin = "https://addons.mozilla.org";
 const baseUrl = new URL(`${origin}/api/v5/`);
@@ -149,7 +150,8 @@ export async function signRelease({ client, context, directory, output, verify =
     assert.equal(version.version, context.version, "AMO version mismatch");
     assert.equal(version.channel, "listed", "AMO channel mismatch");
     assert.equal(version.is_disabled, false, "AMO version is disabled or its state is unavailable");
-    assert.equal(version.license?.text?.["en-US"], licenseText, "AMO license differs; do not rewrite existing version metadata");
+    assert(matchesAmoLicense(version.license?.text?.["en-US"], context.license.sha256),
+      "AMO license differs from the expected text or link destinations; do not rewrite existing version metadata");
     assert(Number.isSafeInteger(version.id) && version.id > 0, "Invalid AMO version ID");
     assert(version.file && ["unreviewed", "public"].includes(version.file.status), "AMO version is disabled, rejected or in an unsupported state; inspect the Developer Hub");
     assert.match(version.file.hash, /^sha256:[a-f0-9]{64}$/u);
@@ -200,7 +202,13 @@ export async function signRelease({ client, context, directory, output, verify =
       continue;
     }
     report({ state: approved ? "approved-and-signed" : "awaiting-review", versionId: version.id });
-    if (approved) return { versionId: version.id, signed: { sha256: verifiedFileHash.slice(7), bytes: verifiedBytes } };
+    if (approved) return {
+      versionId: version.id,
+      signed: { sha256: verifiedFileHash.slice(7), bytes: verifiedBytes },
+      // Keep the submitted text identity and the verified API representation
+      // distinct. Publication can then recheck the exact observed representation.
+      license: { ...context.license, apiSha256: sha256(version.license.text["en-US"]) },
+    };
     await delay(client.pollMs, undefined, { signal: client.signal });
     version = await client.version(context.id, context.version);
     assert(version, "AMO version disappeared");

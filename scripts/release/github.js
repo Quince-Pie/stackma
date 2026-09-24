@@ -95,7 +95,8 @@ export async function checkAmoPublication(record, fetchImpl = fetch) {
   assert.equal(version.file.hash, `sha256:${record.signed.sha256}`, "AMO file changed since verification");
   assert.equal(version.file.size, record.signed.bytes);
   assert.equal(typeof version.license?.text?.["en-US"], "string", "AMO license metadata is unavailable");
-  assert.equal(sha256(version.license.text["en-US"]), record.license.sha256, "AMO license changed since verification");
+  assert.match(record.license.apiSha256, /^[a-f0-9]{64}$/u, "Missing verified AMO license representation");
+  assert.equal(sha256(version.license.text["en-US"]), record.license.apiSha256, "AMO license changed since verification");
 }
 
 export function matchingRelease(releases, tag, marker) {

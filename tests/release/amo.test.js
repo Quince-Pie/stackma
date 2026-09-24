@@ -9,13 +9,13 @@ import { archive } from "./fixtures.js";
 async function fixture(t, overrides = {}) {
   const directory = await temporary(t), unsigned = Buffer.from("tested XPI"), source = Buffer.from("reviewable source"), signed = Buffer.from("Mozilla signed XPI");
   await writeFile(`${directory}/unsigned.xpi`, unsigned); await writeFile(`${directory}/source.zip`, source);
-  const licenseText="WTFPL original work; CMU retains its terms";
+  const licenseText=overrides.licenseText ?? "WTFPL original work; CMU retains its terms";
   await writeFile(`${directory}/license.txt`,licenseText);
   const context = { id: "stackma@extensions.local", version: "1.1.1", channel: "listed", unsigned: { sha256: sha256(unsigned) }, source: { sha256: sha256(source) }, license:{name:"WTFPL; CMU",sha256:sha256(licenseText)} };
   const events = [];
   const state = { existing: true, public: true, source: true, addonPublic: true, ...overrides };
   const detail = () => ({ id: 42, version: context.version, channel: state.channel ?? "listed", is_disabled: state.disabled ?? false,
-    license: {text:{"en-US":state.wrongLicense?"other":licenseText}},
+    license: {text:{"en-US":state.wrongLicense?"other":state.apiLicense ?? licenseText}},
     source: state.source ? "https://addons.mozilla.org/source/42" : null,
     file: { status: state.public ? "public" : "unreviewed", hash: `sha256:${sha256(signed)}`, size: signed.length, url: "https://addons.mozilla.org/file/42" } });
   const client = {
@@ -39,6 +39,22 @@ test("existing approved listed version resumes without upload or write", async t
   const f = await fixture(t); const result = await signRelease(f.options);
   assert.equal(result.versionId, 42);
   assert(!f.events.includes("upload") && !f.events.includes("create") && !f.events.includes("patch-source"));
+});
+
+test("an existing version with AMO-rendered license resumes and attaches only its missing source", async t => {
+  const raw = "Copyright <pie@quince.org>\nThe original terms remain unchanged.";
+  const apiLicense = 'Copyright &lt;<a href="/" rel="nofollow">pie@quince.org</a>&gt;\nThe original terms remain unchanged.';
+  const f = await fixture(t, { licenseText: raw, apiLicense, source: false });
+  const result = await signRelease(f.options);
+  assert.equal(result.versionId, 42);
+  assert.equal(result.license.sha256, sha256(raw));
+  assert.equal(result.license.apiSha256, sha256(apiLicense));
+  assert(!f.events.includes("upload") && !f.events.includes("create"));
+  assert.equal(f.events.filter(event => event === "patch-source").length, 1);
+  assert(f.events.indexOf("verify-payload") < f.events.indexOf("patch-source"));
+  f.state.apiLicense = apiLicense.replace("original terms", "different terms");
+  await assert.rejects(() => signRelease(f.options), /license differs/u);
+  assert.equal(f.events.filter(event => event === "patch-source").length, 1);
 });
 
 test("new version submits exactly the tested XPI and verifies before attaching source", async t => {

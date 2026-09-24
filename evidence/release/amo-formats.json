@@ -1,0 +1,119 @@
+{
+  "date": "2026-09-24T05:14:56.513Z",
+  "baseline": "9038a87ab8d754fe11156acfb4ebce5d11325636",
+  "budget": {
+    "started": "2026-09-24T04:30:26Z",
+    "limitMinutes": 45,
+    "elapsedMinutes": 44.51
+  },
+  "decision": "Use a fresh release per user direction. Controller separation and the narrow email-regex prototype were removed. Validate the HTML API with parse5; preserve exact payload checks by preparing an AMO-stable manifest representation.",
+  "nextVersion": "1.1.3",
+  "remoteMutationsPerformed": false,
+  "filesSha256": {
+    "extension/manifest.json": "d80efd567648f75da2a5489c07a9a31f5755d35886e6c8c21d0d3f84545365d1",
+    "package.json": "733db277eefc933fd6d9f30e393b7e1f1889ca7e97cef67c4fcb5a3e37e26d96",
+    "package-lock.json": "b012b3f86331e4772a39612e47dfba058a7a59e07ffb94d5edd0027e9f00d2f8",
+    "scripts/release/license.js": "f19235757948f66cfe45c58c4f504fa2dfdebc7b123a1cce8e724269e6eb055f",
+    "scripts/release/amo.js": "afdbcf04a6dec9a71f49f1b535b104b8cf741a0760df878ad5383e6d977a1011",
+    "scripts/release/github.js": "deb5a4a380f306f7a07385952322be4d40876434a48a1a61c7400c789fc1fb59",
+    "scripts/release/package.js": "018c0fd22d629faba3cd30355e2bfd3cf5db104f9212e2f90c8476800db9abc3",
+    "scripts/release/prepare.js": "3d363a7e9ad60c293b334439df2056448afdc0aa0f86499ec1c5d321f770864f",
+    "tests/release/license.test.js": "c364dc558d3e1438a04177e46f11490ef8335af26967af05ddc918b1f9388552",
+    "tests/release/manifest.test.js": "e6b940831f6185862d832f302431f4871918852c6e079abec4c97b4d8672207d",
+    "tests/release/amo.test.js": "15bf28a9c70d6425c4f31b6cc85e6d6cd5e306075775429608846ce157b73933",
+    "tests/release/github.test.js": "766810b07793e711d70a0bdd6b37704879cba89350a901bdbcd64ff8d412835d",
+    "tests/release/prepare.test.js": "c9a6eea111142197b05cce21bead1ff5af097e8bac1fde701979de4dd122fdbc",
+    "tests/release/fixtures/amo-license-1.1.2.txt": "7d7fe17a1f0e298361be4f27309b89ddc33363e33c0812635e02faff6a62d96d",
+    "tests/release/fixtures/amo-manifest-1.1.2.json": "d80efd567648f75da2a5489c07a9a31f5755d35886e6c8c21d0d3f84545365d1",
+    "docs/amo-formats.md": "159be4755983a3dd932a6f2a579a44f9a3e9ba2cb5d4d20748e3918a3de81b43",
+    "docs/releases.md": "d9665b495332ba467c6fe48b5ca247c8151aa64b9f400b2cc7a949ce7bc7e5b5",
+    "README.md": "70236df1c3f8ea95d8dca891b15e1931350c30ab658e57ce88dc44a79db96ac8",
+    ".github/workflows/prepare-release.yml": "530f8a0d9f174dcc48f9c0ccc3fd27884ddb74a9a2a8a93b39112dfcf97bf085"
+  },
+  "sources": {
+    "addonsServer": "4b4e5bb354a846a548a0baade9f21504a2c5a92a",
+    "parse5": "8.0.1",
+    "entities": "8.1.0"
+  },
+  "checks": [
+    {
+      "command": "npm run test:release",
+      "tests": 89,
+      "passed": 89,
+      "failed": 0,
+      "exitCode": 0,
+      "logSha256": "65b2c26cf64f83cf30a82c9827602c366d8c95ce4b79dfacc7c4c3e9eb3c7b6d"
+    },
+    {
+      "command": "npm run check",
+      "exitCode": 0,
+      "scope": "153 portable tests, type checking and Mozilla lint after dependency and manifest changes; later edits affected only release scripts/tests."
+    },
+    {
+      "command": "node scripts/ci/check-workflows.js",
+      "exitCode": 0
+    },
+    {
+      "command": "zizmor --offline --persona=pedantic .github/workflows",
+      "exitCode": 0
+    },
+    {
+      "command": "verifyPayload(baseline, observed AMO file); verifyPayload(canonical candidate, observed AMO file)",
+      "readOnly": true,
+      "version": "1.1.2",
+      "baselinePayloadComparison": "failed on manifest normalization",
+      "candidatePayloadComparison": "passed for every original member",
+      "originalMembers": 13,
+      "baselineSha256": "0f2711765b665102fa7f20351b18760c9ba0c0e7d98c92d883fc7d281302ceaf",
+      "candidateSha256": "1628fa5122510f439c807193280295a85b96a5b7482c189f942183cb0b54b468",
+      "amoSha256": "62a2a86c46c08389f4ef8e1cf333fe45544aeec19cc82099703948793cc6d3b0",
+      "licenseMatched": true,
+      "scope": "Candidate is an isolated formatting-only test copy at 1.1.2. It is not a replacement release; the user selected a fresh 1.1.3 release."
+    },
+    {
+      "command": "node /tmp/stackma/scripts/package-test.js --xpi=dist/stackma-1.1.2.xpi --output=/tmp/stackma/artifacts/amo-license-recovery/canonical-package.json",
+      "cwd": "isolated formatting-only 1.1.2 test copy",
+      "passed": true,
+      "path": "dist/stackma-1.1.2.xpi",
+      "bytes": 24529,
+      "sha256": "1628fa5122510f439c807193280295a85b96a5b7482c189f942183cb0b54b468",
+      "firefox": "156.0",
+      "buildId": "20260909172920",
+      "files": {
+        "CMU-LICENSE.txt": "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a",
+        "LICENSE": "e5bbd815aebeda8a9c6632d1f6307bb942e07c7d3fa2191691b14709428ecc59",
+        "background.js": "6242296d37ee7a4914ce8fb2eeca1b0dd92a516e14293f1694f047291f7c6162",
+        "group-id-guard.js": "aaa384ab2de262a5bb9ba10283e5d290fbe6d0aac573cabafc2d5b156e7639a0",
+        "icon.svg": "9a239065122ec22504d4428157063aa79fefe504e3c1774264f52338fbd28526",
+        "manifest.json": "d80efd567648f75da2a5489c07a9a31f5755d35886e6c8c21d0d3f84545365d1",
+        "name-catalog.js": "75263bb976c806ecc8637147d92c96153728df02393e55c3260bb425281bc41c",
+        "name-generator.js": "c5f0549ab7ed7050c555d573700a13b0165c230de5caa25814f9b939ab8682b7",
+        "namer.js": "e53870bc54b3705dc50f05d0d331eafe86fdc394ffe7f0cace45e1034e3b84c7",
+        "popup.css": "d37f05104466112ce92e29c00c5075b6423a8c87b43234313ca8b3f2b0d30c6d",
+        "popup.html": "f07d4c50c4414f7e86776730bc2f1daac708c42269b8f14231959a4c97fce937",
+        "popup.js": "9df20baa7b0b26908ad1c7960de2c0604f6a708af29f57390ac0fe5801ac7108",
+        "stacker.js": "d38cad80d7fc15bd27dcf6174a7e64452fdacff7ea1f6b3e756a3e4dd846d9b2"
+      },
+      "checks": [
+        "temporary XPI installation",
+        "every packaged source file matches",
+        "real opener grouping",
+        "native approved name assignment"
+      ]
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "acceptance": {
+    "localCorrectness": "passed",
+    "qualification": "Source-backed HTML representation validation and manifest encoding for this extension; strict XPI member comparisons retained. No universal optimum or performance superiority claimed.",
+    "liveNewRelease": "Not performed. AMO submission/approval, permanent signed installation and GitHub publication of 1.1.3 remain acceptance gates."
+  },
+  "preserved": [
+    "Existing tags and AMO submission",
+    "LICENSE and CMU-LICENSE.txt bytes",
+    "Pre-existing untracked extension/icon.png"
+  ]
+}

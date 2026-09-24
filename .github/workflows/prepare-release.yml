@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: New version (e.g. v1.1.2). Creates a PR; do not create a tag or GitHub Release first.
+        description: New unused version (vMAJOR.MINOR.PATCH). Creates a PR; do not create a tag or GitHub Release first.
         type: string
         required: true
 

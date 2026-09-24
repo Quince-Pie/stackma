@@ -3,7 +3,7 @@ import { appendFile, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { run, validateMetadata, versionFromTag } from "./package.js";
+import { run, serializeManifest, validateMetadata, versionFromTag } from "./package.js";
 import { RepositoryGitHub } from "./repository.js";
 
 export const versionPaths = ["extension/manifest.json", "package.json", "package-lock.json"];
@@ -25,7 +25,7 @@ export function bumpVersions(tag, texts) {
   validateMetadata(`v${manifest.version}`, manifest, pkg, lock);
   requireIncrease(manifest.version, version);
   manifest.version = pkg.version = lock.version = lock.packages[""].version = version;
-  return [manifest, pkg, lock].map(value => JSON.stringify(value, null, 2) + "\n");
+  return [serializeManifest(manifest), ...[pkg, lock].map(value => JSON.stringify(value, null, 2) + "\n")];
 }
 
 export async function metadataAt(commit, cwd) {

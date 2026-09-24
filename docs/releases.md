@@ -48,7 +48,7 @@ the other service or an atomic “attach source only if still empty” operation
 
 1. Make sure the intended source and these workflows are committed and pushed to
    `main`. In **Actions → Release → Run workflow**, select **main** and
-   enter a new version, for example **`v1.1.2`**. This is `prepare-release.yml`.
+   enter a new version, for example **`v1.1.3`**. This is `prepare-release.yml`.
    **Do not create a tag or use GitHub's Releases → Draft a new release page.**
    The workflow creates the tag and GitHub Release at the appropriate stages.
 2. Open the PR linked in the run summary. It updates the manifest, package version,
@@ -65,7 +65,7 @@ the other service or an atomic “attach source only if still empty” operation
 The CLI equivalent of step 1 is:
 
 ```sh
-gh workflow run prepare-release.yml --ref main -f version=v1.1.2
+gh workflow run prepare-release.yml --ref main -f version=v1.1.3
 ```
 
 **Publish release → Run workflow** remains available for an **existing prepared** tag, for example
@@ -143,6 +143,25 @@ claim of SLSA build provenance, independent approval of the code, or proof of
 universal optimality.
 
 ## Recovery and limits
+
+### The v1.1.2 AMO format failure
+
+Mozilla accepted version `1.1.2`, but returned its license as HTML and normalized
+the manifest's JSON encoding. Those transformations exposed two invalid
+assumptions in our checks. The [AMO format correction](amo-formats.md) documents
+the provider code, fixes and verification.
+
+Use a new **`v1.1.3`** release after pushing the fixes. Keep the existing `v1.1.2`
+tag and submission intact. The release still uses the code at its own tag;
+there is no separate recovery controller or automatic license rewrite.
+The license parser verifies the complete plain text and link destinations.
+`license.sha256` identifies the submitted text; `license.apiSha256` identifies
+the verified API HTML and is checked again before GitHub publication.
+
+The manifest now uses ASCII JSON escapes, two-space indentation and no final
+newline, matching AMO's normalizer for this manifest. Preparation preserves that
+encoding. JSON values and Firefox UI strings are unchanged. ZIP verification
+still requires every original member to match exactly, including the manifest.
 
 ### The accidentally published v1.1.1
 

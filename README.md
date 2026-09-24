@@ -101,7 +101,7 @@ The [CI record](docs/ci.md) explains the source/changelog audit, verification an
 remaining GitHub-hosted execution boundary.
 
 [Releasing Stackma](docs/releases.md) starts with **Actions → Release**
-(`prepare-release.yml`): enter a new version such as `v1.1.2`, approve CI if
+(`prepare-release.yml`): enter a new version such as `v1.1.3`, approve CI if
 requested, and merge the generated version PR. **Publish release** then verifies
 the merged source, creates its tag, submits
 to the existing Mozilla listing, verifies the signed XPI in Firefox, and publishes

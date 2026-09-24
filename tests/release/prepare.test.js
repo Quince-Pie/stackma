@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import test from "node:test";
 import { bumpVersions, prepareRelease, requireIncrease, versionPaths, versionTree } from "../../scripts/release/prepare.js";
@@ -15,6 +15,17 @@ const initial = [
 ];
 const serialize = value => JSON.stringify(value, null, 2) + "\n";
 
+test("preparation and publication transport load without installed npm dependencies", async t => {
+  const directory = await temporary(t);
+  await writeFile(`${directory}/package.json`, '{"type":"module"}');
+  for (const file of ["prepare.js", "repository.js", "github.js", "package.js"]) {
+    await copyFile(resolve(`scripts/release/${file}`), `${directory}/${file}`);
+  }
+  const result = await run(process.execPath, ["--input-type=module", "-e", "await import('./prepare.js'); await import('./github.js'); console.log('loaded')"],
+    { cwd: directory, timeout: 10_000 });
+  assert.equal(result.stdout.trim(), "loaded");
+});
+
 async function fixture(t) {
   const cwd = await temporary(t);
   const env = { ...process.env, GIT_AUTHOR_NAME: "Fixture", GIT_AUTHOR_EMAIL: "fixture@example.invalid",
@@ -29,7 +40,7 @@ async function fixture(t) {
   // Independent tree oracle: edit exactly the four fields and let Git stage it.
   const expected = structuredClone(initial);
   expected[0].version = expected[1].version = expected[2].version = expected[2].packages[""].version = "1.1.1";
-  for (const [index, path] of versionPaths.entries()) await writeFile(`${cwd}/${path}`, serialize(expected[index]));
+  for (const [index, path] of versionPaths.entries()) await writeFile(`${cwd}/${path}`, index === 0 ? JSON.stringify(expected[index], null, 2) : serialize(expected[index]));
   await git("add", ...versionPaths); const tree = await git("write-tree");
   await git("reset", "--hard", "HEAD");
   const refs = new Map(), commits = new Map(), pulls = [], calls = [];
@@ -52,7 +63,7 @@ async function fixture(t) {
       if (path === "git/trees") {
         assert.equal(body.base_tree, await git("rev-parse", `${mainCommit}^{tree}`));
         assert.deepEqual(body.tree.map(entry => entry.path), versionPaths);
-        assert.deepEqual(body.tree.map(entry => entry.content), expected.map(serialize));
+        assert.deepEqual(body.tree.map(entry => entry.content), expected.map((value, index) => index === 0 ? JSON.stringify(value, null, 2) : serialize(value)));
         result = { sha: tree };
       } else if (path === "git/commits") {
         const sha = await git("commit-tree", body.tree, "-p", body.parents[0], "-m", body.message);

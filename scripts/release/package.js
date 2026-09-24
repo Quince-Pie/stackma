@@ -6,6 +6,15 @@ import { promisify } from "node:util";
 
 export const run = promisify(execFile);
 export const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
+
+// AMO's normalize task writes json.dumps(..., indent=2): ASCII-escaped JSON,
+// two-space indentation and no trailing newline. Keep our manifest in that
+// representation before packaging, so its bytes survive upload normalization.
+export function serializeManifest(manifest) {
+  return JSON.stringify(manifest, null, 2).replace(/[\u007f-\uffff]/g,
+    character => `\\u${character.charCodeAt(0).toString(16).padStart(4, "0")}`);
+}
+
 export function versionFromTag(tag) {
   assert.equal(tag.trim(), tag, "Whitespace is not permitted in a release tag");
   assert.match(tag, /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/u, "Use a stable vMAJOR.MINOR.PATCH version, for example v1.1.1");
