@@ -25,12 +25,15 @@
       devShells = forAllSystems (
         { pkgs }:
         {
-          default = pkgs.mkShell {
+          default = pkgs.mkShellNoCC {
             packages = with pkgs; [
               nodejs_24
               geckodriver
               zip
               nixfmt
+              actionlint
+              zizmor
+              shellcheck
             ];
           };
         }

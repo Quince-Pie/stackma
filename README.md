@@ -81,6 +81,25 @@ node scripts/compile-names.js
 npm run check:catalog
 ```
 
+## CI and maintenance
+
+[CI](.github/workflows/ci.yml) checks pull requests, `main`, merge queues and a
+weekly UTC schedule. It uses the locked Nix toolchain and a verified Firefox
+156.0 download, runs source/workflow/browser checks, and compares two XPI builds.
+Successful runs provide the unsigned XPI directly as an artifact, with separate
+diagnostics and checksums. Artifacts expire after 14 days.
+
+[Dependabot](.github/dependabot.yml) proposes weekly npm, Actions and Nix-lock
+updates. Minor/patch updates are grouped; majors remain separately reviewable.
+Updates require review and are not merged automatically. The Firefox baseline
+and checksum-pinned Nix bootstrap are reviewed manually when changed.
+
+Within `nix develop`, workflow checks are `actionlint`,
+`zizmor --offline --persona=pedantic .github/workflows`, and
+`shellcheck scripts/ci/*.sh`. The Linux installer tests run with `npm run test:ci`.
+The [CI record](docs/ci.md) explains the source/changelog audit, verification and
+remaining GitHub-hosted execution boundary.
+
 ## Operational limits
 
 Grouping is asynchronous. It re-reads endpoints and retries a failed operation

@@ -1,15 +1,19 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readFile, readdir, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
 import { FirefoxDriver } from "./webdriver.js";
 
 const manifest = JSON.parse(await readFile("extension/manifest.json", "utf8"));
 const path = `dist/stackma-${manifest.version}.xpi`;
+const output = resolve(process.argv.find(arg => arg.startsWith("--output="))?.slice("--output=".length) ?? "evidence/package.json");
+await mkdir(dirname(output), { recursive: true });
 const files = (await readdir("extension")).sort();
 const expected = {};
 for (const file of files) expected[file] = createHash("sha256").update(await readFile(`extension/${file}`)).digest("hex");
-const driver = await FirefoxDriver.start();
+let driver;
 try {
+  driver = await FirefoxDriver.start();
   const id = await driver.installAddon(path);
   const result = await driver.addon(id, async (browser, files) => {
     const actual = {};
@@ -43,8 +47,19 @@ try {
     buildId: driver.capabilities["moz:buildID"], files: expected,
     checks: ["temporary XPI installation", "every packaged source file matches", "real opener grouping", "native approved name assignment"],
   };
-  await writeFile("evidence/package.json", JSON.stringify(report, null, 2) + "\n");
+  await writeFile(output, JSON.stringify(report, null, 2) + "\n");
   console.log(`Packaged extension passed: ${report.bytes} bytes, SHA-256 ${digest}`);
+} catch (error) {
+  await writeFile(output, JSON.stringify({ passed: false, path, error: String(error) }, null, 2) + "\n");
+  // start() cleans up internally before rejecting, so no driver is assigned
+  // on that path. Preserve its captured process log for hosted-runner diagnosis.
+  if (error && typeof error === "object" && "driverLog" in error && typeof error.driverLog === "string") {
+    await writeFile(`${output}.log`, error.driverLog);
+  }
+  throw error;
 } finally {
-  await driver.close();
+  if (driver) {
+    await driver.close();
+    await writeFile(`${output}.log`, driver.logs);
+  }
 }

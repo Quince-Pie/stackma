@@ -1,0 +1,141 @@
+{
+  "completedAt": "2026-09-23T23:54:19.374Z",
+  "passed": true,
+  "scope": "Complete run-command sequence of the candidate workflow in a disposable local Ubuntu KVM guest",
+  "guest": {
+    "distribution": "Ubuntu 24.04.5 LTS",
+    "image": "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img",
+    "imageSha256": "612b2c0cc1bc413a6cb8c38fd611794caf0f2b436c50013d8b3794db12ad7354",
+    "imageChecksumSource": "https://cloud-images.ubuntu.com/noble/current/SHA256SUMS",
+    "imageLastModified": "2026-09-11T13:24:52Z",
+    "qemu": "11.1.1",
+    "accelerator": "KVM",
+    "vcpus": 4,
+    "memoryMiB": 4096,
+    "diskVirtualGiB": 20,
+    "processTimeoutSeconds": 720,
+    "additionalPackages": [
+      "ca-certificates",
+      "curl",
+      "xz-utils",
+      "git",
+      "libgtk-3-0t64",
+      "libdbus-glib-1-2",
+      "libasound2t64",
+      "libxt6t64",
+      "libnss3",
+      "libx11-xcb1",
+      "libgbm1",
+      "libpci3",
+      "fonts-dejavu-core"
+    ]
+  },
+  "inputs": {
+    "sourceArchiveSha256": "338addaf5e275c13e950b790b34262d868ed65feba98da463fc16b5310d87266",
+    "cloudInitSha256": "6342a23d4b7c95fae06a1b28232a6aa1ec2f3871dbed206527f2a6a3bdc51e6d",
+    "cloudMetadataSha256": "9cd9a61dacbc1e0cbcca2f9cb559eb452b4bc8efb253c7de0726415f27be7a6e"
+  },
+  "environment": {
+    "date": "2026-09-23T23:51:40.462Z",
+    "commit": "28819ad2c52ebb3badd884a65bc6e68c9740d876",
+    "architecture": "x64",
+    "kernel": "6.8.0-139-generic",
+    "logicalCpus": 4,
+    "memoryBytes": 4105367552,
+    "node": "v24.20.0",
+    "npm": "11.19.0",
+    "nix": "nix (Nix) 2.35.2",
+    "firefox": "Mozilla Firefox 156.0",
+    "geckodriver": "geckodriver 0.37.1\n\nThe source code of this program is available from\ntesting/geckodriver in https://hg.mozilla.org/mozilla-central.\n\nThis program is subject to the terms of the Mozilla Public License 2.0.\nYou can obtain a copy of the license at https://mozilla.org/MPL/2.0/.",
+    "actionlint": "1.7.12\ninstalled by building from source\nbuilt with go1.26.7 compiler for linux/amd64",
+    "zizmor": "zizmor 1.30.1"
+  },
+  "checks": {
+    "upstreamNixDaemonInstallation": true,
+    "pinnedFirefoxDownloadAndExtraction": true,
+    "flakeCheckAllSystemsNoBuild": true,
+    "nixfmt": true,
+    "actionlint": true,
+    "zizmorOfflinePedantic": true,
+    "shellcheck": true,
+    "npmCiIgnoreScripts": true,
+    "typecheck": true,
+    "webExtLint": true,
+    "unitTests": {
+      "passed": 156,
+      "failed": 0
+    },
+    "alternativeTests": {
+      "passed": 74,
+      "failed": 0
+    },
+    "catalogRegeneration": true,
+    "licenseEquality": true,
+    "browserSuites": {
+      "firefox-tests.json": {
+        "passed": true,
+        "cases": 20
+      },
+      "metadata-tests.json": {
+        "passed": true,
+        "cases": 8
+      },
+      "naming-tests.json": {
+        "passed": true,
+        "cases": 15
+      }
+    },
+    "nativeIdFixture": true,
+    "reproducibleBuild": {
+      "passed": true,
+      "path": "/home/ubuntu/stackma/dist/stackma-1.1.0.xpi",
+      "bytes": 24528,
+      "sha256": "dd9fac410b814dab597c03ecf39f9c5db35675c9f43cfd0a8630e250bc944ea1",
+      "identicalBuilds": 2
+    },
+    "packagedAddon": {
+      "passed": true,
+      "path": "dist/stackma-1.1.0.xpi",
+      "bytes": 24528,
+      "sha256": "dd9fac410b814dab597c03ecf39f9c5db35675c9f43cfd0a8630e250bc944ea1",
+      "firefox": "156.0",
+      "buildId": "20260909172920",
+      "files": {
+        "CMU-LICENSE.txt": "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a",
+        "LICENSE": "e5bbd815aebeda8a9c6632d1f6307bb942e07c7d3fa2191691b14709428ecc59",
+        "background.js": "6242296d37ee7a4914ce8fb2eeca1b0dd92a516e14293f1694f047291f7c6162",
+        "group-id-guard.js": "aaa384ab2de262a5bb9ba10283e5d290fbe6d0aac573cabafc2d5b156e7639a0",
+        "icon.svg": "9a239065122ec22504d4428157063aa79fefe504e3c1774264f52338fbd28526",
+        "manifest.json": "dac7a451d53da0ad907ac4380f84d1cedc04e6620fd2e556c9b9476bebc1d543",
+        "name-catalog.js": "75263bb976c806ecc8637147d92c96153728df02393e55c3260bb425281bc41c",
+        "name-generator.js": "c5f0549ab7ed7050c555d573700a13b0165c230de5caa25814f9b939ab8682b7",
+        "namer.js": "e53870bc54b3705dc50f05d0d331eafe86fdc394ffe7f0cace45e1034e3b84c7",
+        "popup.css": "d37f05104466112ce92e29c00c5075b6423a8c87b43234313ca8b3f2b0d30c6d",
+        "popup.html": "f07d4c50c4414f7e86776730bc2f1daac708c42269b8f14231959a4c97fce937",
+        "popup.js": "9df20baa7b0b26908ad1c7960de2c0604f6a708af29f57390ac0fe5801ac7108",
+        "stacker.js": "d38cad80d7fc15bd27dcf6174a7e64452fdacff7ea1f6b3e756a3e4dd846d9b2"
+      },
+      "checks": [
+        "temporary XPI installation",
+        "every packaged source file matches",
+        "real opener grouping",
+        "native approved name assignment"
+      ]
+    },
+    "trackedInputsUnchanged": true
+  },
+  "isolation": {
+    "noHostFilesystemMounts": true,
+    "noHostCredentials": true,
+    "sourceTransfer": "Only source.tar.gz via an HTTP server bound to host loopback; QEMU user-mode networking",
+    "hostNixInstallationAttempted": false,
+    "vmPoweredOff": true,
+    "fixtureServerStopped": true
+  },
+  "limitations": [
+    "This is not GitHub-hosted runner execution; checkout and artifact-upload actions were not executed.",
+    "The cloud image plus listed native libraries is not identical to the hosted runner image.",
+    "The recorded Git commit identifies an independently initialized local fixture; the source archive digest binds the tested input tree.",
+    "No performance superiority or cross-platform browser-support claim follows from this verification."
+  ]
+}

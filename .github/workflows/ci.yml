@@ -1,0 +1,121 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  merge_group:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 6 * * 1'
+      timezone: Etc/UTC
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  verify:
+    name: Verify Firefox 156 extension
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CI: 'true'
+      NPM_CONFIG_AUDIT: 'false'
+      NPM_CONFIG_FUND: 'false'
+    steps:
+      - name: Check out the tested revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install verified upstream Nix
+        run: bash scripts/ci/install-nix.sh
+
+      - name: Validate the development environment and workflows
+        run: |
+          nix flake check --all-systems --no-build --no-update-lock-file
+          nix develop --no-update-lock-file --command nixfmt --check flake.nix
+          nix develop --no-update-lock-file --command actionlint
+          nix develop --no-update-lock-file --command zizmor --offline --persona=pedantic .github/workflows
+          nix develop --no-update-lock-file --command shellcheck scripts/ci/*.sh
+
+      - name: Install locked development dependencies
+        run: nix develop --no-update-lock-file --command npm ci --ignore-scripts
+
+      - name: Check source, catalog and grouping alternatives
+        run: |
+          mkdir -p artifacts/ci
+          nix develop --no-update-lock-file --command npm run check 2>&1 | tee artifacts/ci/check.log
+          nix develop --no-update-lock-file --command npm run test:ci 2>&1 | tee artifacts/ci/installers.log
+          nix develop --no-update-lock-file --command npm run test:alternatives 2>&1 | tee artifacts/ci/alternatives.log
+          nix develop --no-update-lock-file --command npm run check:catalog
+          cmp LICENSE extension/LICENSE
+          git diff --exit-code HEAD
+
+      - name: Build and compare reproducible packages
+        run: nix develop --no-update-lock-file --command node scripts/ci/check-build.js
+
+      - name: Install verified Firefox 156.0
+        run: bash scripts/ci/install-firefox.sh
+
+      - name: Record the tested environment
+        run: nix develop --no-update-lock-file --command node scripts/ci/record-environment.js
+
+      - name: Test native grouping
+        run: nix develop --no-update-lock-file --command npm run test:firefox
+
+      - name: Test native metadata preservation
+        run: nix develop --no-update-lock-file --command npm run test:metadata
+
+      - name: Test naming, privacy and popup behavior
+        run: nix develop --no-update-lock-file --command npm run test:naming
+
+      - name: Test native group-ID ambiguity
+        run: nix develop --no-update-lock-file --command npm run test:native-ids
+
+      - name: Verify the installed package
+        run: nix develop --no-update-lock-file --command npm run test:package -- --output=artifacts/ci/package.json
+
+      - name: Confirm validation did not change tracked inputs
+        run: git diff --exit-code HEAD
+
+      - name: Stage the verified package for this attempt
+        run: |
+          packages=(dist/stackma-*.xpi)
+          (( ${#packages[@]} == 1 ))
+          package=${packages[0]}
+          [[ -f "$package" ]]
+          upload_dir="dist/upload/${GITHUB_RUN_ATTEMPT:?}"
+          filename="$(basename "${package%.xpi}")-attempt-${GITHUB_RUN_ATTEMPT}.xpi"
+          mkdir -p "$upload_dir"
+          cp -- "$package" "$upload_dir/$filename"
+          cmp -- "$package" "$upload_dir/$filename"
+          (cd "$upload_dir" && sha256sum -- "$filename" > "$filename.sha256")
+
+      - name: Upload the verified unsigned XPI
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          path: dist/upload/${{ github.run_attempt }}/*.xpi
+          archive: false
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload diagnostics and checksums
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/**/*.json
+            artifacts/**/*.log
+            dist/**/*.sha256
+          if-no-files-found: ignore
+          retention-days: 14

@@ -1,0 +1,6 @@
+{
+  "controlResolvedChangedInputReferenceWithoutWriting": true,
+  "strictFlagRejected": true,
+  "status": 1,
+  "stderr": "error:\n       … while updating the lock file of flake 'path:/tmp/stackma/artifacts/ci-lock-policy-UIOj9Y?lastModified=1790208377&narHash=sha256-j1gfGmOWD7VY7GlqLNjVcIrdGhMDdofY/JsCJEBTn94%3D'\n\n       error: flake 'path:/tmp/stackma/artifacts/ci-lock-policy-UIOj9Y' requires lock file changes but they're not allowed due to '--no-update-lock-file'\n"
+}

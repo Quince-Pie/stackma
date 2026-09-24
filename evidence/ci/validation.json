@@ -1,0 +1,60 @@
+{
+  "reviewedAt": "2026-09-24T00:15:37.660Z",
+  "baseCommit": "08dece9d4727e3e575741012662c9f745b7dd063",
+  "files": {
+    ".github/workflows/ci.yml": "3839f29c806caa8329d4443ae01e0bdabacfb64013eaa697274f0423fe89282e",
+    ".github/dependabot.yml": "6829166ebf01edb58ce0a25a0be223422d03fc813d385e9043020925a418eca6",
+    "flake.nix": "b0419694b82c3006dc70604bccb48bf893156a55bf111263d1f9925e9d036071",
+    "flake.lock": "518ea5d073b8fa5da2a16bd9ff8f3fd4e42af7722ba6e0b9735d109d5298e3ba",
+    "package.json": "025683b14ba02162083a0b767870a037fa27ccec5e76cdeef189b7789ad7027c",
+    "package-lock.json": "f4b4098bdf01a355704d13947df2d0447d37edd4fb0cd2fffae2bd20df1bf688",
+    "scripts/package-test.js": "b3f67e8fd917805ab8633c4e0d60a201fb228595b1e42ed2578c527aa85a3180",
+    "scripts/ci/check-build.js": "9e2f7a828898bcb472518ee2cf8cdbe2ef409e9a3ddb568cbe6a521749aaeeb1",
+    "scripts/ci/download-verified.sh": "e4d24e69214305a794095be8f71fc316b169f6afa789928058cee0225f6e7670",
+    "scripts/ci/install-firefox.sh": "17dc1544c671b8b0f59b484097156ecce4f5ad080ff4f4c8b3512ec6c7453e39",
+    "scripts/ci/install-nix.sh": "72658102f1f17984c4a59802c6a429f9deb06513bcb8debdaed3bdc206373488",
+    "scripts/ci/record-environment.js": "4c3b0361ba7d90db1453722b892f3960d2784046c5542ab8e9ba7bd1a2ee6d21",
+    "tests/ci/download.test.js": "275ccd06e36a4046e8f2252ef139574ad8373ffcafaeeefa580a49d3e2a3675d"
+  },
+  "sourceAudit": "docs/ci-source-audit.md",
+  "checks": {
+    "ubuntuIntegration": true,
+    "finalActionlint": true,
+    "finalZizmorOfflinePedantic": true,
+    "shellcheck": true,
+    "dependabotSchema": true,
+    "portableTests": 147,
+    "installerTests": 9,
+    "alternativeTests": 74,
+    "firefoxCases": 43,
+    "nativeIdFixture": true,
+    "reproducibleBuild": true,
+    "packageInstall": true,
+    "startupFailureReportedWithLog": true,
+    "lockMismatchRejected": true,
+    "uploadAttemptsPreservePrevious": true,
+    "preexistingLicensesPreserved": true
+  },
+  "closure": {
+    "platform": "x86_64-linux",
+    "withCompilerBytes": 838031352,
+    "withoutCompilerBytes": 506080808,
+    "claim": "Nix reported closure size with the same tool list; not download or timing data"
+  },
+  "ubuntuRecord": "evidence/ci/ubuntu-validation.json",
+  "finalizationAfterUbuntu": [
+    "explicit UTC schedule",
+    "Linux installer tests moved to their own target without changing test content",
+    "no-update-lock-file replaces no-write-lock-file",
+    "package startup exception log preserved",
+    "per-attempt direct-upload names and matching checksums"
+  ],
+  "qualification": "Current primary-source/changelog qualification and Ubuntu command execution completed for the documented scope; GitHub-hosted activation/service execution remains unverified.",
+  "universalOptimality": "Not established or claimed.",
+  "budget": {
+    "started": "2026-09-23T23:12:00Z",
+    "deadline": "2026-09-24T00:22:00Z",
+    "minutes": 70,
+    "includes": "investigation, delegation, tooling, implementation and verification"
+  }
+}
