@@ -1,0 +1,305 @@
+{
+  "reviewedAt": "2026-09-24T02:54:29.696Z",
+  "baseCommit": "fc63129a10b7c548bcf6c96eb65a7f7b931f315f",
+  "files": {
+    "scripts/naming-test.js": "907a1ba33a902e8d1ba7b01710b5a8abbf6e7b5fc4806ef35e6afa90f6c37b97",
+    "scripts/popup-tab.js": "747cbf9aab7af1125cd63ba23172be2b091337289f625fe27599d7736a44da59",
+    "tests/popup-tab.test.js": "9d661785394bb1f16c0005ca3e3666a6e9637eddfc9d2d9fe9dee2e396879ec3",
+    "docs/popup-test-navigation.md": "df1296702e4280e41a7cf92975c3bb91f68201ed8ce68171ddec60bfd56084de"
+  },
+  "contract": "Synchronize popup document load without changing extension behavior, window focus, privacy scope, or selection assertions",
+  "sources": {
+    "firefox156": "3bf8f468258c2181f455e23d4ffcd6acb8f4cdb1",
+    "mdn": "8530cf97b809705c3524e733afcb69124b305b2e"
+  },
+  "suppliedCi": {
+    "commit": "fc63129a10b7c548bcf6c96eb65a7f7b931f315f",
+    "logSha256": "439847d62f1314a635cb86ad27c3ee90b40efdadfb78d7ee62612b3446702531",
+    "failingCase": "popup-opens-the-explicitly-selected-native-group",
+    "message": "Document was unloaded"
+  },
+  "baseline": {
+    "runs": 2,
+    "secondRunFailures": [
+      {
+        "name": "popup-isolates-normal-and-private-group-labels",
+        "passed": false,
+        "durationMs": 316.6071409999995,
+        "error": "Error: POST /session/525544ec-d2a3-4bbc-9557-2ad5f35f6ca2/execute/sync: AbortError: Actor 'MarionetteCommands' destroyed before query 'MarionetteCommandsParent:executeScript' was resolved",
+        "remoteStack": "@undefined:0:0\n"
+      }
+    ],
+    "controlled": {
+      "browser": "156.0",
+      "entered": "yes",
+      "failure": "JavaScriptError: Document was unloaded",
+      "initial": "about:blank"
+    }
+  },
+  "rejectedPrototype": "WebDriver-owned navigation loaded the document but changed the focused window; final implementation uses correlated webNavigation events and preserves the original focus setup",
+  "checks": {
+    "portableTests": 153,
+    "newLoaderTests": 6,
+    "releaseTests": 50,
+    "strictTypecheck": true,
+    "mozillaLint": true,
+    "workflowValidation": true,
+    "groupingCases": 20,
+    "metadataCases": 8,
+    "nativeIdFixture": true,
+    "finalNamingRuns": 10,
+    "finalNamingCases": 160,
+    "finalControlledNavigationContexts": 20,
+    "extensionAndDriverUnchanged": true
+  },
+  "confirmation": [
+    {
+      "run": 1,
+      "passed": true,
+      "cases": 16,
+      "browser": {
+        "version": "156.0",
+        "buildId": "20260909172920",
+        "geckodriver": "0.37.1",
+        "platform": "linux"
+      },
+      "sourceSha256": "0bdcb6ffd22cf8dedd1354bd9cb297a89ff6c872ca47d1fee4f2c52e3de00bbc",
+      "controlledContexts": [
+        {
+          "incognito": false,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        },
+        {
+          "incognito": true,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "passed": true,
+      "cases": 16,
+      "browser": {
+        "version": "156.0",
+        "buildId": "20260909172920",
+        "geckodriver": "0.37.1",
+        "platform": "linux"
+      },
+      "sourceSha256": "0bdcb6ffd22cf8dedd1354bd9cb297a89ff6c872ca47d1fee4f2c52e3de00bbc",
+      "controlledContexts": [
+        {
+          "incognito": false,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        },
+        {
+          "incognito": true,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        }
+      ]
+    },
+    {
+      "run": 3,
+      "passed": true,
+      "cases": 16,
+      "browser": {
+        "version": "156.0",
+        "buildId": "20260909172920",
+        "geckodriver": "0.37.1",
+        "platform": "linux"
+      },
+      "sourceSha256": "0bdcb6ffd22cf8dedd1354bd9cb297a89ff6c872ca47d1fee4f2c52e3de00bbc",
+      "controlledContexts": [
+        {
+          "incognito": false,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        },
+        {
+          "incognito": true,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        }
+      ]
+    },
+    {
+      "run": 4,
+      "passed": true,
+      "cases": 16,
+      "browser": {
+        "version": "156.0",
+        "buildId": "20260909172920",
+        "geckodriver": "0.37.1",
+        "platform": "linux"
+      },
+      "sourceSha256": "0bdcb6ffd22cf8dedd1354bd9cb297a89ff6c872ca47d1fee4f2c52e3de00bbc",
+      "controlledContexts": [
+        {
+          "incognito": false,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        },
+        {
+          "incognito": true,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        }
+      ]
+    },
+    {
+      "run": 5,
+      "passed": true,
+      "cases": 16,
+      "browser": {
+        "version": "156.0",
+        "buildId": "20260909172920",
+        "geckodriver": "0.37.1",
+        "platform": "linux"
+      },
+      "sourceSha256": "0bdcb6ffd22cf8dedd1354bd9cb297a89ff6c872ca47d1fee4f2c52e3de00bbc",
+      "controlledContexts": [
+        {
+          "incognito": false,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        },
+        {
+          "incognito": true,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        }
+      ]
+    },
+    {
+      "run": 6,
+      "passed": true,
+      "cases": 16,
+      "browser": {
+        "version": "156.0",
+        "buildId": "20260909172920",
+        "geckodriver": "0.37.1",
+        "platform": "linux"
+      },
+      "sourceSha256": "0bdcb6ffd22cf8dedd1354bd9cb297a89ff6c872ca47d1fee4f2c52e3de00bbc",
+      "controlledContexts": [
+        {
+          "incognito": false,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        },
+        {
+          "incognito": true,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        }
+      ]
+    },
+    {
+      "run": 7,
+      "passed": true,
+      "cases": 16,
+      "browser": {
+        "version": "156.0",
+        "buildId": "20260909172920",
+        "geckodriver": "0.37.1",
+        "platform": "linux"
+      },
+      "sourceSha256": "0bdcb6ffd22cf8dedd1354bd9cb297a89ff6c872ca47d1fee4f2c52e3de00bbc",
+      "controlledContexts": [
+        {
+          "incognito": false,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        },
+        {
+          "incognito": true,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        }
+      ]
+    },
+    {
+      "run": 8,
+      "passed": true,
+      "cases": 16,
+      "browser": {
+        "version": "156.0",
+        "buildId": "20260909172920",
+        "geckodriver": "0.37.1",
+        "platform": "linux"
+      },
+      "sourceSha256": "0bdcb6ffd22cf8dedd1354bd9cb297a89ff6c872ca47d1fee4f2c52e3de00bbc",
+      "controlledContexts": [
+        {
+          "incognito": false,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        },
+        {
+          "incognito": true,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        }
+      ]
+    },
+    {
+      "run": 9,
+      "passed": true,
+      "cases": 16,
+      "browser": {
+        "version": "156.0",
+        "buildId": "20260909172920",
+        "geckodriver": "0.37.1",
+        "platform": "linux"
+      },
+      "sourceSha256": "0bdcb6ffd22cf8dedd1354bd9cb297a89ff6c872ca47d1fee4f2c52e3de00bbc",
+      "controlledContexts": [
+        {
+          "incognito": false,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        },
+        {
+          "incognito": true,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        }
+      ]
+    },
+    {
+      "run": 10,
+      "passed": true,
+      "cases": 16,
+      "browser": {
+        "version": "156.0",
+        "buildId": "20260909172920",
+        "geckodriver": "0.37.1",
+        "platform": "linux"
+      },
+      "sourceSha256": "0bdcb6ffd22cf8dedd1354bd9cb297a89ff6c872ca47d1fee4f2c52e3de00bbc",
+      "controlledContexts": [
+        {
+          "incognito": false,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        },
+        {
+          "incognito": true,
+          "controlFailure": "JavaScriptError: Document was unloaded",
+          "readyState": "complete"
+        }
+      ]
+    }
+  ],
+  "scope": "Local Firefox 156 verification against the exact committed extension tree; no performance or universal optimality claim",
+  "remaining": "Hosted CI on the fixed commit has not yet been executed",
+  "budget": {
+    "started": "2026-09-24T02:19:12Z",
+    "deadline": "2026-09-24T02:59:12Z",
+    "minutes": 40,
+    "elapsedMinutes": 35.29
+  }
+}

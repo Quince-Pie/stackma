@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { FirefoxDriver } from "./webdriver.js";
+import { createLoadedPopup } from "./popup-tab.js";
 
 const argument = name => process.argv.find(value => value.startsWith(`--${name}=`))?.slice(name.length + 3);
 const source = resolve(argument("source") ?? "extension");
@@ -19,6 +20,7 @@ async function sourceHash() {
 const report = {
   source, sourceSha256: await sourceHash(),
   scriptSha256: digest(await readFile(new URL(import.meta.url))),
+  popupLoaderSha256: digest(await readFile(new URL("./popup-tab.js", import.meta.url))),
   vocabularySha256: digest(packBytes),
   startedAt: new Date().toISOString(), results: [],
 };
@@ -98,17 +100,21 @@ async function settledMetadata(tabId) {
 }
 
 async function openPopup(data) {
-  const tab = await driver.addon(addonId, (browser, windowId) => browser.tabs.create({
-    windowId, active: true, url: browser.runtime.getURL("popup.html"),
-  }), data.windowId);
-  await driver.tab(tab.id, async () => {
+  const tab = await driver.addon(addonId, createLoadedPopup, data.windowId);
+  // Do not install a polling script in the short-lived initial about:blank.
+  // Marionette rejects that script if the popup navigation replaces its document.
+  await waitPopupGroups(tab.id);
+  return tab;
+}
+
+async function waitPopupGroups(tabId) {
+  await driver.tab(tabId, async () => {
     for (let attempt = 0; attempt < 300; attempt++) {
       if (document.querySelector("#groups .group")) return;
       await new Promise(resolve => setTimeout(resolve, 10));
     }
     throw new Error("Popup group list did not load");
   });
-  return tab;
 }
 
 async function trustedClick(tabId, selector) {
@@ -135,7 +141,7 @@ async function test(name, run) {
     console.log(`PASS ${name}`);
   } catch (error) {
     report.results.push({ name, passed: false, durationMs: performance.now() - started,
-      error: String(error), remoteStack: error.remoteStack });
+      error: String(error), stack: error.stack, remoteStack: error.remoteStack });
     console.error(`FAIL ${name}: ${error}`);
   }
 }
@@ -357,6 +363,52 @@ try {
     } finally { await remove(data); }
   });
 
+  await test("popup-navigation-finishes-before-content-inspection", async () => {
+    const results = [];
+    for (const incognito of [false, true]) {
+      const data = await fixture(1, incognito);
+      try {
+        const child = await related(data);
+        const group = (await groupOf([data.ids[0], child.id])).group;
+        const { tab, url } = await driver.addon(addonId, async (browser, windowId) => ({
+          tab: await browser.tabs.create({ windowId, active: true, url: "about:blank" }),
+          url: browser.runtime.getURL("popup.html"),
+        }), data.windowId);
+        // Deterministic control: begin the old readiness wait in the initial
+        // document, confirm it entered, then replace that document. No sleep
+        // decides when to navigate, and unexpected failures still fail the test.
+        const control = await driver.chrome(async (tabId, url) => {
+          const { ExtensionParent } = ChromeUtils.importESModule("resource://gre/modules/ExtensionParent.sys.mjs");
+          const browser = ExtensionParent.apiManager.global.tabTracker.getTab(tabId).linkedBrowser;
+          const actor = browser.browsingContext.currentWindowGlobal.getActor("MarionetteCommands");
+          const options = { timeout: 5_000, async: false, sandboxName: null, newSandbox: true,
+            file: "popup-navigation-control", line: 1 };
+          const inspecting = actor.executeScript(`return (async () => {
+            document.documentElement.setAttribute('data-inspection-started', 'yes');
+            while (!document.querySelector('#groups .group')) await new Promise(resolve => setTimeout(resolve, 10));
+            return true;
+          })()`, [], options).then(value => ({ value }), error => ({ failure: String(error) }));
+          const entered = await actor.executeScript("return document.documentElement.getAttribute('data-inspection-started')", [], options);
+          if (entered !== "yes") throw new Error("Navigation control did not enter the initial document");
+          const initial = browser.browsingContext.currentWindowGlobal.documentURI.spec;
+          browser.loadURI(Services.io.newURI(url), { triggeringPrincipal: Services.scriptSecurityManager.getSystemPrincipal() });
+          return { initial, ...await inspecting };
+        }, tab.id, url);
+        assert.equal(control.initial, "about:blank");
+        assert.match(control.failure, /Document was unloaded|Actor.*destroyed/u);
+
+        const popup = await openPopup(data);
+        const loaded = await driver.tab(popup.id, () => ({ url: location.href, readyState: document.readyState }));
+        assert.deepEqual(loaded, { url, readyState: "complete" });
+        const ids = await driver.tab(popup.id, () => [...document.querySelectorAll('button[data-action="open"]')]
+          .map(button => Number(button.dataset.groupId)));
+        assert(ids.includes(group.id));
+        results.push({ incognito, controlFailure: control.failure, readyState: loaded.readyState });
+      } finally { await remove(data); }
+    }
+    return { results };
+  });
+
   await test("popup-full-labels-literal-component-search-and-permissionless-copy", async () => {
     const data = await fixture(3);
     const fullTitle = `literal.[group]+? <img> — 日本語 ${"long research name ".repeat(8)}`;
@@ -424,7 +476,10 @@ try {
         [normal, normalGroup, privateGroup, "Open groups"],
         [privateWindow, privateGroup, normalGroup, "Open private groups"],
       ]) {
+        const focusedBefore = await driver.addon(addonId, async browser => (await browser.windows.getLastFocused()).id);
         const popup = await openPopup(data);
+        const focusedAfter = await driver.addon(addonId, async browser => (await browser.windows.getLastFocused()).id);
+        assert.equal(focusedAfter, focusedBefore, "Opening the page must preserve the background-window privacy case");
         const result = await driver.tab(popup.id, () => ({
           heading: document.querySelector("#groups-heading").textContent,
           ids: [...document.querySelectorAll('#groups button[data-action="open"]')].map(button => Number(button.dataset.groupId)),
