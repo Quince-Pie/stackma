@@ -1,0 +1,120 @@
+{
+  "date": "2026-09-26T16:47:11.992Z",
+  "baseline": "997087de3e07b3ffb0b3968e1617b80997a42a6b",
+  "budget": {
+    "started": "2026-09-26T16:01:43Z",
+    "limitMinutes": 240,
+    "elapsedMinutesAtRecord": 45,
+    "scope": "Investigation, two research delegations, one independent review delegation, implementation, review fixes, verification and documentation."
+  },
+  "request": "Apply the five review-handling recommendations: pending-version guard, non-failing awaiting-review state with automatic resumption, repository policy, source-attachment decision, housekeeping.",
+  "decision": "Guard creation in the signing job with an explicit single-version supersede; end pending runs successfully only after payload, license and source verification; resume via a secretless scheduled dispatcher; keep source attached (name-catalog.js is generated); provide a check/apply repository-policy tool; move the listing icon out of the package.",
+  "remoteMutationsPerformed": false,
+  "remoteReads": [
+    "AMO owner GET versions?filter=all_without_unlisted (1 request, JWT from local .env, 2026-09-26)",
+    "AMO anonymous GETs: stackma listing (401), ublock-origin listing and version detail (field shapes)",
+    "GitHub anonymous GETs: tags, releases, workflow runs, rulesets, environments, deployment branch policies"
+  ],
+  "evaluatorRepair": "tests/release/prepare.test.js fixtures now set GIT_CONFIG_GLOBAL=/dev/null and GIT_CONFIG_NOSYSTEM=1; the developer's tag.gpgSign=true had failed two tests locally (CI unaffected). Baseline results were recorded before the repair.",
+  "results": {
+    "toolchain": {
+      "node": "24.20.0",
+      "npm": "11.19.0",
+      "git": "2.55.0",
+      "actionlint": "1.7.12",
+      "zizmor": "1.30.1",
+      "shellcheck": "0.11.0",
+      "firefox": "156.0 (Nix)",
+      "platform": "Linux x86_64"
+    },
+    "baselineChecks": {
+      "typecheck": "pass",
+      "unit": "153/153",
+      "lint": "pass",
+      "installers": "9/9",
+      "release": "87/89 locally (2 fail from global tag.gpgSign=true; 89/89 with GIT_CONFIG_GLOBAL=/dev/null)",
+      "alternatives": "74/74",
+      "catalog": "pass",
+      "actionlintAndQueueBridge": "pass (3 workflows)",
+      "zizmorPedantic": "pass",
+      "shellcheck": "pass",
+      "nixfmt": "pass"
+    },
+    "finalChecks": {
+      "typecheck": "pass",
+      "unit": "153/153",
+      "lint": "pass",
+      "installers": "9/9",
+      "release": "124/124 with and without the global Git config",
+      "alternatives": "74/74",
+      "catalog": "pass",
+      "actionlintAndQueueBridge": "pass (4 workflows)",
+      "zizmorPedantic": "pass",
+      "shellcheck": "pass",
+      "nixfmt": "pass",
+      "firefoxPackageTest": "pass: temporary install, 13 packaged files match extension/, real opener grouping and native name assignment"
+    },
+    "newTests": {
+      "amo": 9,
+      "sign": 5,
+      "resume": 8,
+      "repositoryPolicy": 10,
+      "workflowContracts": 3
+    },
+    "mutationChecks": "34 of 34 mutations of new mechanisms detected after one non-discriminating pattern test was strengthened; working tree restored byte for byte after each",
+    "independentReview": {
+      "findings": [
+        "Stuck approved tag unreported (medium): scheduler now fails, notifying the schedule owner",
+        "Attempt cap bypassable via reruns (low): count by actor, evaluate every approved tag",
+        "Pending check preceded moved-tag check (low): tag check first and adjacent to each write",
+        "Policy tool accepted a tag creation rule (low): creation is drift; other blocking rulesets reported"
+      ],
+      "docPoints": [
+        "GitHub rate-limit 403s are now transient",
+        "Guide notes older release commits carry signers without the pending check"
+      ],
+      "status": "all confirmed and fixed with failing-first tests"
+    },
+    "liveReadOnly": {
+      "amoOwnerListing": "1 GET; 1.1.4 unreviewed; 1.1.0, 1.1.2, 1.1.3 disabled; guard blocks a new 1.1.5, not a 1.1.4 resume",
+      "resumeDryRun": "tags and releases read; AMO listing 401 (nominated); no version reads; no dispatch proposed; repeated on the final tree",
+      "policyProbe": "public rulesets and environments read; branch-policy list 404 handled; stopped at admin-only immutable-releases (401)",
+      "fieldShapes": "public AMO version detail and GitHub run history contain every field read"
+    },
+    "packageReproduction": {
+      "localAfterIconMove": "40940f0fd760013d94c7451229c6bf299e6008ebaae7894034b1accdf49edf0c",
+      "cleanCheckout": "identical",
+      "reviewerStepsNodeAndZipOnly": "identical"
+    }
+  },
+  "openGates": [
+    "No hosted run of the changed workflows (nothing pushed)",
+    "Repository policy never applied or read with admin rights (no administrator token)",
+    "No automatic dispatch executed live (dry run only)",
+    "Mozilla approval, signed permanent installation and immutable publication still pending for 1.1.4"
+  ],
+  "claims": {
+    "contractAndVerification": "Satisfied locally for the declared checks; hosted acceptance gates open",
+    "qualification": "Achieved for this repository, the listed AMO channel and the recorded sources; see docs/amo-review.md",
+    "literalOptimality": "Not established and not claimed"
+  },
+  "filesSha256": {
+    ".github/workflows/release.yml": "3c0f927a0b4ae4a9150191fd0f95564f8849cbd680ecbbdceba13b3fbbb43224",
+    ".github/workflows/resume-release.yml": "025859511f9e611ecb49fe2d33dcbe11adb570a7dc62024d0375e732efd3e848",
+    "scripts/release/amo.js": "3b9c9294738dd3fa0e6c6737963a524d740c523c4ea6fcf97666dd1b83cf2616",
+    "scripts/release/sign.js": "9d23b1fbd4e9859abdfe1634bc7f4f94177f22fae916226eddd5e00597d0fb0f",
+    "scripts/release/resume.js": "e1ea49b9f5a4b50530a0e2733bc8f0086ff23ad858a4a942983b7e82142ff635",
+    "scripts/release/repository-policy.js": "857a48abef00b8aa47395a53fd7ac2de98a9c78204f5daba38c98fbbb1dcfba9",
+    "tests/release/amo.test.js": "8b2fc832e816e6665ba23762680e7288397c1f2a8e9ff109fcb9992a7d6a46d8",
+    "tests/release/sign.test.js": "565d2180c642be87d9fe67128e5c278e05248ea0e6ee724d34b695a0ae8dd598",
+    "tests/release/resume.test.js": "c28004d12d7d7db3576542519d1d8604cd6fb576c9d1b7332e14b60157acbb07",
+    "tests/release/repository-policy.test.js": "0b1c3e17af4bd7ba89b340ea7cbab56db902cbdfaf56f94c8cee43992001441d",
+    "tests/release/workflow.test.js": "e57bccf023c11777f16c54051a428bbd707de17ba8eeeeb0e522dca3fa260ce0",
+    "tests/release/prepare.test.js": "39077ce7059de1453e289e47dfbacb1fff514f345cb65d0d22b72c0e7fe7f86c",
+    "README.md": "9360d221197a372b304cf11282416475a599b7645c149d39f38d4f6c6c757b39",
+    "docs/releases.md": "b0d7b536ae1ee7920f24bc607badad406b5537ec99765b426a642beaf63d3e5d",
+    "docs/amo-review.md": "e45a397fa32a3ecbcba5b6c2db1ecc3a5a4142ba670956691abe4b57074ea7d7",
+    "docs/ci.md": "f953cf7af60baffbdf80a42eed4ea258f388e5b7cb780430126d46810dbdcbb6",
+    "listing/icon.png": "ff6f05b5c2520fec7e09882f246a22d16af0360cab4f49d76f3cf6594f520279"
+  }
+}

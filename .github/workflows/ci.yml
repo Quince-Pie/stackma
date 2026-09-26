@@ -51,6 +51,16 @@ jobs:
           persist-credentials: false
           ref: ${{ inputs.ref || github.sha }}
 
+      # The product is frozen at inputs.ref. Release policy comes from the
+      # reviewed workflow revision, so fixes can recover historical tags.
+      - name: Check out the release controller
+        if: ${{ inputs.release-tag != '' }}
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+          path: .release-controller
+
       - name: Install verified upstream Nix
         run: bash scripts/ci/install-nix.sh
 
@@ -59,7 +69,7 @@ jobs:
         env:
           RELEASE_TAG: ${{ inputs.release-tag }}
           RELEASE_COMMIT: ${{ inputs.ref }}
-        run: nix develop --no-update-lock-file --command node scripts/release/stage.js --check
+        run: nix develop --no-update-lock-file --command node .release-controller/scripts/release/stage.js --check
 
       - name: Validate the development environment and workflows
         run: |
@@ -118,7 +128,7 @@ jobs:
         env:
           RELEASE_TAG: ${{ inputs.release-tag }}
           RELEASE_COMMIT: ${{ inputs.ref }}
-        run: nix develop --no-update-lock-file --command node scripts/release/stage.js
+        run: nix develop --no-update-lock-file --command node .release-controller/scripts/release/stage.js
 
       - name: Upload verified release inputs
         id: release-input

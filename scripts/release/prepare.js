@@ -5,6 +5,7 @@ import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { run, serializeManifest, validateMetadata, versionFromTag } from "./package.js";
 import { RepositoryGitHub } from "./repository.js";
+import { intentPath, intentTagsAt, intentText } from "./intent.js";
 
 export const versionPaths = ["extension/manifest.json", "package.json", "package-lock.json"];
 const shaPattern = /^[a-f0-9]{40}$/u;
@@ -37,18 +38,24 @@ export async function metadataAt(commit, cwd) {
 // Neither the checkout nor its index is modified, even with local dirty files.
 export async function versionTree(tag, base, cwd) {
   const contents = bumpVersions(tag, await metadataAt(base, cwd));
+  const path = intentPath(tag);
+  assert.equal(await git(["ls-tree", base, "--", path], cwd), "", "Release intent already exists; never overwrite it");
+  const paths = [...versionPaths, path];
+  contents.push(intentText(tag));
   const directory = await mkdtemp(join(tmpdir(), "stackma-version-"));
   const env = { ...process.env, GIT_INDEX_FILE: join(directory, "index") };
   try {
     await git(["read-tree", base], cwd, env);
     const entries = [];
-    for (const [index, path] of versionPaths.entries()) {
-      const entry = await git(["ls-tree", base, "--", path], cwd);
-      assert.match(entry, /^100644 blob /u, "Version inputs must be ordinary non-executable files");
+    for (const [index, path] of paths.entries()) {
+      if (index < versionPaths.length) {
+        const entry = await git(["ls-tree", base, "--", path], cwd);
+        assert.match(entry, /^100644 blob /u, "Version inputs must be ordinary non-executable files");
+      }
       const file = join(directory, String(index));
       await writeFile(file, contents[index]);
       const sha = await git(["hash-object", "-w", "--", file], cwd);
-      await git(["update-index", "--cacheinfo", "100644", sha, path], cwd, env);
+      await git(["update-index", "--add", "--cacheinfo", "100644", sha, path], cwd, env);
       entries.push({ path, mode: "100644", type: "blob", content: contents[index] });
     }
     return { tree: await git(["write-tree"], cwd, env), baseTree: await git(["rev-parse", `${base}^{tree}`], cwd), entries };
@@ -64,6 +71,10 @@ export async function prepareRelease({ github, tag, mainCommit, cwd = process.cw
   const current = (await metadataAt(mainCommit, cwd)).map(text => JSON.parse(text));
   validateMetadata(`v${current[0].version}`, ...current);
   requireIncrease(current[0].version, version);
+  const intents = await intentTagsAt(mainCommit, cwd, { checkHistory: true });
+  assert(intents?.at(-1) === `v${current[0].version}`,
+    "Current main version must be the newest recorded release intent; complete the reviewed migration inventory first");
+  assert(intents.length < 1000, "Release intent inventory has reached its 1000-record limit; review the release controller before adding another version");
   assert(!await github.get(`git/ref/tags/${tag}`),
     "Version already has a tag. If its source versions match, use Publish release to resume it. Otherwise start Release with a new unused version. Published immutable tag names cannot be reused, even after deletion.");
   const branch = `release/${tag}`;
@@ -107,7 +118,7 @@ export async function prepareRelease({ github, tag, mainCommit, cwd = process.cw
   if (!pull) {
     pull = await github.post("pulls", {
       head: branch, base: "main", title: `release: Prepare ${tag}`,
-      body: `${marker}\n\nPrepare Stackma ${version} for the existing Mozilla listing. This updates only the manifest, package version, and root lockfile versions.\n\nApprove the bot-triggered CI run if GitHub requests it, review the changes, and merge this PR. Merging starts Publish release: it verifies the exact merged source, creates ${tag}, submits or resumes Mozilla signing, and publishes the verified package after approval. Do not create a tag or GitHub Release manually.\n\nIf signing needs more review time, rerun the original Publish release run after Mozilla approval. See [the release guide](https://github.com/${github.repository}/blob/main/docs/releases.md).\n`,
+      body: `${marker}\n\nPrepare Stackma ${version} for the existing Mozilla listing. This updates the manifest, package version, and root lockfile versions and adds ${intentPath(tag)} as durable release intent. Existing intent records remain unchanged.\n\nApprove the bot-triggered CI run if GitHub requests it, review the changes, and merge this PR. Merging starts Publish release: it verifies the exact merged source, creates ${tag}, submits or resumes Mozilla signing, and publishes the verified package after approval. Do not create a tag or GitHub Release manually.\n\nIf Mozilla needs more review time, the run succeeds as awaiting review; Resume approved releases completes publication after approval. To recover using corrected release tooling, dispatch Publish release from main with tag ${tag}. See [the release guide](https://github.com/${github.repository}/blob/main/docs/releases.md).\n`,
     });
   }
   assert.equal(pull.state, "open");

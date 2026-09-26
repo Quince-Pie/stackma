@@ -1,5 +1,8 @@
 # Release preparation qualification
 
+> Historical record. Current preparation comparisons, source identities and
+> release integration are qualified in [the redesign](release-design.md).
+
 This is the original preparation design record. The
 [policy review and corrections](release-policy-review.md) supersede its workflow
 display names and its mistaken 65535 version-component limit. Current operator

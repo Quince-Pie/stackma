@@ -1,4 +1,6 @@
 name: Publish release
+# Resume approved releases finds its own dispatches by this exact title.
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('Publish release {0}', inputs.tag) || github.event.pull_request.title }}
 
 on:
   pull_request:
@@ -7,9 +9,19 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing prepared tag to resume. For a NEW version, use the Release workflow instead.
+        description: Release tag to resume. For a missing tag, also supply its merged release PR. Start new versions with Release.
         type: string
         required: true
+      pull-request:
+        description: Optional merged release PR number, only to recover a missing tag with the current controller.
+        type: string
+        required: false
+        default: ''
+      supersede:
+        description: Leave empty. Only to replace an AMO version still awaiting review, enter that version (e.g. 1.1.4); Mozilla disables it.
+        type: string
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -33,6 +45,9 @@ jobs:
        startsWith(github.event.pull_request.head.ref, 'release/v'))
     runs-on: ubuntu-24.04
     timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read # Inspect an explicitly selected merged release PR during recovery.
     outputs:
       commit: ${{ steps.resolve.outputs.commit }}
       tag: ${{ steps.resolve.outputs.tag }}
@@ -53,6 +68,8 @@ jobs:
         id: resolve
         env:
           RELEASE_TAG: ${{ inputs.tag }}
+          RECOVERY_PR: ${{ inputs.pull-request }}
+          GH_TOKEN: ${{ github.token }}
         run: nix develop .#release --no-update-lock-file --command node scripts/release/resolve.js
 
   verify:
@@ -94,6 +111,7 @@ jobs:
     timeout-minutes: 35
     outputs:
       signed-artifact-id: ${{ steps.signed.outputs.artifact-id }}
+      state: ${{ steps.amo.outputs.state }}
     env:
       RELEASE_TAG: ${{ needs.resolve.outputs.tag }}
       RELEASE_COMMIT: ${{ needs.resolve.outputs.commit }}
@@ -103,7 +121,13 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          ref: ${{ github.sha }}
+      - name: Check out frozen product files for installation verification
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
           ref: ${{ needs.resolve.outputs.commit }}
+          path: release-source
       - name: Install the locked toolchain
         run: bash scripts/ci/install-nix.sh
       - name: Install locked dependencies and the acceptance browser
@@ -117,17 +141,21 @@ jobs:
           path: artifacts/release-input
           digest-mismatch: error
       - name: Submit or resume Mozilla signing
+        id: amo
         env:
           GH_TOKEN: ${{ github.token }}
           AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
           AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+          SUPERSEDE_PENDING: ${{ inputs.supersede }}
         run: nix develop --no-update-lock-file --command node scripts/release/sign.js
       - name: Verify a permanent installation and assemble release assets
+        if: steps.amo.outputs.state == 'approved-and-signed'
         run: |
-          nix develop --no-update-lock-file --command node scripts/package-test.js --signed --xpi="artifacts/release-signed/stackma-${RELEASE_TAG#v}.xpi" --output=artifacts/release-verification.json
+          nix develop --no-update-lock-file --command node scripts/package-test.js --source-root=release-source --signed --xpi="artifacts/release-signed/stackma-${RELEASE_TAG#v}.xpi" --output=artifacts/release-verification.json
           nix develop --no-update-lock-file --command node scripts/release/assemble.js
       - name: Preserve the verified signed release
         id: signed
+        if: steps.amo.outputs.state == 'approved-and-signed'
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: release-signed-${{ github.run_id }}-${{ github.run_attempt }}
@@ -148,6 +176,7 @@ jobs:
   publish:
     name: Publish the verified signed release
     needs: [resolve, sign]
+    if: needs.sign.outputs.state == 'approved-and-signed'
     runs-on: ubuntu-24.04
     environment: release-publication
     timeout-minutes: 20

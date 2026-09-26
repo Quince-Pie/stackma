@@ -1,0 +1,440 @@
+{
+  "schema": 1,
+  "observed": "2026-09-26T19:29:56.542Z",
+  "status": "locally verified candidate; hosted acceptance pending",
+  "baseline": {
+    "commit": "997087de3e07b3ffb0b3968e1617b80997a42a6b",
+    "includesSuppliedWorkingChanges": true,
+    "statusAtStart": " M .github/workflows/release.yml\n M README.md\n M docs/ci.md\n M docs/releases.md\n M scripts/release/amo.js\n M scripts/release/sign.js\n M tests/release/amo.test.js\n M tests/release/prepare.test.js\n?? .github/workflows/resume-release.yml\n?? docs/amo-review.md\n?? evidence/release/amo-review.json\n?? listing/\n?? scripts/release/repository-policy.js\n?? scripts/release/resume.js\n?? tests/release/repository-policy.test.js\n?? tests/release/resume.test.js\n?? tests/release/sign.test.js\n?? tests/release/workflow.test.js\n",
+    "snapshot": "/tmp/stackma-release-baseline.Laq90D",
+    "releaseTests": {
+      "passed": 124,
+      "total": 124,
+      "logSha256": "0e55212b6e7fbb86afc905a237c9fcac22edbd450d98251ad0a2d9cae20b45e0"
+    }
+  },
+  "budget": {
+    "started": "2026-09-26T18:03:42Z",
+    "limitMinutes": 90,
+    "elapsedMinutesAtRecord": 86.24,
+    "includes": "Investigation, delegated research/review/implementation, local work, retries, tests, documentation and delivery"
+  },
+  "authority": {
+    "remoteMutationsPerformed": false,
+    "projectBranchCommitted": false,
+    "projectIndexUnchanged": true,
+    "localTestCommitsOnly": true,
+    "productDependenciesLicensesAndNixPinsUnchanged": true,
+    "originalGuidePreservedAt": "docs/release-history.md",
+    "originalListingIconSha256": "ff6f05b5c2520fec7e09882f246a22d16af0360cab4f49d76f3cf6594f520279",
+    "originalGuidePreservation": "Byte-for-byte match after removing the archival banner, reconstructed from HEAD plus the original working-tree patch",
+    "originalListingIconPreservation": "Matches the supplied pre-existing evidence SHA-256"
+  },
+  "design": {
+    "decision": "Reviewed source intent before any provider mutation; current controller over frozen product source; source-on-create with verified existing license; bounded reconciliation and adaptive readiness; native immutable GitHub completion verification. Explicit reviewed retirement handles permanent pre-submission failure after outstanding requests are resolved.",
+    "contractRecord": "docs/release-design.md",
+    "operatorGuide": "docs/releases.md",
+    "literalOptimality": "not established or claimed",
+    "qualification": "Supported within documented product/provider/operating scope; full acceptance awaits hosted gates."
+  },
+  "environment": {
+    "platform": "Linux x86_64 (NixOS), kernel 6.18.51",
+    "node": "v24.20.0",
+    "npm": "11.19.0",
+    "git": "2.55.0",
+    "firefox": "156.0",
+    "firefoxBuildId": "20260909172920",
+    "geckodriver": "0.37.1",
+    "webExt": "10.7.0",
+    "typescript": "7.0.2",
+    "yauzl": "3.4.0",
+    "parse5": "8.0.1",
+    "gh": "2.101.0 (locked Nix)",
+    "actionlint": "1.7.12",
+    "zizmor": "1.30.1",
+    "shellcheck": "0.11.0"
+  },
+  "verification": {
+    "release": {
+      "command": "npm run test:release",
+      "passed": 181,
+      "total": 181,
+      "logSha256": "da4ef7c09ee664f53c0d9211c67e2e05ce3767b2370ea9d4cfebc1b4da67b956",
+      "log": "/tmp/stackma-release-final-tests.log"
+    },
+    "source": {
+      "command": "npm run check",
+      "typecheck": "pass (extension JS scope)",
+      "unit": "153/153",
+      "webExtLint": "0 errors, 0 notices, 0 warnings",
+      "log": "/tmp/stackma-release-candidate-check.log"
+    },
+    "installers": {
+      "command": "npm run test:ci",
+      "passed": 9,
+      "total": 9
+    },
+    "groupingAlternatives": {
+      "command": "npm run test:alternatives",
+      "passed": 74,
+      "total": 74
+    },
+    "catalog": {
+      "command": "npm run check:catalog",
+      "result": "pass"
+    },
+    "licenses": {
+      "command": "cmp LICENSE extension/LICENSE; cmp naming-data/CMU-LICENSE.txt extension/CMU-LICENSE.txt",
+      "result": "pass"
+    },
+    "workflows": {
+      "commands": [
+        "node scripts/ci/check-workflows.js",
+        "zizmor --offline --persona=pedantic .github/workflows",
+        "shellcheck scripts/ci/*.sh"
+      ],
+      "result": "pass; existing narrow concurrency.queue bridge and one documented zizmor self-repository suppression retained"
+    },
+    "nix": {
+      "commands": [
+        "nix flake check --all-systems --no-build --no-update-lock-file",
+        "nixfmt --check flake.nix",
+        "nix develop .#release --no-update-lock-file --command gh --version"
+      ],
+      "result": "pass; gh 2.101.0"
+    },
+    "firefox": {
+      "grouping": {
+        "passed": true,
+        "tests": 20,
+        "startedAt": "2026-09-26T18:24:54.985Z",
+        "reportSha256": "172708fc3443ba771d0974892527899a7dad7ae9193ab87970b099b02847460c"
+      },
+      "metadata": {
+        "passed": true,
+        "tests": 8,
+        "startedAt": "2026-09-26T18:25:01.549Z",
+        "reportSha256": "b6b1ecb57fc2156ad6f7c3280421acbd015c318e6835680653a4c8a494e00b78"
+      },
+      "naming": {
+        "passed": true,
+        "tests": 16,
+        "startedAt": "2026-09-26T18:25:05.962Z",
+        "reportSha256": "3bf410852ffe3d287fedb22e6d3009fe7cab47b7b6faab2f70d5f4f581fd6f90"
+      },
+      "nativeIds": {
+        "passed": true,
+        "startedAt": "2026-09-26T18:25:13.540Z",
+        "reportSha256": "a4971e61980c19092fdf60b5473c6130ba69423d41ededc1bcaa3e4e35c38611"
+      },
+      "versionBounds": {
+        "passed": true,
+        "reportSha256": "aa53562b297e19ab0f1300df2d0bdb2883b038e6d1d40e0c14e915e52600d134"
+      }
+    },
+    "reproducibleBuild": {
+      "passed": true,
+      "path": "/tmp/stackma-release-candidate.Mdpc6g/dist/stackma-1.1.4.xpi",
+      "bytes": 24528,
+      "sha256": "40940f0fd760013d94c7451229c6bf299e6008ebaae7894034b1accdf49edf0c",
+      "identicalBuilds": 2
+    },
+    "legacyPackage": {
+      "passed": true,
+      "path": "dist/stackma-1.1.4.xpi",
+      "bytes": 24528,
+      "sha256": "40940f0fd760013d94c7451229c6bf299e6008ebaae7894034b1accdf49edf0c",
+      "firefox": "156.0",
+      "buildId": "20260909172920",
+      "files": {
+        "CMU-LICENSE.txt": "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a",
+        "LICENSE": "e5bbd815aebeda8a9c6632d1f6307bb942e07c7d3fa2191691b14709428ecc59",
+        "background.js": "6242296d37ee7a4914ce8fb2eeca1b0dd92a516e14293f1694f047291f7c6162",
+        "group-id-guard.js": "aaa384ab2de262a5bb9ba10283e5d290fbe6d0aac573cabafc2d5b156e7639a0",
+        "icon.svg": "9a239065122ec22504d4428157063aa79fefe504e3c1774264f52338fbd28526",
+        "manifest.json": "7eb619be23aa5866d97b108c3a66497e56b65f4a57e6a99c0820a19badcd50d6",
+        "name-catalog.js": "75263bb976c806ecc8637147d92c96153728df02393e55c3260bb425281bc41c",
+        "name-generator.js": "c5f0549ab7ed7050c555d573700a13b0165c230de5caa25814f9b939ab8682b7",
+        "namer.js": "e53870bc54b3705dc50f05d0d331eafe86fdc394ffe7f0cace45e1034e3b84c7",
+        "popup.css": "768634b2207c0f7e3714f231986778aee468a02ccba335a900965408d0cc83b0",
+        "popup.html": "f07d4c50c4414f7e86776730bc2f1daac708c42269b8f14231959a4c97fce937",
+        "popup.js": "9df20baa7b0b26908ad1c7960de2c0604f6a708af29f57390ac0fe5801ac7108",
+        "stacker.js": "d38cad80d7fc15bd27dcf6174a7e64452fdacff7ea1f6b3e756a3e4dd846d9b2"
+      },
+      "checks": [
+        "temporary XPI installation",
+        "every packaged source file matches",
+        "real opener grouping",
+        "native approved name assignment"
+      ]
+    },
+    "unsignedPermanentInstall": {
+      "expectedFailure": true,
+      "result": "ERROR_SIGNEDSTATE_REQUIRED",
+      "reportSha256": "1515a90c19528cec0b22f9349589bbae69239ec59f4afe3c9f8228024275f519"
+    },
+    "legacyStaging": {
+      "command": "Current stage.js in frozen v1.1.4 worktree",
+      "result": "source and unsigned hashes unchanged; priorReleases field remains absent"
+    },
+    "preparationIntegration": {
+      "scope": "LOCAL MODEL ONLY; no network publishing calls",
+      "snapshotCommit": "1ff16b58a9d7d99615ac53b6b8ea0aca3e73a5bb",
+      "preparedLocalCommit": "0659acfefc195fadfaa43771ae8d07f808133221",
+      "preparedTag": "v1.1.5",
+      "changedFiles": [
+        "extension/manifest.json",
+        "package.json",
+        "package-lock.json",
+        "release-intents/v1.1.5.json"
+      ],
+      "modeledApiEffects": [
+        "git/trees",
+        "git/commits",
+        "git/refs",
+        "pulls"
+      ],
+      "priorReleases": [
+        "v1.1.4"
+      ],
+      "unsigned": {
+        "bytes": 24528,
+        "sha256": "c6bbbc65e1e69e87739f98c2a9425ed60676c6bfdc45329a432cf5ca779535a3"
+      },
+      "source": {
+        "bytes": 686934,
+        "sha256": "e3ca5a20fa028ad4040503bdbd899024b5358903d933f6f5c33591476e863cbe"
+      },
+      "result": "Exact tree/commit resolution, real Firefox temporary installation and current staging pass; no remote PR/tag created"
+    },
+    "finalDiff": {
+      "commands": [
+        "git diff --check",
+        "git diff --exit-code HEAD -- extension naming-data LICENSE package.json package-lock.json flake.nix flake.lock",
+        "git diff --cached --exit-code"
+      ],
+      "result": "pass"
+    },
+    "retirement": {
+      "tests": 3,
+      "result": "Exact scoped retirement, required operator evidence and no-in-flight assertion, and target refusal before provider calls; default policy empty"
+    }
+  },
+  "liveReadOnly": {
+    "amoOwnerState": {
+      "observed": "2026-09-26T18:08:13.881Z",
+      "operation": "GET only",
+      "versions": [
+        {
+          "version": "1.1.4",
+          "id": 6511539,
+          "channel": "listed",
+          "disabled": false,
+          "fileStatus": "unreviewed",
+          "fileHash": "sha256:35b62056b85c92e2fde8ee47c221d722ae1aed2741643b60df58568ce94d827e",
+          "sourcePresent": true
+        },
+        {
+          "version": "1.1.3",
+          "id": 6510131,
+          "channel": "listed",
+          "disabled": false,
+          "fileStatus": "disabled",
+          "fileHash": "sha256:4cb1076d17506795491f3494404f99e883a64c278432cd117a2d2c0fba49be67",
+          "sourcePresent": true
+        },
+        {
+          "version": "1.1.2",
+          "id": 6510050,
+          "channel": "listed",
+          "disabled": false,
+          "fileStatus": "disabled",
+          "fileHash": "sha256:62a2a86c46c08389f4ef8e1cf333fe45544aeec19cc82099703948793cc6d3b0",
+          "sourcePresent": false
+        },
+        {
+          "version": "1.1.0",
+          "id": 6509647,
+          "channel": "listed",
+          "disabled": false,
+          "fileStatus": "disabled",
+          "fileHash": "sha256:30e45b6588efd608929288d6006e52b915f80e54cce6139f1101f2dce0d26e38",
+          "sourcePresent": false
+        }
+      ]
+    },
+    "legacyReconciliation": {
+      "observed": "2026-09-26T18:20:53.209Z",
+      "operation": "GET only; mutation calls rejected locally",
+      "sourceCommit": "997087de3e07b3ffb0b3968e1617b80997a42a6b",
+      "unsigned": {
+        "bytes": 24528,
+        "sha256": "40940f0fd760013d94c7451229c6bf299e6008ebaae7894034b1accdf49edf0c"
+      },
+      "source": {
+        "bytes": 606043,
+        "sha256": "75be8424e351e1cb9ac752a351c399ab340a6a16cc6fd18f38db5a2982763f8b"
+      },
+      "reads": 5,
+      "result": {
+        "state": "awaiting-review",
+        "versionId": 6511539,
+        "fileStatus": "unreviewed"
+      }
+    },
+    "mergedPrRecovery": {
+      "observed": "2026-09-26T19:15:15.109Z",
+      "scope": "anonymous GET only; local resolution; no tag creation",
+      "reads": 2,
+      "pullRequest": 3,
+      "result": {
+        "tag": "v1.1.4",
+        "commit": "997087de3e07b3ffb0b3968e1617b80997a42a6b",
+        "createTag": true
+      }
+    },
+    "resumeDryRun": {
+      "command": "node scripts/release/resume.js --dry-run --repository=Quince-Pie/stackma",
+      "result": "No approved unpublished version or retained incomplete publication needs recovery; no dispatch"
+    },
+    "repositorySetup": {
+      "observed": "2026-09-26T18:24:54.932Z",
+      "scope": "anonymous GET only",
+      "rulesets": [],
+      "environments": [
+        {
+          "name": "release-signing",
+          "deploymentBranchPolicy": null,
+          "protectionRules": []
+        }
+      ],
+      "administrativeSettingsAndSecrets": "not inspected"
+    }
+  },
+  "sourceIdentities": {
+    "amoDeployed": {
+      "version": "2026.09.17-1",
+      "commit": "c03d3c661bdbe22bb8f4a52fc46d63668bb31751"
+    },
+    "amoHeadCompared": "b8e7d6002f9b8e01fd548fb7970d6837ee72bd7a",
+    "firefoxReference": "9e9b5f17f56187c1f5c8b9cdf79a01ff51a7b643",
+    "mdnReference": "8530cf97b809705c3524e733afcb69124b305b2e",
+    "webExt": "3c26c884e237282c072113483eda0eaddabb64f7",
+    "githubCli": "0cf1092493af067646fc5f3db9421c6a6ec9c938",
+    "releaseIt": "ef1f03b3a09d3057c9e1af47879c4deba3f3fd40",
+    "releasePleaseLibrary": "05c6a4f71022304d4edad24ea90c1c16324503d5",
+    "releasePleaseAction": {
+      "sha": "45996ed1f6d02564a971a2fa1b5860e934307cf7",
+      "lockedLibrary": "17.6.0"
+    },
+    "createPullRequest": "5f6978faf089d4d20b00c7766989d076bb2fc7f1",
+    "webhookSchema": "7dd7fa56498a827a08b71919fae89428f5e8e283",
+    "githubRest": "2026-03-10",
+    "notes": "Current published policy/API docs plus deployed primary source; see docs/release-design.md for exact paths, URLs and limits. Optional /tmp/stackma-release-sources/ absent."
+  },
+  "decisiveReviewFindings": [
+    "Historical signer prevented corrected-controller recovery; split controller and product source.",
+    "Source PATCH can be rejected after human review; attach source at new-version creation.",
+    "Upload UUID is deployed32hex; repaired initial36-only adapter fixture/validation.",
+    "Malformed JSON exceptions could quote provider bodies; fixed safe errors.",
+    "Client timeout can leave provider write in flight; source intent precedes both tag and AMO operations. Rejected a tag-only guard whose own mutation was ambiguous.",
+    "Newest20 candidates and first100 workflow runs could strand or endlessly retry work; full bounded/adaptive scans and retained bot-history reconciliation.",
+    "Published release could hide failed verification; inspect mandatory job step and retain bounded recovery/attention.",
+    "Current PR REST detail removed merge_commit_sha; read the merged issue event and verify locally against real PR3.",
+    "Permanently rejected builds/uploads need explicit retirement of unsubmitted intent; retain immutable intent and require reviewed evidence that no provider request remains in flight."
+  ],
+  "structuralCosts": {
+    "newAmoMutations": 2,
+    "baselineAmoMutations": 3,
+    "notes": "Predecessor reads are added; no elapsed-time dominance claim. Intent record uses existing Git tree request.",
+    "readiness": {
+      "premise": "Fixed complete public history; P includes one empty page; exclude common listing eligibility GET",
+      "bound": "N=1:1; N>1: at most P and at most N+1 approval reads, subject to explicit resource bound",
+      "examples": [
+        {
+          "publicVersions": 5001,
+          "candidates": 1,
+          "totalAmoGets": 2
+        },
+        {
+          "unpublishedTags": 120,
+          "publicVersions": 2,
+          "totalAmoGets": 2
+        },
+        {
+          "publicVersions": 200,
+          "candidates": 2,
+          "bothAfterFirstPage": true,
+          "totalAmoGets": 4,
+          "pointOnlyGets": 3
+        }
+      ]
+    },
+    "cadence": {
+      "initialWaitMinutes": 15,
+      "scheduledChecksPerDay": 4,
+      "reason": "Retain established operating point; no supplied frequency/SLA/cost weights establishes a unique preferred alternative."
+    }
+  },
+  "openGates": [
+    "Review/merge local files including source intent seed; no project commit or push done.",
+    "Authorize and verify repository rules, main-only environments, immutable releases, Actions PR permission, scheduler and stored credentials.",
+    "Before rollout confirm no old controllers/queued jobs/manual publishing requests remain; re-inventory existing remote state.",
+    "Hosted PR approval/merge/queue and exact artifact/credential boundaries.",
+    "First new source-on-create AMO submission with inherited terms and readable source; delayed review and automatic resumption.",
+    "Approved Stackma signed permanent installation, complete immutable GitHub release/native attestations and repeat completion.",
+    "Historical tag and missing-tag merged-PR recovery under actual job token scopes, including workflow-write permission behavior.",
+    "Real installed-user AMO update delivery with unchanged add-on ID."
+  ],
+  "assumptionsAndLimits": [
+    "Earlier owner decisions are preserved as recorded in project docs; original conversation transcript not available.",
+    "Protected reviewed main, immutable source intent, one coordinated publishing authority; no conditional cross-provider transaction or protection against an outside administrator racing writes.",
+    "Latest-created AMO license inheritance/list ordering and shared object semantics depend on inspected deployed source; ambiguous predecessor timestamps/provider changes require investigation.",
+    "Pending metadata, sources and signed file can change; conflicts fail without overwrite.",
+    "Recovery depends on protected source and locked tool availability; reconstructed audit bytes that conflict with an existing draft require original-run/toolchain recovery.",
+    "Schedules can be delayed/dropped/disabled; run-history monitoring/counts cover retained evidence only.",
+    "All scan/resource bounds fail or report attention explicitly; they do not prove absence beyond the bound.",
+    "Hosted acceptance and literal optimality remain unestablished.",
+    "Retirement is an explicit operator assertion backed by actual outcome evidence, not machine proof of cancellation; unknown in-flight writes cannot be retired safely. Old controller runs must not restart after retirement."
+  ],
+  "filesSha256": {
+    ".github/workflows/ci.yml": "cdbc2063ef7f2d1a3b375e58e9996704d9abc1d1b850b0738e0eec610193f454",
+    ".github/workflows/release.yml": "649345e2fcba07dfea5b35e3f8f2b104623d8072951dc7bbd0e8689755427228",
+    ".github/workflows/resume-release.yml": "025859511f9e611ecb49fe2d33dcbe11adb570a7dc62024d0375e732efd3e848",
+    "README.md": "3989de0128cdbd1074fba5f83dadcb8c4f739cd4344a0df9969021dbc222a004",
+    "docs/amo-review.md": "6210ee7dcd54701e7fb3d0c813b31d7cc1f1ff535c9fedb7069942592f749de7",
+    "docs/ci.md": "3c4fdf874aaa1310c669bf4c6e87fb741f0cdb568c6be48c8b3dc251c4ca9b65",
+    "docs/release-design.md": "b59adbe26169b51b33e6b17f8cd579a4454d71e202fdea25a85ca2a043a5b946",
+    "docs/release-history.md": "9c065b27406185ed1e34d749b85b2b48b1567d7395b4292a2bbdf63449200dad",
+    "docs/release-preparation.md": "70c88087687c5de7ff5ce6e3efdc01dd9af6b5e98dadf40cfdba13c1b92c28a5",
+    "docs/release-qualification.md": "6de3a160e7b4dfebb974f3af99dba657f6f13c61ec9c0d9757f3175cada1aac0",
+    "docs/releases.md": "6536e7ef47eca3f5e15ba4f1b140f3977eef32f76797cf2e2c8b24211881511e",
+    "evidence/release/amo-review.json": "2e64f1bc9e545c853b33c7163fd1d3ae8c34143f80d9a4dc2d2a0d1ca94270e1",
+    "listing/icon.png": "ff6f05b5c2520fec7e09882f246a22d16af0360cab4f49d76f3cf6594f520279",
+    "release-intents/v1.1.4.json": "4a77e970bee0b190854ebde16b4e2204852e586ef4959965a5d4d78963f9702b",
+    "release-retirements.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "scripts/package-test.js": "7d9e626561e2147f974988b2b8435620aefa01cc8feb14f6125b616b3699c7a3",
+    "scripts/release/amo.js": "e8274f470a7d9b6376441a24ce6cb990535075b374c6fae7f1d34f023a77636e",
+    "scripts/release/github.js": "ac7a59b69ff156d9b3be33a0c78cd76612b1afec8f87f5c96b244b01b672c2fa",
+    "scripts/release/intent.js": "d3dec534a3a5919fb2907a5832e9bd584b1c3df883c2296ea27e4dcbb810a581",
+    "scripts/release/package.js": "5088edd8bfa114a28342cb355d3ffa1b7fbb2ef3da702769f5b6f57ecf3b08d2",
+    "scripts/release/prepare.js": "048f250d37dcb7f9a438f5cb31a10ed440b8d388a386698a9547fa55c639b6b3",
+    "scripts/release/repository-policy.js": "f3e4cf3eb7a885ead807043c3606d6142034acf35bfa69c40c901d51e98c1bbc",
+    "scripts/release/repository.js": "cb854bca2fb301c221dec6766de286d98017d99496b9c368eafc559b7ac4145b",
+    "scripts/release/resolve.js": "48d3b6d663a08d6dbff41c628e7893252266a3e8b92a95b57c987d9e6d90eb13",
+    "scripts/release/resume.js": "39bc0932326fa0d0c7ff46aaf740d04d0562b12afe8e3d3564fa7f4db7f318fd",
+    "scripts/release/retirement.js": "259eecf9606cb06b5963c6ece56e4b527c08f90155d6c2e8d4a403f936f9e1f5",
+    "scripts/release/sign.js": "c2b9b9efcf944f4b828cb6f1da598821f4796df8b0c1bdc1f2c0227622608d18",
+    "scripts/release/stage.js": "f523948f5b22cffd6d7cc8b09fd86aa07477e988c613942bf9be3a7cac746cc9",
+    "tests/release/amo.test.js": "bd3b4f11e19b58c9d50466c86537c252593b169c94954edfa3e33c62825dd5de",
+    "tests/release/github.test.js": "8d65535fbf971955d2d9ca5d3bee69a77e52c46eb7cd07f74cf6b0a355d4e461",
+    "tests/release/intent.test.js": "b758370960f5b3c2849648e4381fc8406aef7283b92184b05d4ccb8325a1505c",
+    "tests/release/prepare.test.js": "d2da8b74d535aa076080e144bbbb58bfd42445456da1ad3206f865448fb31015",
+    "tests/release/repository-policy.test.js": "e27feaf36ac58e013acdcbe051b10184cf643fc2d212804d54c5b1bc8c3c672d",
+    "tests/release/resume.test.js": "40b4c6dca81f333dd26d6c4267f77bb73b01427219d622ac08a65c20013cfc89",
+    "tests/release/retirement.test.js": "e1944ddb6f3406330249d12617cd729c79c5acb50346759fdadc485345b4bc60",
+    "tests/release/sign.test.js": "e710e7722c62259a3581adf3afdc6d5b6d56c464440edd98c8531a782da1b9c7",
+    "tests/release/stage.test.js": "ba67069f54a3ab799b92c5d875a251fdbd2b3b9deda20c26c8fefb207fa8011b",
+    "tests/release/workflow.test.js": "5013a58d290d9e1d55c0c199eda2a9e03e540c13f6c04b3000b556caa78fe556"
+  }
+}

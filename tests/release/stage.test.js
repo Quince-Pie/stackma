@@ -5,10 +5,11 @@ import test from "node:test";
 import { digestFile, run, sha256 } from "../../scripts/release/package.js";
 import { temporary } from "./fixtures.js";
 
-async function fixture(t) {
+async function fixture(t, { historicalStage = false } = {}) {
   const directory=await temporary(t);
   for(const path of ["extension","scripts/release","naming-data","dist","artifacts/ci"]) await mkdir(`${directory}/${path}`,{recursive:true});
-  for(const file of ["package.js","stage.js"]) await copyFile(resolve(`scripts/release/${file}`),`${directory}/scripts/release/${file}`);
+  for(const file of ["package.js","intent.js","stage.js"]) await copyFile(resolve(`scripts/release/${file}`),`${directory}/scripts/release/${file}`);
+  if (historicalStage) await writeFile(`${directory}/scripts/release/stage.js`, 'throw new Error("obsolete release controller");\n');
   const version="1.1.1",pkg={type:"module",version,devDependencies:{"web-ext":"10.7.0"}};
   await writeFile(`${directory}/package.json`,JSON.stringify(pkg));
   await writeFile(`${directory}/package-lock.json`,JSON.stringify({version,packages:{"":{version}}}));
@@ -37,6 +38,25 @@ test("staging binds the tested XPI and reproducible committed source without loc
   const {openPromise}=await import("yauzl");const zip=await openPromise(`${f.directory}/artifacts/release-input/source.zip`);
   const names=[];for await(const entry of zip.eachEntry()) names.push(entry.fileName);
   assert(!names.some(name=>name.includes(".env")||name.startsWith("artifacts/")||name.startsWith("dist/")));
+});
+
+test("a current controller stages historical source without executing or changing its old release code", async t => {
+  const f = await fixture(t, { historicalStage: true });
+  await assert.rejects(() => f.execute(), error => error.stderr.includes("obsolete release controller"));
+  const commit = await f.git("rev-parse", "HEAD");
+  const options = { cwd: f.directory, timeout: 30_000,
+    env: { ...process.env, RELEASE_TAG: "v1.1.1", RELEASE_COMMIT: commit } };
+  await run(process.execPath, [resolve("scripts/release/stage.js")], options);
+  const context = JSON.parse(await readFile(`${f.directory}/artifacts/release-input/context.json`, "utf8"));
+  assert.equal(context.commit, commit);
+  assert.equal(context.unsigned.sha256, sha256("verified test package"));
+  assert.equal(await f.git("diff", "HEAD"), "", "controller must not modify frozen source");
+  const source = await digestFile(`${f.directory}/artifacts/release-input/source.zip`);
+  // Expired within-run data can be reconstructed with no old artifact ID.
+  const { rm } = await import("node:fs/promises");
+  await rm(`${f.directory}/artifacts/release-input`, { recursive: true });
+  await run(process.execPath, [resolve("scripts/release/stage.js")], options);
+  assert.deepEqual(await digestFile(`${f.directory}/artifacts/release-input/source.zip`), source);
 });
 
 test("untracked payload, mismatched versions and changed package bytes fail staging",async t=>{
