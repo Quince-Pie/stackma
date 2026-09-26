@@ -13,6 +13,7 @@ async function fixture(t, result) {
   const env = { RELEASE_TAG: "v1.1.5", RELEASE_COMMIT: context.commit, GITHUB_OUTPUT: `${directory}/output`, GITHUB_STEP_SUMMARY: `${directory}/summary` };
   const logs = [], warnings = [], calls = [];
   const options = {
+    retired: new Set(), // Synthetic versions must not inherit live repository retirements.
     env, directory, signedDirectory: `${directory}/signed`, client: {}, github: {}, log: line => logs.push(line), warn: line => warnings.push(line),
     sign: async request => { calls.push(request); if (result instanceof Error) throw result; return result; },
   };

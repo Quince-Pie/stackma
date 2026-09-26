@@ -12,6 +12,9 @@ records the owner-authorized setup, real runs and remaining Mozilla gates.
 The owner later authorized [unlisted 1.1.6](unlisted-1.1.6.md) as a one-off
 self-distributed release. Use that page for this version; the normal workflow
 below remains listed-only.
+The subsequent [listed 1.1.7 plan](listed-1.1.7.md) records the corrected merged-PR
+trigger, its scoped Actions event policy, recovery from an incomplete listing,
+and retirement of unsubmitted 1.1.5.
 See the [design qualification](release-design.md) and [verification record](../evidence/release/redesign.json).
 The supplied operator guide, including all existing edits, is preserved in
 [release history](release-history.md). Use this page for current procedures.
@@ -43,6 +46,12 @@ These administrator actions require authorization separately from implementation
 6. Keep **Resume approved releases** enabled and monitor failed runs. GitHub
    can delay/drop schedules and disables schedules in inactive public repositories
    after 60 days. Keep the schedule owner's notifications enabled.
+7. Keep the **Stackma release workflow events** Actions policy active. It applies
+   only to `.github/workflows/release.yml` and allows `pull_request_target` and
+   `workflow_dispatch`. The target trigger runs only for merged, same-repository
+   release PRs whose integrated source passes the main-history checks. This
+   explicit policy is needed when GitHub's public target-event default becomes
+   enforced on 2026-11-02. Do not broaden environment access to PR merge refs.
 
 The policy helper checks without writing unless `--apply` is explicit. It needs
 an administrator's token, separate from the publisher's job token:
@@ -239,7 +248,8 @@ higher release to advance past that resolved intent. The ordinary pending-versio
 guard remains active; retirement never authorizes disabling a pending version.
 Never rerun an old controller that predates the retirement; use dispatch from
 current main for further recovery. A retirement with an unknown outcome is unsafe
-and is outside the operated contract. No version is retired in the supplied policy.
+and is outside the operated contract. Version 1.1.5 is retired with the
+[recorded pre-execution failure](listed-1.1.7.md); its tag and intent remain intact.
 
 ## Existing versions and rollout
 

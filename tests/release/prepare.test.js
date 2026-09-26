@@ -333,6 +333,21 @@ test("a release commit outside the selected main history cannot be tagged or pub
   assert(!f.refs.has("tags/v1.1.1"));
 });
 
+test("target-event CLI keeps controller snapshot separate from the integrated source on fetched main", async t => {
+  const f = await fixture(t), prepared = await prepareRelease(f.options);
+  await f.git("update-ref", "refs/remotes/origin/main", prepared.head);
+  const event = { action: "closed", pull_request: { ...f.pulls[0], merged: true, merge_commit_sha: prepared.head,
+    base: { ref: "main", repo: { full_name: f.github.repository } } } };
+  const eventPath = `${f.cwd}/event.json`, output = `${f.cwd}/target-output`;
+  await writeFile(eventPath, JSON.stringify(event));
+  await run(process.execPath, [resolve("scripts/release/resolve.js")], { cwd: f.cwd, timeout: 10_000,
+    env: { ...process.env, GITHUB_EVENT_NAME: "pull_request_target", GITHUB_EVENT_PATH: eventPath,
+      GITHUB_REPOSITORY: f.github.repository, GITHUB_REF: "refs/heads/main", GITHUB_SHA: f.mainCommit,
+      GITHUB_OUTPUT: output, RECOVERY_PR: "", RELEASE_TAG: "" } });
+  assert.equal(await readFile(output, "utf8"), `tag=v1.1.1\ncommit=${prepared.head}\ncreate-tag=true\n`);
+  assert.equal(await f.git("rev-parse", "HEAD"), f.mainCommit, "Controller checkout was not replaced with PR source");
+});
+
 test("a merged group with later non-version commits retains the prepared version's before-state", async t => {
   const f = await fixture(t), prepared = await prepareRelease(f.options);
   await f.git("cherry-pick", prepared.head);
@@ -349,8 +364,8 @@ test("a merged group with later non-version commits retains the prepared version
   await assert.rejects(() => resolveRelease({ ...options, event: bad }), /newer/u);
 });
 
-for (const mergeMode of ["merge", "squash", "rebase"]) {
-  test(`${mergeMode} merge releases the merged main commit, with no pre-created tag`, async t => {
+for (const mergeMode of ["merge", "squash", "rebase"]) for (const eventName of ["pull_request", "pull_request_target"]) {
+  test(`${mergeMode} merge through ${eventName} releases the merged main commit, with no pre-created tag`, async t => {
     const f = await fixture(t), prepared = await prepareRelease(f.options);
     if (mergeMode === "merge") await f.git("merge", "--no-ff", "-m", "Merge release PR", prepared.head);
     else if (mergeMode === "squash") {
@@ -359,7 +374,7 @@ for (const mergeMode of ["merge", "squash", "rebase"]) {
     const mainCommit = await f.git("rev-parse", "HEAD");
     const event = { action: "closed", pull_request: { ...f.pulls[0], merged: true, merge_commit_sha: mainCommit,
       base: { ref: "main", repo: { full_name: f.github.repository } } } };
-    const options = { eventName: "pull_request", event, repository: f.github.repository, workflowRef: "refs/heads/main", mainCommit, cwd: f.cwd };
+    const options = { eventName, event, repository: f.github.repository, workflowRef: "refs/heads/main", mainCommit, cwd: f.cwd };
     assert.deepEqual(await resolveRelease(options), { tag: "v1.1.1", commit: mainCommit, createTag: true });
     for (const alter of [
       pr => { pr.merged = false; }, pr => { pr.head.repo.full_name = "fork/stackma"; },

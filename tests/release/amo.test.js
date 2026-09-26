@@ -125,6 +125,24 @@ test("new version submits exactly the tested XPI with source in the version crea
   assert(f.events.filter(e => e === "get-version").length >= 4);
 });
 
+test("an enabled incomplete listing can submit with exact inherited terms, but still needs public listing approval", async t => {
+  const f = await fixture(t, { existing: false, addonStatus: "incomplete", public: false, listed: [listed("1.1.0", "disabled")] });
+  const result = await signRelease({ ...f.options, approvalWaitMs: 0 });
+  assert.equal(result.state, "awaiting-review"); assert.equal(f.events.filter(e => e === "create").length, 1);
+  f.state.public = true;
+  assert.equal((await signRelease({ ...f.options, approvalWaitMs: 0 })).state, "awaiting-review", "An approved file alone does not authorize listed publication");
+  f.state.addonStatus = "public";
+  assert.equal((await signRelease(f.options)).state, "approved-and-signed");
+});
+
+test("new listed submissions still reject disabled, rejected and unknown listing states", async t => {
+  for (const overrides of [{ addonDisabled: true }, ...["disabled", "rejected", "deleted", "unknown"].map(addonStatus => ({ addonStatus }))]) {
+    const f = await fixture(t, { existing: false, ...overrides });
+    await assert.rejects(() => signRelease(f.options));
+    assert(!f.events.some(e => ["upload", "create", "patch-source", "patch-license"].includes(e)));
+  }
+});
+
 test("lost create response preserves remote version; retry resumes rather than duplicates", async t => {
   const f = await fixture(t, { existing: false });
   f.client.doVersionSubmit = async () => { f.events.push("create"); f.state.existing = true; throw new Error("lost response"); };

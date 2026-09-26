@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "observed": "2026-09-26T23:46:54.105Z",
+  "request": "Owner requests listed 1.1.7, preserving installed unlisted 1.1.6 and the existing add-on ID.",
+  "baseline": "cf9798af6a6075231a7495e5c2fe94b077f2b018",
+  "budget": {
+    "started": "2026-09-26T23:28:27Z",
+    "limitMinutes": 75,
+    "scope": "New listed 1.1.7 task including investigation, recovery fix, review, tests, provider policy, version preparation, submission and publication/update acceptance if approval arrives."
+  },
+  "retirement": {
+    "observed": "2026-09-26T23:34:22.870Z",
+    "runId": 36274506473,
+    "attempt": 1,
+    "source": "820c43cc27f7e943a97c1bc50476cf7d7f77bf36",
+    "url": "https://github.com/Quince-Pie/stackma/actions/runs/36274506473",
+    "archiveSha256": "b77410a6ec00e1c684771b034a9d2d72f9768c5c1ac99c53ffa9dadec04c808c",
+    "signingJob": {
+      "id": 108494911780,
+      "runnerId": 0,
+      "steps": [],
+      "conclusion": "failure"
+    },
+    "failure": "Branch \"refs/pull/5/merge\" is not allowed to deploy to release-signing due to environment protection rules.",
+    "argument": "GitHub rejected the signing job at its environment boundary before allocating a runner or executing any step. Therefore this workflow attempt could not issue any AMO upload/version request. Full retained release history contains only this 1.1.5 attempt; all runs are completed. Current owner inventory contains no 1.1.5. The retirement relies on the pre-execution denial, not absence/timeout alone.",
+    "scope": "Coordinated repository release operations; no independent Developer Hub submission of 1.1.5 has been reported or observed."
+  },
+  "environmentPolicy": {
+    "before": "main branch only for release-signing and release-publication",
+    "after": "unchanged",
+    "observedFailure": "The ordinary closed pull_request passed the script main-ref check but GitHub evaluated environment eligibility against refs/pull/5/merge.",
+    "correction": "Use pull_request_target:closed with merged/same-repository/release-branch guards; verify source ancestry against fetched protected main and keep controller pinned to trusted github.sha."
+  },
+  "actionsPolicy": {
+    "initial": {
+      "observed": "2026-09-26T23:37:30.043Z",
+      "status": 200,
+      "data": {
+        "total_count": 0,
+        "policies": []
+      }
+    },
+    "desired": {
+      "name": "Stackma release workflow events",
+      "enforcement": "active",
+      "conditions": {
+        "workflow_path": {
+          "include": [
+            ".github/workflows/release.yml"
+          ],
+          "exclude": []
+        }
+      },
+      "rules": [
+        {
+          "type": "restrict_action_events",
+          "parameters": {
+            "allowed_events": [
+              "pull_request_target",
+              "workflow_dispatch"
+            ]
+          }
+        }
+      ]
+    },
+    "reason": "GitHub public-repository default target-event restriction becomes enforced 2026-11-02. Explicit allow is scoped to this workflow; no actor restrictions or other policies are removed.",
+    "status": "prepared and locally tested; remote application and hosted target-run acceptance pending"
+  },
+  "amo": {
+    "state": "enabled incomplete listing with no current approved/pending listed file",
+    "newBehavior": "Permit submission from incomplete, retain ID/slug/enabled/license/pending-intent guards, and require both listed file and listing public before distribution.",
+    "primaryDeployment": "2026.09.17-1/c03d3c661bdbe22bb8f4a52fc46d63668bb31751",
+    "mechanisms": [
+      "DeveloperVersionSerializer.validate rejects developer-disabled/rejected listed submissions, not enabled incomplete listings.",
+      "Version.from_upload inherits terms from the newest created listed version, including disabled predecessors.",
+      "Addon.update_status derives listing state from approved or awaiting-review listed files."
+    ]
+  },
+  "localVerification": {
+    "baselineReleaseTests": "199/199 passed",
+    "candidateReleaseTests": "207/207 passed",
+    "workflowLint": "passed",
+    "zizmor": "passed with the existing reusable-workflow annotation and an explicit manually audited dangerous-triggers annotation for closed/merged/same-repository source on protected main",
+    "fixtureCorrection": "Synthetic signing fixture now supplies its own empty retirement set; live retirement of 1.1.5 must not alter unrelated fixture behavior. Actual retirement rejection tests remain active."
+  },
+  "qualification": "Scope: safe release from existing incomplete listing and trusted merged-source initiation under current GitHub environment/event policies. Alternatives and trust argument are in docs/listed-1.1.7.md; no signing-latency or universal-optimality claim."
+}

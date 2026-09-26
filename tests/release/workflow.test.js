@@ -7,6 +7,16 @@ import { publicationJobName, publicationVerificationStepName, releaseWorkflow } 
 const release = await readFile(`.github/workflows/${releaseWorkflow}`, "utf8");
 const resume = await readFile(".github/workflows/resume-release.yml", "utf8");
 
+test("merged release initiation uses trusted default-branch context and retains all authority guards", () => {
+  assert.match(release, /^  pull_request_target:\n    types: \[closed\]\n    branches: \[main\]/mu);
+  assert(!/^  pull_request:/mu.test(release));
+  assert.match(release, /github\.event\.pull_request\.merged == true/u);
+  assert.match(release, /github\.event\.pull_request\.head\.repo\.full_name == github\.repository/u);
+  assert.match(release, /startsWith\(github\.event\.pull_request\.head\.ref, 'release\/v'\)/u);
+  assert(!release.includes("allow-unsafe-pr-checkout"));
+  assert(!release.includes("github.event.pull_request.head.sha"));
+});
+
 test("dispatch runs carry the exact title that automatic resumption counts", () => {
   assert.match(release, /^run-name: \$\{\{ github\.event_name == 'workflow_dispatch' && format\('Publish release \{0\}', inputs\.tag\) \|\| github\.event\.pull_request\.title \}\}$/mu);
 });

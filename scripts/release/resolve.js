@@ -13,6 +13,7 @@ export async function resolveRelease({ eventName, event, repository, workflowRef
   assert.equal(workflowRef, "refs/heads/main", "Release must run from main");
   retired ??= await readRetirements();
   assert.match(mainCommit, /^[a-f0-9]{40}$/u);
+  if (eventName === "pull_request_target") eventName = "pull_request";
   if (recoveryPull !== undefined) {
     assert.equal(eventName, "workflow_dispatch", "Merged-PR recovery requires an explicit dispatch");
     versionFromTag(tag);
@@ -84,11 +85,17 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1
       const github = new GitHub(process.env.GITHUB_REPOSITORY, process.env.GH_TOKEN);
       recoveryPull = await github.mergedPull(Number(process.env.RECOVERY_PR));
     }
+    // The trusted default-branch controller snapshot can precede the merged
+    // source. Full checkout history includes the current protected main ref;
+    // use it only for ancestry, never execute a PR head or replace merge identity.
+    const mainCommit = process.env.GITHUB_EVENT_NAME === "pull_request_target"
+      ? (await run("git", ["rev-parse", "refs/remotes/origin/main"], { timeout: 30_000 })).stdout.trim()
+      : process.env.GITHUB_SHA;
     const result = await resolveRelease({
       eventName: process.env.GITHUB_EVENT_NAME,
       event: JSON.parse(await readFile(process.env.GITHUB_EVENT_PATH, "utf8")),
       repository: process.env.GITHUB_REPOSITORY, workflowRef: process.env.GITHUB_REF,
-      mainCommit: process.env.GITHUB_SHA, tag: process.env.RELEASE_TAG,
+      mainCommit, tag: process.env.RELEASE_TAG,
       recoveryPull,
     });
     await appendFile(process.env.GITHUB_OUTPUT, `tag=${result.tag}\ncommit=${result.commit}\ncreate-tag=${result.createTag}\n`);
