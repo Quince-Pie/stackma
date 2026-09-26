@@ -1,0 +1,324 @@
+{
+  "schema": 1,
+  "observed": "2026-09-26T21:03:22.743Z",
+  "repository": "Quince-Pie/stackma",
+  "authority": "Owner follow-up requested repository setup, live release acceptance and literal universal optimality, then supplied an administrator API token in the ignored local environment file. No authority to supersede the pending Mozilla version was inferred.",
+  "budget": {
+    "combinedLimitMinutes": 180,
+    "initialImplementationMinutes": 85.05,
+    "followupStarted": "2026-09-26T19:57:36Z",
+    "elapsedCombinedMinutesAtRecord": 150.83,
+    "scope": "Initial redesign plus follow-up research, implementation, review, tools, delegation, repository rollout and verification."
+  },
+  "preservation": {
+    "initialSharedHead": "997087de3e07b3ffb0b3968e1617b80997a42a6b",
+    "sharedWorkingTree": "Original work remains unstaged in place; commits and rollout used separate worktrees. No reset, clean or stash.",
+    "baselineSnapshots": [
+      "/tmp/stackma-release-baseline.Laq90D",
+      "/tmp/stackma-hosted-baseline.FqBeGZ"
+    ],
+    "oldRelease": {
+      "id": 395301544,
+      "tag": "v1.1.1",
+      "immutable": true,
+      "assetCount": 0,
+      "action": "preserved"
+    }
+  },
+  "deployment": {
+    "pullRequest": "https://github.com/Quince-Pie/stackma/pull/4",
+    "reviewedHead": "742e313385bd8ea1d4a579511bdb94840cf56ddb",
+    "mergeCommit": "e020a3f1fc092f07c0d4314ee3cb1193b7a5e7f6",
+    "merge": "Explicit owner-authorized merge after hosted CI; workflow auto-merge remains absent."
+  },
+  "repositorySettings": {
+    "observed": "2026-09-26T21:01:28.169Z",
+    "findings": [
+      {
+        "item": "ruleset \"Stackma release tags\"",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      },
+      {
+        "item": "ruleset \"Stackma main history\"",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      },
+      {
+        "item": "environment release-signing",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      },
+      {
+        "item": "environment release-publication",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      },
+      {
+        "item": "immutable releases",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      },
+      {
+        "item": "Actions may create pull requests",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      }
+    ]
+  },
+  "credentialScoping": {
+    "observed": "2026-09-26T21:00:23.913Z",
+    "removed": [
+      "AMO_JWT_ISSUER",
+      "AMO_JWT_SECRET",
+      "JWT_ISSUER",
+      "JWT_SECRET"
+    ],
+    "repositoryNames": [],
+    "signingEnvironmentNames": [
+      "AMO_JWT_ISSUER",
+      "AMO_JWT_SECRET"
+    ],
+    "method": "Set existing AMO credentials in main-only release-signing; confirmed hosted authenticated reconciliation, then deleted only the four obsolete repository aliases. Never copied the local administrator token into Actions secrets.",
+    "primaryContract": "https://docs.github.com/en/actions/reference/security/secrets",
+    "limitation": "Secret metadata and successful API authentication establish the exercised credential path; no credential values are included."
+  },
+  "hostedRuns": [
+    {
+      "id": 36269187663,
+      "name": "CI",
+      "event": "pull_request",
+      "head": "f2b0658cfb3d4af8879f892412898b6e49b1a0b9",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Quince-Pie/stackma/actions/runs/36269187663"
+    },
+    {
+      "id": 36269477579,
+      "name": "CI",
+      "event": "pull_request",
+      "head": "742e313385bd8ea1d4a579511bdb94840cf56ddb",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Quince-Pie/stackma/actions/runs/36269477579"
+    },
+    {
+      "id": 36270471675,
+      "name": "Prepare v1.1.5 for review",
+      "event": "workflow_dispatch",
+      "head": "e020a3f1fc092f07c0d4314ee3cb1193b7a5e7f6",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Quince-Pie/stackma/actions/runs/36270471675"
+    },
+    {
+      "id": 36270530428,
+      "name": "CI",
+      "event": "pull_request",
+      "head": "82cf9f1e6ce7ec9a9b0279fa4162d4f0c333114e",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Quince-Pie/stackma/actions/runs/36270530428"
+    },
+    {
+      "id": 36270030489,
+      "name": "Publish release v1.1.4",
+      "event": "workflow_dispatch",
+      "head": "e020a3f1fc092f07c0d4314ee3cb1193b7a5e7f6",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Quince-Pie/stackma/actions/runs/36270030489"
+    },
+    {
+      "id": 36270820273,
+      "name": "Resume approved releases",
+      "event": "workflow_dispatch",
+      "head": "e020a3f1fc092f07c0d4314ee3cb1193b7a5e7f6",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Quince-Pie/stackma/actions/runs/36270820273"
+    }
+  ],
+  "hostedPendingRecovery": {
+    "observed": "2026-09-26T20:54:36.972Z",
+    "runId": 36270030489,
+    "source": "997087de3e07b3ffb0b3968e1617b80997a42a6b",
+    "controller": "e020a3f1fc092f07c0d4314ee3cb1193b7a5e7f6",
+    "state": "awaiting-review",
+    "jobs": [
+      {
+        "name": "Resolve the approved release source",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify the release commit / Verify Firefox 156 extension",
+        "conclusion": "success"
+      },
+      {
+        "name": "Tag the verified release commit",
+        "conclusion": "success"
+      },
+      {
+        "name": "Sign and verify with Mozilla",
+        "conclusion": "success"
+      },
+      {
+        "name": "Publish the verified signed release",
+        "conclusion": "skipped"
+      }
+    ],
+    "signatureInstallation": "skipped",
+    "publication": "skipped",
+    "claim": "Real hosted source verification, protected-tag reconciliation and authenticated pending-version recovery passed. No positive signing or publication acceptance."
+  },
+  "resume": {
+    "runId": 36270820273,
+    "workflowState": "active",
+    "schedule": "41 */6 * * *",
+    "outcome": "No approved unpublished version or retained incomplete publication needs recovery.",
+    "claim": "Real manual dispatch exercised the deployed scheduled-workflow controller. Future cron delivery and approval-triggered dispatch are not established."
+  },
+  "logEvidence": {
+    "observed": "2026-09-26T21:00:23.914Z",
+    "runs": [
+      {
+        "id": 36270030489,
+        "archiveSha256": "ed65531c3d568e7451aeea7403205b7d4547c5a698aa774123f7273c59614f9f",
+        "archiveBytes": 210556,
+        "awaitingReviewObserved": true,
+        "noPublicationNeeded": false
+      },
+      {
+        "id": 36270820273,
+        "archiveSha256": "357dcbefd75f12432dada73b644757a9c006ef124506927e2f21d3f64f9d24b1",
+        "archiveBytes": 34811,
+        "awaitingReviewObserved": false,
+        "noPublicationNeeded": true
+      }
+    ],
+    "method": "Read official log ZIPs in memory after checking redirect host; did not forward GitHub authorization to log storage. Raw logs were not committed."
+  },
+  "preparedNextVersion": {
+    "pullRequest": "https://github.com/Quince-Pie/stackma/pull/5",
+    "head": "82cf9f1e6ce7ec9a9b0279fa4162d4f0c333114e",
+    "state": "open",
+    "ciRun": 36270530428,
+    "changedFiles": [
+      "extension/manifest.json",
+      "package-lock.json",
+      "package.json",
+      "release-intents/v1.1.5.json"
+    ],
+    "gate": "Do not merge while 1.1.4 remains pending; an ordinary release does not authorize superseding it."
+  },
+  "mozilla": {
+    "observed": "2026-09-26T21:01:27.071Z",
+    "method": "AMO authenticated v5 GET only",
+    "addon": {
+      "id": 3078021,
+      "guid": "stackma@extensions.local",
+      "status": "nominated",
+      "is_disabled": false
+    },
+    "versions": [
+      {
+        "version": "1.1.4",
+        "id": 6511539,
+        "channel": "listed",
+        "disabled": false,
+        "fileStatus": "unreviewed",
+        "fileHash": "sha256:35b62056b85c92e2fde8ee47c221d722ae1aed2741643b60df58568ce94d827e",
+        "sourcePresent": true
+      },
+      {
+        "version": "1.1.3",
+        "id": 6510131,
+        "channel": "listed",
+        "disabled": false,
+        "fileStatus": "disabled",
+        "fileHash": "sha256:4cb1076d17506795491f3494404f99e883a64c278432cd117a2d2c0fba49be67",
+        "sourcePresent": true
+      },
+      {
+        "version": "1.1.2",
+        "id": 6510050,
+        "channel": "listed",
+        "disabled": false,
+        "fileStatus": "disabled",
+        "fileHash": "sha256:62a2a86c46c08389f4ef8e1cf333fe45544aeec19cc82099703948793cc6d3b0",
+        "sourcePresent": false
+      },
+      {
+        "version": "1.1.0",
+        "id": 6509647,
+        "channel": "listed",
+        "disabled": false,
+        "fileStatus": "disabled",
+        "fileHash": "sha256:30e45b6588efd608929288d6006e52b915f80e54cce6139f1101f2dce0d26e38",
+        "sourcePresent": false
+      }
+    ]
+  },
+  "installedUserUpdate": {
+    "harness": "scripts/release/update-test.js",
+    "command": "node scripts/release/update-test.js --from-xpi=PATH --from-version=1.1.4 --to-version=1.1.5 --to-sha256=VERIFIED_SIGNED_SHA256 --output=artifacts/release-update-acceptance.json",
+    "positiveResult": "not run: no approved signed baseline and successor are available",
+    "unitTests": "8/8; callback/timeout/hash/signature controls plus argument and output-alias handling. Mocks do not establish delivery.",
+    "negativeControl": {
+      "passedAsNegativeControl": true,
+      "fromUnsignedSha256": "40940f0fd760013d94c7451229c6bf299e6008ebaae7894034b1accdf49edf0c",
+      "startedAt": "2026-09-26T20:49:04.258Z",
+      "finishedAt": "2026-09-26T20:49:06.209Z",
+      "browser": {
+        "version": "156.0",
+        "buildId": "20260909172920",
+        "geckodriver": "0.37.1"
+      },
+      "restoredUpdateOrigin": "https://versioncheck.addons.mozilla.org",
+      "expectedRejection": "ERROR_SIGNEDSTATE_REQUIRED",
+      "scope": "Real Firefox restored shipped endpoints and refused an unsigned permanent baseline before any update."
+    },
+    "bounds": "120-second update phase; 125-second driver request; 150-second browser lifetime; 200 MB XPI; disposable profile and cleanup.",
+    "limitations": [
+      "Explicit user-requested update, not periodic cadence",
+      "Output preflight rejects observed file aliases; scratch paths must not be concurrently replaced",
+      "Browser network services are enabled; this is not a host-restricted network sandbox"
+    ]
+  },
+  "localVerification": {
+    "command": "npm run test:release",
+    "result": "189/189 pass, zero skips/failures",
+    "platform": "Linux x86_64",
+    "node": "24.20.0",
+    "baselineReleaseTests": 124,
+    "previousFullChecks": "evidence/release/redesign.json",
+    "additionalRealBrowserControl": "unsigned permanent-install rejection with shipped AMO update endpoints",
+    "diffCheck": "git diff --check passed"
+  },
+  "artifactSha256": {
+    "scripts/release/update-test.js": "fbad3c73833a4265eaecb216f16b494cf4546d91f27f3ab469e584885a39c648",
+    "tests/release/update-test.test.js": "29bed5abb00222ce1457f976c0ede429589e30c54fcebc624f156a135f65ef80",
+    "docs/release-optimality.md": "c0bdbb82ee22e47d83274a61b1363a2b4b9d21e42eae4bb82a1e5306ff0678d4"
+  },
+  "qualification": {
+    "engineering": "Scoped rationale and contract-derived comparisons in docs/release-design.md; exercised hosted gates extend the local evidence.",
+    "literalUniversalOptimality": "Impossible for the documented online approval-observation model: no componentwise dominator on total controller API calls and controlled completion delay for every permitted approval time.",
+    "proof": "docs/release-optimality.md",
+    "limitations": "The covering argument is not a proof over every possible platform and physical-cost definition, nor a certificate that the delivered implementation is Pareto-optimal. That unrestricted requirement remains unestablished."
+  },
+  "remainingAcceptance": [
+    "Mozilla approval/signing of existing 1.1.4",
+    "Automatic resumption after actual approval",
+    "Permanent signed installation, four immutable GitHub assets and native attestation verification",
+    "After 1.1.4 approval, reviewed merge of PR5 and real combined source-on-create submission with inherited license",
+    "Mozilla approval/signing and publication of 1.1.5",
+    "Actual installed-user update from verified signed 1.1.4 to verified signed 1.1.5 through Firefox default AMO updater"
+  ],
+  "acceptanceStatus": "Implementation deployed and exercised pending path passed; end-to-end publication/update acceptance remains pending at the external Mozilla gate. No universal-optimality certification."
+}
