@@ -3,6 +3,7 @@ import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { digestFile, run, sha256, validateMetadata } from "./package.js";
 import { intentTagsAt } from "./intent.js";
+import { releaseChannelAt } from "./unlisted-policy.js";
 
 const tag = process.env.RELEASE_TAG;
 const manifest = JSON.parse(await readFile("extension/manifest.json", "utf8"));
@@ -11,6 +12,7 @@ const lock = JSON.parse(await readFile("package-lock.json", "utf8"));
 const metadata = validateMetadata(tag, manifest, pkg, lock);
 const commit = (await run("git", ["rev-parse", "HEAD"])).stdout.trim();
 assert.equal(commit, process.env.RELEASE_COMMIT, "Checkout must be the resolved release commit");
+const channel = await releaseChannelAt(tag, commit);
 const intents = await intentTagsAt(commit, process.cwd());
 if (intents) assert.equal(intents.at(-1), tag, "Release must be the newest source-declared intent");
 await run("git", ["diff", "--exit-code", "HEAD"]);
@@ -42,7 +44,7 @@ if (process.argv.includes("--check")) {
   await writeFile(`${directory}/license.txt`, licenseText);
   const license = { name: "WTFPL 2.0; CMU data terms retained", sha256: sha256(licenseText) };
   const tools = { node: process.version, git: (await run("git", ["--version"])).stdout.trim(), webExt: pkg.devDependencies["web-ext"] };
-  const context = { tag, commit, ...metadata, channel: "listed", unsigned, source, license, tools,
+  const context = { tag, commit, ...metadata, channel, unsigned, source, license, tools,
     ...(intents ? { priorReleases: intents.filter(other => other !== tag) } : {}) };
   await writeFile(`${directory}/context.json`, JSON.stringify(context, null, 2) + "\n");
   console.log(`Prepared ${tag} from ${commit}; unsigned SHA-256 ${unsigned.sha256}`);

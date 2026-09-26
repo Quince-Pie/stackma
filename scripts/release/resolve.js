@@ -7,6 +7,7 @@ import { metadataAt, requireIncrease } from "./prepare.js";
 import { intentTagsAt } from "./intent.js";
 import { GitHub } from "./github.js";
 import { readRetirements } from "./retirement.js";
+import { releaseChannelAt } from "./unlisted-policy.js";
 
 export async function resolveRelease({ eventName, event, repository, workflowRef, mainCommit, tag, recoveryPull, retired, cwd = process.cwd() }) {
   assert.equal(workflowRef, "refs/heads/main", "Release must run from main");
@@ -67,6 +68,8 @@ export async function resolveRelease({ eventName, event, repository, workflowRef
   }
   const intents = await intentTagsAt(commit, cwd, { checkHistory: true });
   if (intents) assert.equal(intents.at(-1), tag, "Release must be the newest source-declared intent; do not remove or reorder admitted releases");
+  assert.equal(await releaseChannelAt(tag, commit, cwd), "listed",
+    "This source authorizes an unlisted release only. Use scripts/release/unlisted.js and its reviewed release PR; never submit it to the listed channel.");
   return { tag, commit, createTag: eventName === "pull_request" };
 }
 
