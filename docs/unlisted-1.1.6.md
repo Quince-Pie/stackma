@@ -1,5 +1,12 @@
 # Stackma 1.1.6: explicitly authorized unlisted release
 
+**Published 2026-09-26:** [signed XPI and release assets](https://github.com/Quince-Pie/stackma/releases/tag/v1.1.6).
+Mozilla version `6517542` is approved in the unlisted channel. Permanent Firefox
+156 installation, all four native GitHub asset attestations and unauthenticated
+download hashes passed. The [acceptance evidence](../evidence/release/unlisted-1.1.6.json)
+records the exact source, hashes, CI and recovery of the initially delayed draft
+visibility. The existing draft was reused; nothing was deleted or replaced.
+
 On 2026-09-26 the owner requested unlisted **1.1.6**, changing only the product
 version, to seek earlier signing. This supersedes the previous listed-only
 distribution scope for this version. The owner also confirmed disabling 1.1.4.
@@ -25,6 +32,14 @@ the same ID and absent `update_url` lets installed 1.1.6 receive a later compati
 **listed version higher than 1.1.6**. Listed 1.1.4 or 1.1.5 cannot update it.
 This release can establish permanent signed installation and GitHub publication;
 it cannot establish the earlier default-AMO installed-user update acceptance.
+
+The Developer Hub's **AMO: Incomplete / Self: Latest Version 1.1.6** display is
+consistent with this release. AMO's listing status is calculated from listed
+versions; after the owner disabled 1.1.4 there are no approved or awaiting-review
+listed versions. The signed unlisted file is independently approved. The live
+listing API still reports its September 23 creation date as `last_updated`; that
+field is not evidence that the September 26 signing failed. Making the public
+listing available requires a later listed submission and Mozilla approval.
 
 ## Mechanism and qualification
 
@@ -114,5 +129,5 @@ that local lock. A timeout alone does not establish provider cancellation.
 If the version is rejected/disabled, inspect Mozilla's message; do not re-enable,
 delete or resubmit it automatically. If a draft/asset/tag/license/source conflicts,
 preserve the state and investigate. An interrupted final verification reruns native
-attestation checks against the existing immutable publication. No successful
-signing or publication is claimed until the live result is recorded.
+attestation checks against the existing immutable publication. The successful
+1.1.6 result is recorded above; it does not certify future submissions.

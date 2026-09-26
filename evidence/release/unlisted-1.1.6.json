@@ -1,0 +1,178 @@
+{
+  "schema": 1,
+  "observed": "2026-09-26T22:39:27.933Z",
+  "request": "Owner requested unlisted 1.1.6 with product changes limited to version fields to seek earlier signing; owner confirmed manually disabling 1.1.4.",
+  "source": {
+    "commit": "b64a4e48ba476555a7c20ddf540fee015b45b822",
+    "tag": "v1.1.6",
+    "base": "820c43cc27f7e943a97c1bc50476cf7d7f77bf36",
+    "channel": "unlisted",
+    "id": "stackma@extensions.local",
+    "version": "1.1.6",
+    "unsigned": {
+      "bytes": 24528,
+      "sha256": "387981d282933748d545c3386a56cdb55788c97c517c0056d5fdc92ea79445db"
+    },
+    "sourceArchive": {
+      "bytes": 733190,
+      "sha256": "1b439e70f44d125a5634cf5f8e23695acdb56bc5e1dcb60dda5066b187ef13dd"
+    },
+    "license": {
+      "name": "WTFPL 2.0; CMU data terms retained",
+      "sha256": "ef832d30a91a4e1092627ac39cd3933b586a18dcb290bc8a9a1f509aa77bbe81",
+      "apiSha256": "7d7fe17a1f0e298361be4f27309b89ddc33363e33c0812635e02faff6a62d96d"
+    }
+  },
+  "delivery": {
+    "url": "https://github.com/Quince-Pie/stackma/releases/tag/v1.1.6",
+    "releaseId": 397417719,
+    "publishedAt": "2026-09-26T22:34:52Z",
+    "immutable": true,
+    "assets": [
+      {
+        "name": "release.json",
+        "url": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.6/release.json",
+        "bytes": 1298,
+        "sha256": "f5784d5573e66548981c5550b832d0a24d856e5aefa07b435af2d9d2e48a9ce4"
+      },
+      {
+        "name": "SHA256SUMS",
+        "url": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.6/SHA256SUMS",
+        "bytes": 254,
+        "sha256": "5d29cbf3e38a390598ff4d7573badd4a34e22a0d3eda96982dead80fcb099cc5"
+      },
+      {
+        "name": "stackma-1.1.6-source.zip",
+        "url": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.6/stackma-1.1.6-source.zip",
+        "bytes": 733190,
+        "sha256": "1b439e70f44d125a5634cf5f8e23695acdb56bc5e1dcb60dda5066b187ef13dd"
+      },
+      {
+        "name": "stackma-1.1.6.xpi",
+        "url": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.6/stackma-1.1.6.xpi",
+        "bytes": 33632,
+        "sha256": "21748c0bb759d1005c39c9abcf2752021a48d9618bdccc86fddb32984df64033"
+      }
+    ]
+  },
+  "mozilla": {
+    "observed": "2026-09-26T22:37:01.108Z",
+    "prior": {
+      "version": "1.1.4",
+      "id": 6511539,
+      "is_disabled": true,
+      "fileStatus": "disabled",
+      "fileHash": "sha256:35b62056b85c92e2fde8ee47c221d722ae1aed2741643b60df58568ce94d827e",
+      "licenseId": 10390
+    },
+    "released": {
+      "version": "1.1.6",
+      "id": 6517542,
+      "channel": "unlisted",
+      "is_disabled": false,
+      "fileStatus": "public",
+      "fileHash": "sha256:21748c0bb759d1005c39c9abcf2752021a48d9618bdccc86fddb32984df64033",
+      "sourcePresent": true,
+      "licenseId": 10403
+    },
+    "listing": {
+      "observed": "2026-09-26T22:37:40.314Z",
+      "status": "incomplete",
+      "is_disabled": false,
+      "created": "2026-09-23T22:41:23Z",
+      "last_updated": "2026-09-23T22:41:23Z",
+      "current_listed_version": null,
+      "latest_unlisted_version": "1.1.6"
+    }
+  },
+  "verification": {
+    "releaseTests": "199/199 passed",
+    "independentAffectedTests": "76/76 passed; no blocking review finding",
+    "pullRequest": {
+      "number": 7,
+      "url": "https://github.com/Quince-Pie/stackma/pull/7",
+      "reviewedHead": "9b49e4fd7dedbc679e5c40b8bfaca336546baf9b",
+      "ciRun": 36276116845,
+      "ciConclusion": "success"
+    },
+    "mergedSourceCI": {
+      "observed": "2026-09-26T22:29:25.877Z",
+      "id": 36276283709,
+      "status": "completed",
+      "conclusion": "success",
+      "head": "b64a4e48ba476555a7c20ddf540fee015b45b822",
+      "url": "https://github.com/Quince-Pie/stackma/actions/runs/36276283709"
+    },
+    "firefox": {
+      "version": "156.0",
+      "buildId": "20260909172920",
+      "passed": true,
+      "signedSha256": "21748c0bb759d1005c39c9abcf2752021a48d9618bdccc86fddb32984df64033",
+      "bytes": 33632,
+      "checks": [
+        "permanent XPI installation with verified Mozilla signature",
+        "every packaged source file matches",
+        "real opener grouping",
+        "native approved name assignment"
+      ]
+    },
+    "nativeAttestations": {
+      "command": "gh release verify-asset v1.1.6 ASSET --repo Quince-Pie/stackma",
+      "result": "All four assets passed in publishRelease before successful exit.",
+      "tool": "GitHub CLI 2.101.0"
+    },
+    "publicDownloads": {
+      "observed": "2026-09-26T22:36:14.714Z",
+      "method": "Unauthenticated public release and downloads, with HTTPS redirect allowlist and digest comparison against native-attested local assets",
+      "result": "All four unauthenticated downloads matched the attested local size and SHA-256."
+    },
+    "repositoryPolicy": {
+      "observed": "2026-09-26T22:24:18.676Z",
+      "result": "All six administrative checks passed before publication, including immutable releases."
+    },
+    "toolchain": {
+      "node": "v24.20.0",
+      "git": "git version 2.55.0",
+      "webExt": "10.7.0"
+    }
+  },
+  "recovery": {
+    "firstAttempt": "Mozilla upload, source-on-create, missing-license assignment, signing and permanent Firefox verification succeeded. Draft creation returned success, but its immediate list reconciliation found no matching draft; the command stopped without deleting or repeating the create.",
+    "reconciliation": "A subsequent authenticated read found exactly one matching empty draft 397417719. The same frozen-source command reused it, uploaded four missing assets, published it once, and verified native attestations. No duplicate or replacement release was created.",
+    "attemptLogsSha256": {
+      "initial": "4fe329cadb49d9cafd8847f82cc81565c367c8c7ef47064bbd27301cfb95609a",
+      "recovery": "2ae68b19b77ba5acc952327dc32a39b39ff17185900318e8d5d76fe05857a7f9"
+    }
+  },
+  "commands": [
+    "npm run test:release",
+    "node scripts/build.js",
+    "node scripts/package-test.js --output=artifacts/ci/package.json",
+    "nix develop .#release --no-update-lock-file --command node --env-file=/path/to/ignored/.env scripts/release/unlisted.js --tag=v1.1.6 --pull-request=7"
+  ],
+  "preservation": [
+    "Original shared working tree and index were preserved; isolated worktrees contain this release and evidence.",
+    "Owner-merged 1.1.5 and developer-disabled 1.1.4 were preserved.",
+    "Product changes are only manifest/package/root-lock version fields; unchanged add-on ID, Firefox minimum, permissions, updater, behavior and license terms.",
+    "Existing empty immutable v1.1.1 was not changed.",
+    "No hosted credential scope or normal listed workflow was broadened."
+  ],
+  "qualification": {
+    "scope": "One explicitly authorized unlisted release using the existing native v5 client and publication verifier; primary mechanisms and alternatives are documented in docs/unlisted-1.1.6.md.",
+    "provider": "AMO 2026.09.17-1/c03d3c661bdbe22bb8f4a52fc46d63668bb31751; observed 2026-09-26.",
+    "claims": "Actual unlisted submission, source attachment, exact-license assignment, Mozilla signing, permanent Firefox installation, immutable GitHub publication, attestation and public-download integrity are established for 1.1.6.",
+    "limits": [
+      "No guaranteed or benchmarked signing-speed advantage",
+      "AMO listing remains incomplete because no listed version is approved or awaiting review",
+      "This unlisted version is not offered by default AMO update checks; installed copies can receive a later compatible listed version higher than 1.1.6",
+      "Listed source-license inheritance and default-AMO installed-user update-delivery acceptance remain separate unmet gates",
+      "Universal optimality is not claimed"
+    ]
+  },
+  "budget": {
+    "started": "2026-09-26T22:01:09Z",
+    "limitMinutes": 75,
+    "elapsedMinutesAtRecord": 38.32,
+    "scope": "New owner-authorized unlisted 1.1.6 task; includes investigation, implementation, tools, tests, independent review and live publication. Earlier redesign/rollout used about 158 minutes."
+  }
+}

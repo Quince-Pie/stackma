@@ -1,5 +1,14 @@
 # Hosted acceptance and remaining provider gates
 
+**Later owner-authorized change:** the owner disabled listed 1.1.4, merged the
+1.1.5 version PR, then requested unlisted 1.1.6. That release is now signed,
+verified and [published](https://github.com/Quince-Pie/stackma/releases/tag/v1.1.6);
+see its [acceptance record](unlisted-1.1.6.md). The historical 1.1.4 → 1.1.5 plan
+below is superseded. A future default-AMO update test can start from signed
+1.1.6 and target a compatible approved **listed** version higher than 1.1.6.
+Unlisted signing does not establish listed-channel publication or automatic
+update delivery.
+
 This is the continuation of the local [design qualification](release-design.md).
 On 2026-09-26 the owner authorized completing repository setup and live release
 acceptance, and supplied administrator API access through the ignored local
