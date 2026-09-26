@@ -1,5 +1,9 @@
 # Release redesign: contract, qualification and evidence
 
+The initial qualification below is followed by [hosted acceptance](release-acceptance.md)
+and a separate [literal-optimality analysis](release-optimality.md), requested
+after the local candidate was delivered.
+
 Observation date: **2026-09-26**. Baseline: `997087de3e07b3ffb0b3968e1617b80997a42a6b`
 **plus the supplied working tree**, not HEAD alone. The baseline included pending
 review handling, a scheduler, a repository policy helper, tests, documentation

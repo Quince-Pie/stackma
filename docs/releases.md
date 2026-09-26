@@ -6,8 +6,9 @@ release** tests the frozen source, submits or reconciles that version, verifies
 the signed XPI in Firefox 156, and publishes a complete immutable GitHub Release.
 **Resume approved releases** continues after a long Mozilla review.
 
-This redesign is a **locally verified candidate**; hosted acceptance remains
-required. No remote settings, secrets, tags, submissions or releases were changed.
+The controller is deployed and has passed local and hosted CI. End-to-end
+publication and update acceptance remain pending; [hosted acceptance](release-acceptance.md)
+records the owner-authorized setup, real runs and remaining Mozilla gates.
 See the [design qualification](release-design.md) and [verification record](../evidence/release/redesign.json).
 The supplied operator guide, including all existing edits, is preserved in
 [release history](release-history.md). Use this page for current procedures.
@@ -56,9 +57,11 @@ completion. It checks declared settings and common creation conflicts, not every
 possible account/organization rule or credential scope. No extra publication PAT
 is assumed; historical-tag permission behavior is an acceptance case below.
 
-The 2026-09-26 anonymous inspection found **no rulesets**, only `release-signing`
+The initial 2026-09-26 anonymous inspection found **no rulesets**, only `release-signing`
 with **no branch restriction**, and no `release-publication` environment.
-Administrative settings and stored secrets were not inspected. Setup is incomplete.
+Administrative settings and stored secrets were not inspected at that stage.
+The later [authenticated rollout](release-acceptance.md) records the completed
+policy setup and the remaining publication/update gates.
 
 ## Normal operation
 

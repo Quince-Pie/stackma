@@ -24,6 +24,20 @@ export function parseArguments(args) {
   return { fromXpi, fromVersion: values["from-version"], toVersion: values["to-version"], toSha256: values["to-sha256"], output };
 }
 
+async function outputPreflight(fromXpi, output) {
+  const paths = [resolve(fromXpi), resolve(output), resolve(`${output}.log`)];
+  assert(new Set(paths).size === paths.length, "Acceptance input, report and log paths must differ");
+  const observed = await Promise.all(paths.map(async path => {
+    try { return { info: await stat(path, { bigint: true }) }; }
+    catch (error) { if (error.code === "ENOENT") return { error }; throw error; }
+  }));
+  const aliases = (a, b) => a.info && b.info && a.info.dev === b.info.dev && a.info.ino === b.info.ino;
+  assert(!aliases(observed[0], observed[1]), "Acceptance report aliases the input XPI");
+  assert(!aliases(observed[0], observed[2]), "Acceptance log aliases the input XPI");
+  assert(!aliases(observed[1], observed[2]), "Acceptance report and log alias the same file");
+  return observed[0];
+}
+
 // This function is serialized into the real Firefox chrome process. It must
 // capture no Node variables. Unit mocks exercise its controls, not delivery.
 export async function browserUpdate({ id, fromVersion, toVersion, toSha256, timeoutMs = 120_000 }) {
@@ -110,6 +124,11 @@ export async function browserUpdate({ id, fromVersion, toVersion, toSha256, time
 
 export async function runAcceptance(options) {
   const { fromXpi, fromVersion, toVersion, toSha256, output } = options;
+  // Outputs are exclusive scratch files for this invocation. Follow ordinary
+  // symlinks, but reject observed hardlink/symlink inode aliases before any
+  // report or log write, including failure reporting. This is a preflight,
+  // not protection against another process changing links concurrently.
+  const input = await outputPreflight(fromXpi, output);
   const report = { passed: false, scope: "actual Firefox 156 default-AMO installed-user update in a disposable profile",
     startedAt: new Date().toISOString(), fromVersion, toVersion, expectedSignedSha256: toSha256 };
   await mkdir(dirname(output), { recursive: true });
@@ -118,7 +137,8 @@ export async function runAcceptance(options) {
   await writeFile(output, JSON.stringify(report, null, 2) + "\n");
   let driver;
   try {
-    const info = await stat(fromXpi);
+    if (input.error) throw input.error;
+    const info = input.info;
     assert(info.isFile() && info.size > 0 && info.size <= 200_000_000, "Older signed XPI must be a regular file of at most 200 MB");
     report.fromSha256 = createHash("sha256").update(await readFile(fromXpi)).digest("hex");
     driver = await FirefoxDriver.start({ timeoutMs: 125_000, startupTimeoutMs: 30_000, maxLifetimeMs: 150_000, expectedMajor: 156,
@@ -151,10 +171,12 @@ export async function runAcceptance(options) {
       let groupId;
       for (let i = 0; i < 200; i++) {
         const [a, b] = await Promise.all([browser.tabs.get(parent.id), browser.tabs.get(child.id)]);
-        if (a.groupId >= 0 && a.groupId === b.groupId) { groupId = a.groupId; break; }
+        if (a.groupId >= 0 && a.groupId === b.groupId && (await browser.tabGroups.get(a.groupId)).title) {
+          groupId = a.groupId; break;
+        }
         await new Promise(resolveDelay => setTimeout(resolveDelay, 10));
       }
-      if (groupId === undefined) throw new Error("Older installed extension did not group related tabs");
+      if (groupId === undefined) throw new Error("Older installed extension did not group and name related tabs");
       await browser.tabGroups.update(groupId, { title: "Update continuity — 日本語", color: "purple", collapsed: true });
       await browser.storage.local.set({ releaseUpdateAcceptance: "retained-value" });
       return { parent: parent.id, child: child.id, group: await browser.tabGroups.get(groupId) };

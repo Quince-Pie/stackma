@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash, webcrypto } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { link, readFile, symlink, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import test from "node:test";
 import vm from "node:vm";
@@ -93,4 +93,44 @@ test("missing local input records failure without starting Firefox or network", 
   await assert.rejects(() => runAcceptance({ fromXpi: `${directory}/missing.xpi`, fromVersion: "1.1.4", toVersion: "1.1.5", toSha256: digest, output }), { code: "ENOENT" });
   const report = JSON.parse(await readFile(output, "utf8"));
   assert.equal(report.passed, false); assert(!report.delivery); assert.match(report.error, /ENOENT/u);
+});
+
+test("report and log aliases never modify the existing input or outputs", async t => {
+  for (const makeAlias of [link, symlink]) {
+    for (const destination of ["report", "log"]) {
+      const directory = await temporary(t), fromXpi = `${directory}/older.xpi`, output = `${directory}/report.json`;
+      await writeFile(fromXpi, "original signed XPI bytes");
+      if (destination === "log") await writeFile(output, "original report");
+      await makeAlias(fromXpi, destination === "report" ? output : `${output}.log`);
+      await assert.rejects(() => runAcceptance({ fromXpi, output, fromVersion: "1.1.4", toVersion: "1.1.5", toSha256: digest }), /aliases the input XPI/u);
+      assert.equal(await readFile(fromXpi, "utf8"), "original signed XPI bytes");
+      assert.equal(await readFile(output, "utf8"), destination === "report" ? "original signed XPI bytes" : "original report");
+      if (destination === "log") assert.equal(await readFile(`${output}.log`, "utf8"), "original signed XPI bytes");
+      else await assert.rejects(() => readFile(`${output}.log`), { code: "ENOENT" });
+    }
+  }
+});
+
+test("report/log aliases are rejected before either output is written", async t => {
+  for (const makeAlias of [link, symlink]) {
+    const directory = await temporary(t), fromXpi = `${directory}/older.xpi`, output = `${directory}/report.json`;
+    await writeFile(fromXpi, "original input"); await writeFile(output, "original report");
+    await makeAlias(output, `${output}.log`);
+    await assert.rejects(() => runAcceptance({ fromXpi, output, fromVersion: "1.1.4", toVersion: "1.1.5", toSha256: digest }), /report and log alias/u);
+    assert.equal(await readFile(fromXpi, "utf8"), "original input");
+    assert.equal(await readFile(output, "utf8"), "original report");
+    assert.equal(await readFile(`${output}.log`, "utf8"), "original report");
+  }
+});
+
+test("ordinary symlink outputs to distinct files remain usable for failure reports", async t => {
+  const directory = await temporary(t), fromXpi = `${directory}/empty.xpi`, output = `${directory}/report.json`;
+  await writeFile(fromXpi, "");
+  await writeFile(`${directory}/actual-report.json`, "old report"); await writeFile(`${directory}/actual.log`, "old log");
+  await symlink(`${directory}/actual-report.json`, output); await symlink(`${directory}/actual.log`, `${output}.log`);
+  await assert.rejects(() => runAcceptance({ fromXpi, output, fromVersion: "1.1.4", toVersion: "1.1.5", toSha256: digest }), /regular file/u);
+  assert.equal(await readFile(fromXpi, "utf8"), "");
+  const report = JSON.parse(await readFile(`${directory}/actual-report.json`, "utf8"));
+  assert.equal(report.passed, false); assert.match(report.error, /regular file/u);
+  assert.equal(await readFile(`${directory}/actual.log`, "utf8"), "old log");
 });

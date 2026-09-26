@@ -137,8 +137,9 @@ Do not create tags or GitHub Releases manually. The guide covers secrets,
 repository settings, recovery, and the unusable `v1.1.1` release. Ordinary CI
 runs remain read-only and do not release the extension.
 
-The redesigned release controller is locally verified and awaits the hosted
-acceptance in that guide. Recovery uses reviewed controller code from `main`
+The redesigned release controller has passed local and hosted CI. The
+[acceptance record](docs/release-acceptance.md) tracks Mozilla approval, publication
+and actual update delivery. Recovery uses reviewed controller code from `main`
 against the frozen release source, including versions submitted by older tooling.
 
 ## Operational limits
