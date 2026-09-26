@@ -100,7 +100,8 @@ A wait lasting 15 minutes returns a verified `awaiting-review` state. The
 secretless listed scheduler cannot see unlisted approvals. For this one-off
 release, rerun the same command from the same frozen source after approval; it
 reconciles instead of blindly repeating writes. `artifacts/unlisted-status.json`
-distinguishes pending review from completed publication. A failed process leaves
+records the signing outcome; `artifacts/release-publication.json` records verified
+immutable publication. A failed process leaves
 remote objects intact. A stale `.git/stackma-unlisted.lock` requires checking that
 the recorded process and all provider requests have finished before removing
 that local lock. A timeout alone does not establish provider cancellation.

@@ -89,6 +89,17 @@ test("unlisted pending state requires complete verified terms and source", async
   assert(!f.state.nullLicense);
 });
 
+test("missing unlisted license uses the documented translated custom-license PATCH", async () => {
+  const requests = [];
+  const client = new ReleaseClient({ apiKey: "fixture", apiSecret: "fixture", fetchImpl: async (url, options) => {
+    requests.push({ url: String(url), method: options.method, body: JSON.parse(options.body) });
+    return new Response("{}", { status: 200 });
+  } });
+  await client.attachLicense("stackma@extensions.local", 6, "WTFPL; CMU", "exact terms");
+  assert.deepEqual(requests, [{ url: "https://addons.mozilla.org/api/v5/addons/addon/stackma%40extensions.local/versions/6/",
+    method: "PATCH", body: { custom_license: { name: { "en-US": "WTFPL; CMU" }, text: { "en-US": "exact terms" } } } }]);
+});
+
 test("an existing version with AMO-rendered license resumes and attaches only its missing source", async t => {
   const raw = "Copyright <pie@quince.org>\nThe original terms remain unchanged.";
   const apiLicense = 'Copyright &lt;<a href="/" rel="nofollow">pie@quince.org</a>&gt;\nThe original terms remain unchanged.';
