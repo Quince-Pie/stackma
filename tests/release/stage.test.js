@@ -8,7 +8,7 @@ import { temporary } from "./fixtures.js";
 async function fixture(t, { historicalStage = false } = {}) {
   const directory=await temporary(t);
   for(const path of ["extension","scripts/release","naming-data","dist","artifacts/ci"]) await mkdir(`${directory}/${path}`,{recursive:true});
-  for(const file of ["package.js","intent.js","stage.js"]) await copyFile(resolve(`scripts/release/${file}`),`${directory}/scripts/release/${file}`);
+  for(const file of ["package.js","intent.js","unlisted-policy.js","stage.js"]) await copyFile(resolve(`scripts/release/${file}`),`${directory}/scripts/release/${file}`);
   if (historicalStage) await writeFile(`${directory}/scripts/release/stage.js`, 'throw new Error("obsolete release controller");\n');
   const version="1.1.1",pkg={type:"module",version,devDependencies:{"web-ext":"10.7.0"}};
   await writeFile(`${directory}/package.json`,JSON.stringify(pkg));

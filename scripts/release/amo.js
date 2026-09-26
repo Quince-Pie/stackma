@@ -83,7 +83,7 @@ export class ReleaseClient {
   }
 
   async doUploadSubmit(path, channel) {
-    assert.equal(channel, "listed");
+    assert(["listed", "unlisted"].includes(channel), "Unsupported Mozilla distribution channel");
     const form = new FormData();
     form.set("channel", channel);
     form.set("upload", this.fileFromSync(path));
@@ -132,6 +132,11 @@ export class ReleaseClient {
     const response = await this.fetch(url, "PATCH", form);
     await response.body?.cancel();
     if (!response.ok) throw new ApiError(response.status);
+  }
+
+  async attachLicense(addonId, versionId, name, text) {
+    return this.fetchJson(new URL(`addons/addon/${encodeURIComponent(addonId)}/versions/${versionId}/`, baseUrl),
+      "PATCH", JSON.stringify({ custom_license: { name: { "en-US": name }, text: { "en-US": text } } }));
   }
 
   async readBytes(response, limit) {
@@ -219,6 +224,9 @@ export async function signRelease({ client, context, directory, output, verify =
   assert.equal(sha256(await readFile(source)), context.source.sha256);
   const licenseText = await readFile(`${directory}/license.txt`, "utf8");
   assert.equal(sha256(licenseText), context.license.sha256);
+  assert(["listed", "unlisted"].includes(context.channel), "Unsupported Mozilla distribution channel");
+  const unlisted = context.channel === "unlisted";
+  assert(!unlisted || supersede === "", "Unlisted signing never authorizes superseding a listed version");
   const site = await client.fetchJson(new URL("site/", baseUrl));
   assert.equal(site.read_only, false, "AMO is read-only or its state is unavailable; retry after maintenance");
   if (site.submit_notification_warning) report({ notice: String(site.submit_notification_warning) });
@@ -228,16 +236,20 @@ export async function signRelease({ client, context, directory, output, verify =
     assert.equal(addon.guid, context.id, "The existing AMO add-on must match the manifest ID");
     assert.equal(addon.slug, "stackma", "Unexpected AMO listing");
     assert.equal(addon.is_disabled, false, "AMO listing is disabled or its state is unavailable");
-    assert(["public", "nominated"].includes(addon.status), "AMO listing needs attention in the Developer Hub");
+    assert((unlisted ? ["public", "nominated", "incomplete"] : ["public", "nominated"]).includes(addon.status),
+      "AMO listing needs attention in the Developer Hub");
     return addon;
   };
   await checkListing();
-  assert.equal(context.channel, "listed");
   let version = await client.version(context.id, context.version);
   if (!version) {
     // Only creation disables other pending versions; resuming never does.
     // Check before the upload and again immediately before creation.
     const requireSubmissionAllowed = async () => {
+      // Unlisted creation neither disables listed files nor inherits their
+      // license. The scoped unlisted caller supplies its reviewed authority;
+      // the listed admission/supersession barrier remains unchanged below.
+      if (unlisted) return;
       const versions = await client.listedVersions(context.id);
       const pending = pendingVersions(versions, context.version);
       if (pending.length === 1 && pending[0] === supersede) {
@@ -264,7 +276,7 @@ export async function signRelease({ client, context, directory, output, verify =
     await requireSubmissionAllowed();
     await beforeWrite();
     report({ state: "validating-upload" });
-    const uuid = await client.doUploadSubmit(unsigned, "listed");
+    const uuid = await client.doUploadSubmit(unsigned, context.channel);
     // Reconcile again after potentially slow validation, before creating a version.
     version = await client.version(context.id, context.version);
     if (!version) {
@@ -287,9 +299,9 @@ export async function signRelease({ client, context, directory, output, verify =
   const versionId = version.id;
   const checkVersion = version => {
     assert.equal(version.version, context.version, "AMO version mismatch");
-    assert.equal(version.channel, "listed", "AMO channel mismatch");
+    assert.equal(version.channel, context.channel, "AMO channel mismatch");
     assert.equal(version.is_disabled, false, "AMO version is disabled or its state is unavailable");
-    assert(matchesAmoLicense(version.license?.text?.["en-US"], context.license.sha256),
+    assert((unlisted && version.license === null) || matchesAmoLicense(version.license?.text?.["en-US"], context.license.sha256),
       "AMO license differs from the expected text or link destinations; do not rewrite existing version metadata");
     assert(Number.isSafeInteger(version.id) && version.id > 0, "Invalid AMO version ID");
     assert.equal(version.id, versionId, "AMO version identity changed during reconciliation");
@@ -316,7 +328,7 @@ export async function signRelease({ client, context, directory, output, verify =
       verifiedFileHash = version.file.hash;
       verifiedBytes = bytes.length;
     }
-    const approved = version.file.status === "public" && (await checkListing()).status === "public";
+    const approved = version.file.status === "public" && ((await checkListing()).status === "public" || unlisted);
     if (version.source) {
       // Source URLs can stay the same when manually replaced. Recheck at final
       // approval, while avoiding whole-archive transfers on every pending poll.
@@ -339,6 +351,23 @@ export async function signRelease({ client, context, directory, output, verify =
       // Read back the attachment instead of treating a successful PATCH as proof.
       version = await client.version(context.id, context.version);
       assert(version?.source, "Source attachment is not visible; rerun to reconcile");
+      continue;
+    }
+    if (unlisted && version.license === null) {
+      // AMO only inherits licenses for listed versions. Attach the exact terms
+      // to a verified unlisted payload/source before allowing distribution.
+      // This creates a new license; it never edits the listed channel's terms.
+      await beforeWrite();
+      const latest = await client.version(context.id, context.version);
+      assert(latest, "AMO version disappeared before license attachment");
+      checkVersion(latest);
+      if (latest.license !== null || latest.source !== version.source || latest.file.hash !== verifiedFileHash || latest.file.size !== verifiedBytes) {
+        version = latest; continue;
+      }
+      await beforeWrite();
+      await client.attachLicense(context.id, version.id, context.license.name, licenseText);
+      version = await client.version(context.id, context.version);
+      assert(version?.license, "License attachment is not visible; rerun to reconcile");
       continue;
     }
     report({ state: approved ? "approved-and-signed" : "awaiting-review", versionId: version.id });

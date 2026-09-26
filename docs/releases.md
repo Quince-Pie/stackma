@@ -9,6 +9,9 @@ the signed XPI in Firefox 156, and publishes a complete immutable GitHub Release
 The controller is deployed and has passed local and hosted CI. End-to-end
 publication and update acceptance remain pending; [hosted acceptance](release-acceptance.md)
 records the owner-authorized setup, real runs and remaining Mozilla gates.
+The owner later authorized [unlisted 1.1.6](unlisted-1.1.6.md) as a one-off
+self-distributed release. Use that page for this version; the normal workflow
+below remains listed-only.
 See the [design qualification](release-design.md) and [verification record](../evidence/release/redesign.json).
 The supplied operator guide, including all existing edits, is preserved in
 [release history](release-history.md). Use this page for current procedures.

@@ -60,6 +60,15 @@ test("publish stages a draft, verifies all digests, publishes once and verifies 
   assert(f.calls.slice(previous).every(a=>a[1]==="verify-asset"));
 });
 
+test("unlisted publication explains manual installation and the higher listed update requirement", async t => {
+  const f = await fixture(t); f.record.channel = "unlisted";
+  await publishRelease(f.options);
+  assert.match(f.history[0].body, /self-distributed \(unlisted\)/u);
+  assert.match(f.history[0].body, /future compatible listed version higher than 1\.1\.1/u);
+  assert(!f.history[0].body.includes("Install from [Mozilla Add-ons]"));
+  assert.equal(f.history[0].assets.length, 4);
+});
+
 for(const failure of ["failCreate","failUpload"]) test(`${failure}: reconcile completed remote work without overwrite`,async t=>{
   const f=await fixture(t);f.state[failure]=true;
   await assert.rejects(()=>publishRelease(f.options));

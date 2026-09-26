@@ -12,18 +12,18 @@ async function fixture(t, overrides = {}) {
   await writeFile(`${directory}/unsigned.xpi`, unsigned); await writeFile(`${directory}/source.zip`, source);
   const licenseText=overrides.licenseText ?? "WTFPL original work; CMU retains its terms";
   await writeFile(`${directory}/license.txt`,licenseText);
-  const context = { id: "stackma@extensions.local", version: "1.1.1", channel: "listed", unsigned: { sha256: sha256(unsigned) }, source: { sha256: sha256(source) }, license:{name:"WTFPL; CMU",sha256:sha256(licenseText)} };
+  const context = { id: "stackma@extensions.local", version: "1.1.1", channel: overrides.contextChannel ?? "listed", unsigned: { sha256: sha256(unsigned) }, source: { sha256: sha256(source) }, license:{name:"WTFPL; CMU",sha256:sha256(licenseText)} };
   const events = [];
   const state = { existing: true, public: true, source: true, addonPublic: true, ...overrides };
-  const detail = () => ({ id: 42, version: context.version, channel: state.channel ?? "listed", is_disabled: state.disabled ?? false,
-    license: {text:{"en-US":state.wrongLicense?"other":state.apiLicense ?? licenseText}},
+  const detail = () => ({ id: 42, version: context.version, channel: state.channel ?? context.channel, is_disabled: state.disabled ?? false,
+    license: state.nullLicense ? null : {text:{"en-US":state.wrongLicense?"other":state.apiLicense ?? licenseText}},
     source: state.source ? "https://addons.mozilla.org/source/42" : null,
     file: { status: state.public ? "public" : "unreviewed", hash: `sha256:${sha256(signed)}`, size: signed.length, url: "https://addons.mozilla.org/file/42" } });
   const client = {
     signal: AbortSignal.timeout(2000), pollMs: 1,
     async fetchJson(url) {
       if (url.pathname.endsWith("site/")) return { read_only: state.readOnly ?? false };
-      return { guid: context.id, slug: "stackma", status: state.addonPublic ? "public" : "nominated", is_disabled: state.addonDisabled ?? false };
+      return { guid: context.id, slug: "stackma", status: state.addonStatus ?? (state.addonPublic ? "public" : "nominated"), is_disabled: state.addonDisabled ?? false };
     },
     async version(_id, version = context.version) {
       events.push("get-version");
@@ -31,11 +31,12 @@ async function fixture(t, overrides = {}) {
       return state.existing ? detail() : null;
     },
     async listedVersions() { events.push("list-versions"); return typeof state.listed === "function" ? state.listed() : (state.listed ?? [listed("1.1.0", "public")]); },
-    async doUploadSubmit(path, channel) { events.push("upload"); assert.equal(channel, "listed"); assert.deepEqual(await readFile(path), unsigned); return "upload-uuid"; },
+    async doUploadSubmit(path, channel) { events.push("upload"); assert.equal(channel, context.channel); assert.deepEqual(await readFile(path), unsigned); return "upload-uuid"; },
     async doVersionSubmit(_id, _uuid, path) { events.push("create"); assert.deepEqual(await readFile(path), source); state.existing = true; state.source = true; },
     async download(url) { events.push("download"); return url.includes("source") ? (state.wrongSource ? Buffer.from("conflict") : source) : signed; },
     fileFromSync(path) { return { path }; },
     async doFormDataPatch() { events.push("patch-source"); state.source = true; },
+    async attachLicense(_id, _version, name, text) { events.push("patch-license"); assert.equal(name, context.license.name); assert.equal(text, licenseText); state.nullLicense = false; },
   };
   const options = { client, context, directory, output: `${directory}/signed.xpi`, verify: async () => { events.push("verify-payload"); if(state.wrongPayload) throw new Error("payload conflict"); }, report: () => {} };
   return { options, client, context, events, state, detail };
@@ -46,6 +47,57 @@ test("existing approved listed version resumes without upload or write", async t
   assert.equal(result.versionId, 42);
   assert.equal(result.state, "approved-and-signed");
   assert(!f.events.includes("upload") && !f.events.includes("create") && !f.events.includes("patch-source"));
+});
+
+test("unlisted creation preserves pending listed versions and attaches source before missing terms", async t => {
+  const f = await fixture(t, { contextChannel: "unlisted", existing: false, nullLicense: true,
+    addonStatus: "incomplete", listed: [listed("1.1.0")] });
+  f.options.checkPriorReleases = () => { throw new Error("Listed admission does not govern the independent unlisted channel"); };
+  assert.equal((await signRelease(f.options)).state, "approved-and-signed");
+  assert(!f.events.includes("list-versions"));
+  assert(f.events.indexOf("create") < f.events.indexOf("verify-payload"));
+  assert(f.events.indexOf("verify-payload") < f.events.indexOf("patch-license"));
+  assert.equal(f.events.filter(e => e === "patch-license").length, 1);
+  assert(!f.events.includes("patch-source"));
+});
+
+test("unlisted license attachment resumes an ambiguous PATCH without replacing its terms", async t => {
+  const f = await fixture(t, { contextChannel: "unlisted", nullLicense: true, addonPublic: false });
+  const attach = f.client.attachLicense;
+  f.client.attachLicense = async (...args) => { await attach(...args); throw new Error("lost license reply"); };
+  await assert.rejects(() => signRelease(f.options), /lost license reply/u);
+  assert.equal((await signRelease(f.options)).state, "approved-and-signed");
+  assert.equal(f.events.filter(e => e === "patch-license").length, 1);
+});
+
+test("unlisted conflicts and explicit supersede never mutate metadata", async t => {
+  for (const overrides of [{ wrongSource: true, nullLicense: true }, { wrongPayload: true, nullLicense: true },
+    { wrongLicense: true }, { addonStatus: "rejected" }, { addonDisabled: true }, { disabled: true }]) {
+    const f = await fixture(t, { contextChannel: "unlisted", ...overrides });
+    await assert.rejects(() => signRelease(f.options));
+    assert(!f.events.some(e => ["upload", "create", "patch-license", "patch-source"].includes(e)));
+  }
+  const f = await fixture(t, { contextChannel: "unlisted", existing: false });
+  await assert.rejects(() => signRelease({ ...f.options, supersede: "1.1.0" }), /never authorizes superseding/u);
+  assert(!f.events.includes("upload"));
+});
+
+test("unlisted pending state requires complete verified terms and source", async t => {
+  const f = await fixture(t, { contextChannel: "unlisted", nullLicense: true, public: false, addonStatus: "incomplete" });
+  assert.equal((await signRelease({ ...f.options, approvalWaitMs: 0 })).state, "awaiting-review");
+  assert(f.events.includes("patch-license"));
+  assert(!f.state.nullLicense);
+});
+
+test("missing unlisted license uses the documented translated custom-license PATCH", async () => {
+  const requests = [];
+  const client = new ReleaseClient({ apiKey: "fixture", apiSecret: "fixture", fetchImpl: async (url, options) => {
+    requests.push({ url: String(url), method: options.method, body: JSON.parse(options.body) });
+    return new Response("{}", { status: 200 });
+  } });
+  await client.attachLicense("stackma@extensions.local", 6, "WTFPL; CMU", "exact terms");
+  assert.deepEqual(requests, [{ url: "https://addons.mozilla.org/api/v5/addons/addon/stackma%40extensions.local/versions/6/",
+    method: "PATCH", body: { custom_license: { name: { "en-US": "WTFPL; CMU" }, text: { "en-US": "exact terms" } } } }]);
 });
 
 test("an existing version with AMO-rendered license resumes and attaches only its missing source", async t => {

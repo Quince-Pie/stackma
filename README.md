@@ -26,12 +26,16 @@ lasts until Firefox restarts.
 
 `npm run build` produces `dist/stackma-VERSION.xpi` for the version in
 `extension/manifest.json`. Permanent installation in Firefox Release requires
-Mozilla signing. Each release is submitted to the Stackma listing on Mozilla
+Mozilla signing. Each listed release is submitted to the Stackma listing on Mozilla
 Add-ons, becomes available there once Mozilla approves it, and is then published
 as a GitHub Release; see [Releasing Stackma](docs/releases.md). The toolbar popup
 searches open group names, copies complete names, opens a selected group, and
 shows a notice if grouping or naming fails. Details remain in the local extension
 console.
+
+Version **1.1.6** uses [unlisted self-distribution](docs/unlisted-1.1.6.md) through
+GitHub Releases. Install its signed XPI from file. It keeps the same add-on ID and
+AMO updater; automatic updates require a later listed version higher than 1.1.6.
 
 ## Generated names
 
