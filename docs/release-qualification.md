@@ -1,5 +1,8 @@
 # Release-flow qualification
 
+> Historical qualification. The [2026-09-26 redesign](release-design.md)
+> supersedes implementation selection and recovery claims below.
+
 The original publication qualification below remains the record for signing and
 publication. [Release preparation](release-preparation.md) supersedes its manual
 version/tag initiation policy: the user selected an explicit version PR followed

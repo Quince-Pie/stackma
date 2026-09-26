@@ -1,0 +1,39 @@
+name: Resume approved releases
+
+on:
+  schedule:
+    - cron: '41 */6 * * *'
+      timezone: Etc/UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stackma-release-resume
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  resume:
+    name: Publish Mozilla-approved versions
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read # Read release tags and published releases.
+      actions: write # Dispatch Publish release for one approved tag; never rerun, cancel or delete runs.
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - name: Install the locked release tools
+        run: bash scripts/ci/install-nix.sh
+      - name: Dispatch publication of an approved, unpublished version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: nix develop .#release --no-update-lock-file --command node scripts/release/resume.js

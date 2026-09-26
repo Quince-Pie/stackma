@@ -55,6 +55,7 @@ test("publish stages a draft, verifies all digests, publishes once and verifies 
   assert.equal(f.calls.filter(a=>a[1]==="edit").length,1);
   assert.equal(f.calls.filter(a=>a[1]==="verify-asset").length,4);
   assert(f.calls[0].includes("--draft") && f.calls[0].includes("--verify-tag"));
+  assert(!f.calls[0].includes("--target"), "existing verified tags need no historical target_commitish");
   const previous=f.calls.length;await publishRelease(f.options);
   assert(f.calls.slice(previous).every(a=>a[1]==="verify-asset"));
 });
@@ -182,6 +183,45 @@ test("failed GitHub reads cancel their bodies and distinguish absence from autho
     else await assert.rejects(()=>github.get("releases/tags/v1.1.1"),new RegExp(`HTTP ${status}`,"u"));
     assert(cancelled);
   }
+});
+
+test("malformed successful GitHub responses do not expose provider bodies", async () => {
+  const github = new GitHub("Quince-Pie/stackma", "test-token", async () => new Response("synthetic-private-response"));
+  await assert.rejects(() => github.get("releases"), error => /unreadable JSON/u.test(error.message) && !String(error.stack).includes("synthetic-private"));
+});
+
+test("current REST recovery gets integrated source from the merged event, never PR head or obsolete fields", async () => {
+  const github = new GitHub("Quince-Pie/stackma", "fixture");
+  const pull = { number: 3, merged: true, head: { sha: "a".repeat(40) }, merge_commit_sha: "b".repeat(40) };
+  const events = [{ id: 1, event: "merged", commit_id: "c".repeat(40) }];
+  github.get = async path => path === "pulls/3" ? pull : events;
+  assert.equal((await github.mergedPull(3)).merge_commit_sha, "c".repeat(40));
+  delete pull.merge_commit_sha;
+  assert.equal((await github.mergedPull(3)).merge_commit_sha, "c".repeat(40));
+  pull.merged = false;
+  await assert.rejects(() => github.mergedPull(3), /merged PR/u);
+  pull.merged = true;
+  events.push({ id: 2, event: "merged", commit_id: "d".repeat(40) });
+  await assert.rejects(() => github.mergedPull(3), /missing or ambiguous/u);
+  events.length = 0;
+  await assert.rejects(() => github.mergedPull(3), /missing or ambiguous/u);
+});
+
+test("merged PR event recovery scans complete bounded history and rejects repeated pages", async () => {
+  const github = new GitHub("Quince-Pie/stackma", "fixture");
+  let pages = 0;
+  github.get = async path => path === "pulls/3" ? { number: 3, merged: true }
+    : ++pages === 1 ? Array.from({ length: 100 }, (_, i) => ({ id: i + 1, event: "labeled" }))
+      : [{ id: 101, event: "merged", commit_id: "c".repeat(40) }];
+  assert.equal((await github.mergedPull(3)).merge_commit_sha, "c".repeat(40));
+  assert.equal(pages, 2);
+  pages = 0;
+  github.get = async path => path === "pulls/3" ? { number: 3, merged: true }
+    : Array.from({ length: 100 }, (_, i) => ({ id: ++pages * 100 + i, event: "labeled" }));
+  await assert.rejects(() => github.mergedPull(3), /1000-event bound/u);
+  github.get = async path => path === "pulls/3" ? { number: 3, merged: true }
+    : Array.from({ length: 100 }, (_, i) => ({ id: i + 1, event: "labeled" }));
+  await assert.rejects(() => github.mergedPull(3), /Ambiguous PR event history/u);
 });
 
 test("public AMO eligibility is revalidated without forwarding GitHub or AMO credentials",async()=>{

@@ -1,254 +1,313 @@
 # Releasing Stackma
 
-The **Release** workflow (`prepare-release.yml`) creates a version-update PR.
-Merging that PR starts **Publish release** (`release.yml`), which submits a stable
-version to the existing **listed**
-[Stackma add-on](https://addons.mozilla.org/firefox/addon/stackma/), waits for
-Mozilla approval, verifies the signed package in Firefox 156, and publishes an
-immutable GitHub Release. Ordinary pushes, unrelated PRs and CI builds do not
-release anything. You choose the version; commit messages do not choose it.
+**Release** prepares a version PR. Human merge authorizes submission to the
+existing listed Mozilla add-on and subsequent GitHub publication. **Publish
+release** tests the frozen source, submits or reconciles that version, verifies
+the signed XPI in Firefox 156, and publishes a complete immutable GitHub Release.
+**Resume approved releases** continues after a long Mozilla review.
 
-## One-time GitHub setup
+This redesign is a **locally verified candidate**; hosted acceptance remains
+required. No remote settings, secrets, tags, submissions or releases were changed.
+See the [design qualification](release-design.md) and [verification record](../evidence/release/redesign.json).
+The supplied operator guide, including all existing edits, is preserved in
+[release history](release-history.md). Use this page for current procedures.
 
-1. Enable **immutable releases** in the repository's release settings **before
-   the first publication**. The normal workflow token cannot read this
-   administrative setting. The workflow checks the published release and its
-   attestations, but that check cannot undo a publication under a wrong setting.
-2. Create environments named `release-signing` and `release-publication`. Restrict
-   deployment branches to `main`. Add environment reviewers if you want a second
-   person to authorize submission/publication.
-3. In `release-signing`, create these environment secrets:
+## Setup before publication
 
-   | GitHub secret | Local `.env` entry |
-   | --- | --- |
-   | `AMO_JWT_ISSUER` | `JWT_ISSUER` |
-   | `AMO_JWT_SECRET` | `JWT_SECRET` |
+These administrator actions require authorization separately from implementation:
 
-   The workflow reads GitHub secrets; it does not read or upload `.env`. Local
-   environment files are ignored by Git. Keep `.env` out of commits. No GitHub
-   PAT, AMO password, additional signing certificate, or npm publishing token is
-   required. Publication uses the job's short-lived `GITHUB_TOKEN`.
-4. Under **Settings → Actions → General → Workflow permissions**, enable
-   **Allow GitHub Actions to create and approve pull requests**. Preparation
-   needs permission to create PRs; it never approves or merges them. Branch/tag
-   rules must permit creation of `release/v*` branches and `v*` tags by the
-   workflow. No protection bypass or force push is used.
+1. Enable **immutable releases before publication**. Verification afterward
+   cannot undo a publication made with the setting off. The ordinary workflow
+   token cannot read this administrative setting.
+2. Create `release-signing` and `release-publication` environments with explicit
+   deployment **branch** policies allowing only `main`. For unattended completion,
+   use human PR merge as approval and configure no additional environment
+   reviewers/timers. Deliberately configured reviewers introduce another manual
+   step; the workflow does not remove them.
+3. Put `AMO_JWT_ISSUER` and `AMO_JWT_SECRET` in **release-signing only**, using the
+   existing add-on author's AMO API credentials. Local `.env` uses `JWT_ISSUER`
+   and `JWT_SECRET`; workflows never read it. Keep it ignored. Rotate the secret
+   in AMO and this environment together. Request JWTs last five minutes; their
+   signing secret is long-lived.
+4. Allow Actions to create PRs in **Settings → Actions → General → Workflow
+   permissions**. Preparation never approves or merges them. A writer may need
+   to approve CI on a bot-created PR.
+5. Protect `v*` tags against updating/deleting and `main` against force pushes
+   and deletion. Permit creation of `release/v*` branches and `v*` tags by
+   `GITHUB_TOKEN`. No bypass or force push is used. Review changes to release
+   workflows/dependencies through normal source review.
+6. Keep **Resume approved releases** enabled and monitor failed runs. GitHub
+   can delay/drop schedules and disables schedules in inactive public repositories
+   after 60 days. Keep the schedule owner's notifications enabled.
 
-GitHub now allows bot-created PRs to run CI with collaborator approval. If the PR
-shows **Approve and run**, approve that run and wait for the checks before merging.
-This uses the built-in token; adding a PAT solely to trigger PR CI is unnecessary.
-See [GitHub's June 2026 change](https://github.blog/changelog/2026-06-11-bot-created-pull-requests-can-run-workflows-if-approved/).
-
-Do not simultaneously edit the same version's source/license in the Mozilla
-Developer Hub or publish the same GitHub release through another client. This
-workflow serializes its runs, but neither service offers a transaction spanning
-the other service or an atomic “attach source only if still empty” operation.
-
-## Make a release
-
-1. Make sure the intended source and these workflows are committed and pushed to
-   `main`. In **Actions → Release → Run workflow**, select **main** and
-   enter a new version, for example **`v1.1.3`**. This is `prepare-release.yml`.
-   **Do not create a tag or use GitHub's Releases → Draft a new release page.**
-   The workflow creates the tag and GitHub Release at the appropriate stages.
-2. Open the PR linked in the run summary. It updates the manifest, package version,
-   and both root versions in the lockfile. Dependencies and the add-on ID stay the
-   same. Approve CI if requested, review the PR, and merge it after checks pass.
-   Merge, squash and rebase merges are supported. Merging authorizes release.
-3. **Publish release** starts automatically for the merged release PR. It verifies the
-   exact merged commit, creates the matching tag after CI passes, and continues
-   through Mozilla signing and GitHub publication. Complete any environment
-   approvals configured in your repository.
-4. If Mozilla needs more review time, wait for approval and **rerun the original
-   Publish release run**. Existing submissions and matching assets are reconciled.
-
-The CLI equivalent of step 1 is:
+The policy helper checks without writing unless `--apply` is explicit. It needs
+an administrator's token, separate from the publisher's job token:
 
 ```sh
-gh workflow run prepare-release.yml --ref main -f version=v1.1.3
+nix develop .#release
+gh auth login
+node scripts/release/repository-policy.js --repository=Quince-Pie/stackma
+# Only after reviewing and authorizing settings changes:
+node scripts/release/repository-policy.js --repository=Quince-Pie/stackma --apply
 ```
 
-**Publish release → Run workflow** remains available for an **existing prepared** tag, for example
-to resume publication. Entering a new version there does not prepare it. A missing
-tag now produces instructions to use **Release** (`prepare-release.yml`), instead of Git's
-`fatal: Needed a single revision` error. If verification failed before the tag was
-created, rerun the original merged-PR run, which retains authority to create it.
+It preserves existing reviewers/timers: inspect those separately for unattended
+completion. It checks declared settings and common creation conflicts, not every
+possible account/organization rule or credential scope. No extra publication PAT
+is assumed; historical-tag permission behavior is an acceptance case below.
 
-Prepare one version at a time, merging its PR before preparing the next. A repeat
-preparation reuses the exact existing PR without resetting its branch. An observed
-manual edit, closed PR, duplicate PR history, or conflicting tag stops preparation
-for explicit resolution. To abandon a version, close its PR; it will not release.
-Do not reuse that version's reserved branch for unrelated work. The workflow does
-not automatically delete branches; GitHub's optional delete-after-merge setting
-works because release uses the event's merge commit, not the remaining branch.
+The 2026-09-26 anonymous inspection found **no rulesets**, only `release-signing`
+with **no branch restriction**, and no `release-publication` environment.
+Administrative settings and stored secrets were not inspected. Setup is incomplete.
 
-On 2026-09-24, read-only authenticated checks confirmed that **1.1.0** was already
-listed and awaiting review, with custom WTFPL metadata. Its uploaded package
-lacks the later project `LICENSE` file and has differently formatted manifest
-bytes. The current repository therefore cannot be released over that submission.
-Use a new version for the current source; the workflow refuses conflicting 1.1.0
-contents instead of replacing the pending version. No submission was changed
-during development of this workflow.
+## Normal operation
 
-## What the workflow verifies
+1. Put reviewed changes on `main`. Select **Actions → Release → Run workflow**,
+   branch **main**, and an unused version, for example `v1.1.5`:
 
-Preparation computes an expected Git tree in an isolated index using only three
-committed JSON files. It preserves every other tracked file and leaves local work
-untouched. GitHub's returned tree must match. Ref creation uses create-if-absent;
-an existing branch or tag is never moved. Preparation uses no Mozilla credentials.
+   ```sh
+   gh workflow run prepare-release.yml --ref main -f version=v1.1.5
+   ```
 
-The read-only resolution job validates a merged, same-repository release PR on
-`main`, or resolves an existing manual tag, and reuses CI at that exact checkout.
-Automatic releases require a version increase over the recorded preparation
-base, which must remain in the merged history. This also permits a merge queue
-to include later non-version commits. A separate write job creates/reconciles the
-tag only after CI passes.
-Tag, manifest and npm versions must agree. Versions use
-three canonical numeric components, each at most 999999999 (AMO's nine-digit
-limit, not the Chrome Web Store's 65535 limit). Firefox 156 and the
-existing `stackma@extensions.local` identity remain fixed requirements.
+2. Review the generated PR and passing checks, approve CI if requested, then
+   merge. It updates the manifest/package versions and both root lockfile
+   versions and adds `release-intents/vVERSION.json`. Normal, squash, rebase
+   and merge-queue integration are supported.
+   Prepare one version at a time. Do not create a tag or GitHub Release manually.
+3. **Publish release** verifies the integrated commit and creates its tag after
+   CI. New submissions attach the source in the version-creation request and
+   inherit the exact verified WTFPL/CMU terms from the newest created listed
+   version. The controller never edits licenses.
+4. Approval within the approximately 15-minute wait continues in the same run.
+   Otherwise a verified pending submission finishes green as **awaiting review**.
+   **Resume approved releases** checks every six hours and dispatches after
+   public approval. This cadence is not a delivery SLA; Mozilla review, runner
+   queuing and schedule delivery are external.
 
-CI performs the source, catalog, installer, release-policy and browser checks,
-compares two unsigned builds, and installs that unsigned XPI temporarily. Staging
-requires the same XPI digest as the successful package test. It rejects untracked
-payload files and archives only committed source. Git, Node and the release tools
-come from the same locked Nix input. The source archive is generated in UTC.
+To complete sooner or recover using corrected controller code:
 
-The signing job gets that run's exact artifact ID. It reads AMO's maintenance
-state and the existing listing, then queries the exact version. Only a version
-404 permits creation; authorization and server errors do not. Existing versions
-must match the intended payload, channel, license text and source archive. New
-versions receive explicit custom license metadata retaining both the WTFPL grant
-and CMU conditions. Existing license metadata is never rewritten.
+```sh
+gh workflow run release.yml --ref main -f tag=v1.1.4
+```
 
-Mozilla's SHA-256 and size are checked against the downloaded archive. Every
-original member's name, size and SHA-256 must match the tested unsigned payload;
-duplicate names, path aliases, changed local/central names, CRC errors and extra
-code are rejected. Only the five known Mozilla signature files and their optional
-directory are additions. This content comparison is separate from cryptographic
-verification: a **permanent** Firefox installation must report Mozilla's signed
-state and run the existing grouping/naming package check. An unsigned XPI fails.
+This requires an existing prepared tag. If verification failed before tag creation,
+rerun the original merged-PR run, which retains authority to create it. A rerun
+uses its old workflow revision; a new dispatch from main uses corrected release
+code. If the original run is unavailable or its code needs a fix, specify the
+actual **merged release PR** as well as its matching tag:
 
-For listed releases, both the exact version and the listing must be approved and
-enabled. The publication job checks public AMO eligibility again after any
-environment approval delay. It receives no AMO credentials. The signed artifact,
-readable source ZIP, `release.json` and `SHA256SUMS` are attached to a draft with a
-build identity marker. Existing assets must match by name, size and SHA-256;
-uploads and publication target the validated numeric release ID. No clobber or
-automatic deletion is used. Publication happens only after every asset is present.
-GitHub's immutable release attestation is then verified against every local asset.
+```sh
+gh workflow run release.yml --ref main -f tag=v1.1.5 -f pull-request=RELEASE_PR_NUMBER
+```
 
-The release attestation establishes GitHub release/asset identity. It is not a
-claim of SLSA build provenance, independent approval of the code, or proof of
-universal optimality.
+The controller reads that PR and its unique merged event, then applies the same merge, repository, branch,
+marker, version and ancestry checks. It tests the resolved source before creating
+the missing tag. This input cannot authorize an unmerged PR or an arbitrary commit.
 
-## Recovery and limits
+Intent is committed with the version PR, before any tag or AMO request. Keep
+these records unchanged; they are part of protected source history. The source
+version must be the newest inventoried version: do not merge stale version PRs
+after a higher version. An earlier source-declared intent with no observable AMO
+result blocks a later submission even when its tag is still invisible after a
+timeout. Resume that earlier release (its original merged-PR run if its tag is
+missing); never remove an intent or delete a tag to bypass uncertainty.
 
-### The v1.1.2 AMO format failure
+Wait for the pending version's decision before merging another release PR.
+Mozilla disables older pending listed versions when a new version is created.
+To deliberately replace the exact single pending version, first obtain the new
+version's prepared tag, then explicitly choose the destructive effect:
 
-Mozilla accepted version `1.1.2`, but returned its license as HTML and normalized
-the manifest's JSON encoding. Those transformations exposed two invalid
-assumptions in our checks. The [AMO format correction](amo-formats.md) documents
-the provider code, fixes and verification.
+```sh
+gh workflow run release.yml --ref main -f tag=v1.1.5 -f supersede=1.1.4
+```
 
-Use a new **`v1.1.3`** release after pushing the fixes. Keep the existing `v1.1.2`
-tag and submission intact. The release still uses the code at its own tag;
-there is no separate recovery controller or automatic license rewrite.
-The license parser verifies the complete plain text and link destinations.
-`license.sha256` identifies the submitted text; `license.apiSha256` identifies
-the verified API HTML and is checked again before GitHub publication.
+Ordinary/scheduled paths leave `supersede` empty. Multiple pending versions, or
+a different observed pending version, stop submission. Checks run again after
+upload validation. Closing an unmerged release PR does not release anything;
+preparation never reopens, rewrites or deletes existing branches/PRs.
 
-The manifest now uses ASCII JSON escapes, two-space indentation and no final
-newline, matching AMO's normalizer for this manifest. Preparation preserves that
-encoding. JSON values and Firefox UI strings are unchanged. ZIP verification
-still requires every original member to match exactly, including the manifest.
+## What is released and trusted
 
-### The accidentally published v1.1.1
+The source commit is frozen; the trusted controller comes from the reviewed main
+workflow revision. Source build/tests and lockfiles remain at the release commit.
+Staging, signing, signed installation verification and publication use the current
+controller. Historical release scripts never execute with AMO credentials.
+`--source-root` selects the frozen files for the current installation verifier.
 
-The manually published [v1.1.1 release](https://github.com/Quince-Pie/stackma/releases/tag/v1.1.1)
-is immutable, has no uploaded assets, and points to `6611e23`, whose manifest and
-npm versions are still `1.1.0`. The failed workflow stopped during resolution;
-its CI, tagging, Mozilla submission and publication jobs were skipped. Renaming a
-tag does not update the versions inside its source.
+The AMO step alone receives its credentials; GitHub publication has only its
+repository write token. Within-run artifacts are selected by exact artifact ID
+with digest mismatch fatal. Recovery rebuilds/retests from the protected tag and
+locked tools, so expired 14-day unsigned/30-day signed artifacts are not the sole
+recovery source. Source and pinned tool downloads must remain available.
 
-Use **`v1.1.2`** through **Release** (`prepare-release.yml`) for the correction.
-GitHub [does not permit reuse of an immutable release's tag name, even after deletion](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases).
-Leave `v1.1.1` in place; deleting or moving it is not part of this recovery.
-There is no need to create a replacement release page manually.
+The controller verifies AMO's archive hash/size and compares every payload member
+against the tested unsigned XPI, allowing only recognized signature additions.
+Firefox independently verifies permanent installation/signature, exact packaged
+files, grouping and naming. AMO's HTML license representation is checked without
+accepting changed terms or link destinations.
 
-The workflow used to display preparation as **Prepare release** and publication
-as **Release**. Those names made the wrong entry point look like the normal way
-to start. The current names put new-release preparation under **Release**, with
-the advanced existing-tag path under **Publish release**. The workflow filenames
-are unchanged, so CLI commands using the filenames retain their meaning.
+Every GitHub release has four assets: `stackma-VERSION.xpi`,
+`stackma-VERSION-source.zip`, `release.json` and `SHA256SUMS`. Draft assets must
+match by name, size and SHA-256. Only a complete draft is published; the immutable
+release and every asset's native release attestation are then verified. That
+attestation proves membership/bytes, not independent build provenance or a SLSA
+level. A delayed older release does not displace a newer Latest release.
+Keep the generated identity marker at the beginning of release notes; it identifies
+controller-owned publications for recovery.
 
-| Condition | Result and recovery |
+AMO may make the listed version available before GitHub publication. There is no
+cross-service transaction or rollback. Firefox keeps ID `stackma@extensions.local`,
+minimum version `156.0`, and the existing AMO update path without a custom update
+URL. GitHub distributes the same listed signed package.
+
+Coordinate **one release writer**, including manual Developer Hub/GitHub actions.
+Queues serialize workflows, not outside administrators. AMO has no conditional
+predecessor/license/source write. Inherited licenses share an object; never edit
+one as routine recovery. The [design record](release-design.md) states the
+remaining race boundaries and all scan/time/resource limits.
+
+## Recovery
+
+| Observation | Action / expected result |
 | --- | --- |
-| Preparation loses a response after creating a branch or PR | Rerun **Release** (`prepare-release.yml`) for the same version. It reads existing state and reuses exact matches. |
-| Preparation creates a branch but PR permission is missing | Enable Actions PR creation, then rerun preparation. The existing branch is preserved. |
-| Release PR is closed without merging | No release. Reopen it explicitly to resume; preparation does not reopen it. |
-| Tag creation succeeds but its response is lost | Rerun the original **Publish release** run. The tag must match the verified commit. |
-| AMO review exceeds the 20-minute polling budget | No GitHub publication. The AMO version/source remain available. Rerun after review. |
-| Submission response is lost | Fail without repeating the write. Rerun queries the version before submitting anything. |
-| Same version has different code, license or source | Fail without replacing it. Choose a new version or resolve the discrepancy explicitly. |
-| Tag moves while work or approval is pending | Stop at the next tag check, including checks before AMO writes and GitHub publication. Restore the intended tag through normal repository policy before retrying. |
-| Upload finishes but its response is lost | Rerun accepts the matching asset and uploads only missing assets. |
-| A draft asset is incomplete or has different bytes | Stop and preserve the draft. Inspect it; cleanup is an explicit owner action. |
-| Duplicate drafts or unexpected assets | Stop; do not select or delete one automatically. |
-| Publication succeeds but attestation is delayed | Retry verification a bounded number of times. If still unavailable, retain the published release and rerun verification. |
-| Published release is mutable | Fail the final gate and preserve it. Enabling immutability later does not retroactively freeze that release; owner intervention/new release is needed. |
-| An older approved version is recovered after a newer release | Keep the newer release as Latest. |
+| Preparation/tag response lost | Repeat the same authorized operation. Matching tree/ref/PR is reused; conflicting work is preserved. |
+| Another pending version | Wait and resume, or use the explicit `supersede` choice. No accidental replacement. |
+| Upload reply/validation lost or expired | Resume: query the version first, otherwise upload fresh bytes. No cached UUID is blindly reused; orphan uploads are left for Mozilla's cleanup. |
+| Version-create reply lost | Resume and verify the existing version before another create. Source travels in the same request. |
+| Earlier tag exists but AMO still shows no version | The next submission stops even if the pending list is empty. Resume the earlier tag to settle its outcome before advancing. |
+| Earlier intent exists but its tag is not visible | The next submission also stops. Tag creation itself may still be running; recover its merged-PR run or dispatch main with that PR number before advancing. |
+| Review takes days | A verified pending version ends green; scheduled completion requires no routine extra action. |
+| Version/listing rejected or disabled | Inspect Mozilla's review message. Automation never re-enables/deletes it. Anonymous polling cannot distinguish every nonpublic cause. |
+| Build/upload validation permanently fails before a version exists | Retire the unsubmitted intent through the reviewed procedure below, then prepare the corrected higher version. |
+| Old version lacks source | Verify payload/license before attaching only missing source. After human review, AMO may refuse: contact Mozilla or prepare a fresh version after resolving review. Never overwrite observed source. |
+| Missing/different inherited license | Inspect the newest created listed version, including disabled ones. Resolve history deliberately; no license substitution or automatic rewrite. |
+| Tag, payload, source or license conflict | Preserve both sides and investigate; never move a tag or silently accept different bytes. |
+| Inputs expired | Dispatch from main; reconstruct/retest, then compare against AMO. No old artifact ID is needed. |
+| Draft create/upload reply lost | Reconcile by validated release ID and exact digests; upload only missing assets. |
+| Incomplete `starter` upload, unexpected assets, duplicate drafts | Stop and preserve state. Cleanup of the inspected exact ID is a separate authorized repair. |
+| Publish reply lost or attestation delayed | Verify the existing publication; never delete/recreate it. Attestation reads retry a bounded number of times. |
+| Bot run publishes but fails final verification | Scheduler checks the actual publication-verification job step, retries within the existing allowance, then reports attention with the run URL. A green skipped publisher is not verification; a failed diagnostic upload after successful verification is not a failed release gate. |
+| Published release mutable/incomplete | Preserve it. Correct setup and use a fresh version or obtain specific owner instructions. Immutability cannot repair it retroactively. |
+| New controller reconstructs different audit bytes for an existing draft | Stop rather than overwrite. Inspect inventory and recover with the original run/toolchain; payload/source identity must still match. |
+| Two automatic completions fail | Scheduler reports attention. Fix the cause and dispatch manually. Cap counts retained bot-started runs, including human reruns; deleted/expired history cannot enforce a lifetime cap. |
+| History changes or a bound is reached | Report attention rather than pretend a partial search is complete. Inspect and resume affected tags explicitly. |
+| Schedule/credentials/provider unavailable | Restore the authorized setting or credential, then dispatch. Transient service outages defer to the next check. |
 
-AMO and GitHub publication are separate operations. AMO can approve and publish
-the listed version even if a later GitHub step fails. There is no rollback of that
-approval, no cross-service atomic transaction, and no atomic lock tying a tag check
-to a later service write. Coordinated publishing and protected tags are material
-operating assumptions. Checks detect observed conflicts; they cannot prevent all
-concurrent administrative changes after a check.
+The planner considers all canonical unpublished tags, without the previous
+newest-20 exclusion. It chooses point lookups or public-version pages by remaining
+request counts, dispatches at most one approved tag (oldest first), and waits while
+a publisher is active. Ambiguous dispatches are not retried in the same run.
 
-Preparation and publication have separate queues, each retaining up to 100 pending
-runs without canceling active work. Job runtime limits are 10 minutes each for
-preparation, resolution and tag creation, 20 for CI, 35 for signing/browser
-verification, and 20 for publication. Queue/approval waiting time is separate.
-Network calls, archive reads and child processes have additional
-deadlines. Downloads are bounded at AMO's 200 MB archive/source limit. ZIP members
-are streamed with expected-size checks, rather than expanded into an unbounded
-buffer. GitHub history recovery is bounded at 10,000 releases and 16 nested tag
-objects; reaching a bound fails closed without assuming absence.
+Published-release monitoring uses retained bot-run evidence and, when needed,
+later human recovery runs. Missing/expired history is not lifetime proof of
+completion. Human-triggered failures also need the initiating maintainer to follow
+their notification. The planner never deletes a public release to retry it.
 
-Unsigned input artifacts expire after 14 days; verified signed artifacts after
-30 days. GitHub Releases persist. Prefer rerunning the original workflow to retain
-its tooling revision. A new dispatch on newer `main` can require scripts absent
-from an older tag. Once approved, Firefox obtains updates through the existing
-AMO listing; no custom update URL or alternate add-on ID is introduced.
+### Retire an unsubmitted version
+
+Intent records stay immutable. To abandon a version that cannot pass build or
+upload validation, first stop further attempts and establish that **no tag or
+AMO version-creation request remains in flight**. Inspect all attempts. A build
+failure before submission is evidence; an ambiguous timeout or an AMO 404 alone
+is not. If a create might still be running, recover the same version or obtain
+Mozilla/GitHub confirmation before retiring it. Resolve any visible pending
+version through the normal review/supersede procedure.
+
+Then submit a separate human-reviewed change to `release-retirements.json`,
+leaving the original intent and tags intact. For example:
+
+```json
+{
+  "v1.1.5": {
+    "reason": "Build validation failed before submission; replaced by corrected source",
+    "evidence": "Record the inspected run/attempts and how their outcomes were established",
+    "noInFlightRequests": true
+  }
+}
+```
+
+Replace the example evidence with the actual non-sensitive evidence. This is an
+explicit operator assertion, **not machine proof of provider cancellation**.
+After review/merge, the current controller refuses that target and allows a
+higher release to advance past that resolved intent. The ordinary pending-version
+guard remains active; retirement never authorizes disabling a pending version.
+Never rerun an old controller that predates the retirement; use dispatch from
+current main for further recovery. A retirement with an unknown outcome is unsafe
+and is outside the operated contract. No version is retired in the supplied policy.
+
+## Existing versions and rollout
+
+Read-only observations on 2026-09-26 are not reservations or approval:
+
+- **1.1.4**, commit `997087de3e07b3ffb0b3968e1617b80997a42a6b`, AMO version
+  `6511539`, is unreviewed with source. The new controller rebuilt, installed and
+  matched its payload/source/license using only GET requests. Leave it pending;
+  after rollout, dispatch this tag from main to use corrected tooling.
+- **1.1.0, 1.1.2 and 1.1.3** have disabled AMO files. Preserve them. Older missing
+  sources and the normalization incident are recorded in [AMO formats](amo-formats.md).
+- **v1.1.1** is immutable with no assets, at a commit declaring 1.1.0. It cannot
+  be reused or supplemented. An explanatory note edit requires separate remote
+  authorization.
+
+Retain existing tags, releases, PRs and submissions. This change does not bump the
+product version, alter product code/licenses or move the listing icon.
+
+During rollout, let all old release runs finish and ensure there are no queued
+old controllers or manual submissions. Inventory tags against AMO versions before
+enabling the new controller. The migration record seeds **v1.1.4**, the existing
+pending version; 1.1.2/1.1.3 are terminal disabled history and v1.1.1 is already
+published. Commit this seed with the controller. Pre-inventory source can resume
+an existing AMO version, but cannot start a fresh submission. New preparation
+requires the audited inventory. Never silently abandon admitted intent; damaged
+or out-of-order inventory needs an explicit owner-reviewed migration.
+
+Before accepting the candidate, an authorized maintainer must:
+
+1. Review/merge it and complete administrator setup above.
+2. Exercise hosted PR creation/CI approval/human merge; confirm exact commit,
+   artifact IDs, queue behavior and credential/environment scopes.
+3. Exercise new source-on-create submission, inherited terms, reviewer source
+   access, delayed review and automatic resumption.
+4. Complete signed permanent installation, all four assets, immutability and
+   attestations; repeat completion and recover an old tag with changed workflow
+   code. GitHub's historical-target workflow-write scope remains a hosted
+   acceptance uncertainty: a 403/404 does not authorize new tags or broader tokens.
+5. Confirm Firefox updates an existing installed copy through AMO with the same
+   ID. Source analysis establishes the intended path, not hosted update delivery.
 
 ## Local verification
 
-Inside `nix develop`:
-
 ```sh
+nix develop
 npm ci --ignore-scripts
 npm run check
 npm run test:ci
 npm run test:release
+npm run test:alternatives
+npm run check:catalog
 node scripts/ci/check-workflows.js
 zizmor --offline --persona=pedantic .github/workflows
-npm run build
-npm run test:package -- --output=artifacts/local-package.json
+shellcheck scripts/ci/*.sh
+nix flake check --all-systems --no-build --no-update-lock-file
+nixfmt --check flake.nix
+node scripts/release/resume.js --dry-run --repository=Quince-Pie/stackma
 ```
 
-The ordinary package command uses temporary installation. The release gate uses:
+Use a disposable checkout for build/browser checks to preserve local work:
 
 ```sh
-node scripts/package-test.js --signed --xpi=path/to/signed.xpi --output=artifacts/signed-package.json
+npm run test:firefox
+npm run test:metadata
+npm run test:naming
+npm run test:native-ids
+node scripts/release/check-version-format.js
+node scripts/build.js
+node scripts/package-test.js --output=artifacts/package.json
+# Current controller, approved signed package and frozen product files:
+node scripts/package-test.js --source-root=/path/to/frozen/source \
+  --signed --xpi=/path/to/signed.xpi --output=artifacts/signed-package.json
 ```
 
-See [preparation design and verification](release-preparation.md),
-[the release-policy review and corrections](release-policy-review.md),
-[the publication qualification](release-qualification.md) and
-[verification evidence](../evidence/release/validation.json). Code, local tests,
-negative signature enforcement and read-only production AMO inspection are
-verified. A real AMO mutation/approval, GitHub-hosted release run, and immutable
-publication have not been performed as part of this implementation. The first
-authorized release must establish those service acceptance gates before claiming
-production end-to-end verification.
+Local tests, mocks, read-only reconciliation and workflow lint do not establish
+publication success or universal optimality. The evidence record separates those
+checks from the remaining hosted acceptance gates.

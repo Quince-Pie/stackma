@@ -24,11 +24,14 @@ Add-on**, and select `extension/manifest.json`. It starts immediately. Allow it 
 private windows in Firefox's add-on settings if wanted. Temporary installation
 lasts until Firefox restarts.
 
-`npm run build` produces `dist/stackma-1.1.0.xpi`. Permanent installation in Firefox
-Release requires Mozilla signing. This repository does not publish or submit the
-extension. The toolbar popup searches open group names, copies complete names,
-opens a selected group, and shows a notice if grouping or naming fails. Details
-remain in the local extension console.
+`npm run build` produces `dist/stackma-VERSION.xpi` for the version in
+`extension/manifest.json`. Permanent installation in Firefox Release requires
+Mozilla signing. Each release is submitted to the Stackma listing on Mozilla
+Add-ons, becomes available there once Mozilla approves it, and is then published
+as a GitHub Release; see [Releasing Stackma](docs/releases.md). The toolbar popup
+searches open group names, copies complete names, opens a selected group, and
+shows a notice if grouping or naming fails. Details remain in the local extension
+console.
 
 ## Generated names
 
@@ -81,6 +84,27 @@ node scripts/compile-names.js
 npm run check:catalog
 ```
 
+## Build from source
+
+Mozilla reviewers receive this repository as each version's source archive.
+Only `extension/name-catalog.js` is generated: `scripts/compile-names.js` writes
+it from `naming-data/en-v1.json`, which `naming-data/build-pack.mjs` builds from
+the editorial and pronunciation data in `naming-data/`. Every other packaged file
+is hand-written and packaged unchanged, with no bundler, minifier or transpiler.
+
+Building needs Node.js 24 and Info-ZIP `zip` 3.0, and no npm packages. It is
+tested on Linux, where `nix develop` provides both tools.
+
+```sh
+node naming-data/build-pack.mjs --check  # the word pack matches its inputs
+node scripts/compile-names.js --check    # name-catalog.js matches the word pack
+node scripts/build.js                    # writes dist/stackma-VERSION.xpi
+```
+
+The build packages exactly the files in `extension/`, with sorted names and fixed
+timestamps, and prints the archive's SHA-256. Files elsewhere are not packaged;
+`listing/icon.png` is the 128-pixel listing icon uploaded to Mozilla Add-ons.
+
 ## CI and maintenance
 
 [CI](.github/workflows/ci.yml) checks pull requests, `main`, merge queues and a
@@ -101,13 +125,21 @@ The [CI record](docs/ci.md) explains the source/changelog audit, verification an
 remaining GitHub-hosted execution boundary.
 
 [Releasing Stackma](docs/releases.md) starts with **Actions → Release**
-(`prepare-release.yml`): enter a new version such as `v1.1.3`, approve CI if
-requested, and merge the generated version PR. **Publish release** then verifies
-the merged source, creates its tag, submits
-to the existing Mozilla listing, verifies the signed XPI in Firefox, and publishes
-an immutable GitHub Release. Do not create tags or GitHub Releases manually.
-The guide covers secrets, recovery, and the unusable `v1.1.1` release.
-Ordinary CI runs remain read-only and do not release the extension.
+(`prepare-release.yml`): enter the next unused version, approve CI if requested,
+and merge the generated version PR. **Publish release** then verifies the merged
+source, creates its tag and submits it to the existing Mozilla listing. After
+Mozilla approves the version, it verifies the signed XPI in Firefox and publishes
+an immutable GitHub Release. A run whose version still awaits review ends
+successfully, and **Resume approved releases** completes the GitHub publication
+after approval. Wait for Mozilla's decision before merging the next release PR:
+submitting a new version would disable the pending one, so the workflow refuses.
+Do not create tags or GitHub Releases manually. The guide covers secrets,
+repository settings, recovery, and the unusable `v1.1.1` release. Ordinary CI
+runs remain read-only and do not release the extension.
+
+The redesigned release controller is locally verified and awaits the hosted
+acceptance in that guide. Recovery uses reviewed controller code from `main`
+against the frozen release source, including versions submitted by older tooling.
 
 ## Operational limits
 

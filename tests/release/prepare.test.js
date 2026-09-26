@@ -18,30 +18,36 @@ const serialize = value => JSON.stringify(value, null, 2) + "\n";
 test("preparation and publication transport load without installed npm dependencies", async t => {
   const directory = await temporary(t);
   await writeFile(`${directory}/package.json`, '{"type":"module"}');
-  for (const file of ["prepare.js", "repository.js", "github.js", "package.js"]) {
+  for (const file of ["prepare.js", "intent.js", "repository.js", "github.js", "package.js", "resume.js"]) {
     await copyFile(resolve(`scripts/release/${file}`), `${directory}/${file}`);
   }
-  const result = await run(process.execPath, ["--input-type=module", "-e", "await import('./prepare.js'); await import('./github.js'); console.log('loaded')"],
+  const result = await run(process.execPath, ["--input-type=module", "-e", "await import('./prepare.js'); await import('./github.js'); await import('./resume.js'); console.log('loaded')"],
     { cwd: directory, timeout: 10_000 });
   assert.equal(result.stdout.trim(), "loaded");
 });
 
 async function fixture(t) {
   const cwd = await temporary(t);
-  const env = { ...process.env, GIT_AUTHOR_NAME: "Fixture", GIT_AUTHOR_EMAIL: "fixture@example.invalid",
+  // Isolate fixtures from the developer's Git configuration, such as tag.gpgSign.
+  const env = { ...process.env, GIT_CONFIG_GLOBAL: "/dev/null", GIT_CONFIG_NOSYSTEM: "1", GIT_AUTHOR_NAME: "Fixture", GIT_AUTHOR_EMAIL: "fixture@example.invalid",
     GIT_COMMITTER_NAME: "Fixture", GIT_COMMITTER_EMAIL: "fixture@example.invalid" };
-  const git = async (...args) => (await run("git", args, { cwd, env, timeout: 10_000 })).stdout.trimEnd();
+  const git = async (...args) => (await run("git", ["-c", "maintenance.auto=false", "-c", "gc.auto=0", ...args], { cwd, env, timeout: 10_000 })).stdout.trimEnd();
   await mkdir(`${cwd}/extension`);
+  await mkdir(`${cwd}/release-intents`);
   await git("init", "--quiet", "--initial-branch=main");
   for (const [index, path] of versionPaths.entries()) await writeFile(`${cwd}/${path}`, serialize(initial[index]));
+  await writeFile(`${cwd}/release-intents/v1.1.0.json`, serialize({ schema: 1, tag: "v1.1.0" }));
   await writeFile(`${cwd}/untouched.txt`, "original\n");
   await git("add", "."); await git("commit", "--quiet", "-m", "test: Initialize release fixture");
   const mainCommit = await git("rev-parse", "HEAD");
-  // Independent tree oracle: edit exactly the four fields and let Git stage it.
+  // Independent tree oracle: edit four fields, add one reviewed intent record,
+  // and let Git stage it. No production intent/tree helper supplies this data.
   const expected = structuredClone(initial);
   expected[0].version = expected[1].version = expected[2].version = expected[2].packages[""].version = "1.1.1";
   for (const [index, path] of versionPaths.entries()) await writeFile(`${cwd}/${path}`, index === 0 ? JSON.stringify(expected[index], null, 2) : serialize(expected[index]));
-  await git("add", ...versionPaths); const tree = await git("write-tree");
+  const newIntentPath = "release-intents/v1.1.1.json", newIntentText = serialize({ schema: 1, tag: "v1.1.1" });
+  await writeFile(`${cwd}/${newIntentPath}`, newIntentText);
+  await git("add", ...versionPaths, newIntentPath); const tree = await git("write-tree");
   await git("reset", "--hard", "HEAD");
   const refs = new Map(), commits = new Map(), pulls = [], calls = [];
   const state = { failAfter: null };
@@ -50,6 +56,7 @@ async function fixture(t) {
     repository,
     async get(path) {
       if (path.startsWith("pulls?")) return structuredClone(pulls);
+      if (path === "git/matching-refs/tags/v") return [...refs].filter(([name]) => name.startsWith("tags/v")).map(([name, sha]) => ({ ref: `refs/${name}`, object: { type: "commit", sha } }));
       if (path.startsWith("git/ref/")) {
         const sha = refs.get(path.slice("git/ref/".length));
         return sha ? { object: { type: "commit", sha } } : null;
@@ -62,8 +69,8 @@ async function fixture(t) {
       let result;
       if (path === "git/trees") {
         assert.equal(body.base_tree, await git("rev-parse", `${mainCommit}^{tree}`));
-        assert.deepEqual(body.tree.map(entry => entry.path), versionPaths);
-        assert.deepEqual(body.tree.map(entry => entry.content), expected.map((value, index) => index === 0 ? JSON.stringify(value, null, 2) : serialize(value)));
+        assert.deepEqual(body.tree.map(entry => entry.path), [...versionPaths, newIntentPath]);
+        assert.deepEqual(body.tree.map(entry => entry.content), [...expected.map((value, index) => index === 0 ? JSON.stringify(value, null, 2) : serialize(value)), newIntentText]);
         result = { sha: tree };
       } else if (path === "git/commits") {
         const sha = await git("commit-tree", body.tree, "-p", body.parents[0], "-m", body.message);
@@ -120,6 +127,7 @@ test("prepare creates only a branch and PR; identical retry makes no writes", as
   assert.equal(result.tree, f.tree);
   assert.equal(result.url, "https://github.com/Quince-Pie/stackma/pull/1");
   assert.equal(f.refs.size, 1); assert(f.refs.has("heads/release/v1.1.1"));
+  assert.match(f.pulls[0].body, /release-intents\/v1\.1\.1\.json/u);
   const writes = f.calls.length;
   assert.deepEqual(await prepareRelease(f.options), result);
   assert.equal(f.calls.length, writes);
@@ -151,6 +159,36 @@ test("Git's trailing message newline does not break branch recovery", async t =>
   f.commits.get(original.head).message += "\n";
   assert.deepEqual(await prepareRelease(f.options), original);
   assert.equal(f.calls.length, writes);
+});
+
+test("preparation requires an immutable inventory ending at the current version", async t => {
+  for (const alteration of ["missing", "future", "modified"]) {
+    const f = await fixture(t);
+    if (alteration === "missing") await f.git("rm", "release-intents/v1.1.0.json");
+    if (alteration === "future") await writeFile(`${f.cwd}/release-intents/v9.0.0.json`, serialize({ schema: 1, tag: "v9.0.0" }));
+    if (alteration === "modified") await writeFile(`${f.cwd}/release-intents/v1.1.0.json`, serialize({ schema: 2, tag: "v1.1.0" }));
+    await f.git("add", "."); await f.git("commit", "--quiet", "-m", "test: Alter release inventory");
+    const mainCommit = await f.git("rev-parse", "HEAD");
+    await assert.rejects(() => prepareRelease({ ...f.options, mainCommit }));
+    assert.equal(f.calls.length, 0);
+  }
+});
+
+test("an existing intent record is never replaced by version-tree preparation", async t => {
+  const f = await fixture(t);
+  await writeFile(`${f.cwd}/release-intents/v1.1.1.json`, serialize({ schema: 1, tag: "v1.1.1" }));
+  await f.git("add", "."); await f.git("commit", "--quiet", "-m", "test: Predeclare conflicting intent");
+  const base = await f.git("rev-parse", "HEAD");
+  await assert.rejects(() => versionTree("v1.1.1", base, f.cwd), /already exists/u);
+});
+
+test("preparation refuses inventory growth beyond the verified record limit before writes", async t => {
+  const f = await fixture(t);
+  await Promise.all(Array.from({ length: 999 }, (_, i) => writeFile(`${f.cwd}/release-intents/v0.0.${i}.json`, serialize({ schema: 1, tag: `v0.0.${i}` }))));
+  await f.git("add", "."); await f.git("commit", "--quiet", "-m", "test: Fill the release intent inventory");
+  const mainCommit = await f.git("rev-parse", "HEAD");
+  await assert.rejects(() => prepareRelease({ ...f.options, mainCommit }), /1000-record limit/u);
+  assert.equal(f.calls.length, 0);
 });
 
 for (const conflict of ["message", "tree", "closed", "marker", "fork"]) {
@@ -266,6 +304,24 @@ test("a tag on old version files exits with recovery instructions, no release ou
   assert.match(await readFile(summary, "utf8"), /Creating a tag does not update version files/u);
   await assert.rejects(() => readFile(output), { code: "ENOENT" });
   assert.equal(await f.git("rev-parse", "refs/tags/v1.1.1"), f.mainCommit);
+});
+
+test("explicit merged-PR recovery uses current code to recreate missing-tag authority", async t => {
+  const f = await fixture(t), prepared = await prepareRelease(f.options);
+  await f.git("merge", "--ff-only", prepared.head);
+  const recoveryPull = { ...f.pulls[0], merged: true, merge_commit_sha: prepared.head,
+    base: { ref: "main", repo: { full_name: f.github.repository } } };
+  const options = { eventName: "workflow_dispatch", event: {}, repository: f.github.repository,
+    workflowRef: "refs/heads/main", mainCommit: prepared.head, tag: "v1.1.1", cwd: f.cwd };
+  await assert.rejects(() => resolveRelease(options), /missing|invalid/u);
+  assert.deepEqual(await resolveRelease({ ...options, recoveryPull }), { tag: "v1.1.1", commit: prepared.head, createTag: true });
+  for (const changes of [
+    { merged: false }, { head: { ...recoveryPull.head, ref: "release/v1.1.2" } },
+    { head: { ...recoveryPull.head, repo: { full_name: "fork/stackma" } } },
+    { body: "unrelated merged PR" }, { merge_commit_sha: f.mainCommit },
+  ]) await assert.rejects(() => resolveRelease({ ...options, recoveryPull: { ...recoveryPull, ...changes } }));
+  await assert.rejects(() => resolveRelease({ ...options, eventName: "pull_request", recoveryPull }), /explicit dispatch/u);
+  assert(!f.refs.has("tags/v1.1.1"), "resolution itself must not create a tag");
 });
 
 test("a release commit outside the selected main history cannot be tagged or published", async t => {

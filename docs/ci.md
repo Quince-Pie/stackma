@@ -4,7 +4,15 @@ The original CI verification record below is historical. The later
 [release integration](releases.md) adds a reusable entry point, release-policy
 tests and the narrowly scoped workflow-syntax bridge invoked with
 `node scripts/ci/check-workflows.js`. Its tools and results are recorded separately
-in [release qualification](release-qualification.md).
+in [release qualification](release-qualification.md). The scheduled **Resume
+approved releases** workflow, which can dispatch **Publish release**, is recorded
+in [Mozilla review handling](amo-review.md).
+
+The [release redesign](release-design.md) supersedes those release mechanisms.
+Reusable release verification checks out both the frozen product and the reviewed
+controller: build/tests use the product's lockfiles, while both staging checks run
+the controller's `stage.js`. The later signing job uses controller code and a
+separate product checkout for installation comparison. Ordinary CI stays read-only.
 
 ## Scope and budget
 

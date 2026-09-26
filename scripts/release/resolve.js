@@ -4,10 +4,23 @@ import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { run, validateMetadata, VersionMismatchError, versionFromTag } from "./package.js";
 import { metadataAt, requireIncrease } from "./prepare.js";
+import { intentTagsAt } from "./intent.js";
+import { GitHub } from "./github.js";
+import { readRetirements } from "./retirement.js";
 
-export async function resolveRelease({ eventName, event, repository, workflowRef, mainCommit, tag, cwd = process.cwd() }) {
+export async function resolveRelease({ eventName, event, repository, workflowRef, mainCommit, tag, recoveryPull, retired, cwd = process.cwd() }) {
   assert.equal(workflowRef, "refs/heads/main", "Release must run from main");
+  retired ??= await readRetirements();
   assert.match(mainCommit, /^[a-f0-9]{40}$/u);
+  if (recoveryPull !== undefined) {
+    assert.equal(eventName, "workflow_dispatch", "Merged-PR recovery requires an explicit dispatch");
+    versionFromTag(tag);
+    assert.equal(recoveryPull?.head?.ref, `release/${tag}`, "Recovery PR does not authorize the requested tag");
+    // Reuse every merged-PR authority/source check. Dispatch alone does not
+    // authorize inventing a missing tag or choosing a different source commit.
+    eventName = "pull_request";
+    event = { action: "closed", pull_request: recoveryPull };
+  }
   const git = async args => (await run("git", args, { cwd, timeout: 30_000 })).stdout.trim();
   let commit;
   if (eventName === "pull_request") {
@@ -40,6 +53,7 @@ export async function resolveRelease({ eventName, event, repository, workflowRef
     }
   }
   await git(["merge-base", "--is-ancestor", commit, mainCommit]);
+  assert(!retired.has(tag), "This release intent was explicitly retired; prepare a new version");
   try {
     validateMetadata(tag, ...(await metadataAt(commit, cwd)).map(text => JSON.parse(text)));
   } catch (error) {
@@ -51,16 +65,28 @@ export async function resolveRelease({ eventName, event, repository, workflowRef
     }
     throw error;
   }
+  const intents = await intentTagsAt(commit, cwd, { checkHistory: true });
+  if (intents) assert.equal(intents.at(-1), tag, "Release must be the newest source-declared intent; do not remove or reorder admitted releases");
   return { tag, commit, createTag: eventName === "pull_request" };
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   try {
+    let recoveryPull;
+    if (process.env.RECOVERY_PR) {
+      assert.equal(process.env.GITHUB_EVENT_NAME, "workflow_dispatch");
+      assert.equal(process.env.GITHUB_REF, "refs/heads/main");
+      assert.match(process.env.RECOVERY_PR, /^[1-9]\d*$/u, "Use a merged release PR number for recovery");
+      assert(Number.isSafeInteger(Number(process.env.RECOVERY_PR)), "Recovery PR number exceeds the supported integer range");
+      const github = new GitHub(process.env.GITHUB_REPOSITORY, process.env.GH_TOKEN);
+      recoveryPull = await github.mergedPull(Number(process.env.RECOVERY_PR));
+    }
     const result = await resolveRelease({
       eventName: process.env.GITHUB_EVENT_NAME,
       event: JSON.parse(await readFile(process.env.GITHUB_EVENT_PATH, "utf8")),
       repository: process.env.GITHUB_REPOSITORY, workflowRef: process.env.GITHUB_REF,
       mainCommit: process.env.GITHUB_SHA, tag: process.env.RELEASE_TAG,
+      recoveryPull,
     });
     await appendFile(process.env.GITHUB_OUTPUT, `tag=${result.tag}\ncommit=${result.commit}\ncreate-tag=${result.createTag}\n`);
     console.log(`Release resolved: ${result.tag} at ${result.commit}`);

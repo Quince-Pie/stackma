@@ -11,6 +11,11 @@ export class GitHub {
     this.token = token;
     this.fetchImpl = fetchImpl;
   }
+  async json(response) {
+    // JSON.parse errors can quote the response. Never echo provider bodies.
+    try { return await response.json(); }
+    catch { throw new Error("GitHub returned unreadable JSON; rerun to reconcile any ambiguous outcome"); }
+  }
   async get(path) {
     const response = await this.fetchImpl(`https://api.github.com/repos/${this.repository}/${path}`, {
       headers: { Authorization: `Bearer ${this.token}`, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2026-03-10" },
@@ -21,7 +26,30 @@ export class GitHub {
       if (response.status === 404) return null;
       throw new Error(`GitHub API returned HTTP ${response.status}`);
     }
-    return response.json();
+    return this.json(response);
+  }
+  async mergedPull(number) {
+    assert(Number.isSafeInteger(number) && number > 0, "Invalid recovery PR number");
+    const pull = await this.get(`pulls/${number}`);
+    assert(pull?.number === number && pull.merged === true, "Recovery requires an accessible merged PR");
+    // REST 2026-03-10 removed merge_commit_sha from PR detail. The merged
+    // issue event records the actual integrated commit; never substitute head.
+    const merged = [], ids = new Set();
+    for (let page = 1; page <= 10; page++) {
+      const events = await this.get(`issues/${number}/events?per_page=100&page=${page}`);
+      assert(Array.isArray(events) && events.length <= 100, "Cannot establish merged PR event history");
+      for (const event of events) {
+        assert(Number.isSafeInteger(event.id) && event.id > 0 && !ids.has(event.id), "Ambiguous PR event history");
+        ids.add(event.id);
+        if (event.event === "merged") merged.push(event);
+      }
+      if (events.length < 100) {
+        assert.equal(merged.length, 1, "PR merge event is missing or ambiguous; retry after checking its history");
+        assert.match(merged[0].commit_id, /^[a-f0-9]{40}$/u, "PR merge event has no integrated commit");
+        return { ...pull, merge_commit_sha: merged[0].commit_id };
+      }
+    }
+    throw new Error("Recovery PR event history reaches the 1000-event bound; inspect it explicitly");
   }
   cli(args) {
     // No shell interpretation, credentials only in the explicitly scoped step
@@ -80,7 +108,8 @@ export async function checkAmoPublication(record, fetchImpl = fetch) {
       await response.body?.cancel();
       throw new Error(`AMO is not publicly available (HTTP ${response.status})`);
     }
-    return response.json();
+    try { return await response.json(); }
+    catch { throw new Error("Public AMO returned unreadable JSON"); }
   };
   const [addon, version] = await Promise.all([get(base), get(`${base}versions/v${record.version}/`)]);
   assert.equal(addon.guid, record.id);
@@ -144,7 +173,9 @@ export async function publishRelease({ github, record, directory, notesPath, ver
     await writeFile(notesPath, `${marker}\n\nMozilla-signed Stackma ${version} for Firefox 156 and newer.\n\nInstall from [Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/stackma/) for normal automatic updates, or download the XPI and use Firefox's Add-ons Manager → Install Add-on From File.\n\nSource commit: ${commit}. See SHA256SUMS and release.json for package identities and Firefox verification.\n`);
     // Explicit --draft preserves completed uploads if a later operation fails.
     // Never retry a write here; the next run reconciles server state first.
-    await github.cli(["release", "create", tag, "--draft", "--verify-tag", "--target", commit,
+    // The pre-existing, verified tag is the target. Passing a historical
+    // target_commitish is unnecessary and can require workflow-write scope.
+    await github.cli(["release", "create", tag, "--draft", "--verify-tag",
       "--title", `Stackma ${version}`, "--notes-file", notesPath, "--generate-notes"]);
     history = await github.releases();
     release = matchingRelease(history, tag, marker);

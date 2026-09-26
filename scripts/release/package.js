@@ -23,6 +23,13 @@ export function versionFromTag(tag) {
   return version;
 }
 
+export function compareReleaseTags(a, b) {
+  const left = versionFromTag(a).split(".").map(Number);
+  const right = versionFromTag(b).split(".").map(Number);
+  const index = left.findIndex((part, i) => part !== right[i]);
+  return index === -1 ? 0 : left[index] - right[index];
+}
+
 export class VersionMismatchError extends Error {
   constructor(tag, expected, declared) {
     super(`Tag, manifest and npm versions must agree. ${tag} requires ${expected}.\n` +
