@@ -77,6 +77,7 @@ export async function runUnlisted({ tag, pullNumber, env = process.env }) {
     assert.equal(repository, "Quince-Pie/stackma");
     const token = env.GH_TOKEN || env.GITHUB_TOKEN;
     const github = new RepositoryGitHub(repository, token);
+    await run("gh", ["--version"], { env, timeout: 10_000 });
     // gh reads credentials from its child environment, never command arguments.
     github.cli = args => run("gh", [...args, "--repo", repository], {
       env: { ...env, GH_TOKEN: token, GH_PROMPT_DISABLED: "1", GH_NO_UPDATE_NOTIFIER: "1" },

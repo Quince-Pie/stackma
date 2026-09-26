@@ -83,9 +83,14 @@ nix develop
 npm ci --ignore-scripts
 node scripts/build.js
 node scripts/package-test.js --output=artifacts/ci/package.json
-node --env-file=/absolute/path/to/ignored/.env scripts/release/unlisted.js \
+nix develop .#release --no-update-lock-file --command \
+  node --env-file=/absolute/path/to/ignored/.env scripts/release/unlisted.js \
   --tag=v1.1.6 --pull-request=MERGED_PR_NUMBER
 ```
+
+The inner release shell supplies the locked GitHub CLI while retaining the outer
+development shell's browser/build tools. The command checks CLI availability
+before creating a tag or submitting anything.
 
 The environment needs the authorized operator's `GITHUB_TOKEN` (or `GH_TOKEN`)
 and existing `JWT_ISSUER`/`JWT_SECRET` (or `AMO_JWT_ISSUER`/`AMO_JWT_SECRET`).
