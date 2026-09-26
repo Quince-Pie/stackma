@@ -236,7 +236,10 @@ export async function signRelease({ client, context, directory, output, verify =
     assert.equal(addon.guid, context.id, "The existing AMO add-on must match the manifest ID");
     assert.equal(addon.slug, "stackma", "Unexpected AMO listing");
     assert.equal(addon.is_disabled, false, "AMO listing is disabled or its state is unavailable");
-    assert((unlisted ? ["public", "nominated", "incomplete"] : ["public", "nominated"]).includes(addon.status),
+    // An enabled listing with no approved/pending listed file is incomplete.
+    // AMO permits submitting a new listed version from that state; approval
+    // still requires both the new file and the listing to become public.
+    assert(["public", "nominated", "incomplete"].includes(addon.status),
       "AMO listing needs attention in the Developer Hub");
     return addon;
   };

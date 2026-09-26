@@ -1,1 +1,7 @@
-{}
+{
+  "v1.1.5": {
+    "reason": "The only signing attempt was rejected by GitHub's environment policy before any runner step; the owner now requests listed 1.1.7.",
+    "evidence": "Run https://github.com/Quince-Pie/stackma/actions/runs/36274506473 attempt 1, signing job 108494911780: runner_id 0, steps [], deployment ref refs/pull/5/merge rejected by the main-only environment. Full retained release history inspected 2026-09-26 contains no other 1.1.5 attempt and no active publisher; authenticated AMO inventory has no 1.1.5. See evidence/release/listed-recovery.json. The pre-execution denial establishes no AMO write started; a 404 or timeout alone would not.",
+    "noInFlightRequests": true
+  }
+}

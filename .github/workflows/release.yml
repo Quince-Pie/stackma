@@ -2,8 +2,13 @@ name: Publish release
 # Resume approved releases finds its own dispatches by this exact title.
 run-name: ${{ github.event_name == 'workflow_dispatch' && format('Publish release {0}', inputs.tag) || github.event.pull_request.title }}
 
-on:
-  pull_request:
+# Audited in docs/listed-1.1.7.md: merged same-repo source must be on protected
+# main before any write/secret job. No unmerged or fork code is executed.
+on: # zizmor: ignore[dangerous-triggers]
+  # Only merged, same-repository release PRs pass the job and source guards.
+  # The default-branch event context can enter our main-only environments;
+  # ordinary pull_request deployments retain a refs/pull/*/merge policy ref.
+  pull_request_target:
     types: [closed]
     branches: [main]
   workflow_dispatch:

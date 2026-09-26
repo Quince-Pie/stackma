@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { AdminClient, environments, inspect, matchesRef, rulesets, runPolicy } from "../../scripts/release/repository-policy.js";
+import { AdminClient, environments, inspect, matchesRef, releaseEventPolicy, rulesets, runPolicy } from "../../scripts/release/repository-policy.js";
 
 // A model of the repository administration endpoints the policy reads and writes.
 function world(overrides = {}) {
   const state = {
-    rulesets: [], nextId: 10,
+    rulesets: [], actionsPolicies: [], nextId: 10,
     environments: { "release-signing": { deployment_branch_policy: null, protection_rules: [] } },
     policies: { "release-signing": [] },
     immutable: false, workflow: { default_workflow_permissions: "read", can_approve_pull_request_reviews: true },
@@ -54,6 +54,17 @@ function world(overrides = {}) {
     if (path === "/immutable-releases" && method === "PUT") { state.immutable = true; return new Response(null, { status: 204 }); }
     if (path === "/actions/permissions/workflow" && method === "GET") return Response.json(state.workflow);
     if (path === "/actions/permissions/workflow" && method === "PUT") { state.workflow = body; return new Response(null, { status: 204 }); }
+    if (path === "/actions/policies" && method === "GET") return Response.json({ total_count: state.actionsPolicies.length,
+      policies: state.actionsPolicies.map(({ id, name, source_type, enforcement }) => ({ id, name, source_type, enforcement })) });
+    if (path === "/actions/policies" && method === "POST") {
+      const policy = { ...body, id: state.nextId++, source_type: "Repository" }; state.actionsPolicies.push(policy);
+      return Response.json(policy, { status: 201 });
+    }
+    if ((match = /^\/actions\/policies\/(\d+)$/u.exec(path))) {
+      const index = state.actionsPolicies.findIndex(p => p.id === Number(match[1]));
+      if (method === "GET") return Response.json(state.actionsPolicies[index]);
+      if (method === "PUT") { state.actionsPolicies[index] = { ...body, id: Number(match[1]), source_type: "Repository" }; return Response.json(state.actionsPolicies[index]); }
+    }
     return assert.fail(`Unexpected ${method} ${path}`);
   };
   return { state, requests, client: new AdminClient("Quince-Pie/stackma", "admin-token", fetchImpl), writes: () => requests.filter(request => request.method !== "GET") };
@@ -64,7 +75,7 @@ test("checking is read-only and reports every missing or weaker setting", async 
   const logs = [];
   assert.equal(await runPolicy({ client: w.client, log: line => logs.push(line) }), false);
   assert.equal(w.writes().length, 0);
-  assert.deepEqual(logs.map(line => line.split(" ")[0]), ["MISSING", "MISSING", "DRIFT", "MISSING", "DRIFT", "OK"]);
+  assert.deepEqual(logs.map(line => line.split(" ")[0]), ["MISSING", "MISSING", "DRIFT", "MISSING", "DRIFT", "OK", "MISSING"]);
   assert(w.requests.every(request => request.auth === "Bearer admin-token" && request.redirect === "manual"));
 });
 
@@ -78,6 +89,7 @@ test("applying creates the declared rulesets, branch policies and immutability, 
     assert.deepEqual(w.state.policies[name].map(({ name: branch, type }) => ({ branch, type })), [{ branch: "main", type: "branch" }]);
   }
   assert.equal(w.state.immutable, true);
+  assert.deepEqual(w.state.actionsPolicies.map(({ id: _id, source_type: _source, ...policy }) => policy), [releaseEventPolicy]);
   assert(!w.requests.some(request => request.method === "DELETE"));
   const again = world({ ...w.state, status: {} });
   assert.equal(await runPolicy({ client: again.client, apply: true, log: () => {} }), true);
@@ -91,6 +103,27 @@ test("an existing identical branch policy answered with 303 is accepted and veri
   assert.equal(await runPolicy({ client: w.client, log: () => {} }), false, "other settings still differ");
   const redirected = world({ status: { "POST /rulesets": 303 } });
   await assert.rejects(() => redirected.client.request("POST", "/rulesets", rulesets[0]), /POST \/rulesets returned HTTP 303/u);
+});
+
+test("the release event exception is narrowly scoped and preserves other policy restrictions", async () => {
+  const actor = { type: "restrict_actions_actors", parameters: { allowed_actors: [{ id: 1, type: "User" }] } };
+  const own = { ...releaseEventPolicy, id: 50, source_type: "Repository", enforcement: "disabled",
+    rules: [{ type: "restrict_action_events", parameters: { allowed_events: ["workflow_dispatch"] } }, actor] };
+  const other = { name: "another policy", id: 51, source_type: "Repository", enforcement: "active", conditions: {},
+    rules: [{ type: "restrict_action_events", parameters: { allowed_events: ["push"] } }] };
+  const inherited = { name: "parent policy", id: 52, source_type: "Organization", enforcement: "active" };
+  const w = world({ actionsPolicies: [own, other, inherited] });
+  assert.equal(await runPolicy({ client: w.client, apply: true, log: () => {} }), false);
+  assert.deepEqual(w.state.actionsPolicies[0].conditions, releaseEventPolicy.conditions);
+  assert.deepEqual(w.state.actionsPolicies[0].rules, [...releaseEventPolicy.rules, actor]);
+  assert.deepEqual(w.state.actionsPolicies[1], other);
+  assert.deepEqual(w.state.actionsPolicies[2], inherited);
+  const findings = await inspect(w.client);
+  assert(findings.some(f => f.item.includes("another policy") && f.writes.length === 0));
+  assert(findings.some(f => f.item.includes("parent policy") && f.writes.length === 0));
+  const wrongScope = world({ actionsPolicies: [{ ...own, conditions: {}, enforcement: "active" }] });
+  const finding = (await inspect(wrongScope.client)).find(f => f.item === "release workflow events");
+  assert.equal(finding.status, "drift"); assert.deepEqual(finding.writes, [], "Do not move unrelated actor restrictions to a narrower scope automatically");
 });
 
 test("changing an environment's branch policy keeps its reviewers and wait timer", async () => {

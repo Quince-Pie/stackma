@@ -18,6 +18,11 @@ export const rulesets = [
     rules: [{ type: "deletion" }, { type: "non_fast_forward" }] },
 ];
 export const environments = ["release-signing", "release-publication"];
+export const releaseEventPolicy = {
+  name: "Stackma release workflow events", enforcement: "active",
+  conditions: { workflow_path: { include: [".github/workflows/release.yml"], exclude: [] } },
+  rules: [{ type: "restrict_action_events", parameters: { allowed_events: ["pull_request_target", "workflow_dispatch"] } }],
+};
 const branchPolicy = { protected_branches: false, custom_branch_policies: true };
 // Refs the workflows create with GITHUB_TOKEN, which cannot bypass rulesets on a
 // user-owned repository: Release creates release/v* branches, Publish release v* tags.
@@ -160,6 +165,50 @@ export async function inspect(client) {
     detail: workflow.can_approve_pull_request_reviews ? "" : "disabled; Release cannot open version PRs",
     writes: workflow.can_approve_pull_request_reviews ? [] : [["PUT", "/actions/permissions/workflow",
       { default_workflow_permissions: workflow.default_workflow_permissions, can_approve_pull_request_reviews: true }]] });
+  // Public repositories require an explicit applicable target-event policy
+  // when GitHub's default restriction becomes enforced on 2026-11-02.
+  const policies = await client.request("GET", "/actions/policies?has_parents=true&per_page=100");
+  assert(Array.isArray(policies?.policies) && Number.isSafeInteger(policies.total_count) &&
+    policies.total_count === policies.policies.length && policies.total_count <= 100,
+  "Cannot establish complete Actions event policy history");
+  assert.equal(new Set(policies.policies.map(p => p.id)).size, policies.policies.length, "Duplicate Actions policy identity");
+  const own = policies.policies.filter(p => p.source_type === "Repository" && p.name === releaseEventPolicy.name);
+  assert(own.length <= 1, "Several release event policies exist; inspect them manually");
+  if (own.length === 0) findings.push({ item: "release workflow events", status: "missing",
+    writes: [["POST", "/actions/policies", releaseEventPolicy]] });
+  for (const summary of policies.policies) {
+    assert(Number.isSafeInteger(summary.id) && summary.id > 0, "Invalid Actions policy identity");
+    if (summary.source_type !== "Repository") {
+      findings.push({ item: `inherited Actions policy "${summary.name}"`, status: "drift", writes: [],
+        detail: "requires administrator inspection; a repository allow cannot override a parent restriction" });
+      continue;
+    }
+    const actual = await client.request("GET", `/actions/policies/${summary.id}`);
+    assert(actual && Array.isArray(actual.rules), "Cannot read Actions policy");
+    const extras = actual.rules.filter(rule => rule.type !== "restrict_action_events");
+    if (summary.name === releaseEventPolicy.name) {
+      const events = actual.rules.filter(rule => rule.type === "restrict_action_events");
+      const paths = actual.conditions?.workflow_path;
+      const correctScope = paths && JSON.stringify(sorted(paths.include ?? [])) === JSON.stringify(releaseEventPolicy.conditions.workflow_path.include) &&
+        (paths.exclude ?? []).length === 0 && Object.keys(actual.conditions).length === 1;
+      const correct = actual.enforcement === "active" && correctScope &&
+        events.length === 1 && JSON.stringify(sorted(events[0].parameters?.allowed_events ?? [])) ===
+        JSON.stringify(sorted(releaseEventPolicy.rules[0].parameters.allowed_events));
+      findings.push({ item: "release workflow events", status: correct ? "ok" : "drift", detail: correct ? "" : "release.yml must allow only its target and dispatch events",
+        writes: correct || (!correctScope && extras.length > 0) ? [] : [["PUT", `/actions/policies/${summary.id}`, { ...releaseEventPolicy, rules: [...releaseEventPolicy.rules, ...extras] }]] });
+    }
+    if (actual.enforcement !== "active") continue;
+    const paths = actual.conditions?.workflow_path;
+    assert(!paths || (Array.isArray(paths.include) && Array.isArray(paths.exclude)), "Malformed Actions workflow scope");
+    const applies = !paths || ((paths.include.length === 0 || paths.include.some(p => matchesRef(p, ".github/workflows/release.yml"))) &&
+      !paths.exclude.some(p => matchesRef(p, ".github/workflows/release.yml")));
+    if (!applies) continue;
+    if (extras.length > 0 || (summary.name !== releaseEventPolicy.name && actual.rules.some(rule =>
+      rule.type === "restrict_action_events" && releaseEventPolicy.rules[0].parameters.allowed_events.some(event => !rule.parameters?.allowed_events?.includes(event))))) {
+      findings.push({ item: `Actions policy "${summary.name}"`, status: "drift", writes: [],
+        detail: "additional event/actor restrictions need administrator review; never relaxed automatically" });
+    }
+  }
   return findings;
 }
 
