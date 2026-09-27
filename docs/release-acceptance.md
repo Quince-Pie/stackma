@@ -1,5 +1,15 @@
 # Hosted acceptance and remaining provider gates
 
+**Current handoff, 2026-09-27:** the owner renamed the extension to **Tab Gantry**.
+Unlisted [1.1.8 is signed and published](https://github.com/Quince-Pie/stackma/releases/tag/v1.1.8),
+and a real manual upgrade from 1.1.6 preserved native groups and local storage. Listed
+1.1.9 was submitted with explicit authorization to replace pending 1.1.7; Mozilla
+disabled the older pending file on creation. The title is now **Tab Gantry -
+Automatic Tab Groups**. See the [current rename record](tab-gantry-rename.md).
+Listed approval/publication and actual default-AMO update delivery remain open.
+The dated rollout observations below are historical, not instructions to resume
+superseded 1.1.7 or owner-disabled 1.1.4.
+
 **Later owner-authorized change:** the owner disabled listed 1.1.4, merged the
 1.1.5 version PR, then requested unlisted 1.1.6. That release is now signed,
 verified and [published](https://github.com/Quince-Pie/stackma/releases/tag/v1.1.6);
@@ -9,7 +19,7 @@ below is superseded. A future default-AMO update test can start from signed
 Unlisted signing does not establish listed-channel publication or automatic
 update delivery.
 
-The owner has now requested listed **1.1.7**. Its [submission record](listed-1.1.7.md)
+The owner subsequently requested listed **1.1.7**. Its [submission record](listed-1.1.7.md)
 documents the successful hosted merge trigger, exact source/license verification
 and remaining Mozilla-review/update-delivery gates.
 
@@ -85,8 +95,10 @@ completion deadline while either provider is unavailable.
 ## Actual installed-user update test
 
 The new harness deliberately uses Firefox's normal AMO updater, rather than
-installing a supplied newer XPI directly. It needs two approved compatible listed
-versions, the older signed XPI and the verified newer signed archive's SHA-256.
+installing a supplied newer XPI directly. It needs an older signed XPI and a
+compatible approved newer listed version with its verified signed archive's
+SHA-256. The older installation can come from unlisted self-distribution; its
+unchanged ID and default update service still select compatible listed updates.
 Verify the old package against its release attestation first:
 
 ```sh

@@ -1,0 +1,559 @@
+{
+  "schema": 1,
+  "observed": "2026-09-27T09:26:57.385Z",
+  "request": "Rename Stackma to Tab Gantry; publish an unlisted personal build, then submit a listed build. Explicit owner choice: replace pending 1.1.7 with renamed 1.1.9.",
+  "contract": {
+    "addonId": "stackma@extensions.local",
+    "amoId": 3078021,
+    "amoSlug": "stackma",
+    "repository": "Quince-Pie/stackma",
+    "firefoxMinimum": "156.0",
+    "preserved": [
+      "Grouping/naming logic and native-group behavior",
+      "Manifest permissions, MV3 and default AMO update service",
+      "Existing licenses and copyright notices",
+      "Historical tags, immutable releases, intent records and original working tree"
+    ],
+    "changed": [
+      "Product display name and labels",
+      "AMO title only",
+      "Private npm package name and new artifact filenames"
+    ],
+    "authority": "Owner explicitly authorized rename, both publication channels, and supersession of pending 1.1.7; no permission inferred from reference material"
+  },
+  "qualification": {
+    "scope": "Existing two-channel release mechanism adapted for a display-name change; no product-algorithm or channel redesign",
+    "selection": "Bind branding to frozen release source and retain the exact legacy record/filenames for historical releases",
+    "alternatives": [
+      {
+        "choice": "Globally replace old release prefixes",
+        "disposition": "Rejected: changes old filenames/records and breaks immutable-release reconciliation"
+      },
+      {
+        "choice": "Rename addon ID, repository or AMO slug",
+        "disposition": "Outside authorized rename scope; changing ID would break installed-user identity"
+      },
+      {
+        "choice": "Use mutable current-main or AMO name for old releases",
+        "disposition": "Rejected: can relabel historical frozen inputs"
+      }
+    ],
+    "draftVisibility": "Bounded read reconciliation after a successful create extends existing recovery without another write. Six reads and five 15-second waits; provider delay has no guaranteed bound.",
+    "limits": [
+      "No faster Mozilla review claim",
+      "No empirical latency or universal-optimality claim",
+      "Successful manual XPI replacement does not establish default-AMO update delivery"
+    ],
+    "broaderDesign": "docs/release-design.md; docs/release-optimality.md"
+  },
+  "primaryEvidence": [
+    {
+      "source": "https://mozilla.github.io/addons-server/topics/api/addons.html#edit",
+      "observed": "2026-09-27",
+      "applicability": "Published name-only edit API; deployed serializer and readback establish affected fields"
+    },
+    {
+      "source": "https://extensionworkshop.com/documentation/develop/create-an-appealing-listing/",
+      "observed": "2026-09-27",
+      "applicability": "Descriptive listing title guidance"
+    },
+    {
+      "source": "https://github.com/mozilla/addons-server",
+      "version": "production 2026.09.17-1",
+      "commit": "c03d3c661bdbe22bb8f4a52fc46d63668bb31751",
+      "observed": "2026-09-27",
+      "applicability": "Name maximum 50; name-change content review; slug handling; listed version creation disables older pending files",
+      "limitation": "Repository HEAD is not treated as the deployed contract"
+    },
+    {
+      "source": "Supplied Firefox checkout",
+      "commit": "9e9b5f17f56187c1f5c8b9cdf79a01ff51a7b643",
+      "observed": "2026-09-27",
+      "applicability": "AddonWrapper.getResourceURI, installed-archive identity and install-date preservation",
+      "limitation": "Source reasoning is supplemented by actual signed Firefox 156 installation; it is not future-browser certification"
+    }
+  ],
+  "branding": {
+    "pullRequest": {
+      "number": 12,
+      "head": "45510d3355ab627bf4f370b8215c4f6030c3e154",
+      "base": "93b18d2fc429d91fb502b000ae28f680657c2f49",
+      "url": "https://github.com/Quince-Pie/stackma/pull/12"
+    },
+    "merge": {
+      "observed": "2026-09-27T08:44:13.969Z",
+      "pullRequest": 12,
+      "reviewedHead": "45510d3355ab627bf4f370b8215c4f6030c3e154",
+      "ciRun": 36306946740,
+      "sha": "481026f324208f3e815402158fb663d1583ca92c",
+      "merged": true,
+      "message": "Pull Request successfully merged"
+    },
+    "ci": {
+      "observed": "2026-09-27T08:43:26.691Z",
+      "head": "45510d3355ab627bf4f370b8215c4f6030c3e154",
+      "runs": [
+        {
+          "id": 36306946740,
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/Quince-Pie/stackma/actions/runs/36306946740"
+        }
+      ]
+    },
+    "legacyCompatibility": {
+      "version": "1.1.7",
+      "originalContextByteIdentical": true,
+      "unsignedSha256": "c630d37db4ef800089fdb736819f207b9346c030ac224705d4aae7ea370c0c54",
+      "sourceSha256": "7335955f2f4baa629afef371696ac8f509c680829d4e52a68e7eab17b450293a"
+    }
+  },
+  "listing": {
+    "observed": "2026-09-27T08:46:51.356Z",
+    "method": "Authenticated name-only PATCH, followed by exact readback of identity/locale/summary/description and version-license hashes",
+    "outcome": "PATCH accepted",
+    "beforeName": {
+      "en-US": "Stackma"
+    },
+    "afterName": {
+      "en-US": "Tab Gantry - Automatic Tab Groups"
+    },
+    "id": 3078021,
+    "guid": "stackma@extensions.local",
+    "slug": "stackma",
+    "defaultLocale": "en-US",
+    "status": "nominated",
+    "otherListingFieldsUnchanged": true,
+    "licenses": [
+      {
+        "version": "1.1.6",
+        "id": 6517542,
+        "channel": "unlisted",
+        "licenseId": 10403,
+        "textSha256": "7d7fe17a1f0e298361be4f27309b89ddc33363e33c0812635e02faff6a62d96d"
+      },
+      {
+        "version": "1.1.7",
+        "id": 6517688,
+        "channel": "listed",
+        "licenseId": 10390,
+        "textSha256": "7d7fe17a1f0e298361be4f27309b89ddc33363e33c0812635e02faff6a62d96d"
+      }
+    ],
+    "editUrl": "https://addons.mozilla.org/en-US/developers/addon/stackma/edit",
+    "reviewEffect": "Name changes can trigger Mozilla content review; no faster-review claim."
+  },
+  "unlisted": {
+    "pullRequest": {
+      "number": 13,
+      "head": "7e857cfa7db51f98bf9904c65d3ae40c93dc6fae",
+      "base": "481026f324208f3e815402158fb663d1583ca92c",
+      "url": "https://github.com/Quince-Pie/stackma/pull/13"
+    },
+    "mergedSourceCI": {
+      "observed": "2026-09-27T08:51:46.962Z",
+      "id": 36307392297,
+      "status": "completed",
+      "conclusion": "success",
+      "head": "d0512758b2969cd32394dece3582106ae5936d20",
+      "url": "https://github.com/Quince-Pie/stackma/actions/runs/36307392297"
+    },
+    "record": {
+      "tag": "v1.1.8",
+      "commit": "d0512758b2969cd32394dece3582106ae5936d20",
+      "version": "1.1.8",
+      "id": "stackma@extensions.local",
+      "displayName": "Tab Gantry",
+      "artifactPrefix": "tab-gantry",
+      "channel": "unlisted",
+      "unsigned": {
+        "bytes": 24536,
+        "sha256": "6a51cbc35a52df8ea370e508c967a7647d09770eb4ab2e1e1bb1d88c99ae43ee"
+      },
+      "source": {
+        "bytes": 754866,
+        "sha256": "f8f58a4fdd1d59b2fb31d37ee52fcd17a486035c3f472bd27318608a6f03658b"
+      },
+      "license": {
+        "name": "WTFPL 2.0; CMU data terms retained",
+        "sha256": "ef832d30a91a4e1092627ac39cd3933b586a18dcb290bc8a9a1f509aa77bbe81",
+        "apiSha256": "7d7fe17a1f0e298361be4f27309b89ddc33363e33c0812635e02faff6a62d96d"
+      },
+      "tools": {
+        "node": "v24.20.0",
+        "git": "git version 2.55.0",
+        "webExt": "10.7.0"
+      },
+      "priorReleases": [
+        "v1.1.4",
+        "v1.1.5",
+        "v1.1.6",
+        "v1.1.7"
+      ],
+      "versionId": 6518363,
+      "signed": {
+        "sha256": "3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a",
+        "bytes": 33637
+      },
+      "files": {
+        "tab-gantry-1.1.8.xpi": {
+          "bytes": 33637,
+          "sha256": "3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a"
+        },
+        "tab-gantry-1.1.8-source.zip": {
+          "bytes": 754866,
+          "sha256": "f8f58a4fdd1d59b2fb31d37ee52fcd17a486035c3f472bd27318608a6f03658b"
+        }
+      },
+      "firefox": "156.0",
+      "firefoxBuildId": "20260909172920"
+    },
+    "acceptance": {
+      "observed": "2026-09-27T09:02:37.041Z",
+      "releaseId": 397575283,
+      "url": "https://github.com/Quince-Pie/stackma/releases/tag/v1.1.8",
+      "title": "Tab Gantry 1.1.8",
+      "publishedAt": "2026-09-27T09:00:46Z",
+      "immutable": true,
+      "publicDownloadsVerified": true,
+      "assets": [
+        {
+          "name": "release.json",
+          "url": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.8/release.json",
+          "bytes": 1397,
+          "sha256": "8be4d58621d7d23bd52bad71ca3366594423488e838075fb267f20c408565857"
+        },
+        {
+          "name": "SHA256SUMS",
+          "url": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.8/SHA256SUMS",
+          "bytes": 260,
+          "sha256": "106f5bdf0d6a7e0cd32f676e36298f4309851f3b859f94237bf0bffdadb99cac"
+        },
+        {
+          "name": "tab-gantry-1.1.8-source.zip",
+          "url": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.8/tab-gantry-1.1.8-source.zip",
+          "bytes": 754866,
+          "sha256": "f8f58a4fdd1d59b2fb31d37ee52fcd17a486035c3f472bd27318608a6f03658b"
+        },
+        {
+          "name": "tab-gantry-1.1.8.xpi",
+          "url": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.8/tab-gantry-1.1.8.xpi",
+          "bytes": 33637,
+          "sha256": "3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a"
+        }
+      ],
+      "manualUpgrade": {
+        "passed": true,
+        "method": "manual signed-XPI replacement in an isolated Firefox profile",
+        "defaultAmoUpdateDeliveryTested": false,
+        "startedAt": "2026-09-27T09:01:47.412Z",
+        "id": "stackma@extensions.local",
+        "from": {
+          "version": "1.1.6",
+          "name": "Stackma"
+        },
+        "to": {
+          "version": "1.1.8",
+          "name": "Tab Gantry"
+        },
+        "expectedNewSha256": "3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a",
+        "inputs": {
+          "oldSha256": "21748c0bb759d1005c39c9abcf2752021a48d9618bdccc86fddb32984df64033",
+          "newSha256": "3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a"
+        },
+        "browser": {
+          "version": "156.0",
+          "buildId": "20260909172920",
+          "geckodriver": "0.37.1"
+        },
+        "before": {
+          "active": true,
+          "bytes": 33632,
+          "id": "stackma@extensions.local",
+          "installDate": 1790499708404,
+          "name": "Stackma",
+          "permanent": true,
+          "sha256": "21748c0bb759d1005c39c9abcf2752021a48d9618bdccc86fddb32984df64033",
+          "signed": true,
+          "version": "1.1.6"
+        },
+        "after": {
+          "active": true,
+          "bytes": 33637,
+          "id": "stackma@extensions.local",
+          "installDate": 1790499708404,
+          "name": "Tab Gantry",
+          "permanent": true,
+          "sha256": "3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a",
+          "signed": true,
+          "version": "1.1.8"
+        },
+        "continuity": {
+          "group": {
+            "collapsed": true,
+            "color": "purple",
+            "id": 1790499708461076,
+            "title": "Retain my research — 日本語",
+            "windowId": 1
+          },
+          "bothTabGroupIdsRetained": true,
+          "extensionStorageRetained": true
+        },
+        "finishedAt": "2026-09-27T09:01:48.935Z"
+      }
+    },
+    "nativeAttestations": "All four gh release verify-asset checks passed",
+    "recovery": "Successful create initially absent from list; exact frozen-source rerun reconciled existing draft 397575283 and completed it without overwrite or duplicate"
+  },
+  "listed": {
+    "preparationRun": 36307622056,
+    "pullRequest": 14,
+    "ci": {
+      "observed": "2026-09-27T09:02:37.403Z",
+      "id": 36307646410,
+      "head": "24327d026131d4a67788d57c604fd7c67547726e",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Quince-Pie/stackma/actions/runs/36307646410"
+    },
+    "merge": {
+      "observed": "2026-09-27T09:04:07.680Z",
+      "pullRequest": 14,
+      "reviewedHead": "24327d026131d4a67788d57c604fd7c67547726e",
+      "ciRun": 36307646410,
+      "personalBuildAccepted": true,
+      "sha": "62cc348012ac3f0cf6d4839a4d4294a8cfc9d876",
+      "merged": true,
+      "message": "Pull Request successfully merged"
+    },
+    "ordinaryGuard": {
+      "observed": "2026-09-27T09:09:41.952Z",
+      "run": 36308188258,
+      "signingJob": 108589266268,
+      "conclusion": "failure",
+      "reason": [
+        "Process completed with exit code 1.",
+        "AMO version 1.1.7 is still awaiting Mozilla review. Creating 1.1.9 now would disable it: AMO disables every older listed version awaiting review when a new version is created. No AMO version was created for 1.1.9.\n\nTo keep the pending version, wait for Mozilla's decision, then rerun this workflow run or run Publish release with tag v1.1.9.\nTo replace it deliberately, run Publish release with tag v1.1.9 and supersede 1.1.7."
+      ],
+      "authorizedContinuation": 36308260071
+    },
+    "authorizedContinuation": {
+      "observed": "2026-09-27T09:05:27.071Z",
+      "inputs": {
+        "tag": "v1.1.9",
+        "pull-request": "14",
+        "supersede": "1.1.7"
+      },
+      "authority": "Owner explicitly approved replacing pending1.1.7 with renamed listed1.1.9",
+      "workflow_run_id": 36308260071,
+      "run_url": "https://api.github.com/repos/Quince-Pie/stackma/actions/runs/36308260071",
+      "html_url": "https://github.com/Quince-Pie/stackma/actions/runs/36308260071"
+    },
+    "submissionVerification": {
+      "observed": "2026-09-27T09:17:52.254Z",
+      "method": "Authenticated GET/downloads only; verify tested input-artifact digest, source, normalized payload and inherited license",
+      "context": {
+        "tag": "v1.1.9",
+        "commit": "62cc348012ac3f0cf6d4839a4d4294a8cfc9d876",
+        "version": "1.1.9",
+        "id": "stackma@extensions.local",
+        "displayName": "Tab Gantry",
+        "artifactPrefix": "tab-gantry",
+        "channel": "listed",
+        "unsigned": {
+          "bytes": 24536,
+          "sha256": "8451450d4651442837b43b3f7e47c61208920ee3028ffa0ca528ad8b84b77287"
+        },
+        "source": {
+          "bytes": 755050,
+          "sha256": "a9649f7d6327e00f5975af4ee048e2f3f6402e308ad654c04610368333b800f8"
+        },
+        "license": {
+          "name": "WTFPL 2.0; CMU data terms retained",
+          "sha256": "ef832d30a91a4e1092627ac39cd3933b586a18dcb290bc8a9a1f509aa77bbe81"
+        },
+        "tools": {
+          "node": "v24.20.0",
+          "git": "git version 2.55.0",
+          "webExt": "10.7.0"
+        },
+        "priorReleases": [
+          "v1.1.4",
+          "v1.1.5",
+          "v1.1.6",
+          "v1.1.7",
+          "v1.1.8"
+        ]
+      },
+      "artifact": {
+        "id": 10927953552,
+        "digest": "sha256:6063463d0125077316b329174a974ce266e2e9992c8616625b0bc4c8a1e653fe",
+        "run": 36308260071
+      },
+      "versionId": 6518401,
+      "channel": "listed",
+      "fileStatus": "unreviewed",
+      "sourceSha256": "a9649f7d6327e00f5975af4ee048e2f3f6402e308ad654c04610368333b800f8",
+      "sourceBytes": 755050,
+      "payloadMatches": true,
+      "amoFileSha256": "4d96d0927977e895650f07d9153af72346bd788d358b2fd2b967fc50b2848da6",
+      "amoFileBytes": 24536,
+      "licenseMatches": true,
+      "licenseId": 10390,
+      "permanentSignatureAcceptance": false,
+      "publicListingAcceptance": false
+    },
+    "hostedCompletion": {
+      "observed": "2026-09-27T09:26:22.698Z",
+      "id": 36308260071,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "head": "62cc348012ac3f0cf6d4839a4d4294a8cfc9d876",
+      "url": "https://github.com/Quince-Pie/stackma/actions/runs/36308260071",
+      "jobs": [
+        {
+          "id": 108589372182,
+          "name": "Resolve the approved release source",
+          "conclusion": "success",
+          "status": "completed",
+          "runnerId": 1000003437
+        },
+        {
+          "id": 108589435502,
+          "name": "Verify the release commit / Verify Firefox 156 extension",
+          "conclusion": "success",
+          "status": "completed",
+          "runnerId": 1000003438
+        },
+        {
+          "id": 108589717063,
+          "name": "Tag the verified release commit",
+          "conclusion": "success",
+          "status": "completed",
+          "runnerId": 1000003439
+        },
+        {
+          "id": 108589779176,
+          "name": "Sign and verify with Mozilla",
+          "conclusion": "success",
+          "status": "completed",
+          "runnerId": 1000003440
+        },
+        {
+          "id": 108592168204,
+          "name": "Publish the verified signed release",
+          "conclusion": "skipped",
+          "status": "completed",
+          "runnerId": null
+        }
+      ],
+      "logEvidence": {
+        "bytes": 106216,
+        "sha256": "7261e353de4fb1f16bb77edd2f5cdcd5fef99cf25e738b0cb12dc9ddea220acc",
+        "awaitingReviewVerified": true,
+        "versionIdObserved": true,
+        "sourceHashObserved": false,
+        "stateLines": [
+          "{\"state\":\"awaiting-review\",\"versionId\":6518401}"
+        ]
+      },
+      "signingState": "awaiting-review",
+      "signedInstallation": "skipped",
+      "publication": "skipped"
+    }
+  },
+  "mozilla": {
+    "observed": "2026-09-27T09:26:57.082Z",
+    "name": {
+      "en-US": "Tab Gantry - Automatic Tab Groups"
+    },
+    "addonStatus": "nominated",
+    "id": 3078021,
+    "guid": "stackma@extensions.local",
+    "slug": "stackma",
+    "versions": [
+      {
+        "id": 6517688,
+        "version": "1.1.7",
+        "channel": "listed",
+        "is_disabled": false,
+        "fileStatus": "disabled",
+        "fileHash": "sha256:ea5171087a5bc9705a69be42b0cd88da6f2fd72ead9b9c9e43f4679a3703d176",
+        "sourcePresent": true,
+        "licenseId": 10390
+      },
+      {
+        "id": 6518363,
+        "version": "1.1.8",
+        "channel": "unlisted",
+        "is_disabled": false,
+        "fileStatus": "public",
+        "fileHash": "sha256:3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a",
+        "sourcePresent": true,
+        "licenseId": 10405
+      },
+      {
+        "id": 6518401,
+        "version": "1.1.9",
+        "channel": "listed",
+        "is_disabled": false,
+        "fileStatus": "unreviewed",
+        "fileHash": "sha256:4d96d0927977e895650f07d9153af72346bd788d358b2fd2b967fc50b2848da6",
+        "sourcePresent": true,
+        "licenseId": 10390
+      }
+    ]
+  },
+  "verification": {
+    "baselineReleaseTests": "207/207",
+    "renameReleaseTests": "210/210",
+    "followupReleaseTests": "212/212",
+    "npmCheck": "TypeScript, extension tests and web-ext lint passed",
+    "independentRenameReview": "57 affected checks passed; no blocker",
+    "manualHarness": "evidence/release/tab-gantry-manual-upgrade.mjs",
+    "manualHarnessSha256": "e0d78072d1db40ad9da8759eafcee106a87f664119a3c51322e355f02ea36eb7",
+    "manualHarnessScope": "Two permanent file installs in one disposable Firefox profile; installed bytes/signatures, stable ID/install date, native metadata and a local-storage sentinel checked. Original tested script differs only in import path/header.",
+    "manualHarnessPreflight": "Argument, input/output inode alias, missing-input and digest-failure controls passed; actual browser result is included under unlisted.acceptance.manualUpgrade",
+    "repositoryPolicy": {
+      "observed": "2026-09-27T08:51:48.809Z",
+      "passed": 7,
+      "total": 7,
+      "settingsChanged": false
+    }
+  },
+  "acceptance": {
+    "rename": "Implemented and hosted-CI verified",
+    "amoTitle": "Changed and read back with identity/other listing metadata preserved",
+    "unlistedPublication": "Complete: signed permanent install, immutable four-asset release, native attestations and public byte verification",
+    "manualUpgrade": "Passed 1.1.6 -> 1.1.8 in Firefox 156",
+    "listedSubmission": "Complete: exact tested payload/source and inherited license; pending 1.1.7 disabled as explicitly authorized",
+    "listedApproval": "Pending Mozilla",
+    "listedPublication": "Pending Mozilla approval/signing",
+    "defaultAmoUpdate": "Pending approval and actual 1.1.8 -> 1.1.9 updater test",
+    "qualification": "Scoped adaptation justified; listed completion remains an external acceptance gate",
+    "universalOptimality": "Not established; no such claim"
+  },
+  "recovery": {
+    "workflow": "https://github.com/Quince-Pie/stackma/actions/runs/36308260071",
+    "schedule": "41 */6 * * * UTC",
+    "afterApproval": "gh workflow run release.yml --ref main --repo Quince-Pie/stackma -f tag=v1.1.9",
+    "doNot": "Do not re-enable/resubmit superseded 1.1.7, repeat supersede input for ordinary recovery, change add-on ID, or overwrite releases",
+    "workflowState": "active"
+  },
+  "budget": {
+    "started": "2026-09-27T08:22:41Z",
+    "limitMinutes": 100,
+    "scope": "Owner-authorized Tab Gantry rename, AMO listing metadata, unlisted and listed releases, tests/review/recovery and final evidence. No repository/slug/add-on-ID migration.",
+    "elapsedMinutesAtRecord": 64.27
+  },
+  "workspacePreservation": {
+    "observed": "2026-09-27T09:22:51.217Z",
+    "root": "/tmp/stackma",
+    "baseline": "/tmp/tab-gantry-baseline.9xb6m1",
+    "trackedPatchUnchanged": true,
+    "statusUnchanged": true,
+    "untrackedArchiveComparisonPassed": true,
+    "method": "Exact git diff --binary HEAD and status comparison; tar --compare of saved untracked contents"
+  }
+}

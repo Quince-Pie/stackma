@@ -181,9 +181,16 @@ export async function publishRelease({ github, record, directory, notesPath, ver
     // target_commitish is unnecessary and can require workflow-write scope.
     await github.cli(["release", "create", tag, "--draft", "--verify-tag",
       "--title", `${displayName} ${version}`, "--notes-file", notesPath, "--generate-notes"]);
-    history = await github.releases();
-    release = matchingRelease(history, tag, marker);
-    assert(release, "Created draft is not visible; rerun to reconcile");
+    // Successful creation can precede visibility in the releases listing.
+    // Observed for 1.1.6 and 1.1.8: reconcile through bounded reads, never a
+    // second create. Ownership/duplicate conflicts still fail immediately.
+    for (let attempt = 0; attempt < 6; attempt++) {
+      history = await github.releases();
+      release = matchingRelease(history, tag, marker);
+      if (release) break;
+      if (attempt < 5) await pause(15_000);
+    }
+    assert(release, "Created draft is not visible after bounded reads; rerun to reconcile");
   }
   const present = verifyAssets(release, files, { complete: !release.draft });
   const releaseId = release.id;

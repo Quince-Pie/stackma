@@ -35,9 +35,14 @@ searches open group names, copies complete names, opens a selected group, and
 shows a notice if grouping or naming fails. Details remain in the local extension
 console.
 
-Version **1.1.6** uses [unlisted self-distribution](docs/unlisted-1.1.6.md) through
-GitHub Releases. Install its signed XPI from file. It keeps the same add-on ID and
-AMO updater; automatic updates require a later listed version higher than 1.1.6.
+The renamed personal build, **1.1.8**, is available as a
+[Mozilla-signed XPI](https://github.com/Quince-Pie/stackma/releases/download/v1.1.8/tab-gantry-1.1.8.xpi).
+Use Firefox's Add-ons Manager → Install Add-on From File. It replaces an existing
+Stackma installation without uninstalling it; the real 1.1.6 → 1.1.8 upgrade test
+preserved native groups and local storage. This unlisted build is distributed
+through GitHub. Listed **1.1.9** has been submitted to Mozilla for review under
+**Tab Gantry - Automatic Tab Groups**. Automatic AMO updates require approval of
+a compatible listed version; see the [rename and release record](docs/tab-gantry-rename.md).
 
 ## Generated names
 

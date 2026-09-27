@@ -10,8 +10,10 @@ release** tests the frozen source, submits or reconciles that version, verifies
 the signed XPI in Firefox 156, and publishes a complete immutable GitHub Release.
 **Resume approved releases** continues after a long Mozilla review.
 
-The controller is deployed and has passed local and hosted CI. End-to-end
-publication and update acceptance remain pending; [hosted acceptance](release-acceptance.md)
+The controller is deployed and has passed local and hosted CI. Unlisted 1.1.6
+and 1.1.8 completed signing, permanent installation and immutable publication.
+Listed 1.1.9 awaits Mozilla review; listed publication and default-AMO update
+delivery remain separate gates. [Hosted acceptance](release-acceptance.md)
 records the owner-authorized setup, real runs and remaining Mozilla gates.
 The owner later authorized [unlisted 1.1.6](unlisted-1.1.6.md) as a one-off
 self-distributed release. Use that page for this version; the normal workflow
@@ -208,6 +210,7 @@ remaining race boundaries and all scan/time/resource limits.
 | Tag, payload, source or license conflict | Preserve both sides and investigate; never move a tag or silently accept different bytes. |
 | Inputs expired | Dispatch from main; reconstruct/retest, then compare against AMO. No old artifact ID is needed. |
 | Draft create/upload reply lost | Reconcile by validated release ID and exact digests; upload only missing assets. |
+| Successful draft create not yet visible | Up to six reads, 15 seconds apart, without another create. If still absent, stop and resume later to reconcile the preserved draft. |
 | Incomplete `starter` upload, unexpected assets, duplicate drafts | Stop and preserve state. Cleanup of the inspected exact ID is a separate authorized repair. |
 | Publish reply lost or attestation delayed | Verify the existing publication; never delete/recreate it. Attestation reads retry a bounded number of times. |
 | Bot run publishes but fails final verification | Scheduler checks the actual publication-verification job step, retries within the existing allowance, then reports attention with the run URL. A green skipped publisher is not verification; a failed diagnostic upload after successful verification is not a failed release gate. |
@@ -271,8 +274,12 @@ not reservations or approval:
 - **1.1.5** was tagged but its signing job never started. Its unsubmitted intent
   is explicitly retired with [pre-execution evidence](listed-1.1.7.md).
 - **1.1.6** is signed, verified and published for [unlisted self-distribution](unlisted-1.1.6.md).
-- **1.1.7** is [submitted to the listed channel](listed-1.1.7.md), awaiting Mozilla
-  review. It retains the same ID and can update installed 1.1.6 after approval.
+- **1.1.7** was [submitted to the listed channel](listed-1.1.7.md). With explicit
+  owner approval, Mozilla disabled its pending file when listed 1.1.9 was created.
+- **1.1.8** is the signed, published unlisted **Tab Gantry** personal build.
+  A real manual upgrade from 1.1.6 preserved groups and local storage.
+- **1.1.9** is the renamed listed submission awaiting Mozilla review. See the
+  [rename record](tab-gantry-rename.md) for exact source and recovery instructions.
 - **1.1.0, 1.1.2 and 1.1.3** have disabled AMO files. Preserve them. Older missing
   sources and the normalization incident are recorded in [AMO formats](amo-formats.md).
 - **v1.1.1** is immutable with no assets, at a commit declaring 1.1.0. It cannot
@@ -280,8 +287,9 @@ not reservations or approval:
   authorization.
 
 Retain existing tags, releases, PRs and submissions. The controller redesign
-preserved product behavior and licenses; the subsequent 1.1.6 and 1.1.7 releases
-change only product version fields.
+preserved product behavior and licenses; 1.1.6 and 1.1.7 change only product
+version fields. The later Tab Gantry rename changes display text and package
+names while preserving the add-on ID, licenses and grouping behavior.
 
 During rollout, let all old release runs finish and ensure there are no queued
 old controllers or manual submissions. Inventory tags against AMO versions before
