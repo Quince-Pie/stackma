@@ -4,6 +4,23 @@ The owner requested the rename on 2026-09-27, including an unlisted build to
 install immediately and then a listed build for Mozilla review. The owner
 explicitly approved replacing pending listed **1.1.7** with renamed **1.1.9**.
 
+**Delivered:** [signed personal 1.1.8](https://github.com/Quince-Pie/stackma/releases/download/v1.1.8/tab-gantry-1.1.8.xpi)
+is published in an immutable GitHub release. Install it over Stackma using
+Firefox's Add-ons Manager → Install Add-on From File. A real Firefox 156 upgrade
+from 1.1.6 retained native group IDs, custom title/color/collapse, local storage and the
+original installation date. No uninstall or new AMO entry is needed.
+
+The AMO title was changed with a name-only PATCH and verified by readback.
+Listed **1.1.9**, AMO version `6518401`, is submitted for review. The explicitly
+authorized creation disabled pending **1.1.7**; unlisted 1.1.8 remains installable.
+The [hosted submission run](https://github.com/Quince-Pie/stackma/actions/runs/36308260071)
+completed successfully in `awaiting-review`, with permanent installation and
+GitHub publication correctly skipped. Independent owner downloads matched the
+tested source, normalized payload and inherited license. The scheduled resumer
+remains active for approval; these checks do not establish listed publication.
+The [evidence record](../evidence/release/tab-gantry-rename.json) separates live
+publication, source verification, manual upgrade and the remaining review gate.
+
 | Surface | Value |
 | --- | --- |
 | Firefox extension name and popup | Tab Gantry |
@@ -81,3 +98,58 @@ Unlisted 1.1.8 is installed from its signed XPI. It will not arrive through the
 default AMO updater. A later approved compatible listed 1.1.9 can update it using
 the unchanged ID. Actual AMO update delivery remains a separate live acceptance
 gate after approval. Provider review time is outside this release controller.
+
+## Reproduce installation continuity
+
+Use the verified signed 1.1.6 and 1.1.8 release assets with Firefox 156 and
+geckodriver from the documented toolchain. Keep inputs immutable and reserve
+separate scratch report/log paths for the duration of the test:
+
+```sh
+node evidence/release/tab-gantry-manual-upgrade.mjs \
+  --old-xpi=/path/to/stackma-1.1.6.xpi \
+  --new-xpi=/path/to/tab-gantry-1.1.8.xpi \
+  --new-sha256=3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a \
+  --output=artifacts/manual-upgrade-1.1.6-to-1.1.8.json
+```
+
+The scoped harness uses a disposable profile, signature enforcement, private
+package snapshots and Firefox's actual installed archive bytes. It rejects
+observed input/report/log path aliases before writing. Its HTTP(S) proxy blocks
+ordinary external requests; this is not a host-wide network sandbox. Browser
+lifetime is bounded to 150 seconds, with 30-second driver requests and cleanup.
+This test explicitly installs both files. It does not exercise the AMO updater.
+
+After listed 1.1.9 is approved, signed, verified and published, exercise that
+separate gate using its verified signed digest:
+
+```sh
+node scripts/release/update-test.js \
+  --from-xpi=/path/to/tab-gantry-1.1.8.xpi \
+  --from-version=1.1.8 --to-version=1.1.9 \
+  --to-sha256=VERIFIED_SIGNED_1_1_9_SHA256 \
+  --output=artifacts/update-1.1.8-to-1.1.9.json
+```
+
+Do not substitute the pending uploaded file's hash for the signed digest.
+Until approval, the scheduler has nothing public to complete. For an immediate
+post-approval retry, dispatch `release.yml` on `main` with `tag=v1.1.9`; do not
+repeat the supersession input or create a new version.
+
+## Observed draft visibility and recovery
+
+GitHub accepted draft creation for both 1.1.6 and 1.1.8 before the following
+release-list read exposed the draft. The 1.1.8 run stopped safely; a read-only
+query located the matching empty draft, and the same frozen-source command
+reused it to finish all four assets, publication and native attestations.
+Public unauthenticated downloads were checked against all four expected hashes.
+
+The follow-up controller change allows at most six reconciliation reads with
+15 seconds between missing observations, adding at most 75 seconds of waiting.
+It never repeats the create. Ownership, duplicate and asset conflicts still
+stop immediately, and exhausted visibility waits preserve the draft for a later
+run. This extends the existing reconciliation mechanism without changing release
+authority or success criteria. Deterministic regression checks cover delayed
+visibility and bounded stopping followed by reuse; the new wait itself has not
+been claimed as exercised by a later live draft creation. No provider visibility
+deadline or quantified latency improvement is inferred from two observations.

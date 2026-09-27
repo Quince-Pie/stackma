@@ -1,5 +1,11 @@
 # Listed 1.1.7 and recovery from an incomplete listing
 
+**Historical submission, superseded on 2026-09-27:** the owner explicitly chose
+renamed listed 1.1.9 to replace pending 1.1.7. Mozilla disabled the 1.1.7 file when
+creating 1.1.9. Keep this record and its source/tag; use the
+[Tab Gantry handoff](tab-gantry-rename.md) for current review and update acceptance.
+Do not resume 1.1.7 or run the historical 1.1.6 → 1.1.7 test below.
+
 **Submitted:** [version PR #10](https://github.com/Quince-Pie/stackma/pull/10)
 merged as `bc43c338e5a245a3116084d33ecbaa170885c358` after CI passed. The
 [automatic publisher](https://github.com/Quince-Pie/stackma/actions/runs/36281036540)
