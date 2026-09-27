@@ -1,5 +1,10 @@
 # Hosted acceptance and remaining provider gates
 
+**Latest submission:** [listed 1.1.10](listed-1.1.10.md) includes the new SVG and
+replaces pending 1.1.9 with explicit owner authorization. Mozilla accepted the
+matching package/source/license and disabled the older pending file. Its public
+approval, signed publication and actual 1.1.8 → 1.1.10 update remain separate gates.
+
 **Current handoff, 2026-09-27:** the owner renamed the extension to **Tab Gantry**.
 Unlisted [1.1.8 is signed and published](https://github.com/Quince-Pie/stackma/releases/tag/v1.1.8),
 and a real manual upgrade from 1.1.6 preserved native groups and local storage. Listed

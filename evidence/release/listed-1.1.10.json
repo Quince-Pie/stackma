@@ -1,0 +1,299 @@
+{
+  "schema": 1,
+  "observed": "2026-09-27T11:22:15.003Z",
+  "request": "Submit listed1.1.10 with the new SVG and current AMO filename; explicitly replace pending1.1.9.",
+  "contract": {
+    "addonId": "stackma@extensions.local",
+    "amoId": 3078021,
+    "amoSlug": "tab-gantry",
+    "repository": "Quince-Pie/tab-gantry",
+    "channel": "listed",
+    "browserMinimum": "156.0",
+    "preserved": "Grouping code, naming data, permissions, license terms and installed-user identity",
+    "changed": "Version number and owner SVG compared with submitted1.1.9"
+  },
+  "source": {
+    "tag": "v1.1.10",
+    "commit": "436d5507313b897d006221c2c7694ca66bf07cdd",
+    "version": "1.1.10",
+    "id": "stackma@extensions.local",
+    "displayName": "Tab Gantry",
+    "artifactPrefix": "tab-gantry",
+    "channel": "listed",
+    "unsigned": {
+      "bytes": 25099,
+      "sha256": "d15b28aff069fddf48792cb6a66a990b4895757b28fc537c0b9cb91fa6012486"
+    },
+    "source": {
+      "bytes": 778719,
+      "sha256": "8bd8490941f24514130123e0279ddae339371c8aa3f5988a447437e048833022"
+    },
+    "license": {
+      "name": "WTFPL 2.0; CMU data terms retained",
+      "sha256": "ef832d30a91a4e1092627ac39cd3933b586a18dcb290bc8a9a1f509aa77bbe81"
+    },
+    "tools": {
+      "node": "v24.20.0",
+      "git": "git version 2.55.0",
+      "webExt": "10.7.0"
+    },
+    "priorReleases": [
+      "v1.1.4",
+      "v1.1.5",
+      "v1.1.6",
+      "v1.1.7",
+      "v1.1.8",
+      "v1.1.9"
+    ],
+    "packagedIcon": {
+      "sha256": "300207737806d6e5e037ed2932b137f60b73c99b4fb07991cd4f50069f3f09b7",
+      "bytes": 1537
+    },
+    "packagedManifestMatchesFrozenSource": true,
+    "artifact": {
+      "id": 10930103450,
+      "name": "release-input-36314832552-1",
+      "digest": "sha256:c279a79fb2ee6fcb3f2cf4edb5abf4998c994dbc67f2635522a227f3e3b444b6",
+      "run": 36314832552,
+      "attempt": 1
+    },
+    "remoteTagVerified": true
+  },
+  "preparation": {
+    "observed": "2026-09-27T10:58:13.013Z",
+    "base": "60ffe1b4b8b96225ae888bb21cc1ca2e5106d556",
+    "policyChecks": 7,
+    "inputs": {
+      "version": "v1.1.10"
+    },
+    "workflow_run_id": 36314218144,
+    "run_url": "https://api.github.com/repos/Quince-Pie/tab-gantry/actions/runs/36314218144",
+    "html_url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36314218144"
+  },
+  "versionReview": {
+    "observed": "2026-09-27T10:59:58.491Z",
+    "pullRequest": 18,
+    "url": "https://github.com/Quince-Pie/tab-gantry/pull/18",
+    "base": "60ffe1b4b8b96225ae888bb21cc1ca2e5106d556",
+    "head": "7bf64d465da7f5ed754ab9c0ccc9a86f7bb26717",
+    "tree": "390459889aad5214aaff456a004d4bfd70612d5a",
+    "exactVersionTreeVerified": true,
+    "iconSha256": "300207737806d6e5e037ed2932b137f60b73c99b4fb07991cd4f50069f3f09b7",
+    "files": [
+      {
+        "name": "extension/manifest.json",
+        "patch": "@@ -1,7 +1,7 @@\n {\n   \"manifest_version\": 3,\n   \"name\": \"Tab Gantry\",\n-  \"version\": \"1.1.9\",\n+  \"version\": \"1.1.10\",\n   \"description\": \"Automatically stack new related tabs in Firefox\\u2019s native tab groups. Preserve pinned tabs and separate windows.\",\n   \"permissions\": [\n     \"webNavigation\","
+      },
+      {
+        "name": "package-lock.json",
+        "patch": "@@ -1,12 +1,12 @@\n {\n   \"name\": \"tab-gantry\",\n-  \"version\": \"1.1.9\",\n+  \"version\": \"1.1.10\",\n   \"lockfileVersion\": 3,\n   \"requires\": true,\n   \"packages\": {\n     \"\": {\n       \"name\": \"tab-gantry\",\n-      \"version\": \"1.1.9\",\n+      \"version\": \"1.1.10\",\n       \"license\": \"WTFPL\",\n       \"devDependencies\": {\n         \"@types/firefox-webext-browser\": \"143.0.0\","
+      },
+      {
+        "name": "package.json",
+        "patch": "@@ -1,6 +1,6 @@\n {\n   \"name\": \"tab-gantry\",\n-  \"version\": \"1.1.9\",\n+  \"version\": \"1.1.10\",\n   \"author\": \"Quince Pie <pie@quince.org>\",\n   \"license\": \"WTFPL\",\n   \"private\": true,"
+      },
+      {
+        "name": "release-intents/v1.1.10.json",
+        "patch": "@@ -0,0 +1,4 @@\n+{\n+  \"schema\": 1,\n+  \"tag\": \"v1.1.10\"\n+}"
+      }
+    ],
+    "ci": [
+      {
+        "id": 36314243816,
+        "status": "completed",
+        "conclusion": "action_required",
+        "head": "7bf64d465da7f5ed754ab9c0ccc9a86f7bb26717",
+        "url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36314243816"
+      }
+    ],
+    "productDiffFromPrevious": {
+      "source": "62cc348012ac3f0cf6d4839a4d4294a8cfc9d876",
+      "paths": [
+        "extension/icon.svg",
+        "extension/manifest.json"
+      ],
+      "manifestOnlyVersionChanged": true,
+      "licensesDataAndProductLogicUnchanged": true
+    }
+  },
+  "versionCI": {
+    "observed": "2026-09-27T11:09:35.292Z",
+    "id": 36314243816,
+    "attempt": 3,
+    "head": "7bf64d465da7f5ed754ab9c0ccc9a86f7bb26717",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36314243816"
+  },
+  "ciInterruption": {
+    "run": 36314243816,
+    "attempt": 2,
+    "job": 108605995144,
+    "failedStep": "Test native group-ID ambiguity",
+    "error": "Error: POST /session/0b997fc8-e2b7-4165-9524-574d530471ca/execute/sync: Document was unloaded",
+    "lastCompletedPhase": "afterUpdate",
+    "logSha256": "328e09244d6090cae696cbe58f92deb08fd39c744607ae3fe6e027104ab562c5",
+    "diagnosticArtifact": {
+      "id": 10929873031,
+      "digest": "sha256:f4f0a656b25b8985542437898e16a29d9a2d6b4bceb659d09bd1e31ad50ab1b1"
+    },
+    "interpretation": "Failure is between completed native afterUpdate phase and popupGuard result; Firefox reports document unload during script evaluation. A popup navigation timing race is the likely mechanism, not established as a product regression.",
+    "retry": {
+      "observed": "2026-09-27T11:06:29.791Z",
+      "sameHead": "7bf64d465da7f5ed754ab9c0ccc9a86f7bb26717",
+      "method": "One retry of failed job, retaining all checks and unchanged source",
+      "limit": "Investigate and repair before further retries if navigation interruption recurs"
+    },
+    "confirmation": "Same reviewed head passed every required CI step on attempt3; no source or assertion changed"
+  },
+  "merge": {
+    "observed": "2026-09-27T11:09:37.695Z",
+    "pullRequest": 18,
+    "reviewedHead": "7bf64d465da7f5ed754ab9c0ccc9a86f7bb26717",
+    "ciRun": 36314243816,
+    "ciAttempt": 3,
+    "sha": "436d5507313b897d006221c2c7694ca66bf07cdd",
+    "merged": true,
+    "message": "Pull Request successfully merged"
+  },
+  "ordinaryGuard": {
+    "observed": "2026-09-27T11:15:34.781Z",
+    "run": 36314833025,
+    "job": 108607839392,
+    "conclusion": "failure",
+    "reasons": [
+      "Process completed with exit code 1.",
+      "AMO version 1.1.9 is still awaiting Mozilla review. Creating 1.1.10 now would disable it: AMO disables every older listed version awaiting review when a new version is created. No AMO version was created for 1.1.10.\n\nTo keep the pending version, wait for Mozilla's decision, then rerun this workflow run or run Publish release with tag v1.1.10.\nTo replace it deliberately, run Publish release with tag v1.1.10 and supersede 1.1.9."
+    ],
+    "authorizedContinuation": 36314832552
+  },
+  "authorizedSubmission": {
+    "observed": "2026-09-27T11:09:39.180Z",
+    "authority": "Owner explicitly requested listed1.1.10 after being informed it replaces pending1.1.9",
+    "inputs": {
+      "tag": "v1.1.10",
+      "pull-request": "18",
+      "supersede": "1.1.9"
+    },
+    "workflow_run_id": 36314832552,
+    "run_url": "https://api.github.com/repos/Quince-Pie/tab-gantry/actions/runs/36314832552",
+    "html_url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36314832552"
+  },
+  "submissionVerification": {
+    "observed": "2026-09-27T11:18:20.750Z",
+    "method": "Authenticated read-only comparison against digest-verified hosted release inputs; CRC/header/member payload checks and complete inherited-license comparison",
+    "addon": {
+      "id": 3078021,
+      "guid": "stackma@extensions.local",
+      "slug": "tab-gantry",
+      "name": {
+        "en-US": "Tab Gantry - Automatic Tab Groups"
+      },
+      "status": "nominated"
+    },
+    "versionId": 6518667,
+    "fileId": 5062814,
+    "version": "1.1.10",
+    "channel": "listed",
+    "fileStatus": "unreviewed",
+    "filename": "tab_gantry-1.1.10.zip",
+    "fileUrl": "https://addons.mozilla.org/firefox/downloads/file/5062814/tab_gantry-1.1.10.zip",
+    "amoFileSha256": "5fa597b5591cc22bd6a12f21272be03a664ccb0d9c8894683be2571d06d83ce5",
+    "amoFileBytes": 25099,
+    "payloadMatches": true,
+    "packagedIcon": {
+      "sha256": "300207737806d6e5e037ed2932b137f60b73c99b4fb07991cd4f50069f3f09b7",
+      "bytes": 1537
+    },
+    "sourceMatches": true,
+    "sourceSha256": "8bd8490941f24514130123e0279ddae339371c8aa3f5988a447437e048833022",
+    "sourceBytes": 778719,
+    "licenseMatches": true,
+    "licenseId": 10390,
+    "licenseTextSha256": "ef832d30a91a4e1092627ac39cd3933b586a18dcb290bc8a9a1f509aa77bbe81",
+    "previous": {
+      "id": 6518401,
+      "version": "1.1.9",
+      "fileStatus": "disabled",
+      "is_disabled": false
+    },
+    "permanentSignatureAcceptance": false,
+    "publicListingAcceptance": false,
+    "defaultAmoUpdateDelivery": false
+  },
+  "hostedPublisher": {
+    "id": 36314832552,
+    "head": "436d5507313b897d006221c2c7694ca66bf07cdd",
+    "status": "in_progress",
+    "conclusion": null,
+    "url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36314832552",
+    "jobs": [
+      {
+        "id": 108607936896,
+        "name": "Resolve the approved release source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 108607988819,
+        "name": "Verify the release commit / Verify Firefox 156 extension",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 108608248950,
+        "name": "Tag the verified release commit",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 108608396840,
+        "name": "Sign and verify with Mozilla",
+        "status": "in_progress",
+        "conclusion": null
+      }
+    ],
+    "terminalConclusionClaimed": false
+  },
+  "recovery": {
+    "resumerState": "active",
+    "schedule": "41 */6 * * * UTC",
+    "manual": "gh workflow run release.yml --ref main --repo Quince-Pie/tab-gantry -f tag=v1.1.10",
+    "warning": "Ordinary recovery must not repeat supersede or create another version; preserve the disabled1.1.9 source/tag.",
+    "automaticUpdateTest": "docs/listed-1.1.10.md"
+  },
+  "qualification": {
+    "scope": "Execution of the existing qualified release flow; no architecture or algorithm changed",
+    "reference": "docs/release-design.md",
+    "verification": "Exact reviewed version tree, complete hosted source/package checks and independent AMO payload/source/license/icon readback",
+    "limitations": [
+      "One documented browser-test navigation interruption; likely mechanism inferred, exact cause unestablished",
+      "Mozilla approval/signing/publication and actual default-AMO update delivery remain separate gates",
+      "No universal-optimality or faster-review claim"
+    ]
+  },
+  "acceptance": {
+    "reviewedVersionAndSource": "passed",
+    "hostedSourceVerification": "passed",
+    "newFilename": "tab_gantry-1.1.10.zip",
+    "newIcon": "exact owner SVG present in tested and AMO packages",
+    "listedSubmission": "accepted and independently verified",
+    "olderPendingVersion": "1.1.9 disabled by Mozilla creation as authorized",
+    "review": "pending Mozilla",
+    "signedPermanentInstallation": "pending Mozilla approval/signing",
+    "githubPublication": "pending Mozilla approval/signing",
+    "actualDefaultAmoUpdate": "pending approved signed1.1.10",
+    "backgroundWorkflow": "Continues its bounded approval wait; terminal conclusion not yet claimed"
+  },
+  "budget": {
+    "started": "2026-09-27T10:56:44Z",
+    "limitMinutes": 60,
+    "authority": "Owner requested listed1.1.10 after being told it replaces pending1.1.9 and includes the new icon",
+    "base": "60ffe1b4b8b96225ae888bb21cc1ca2e5106d556",
+    "workspaceBaseline": "/tmp/tab-gantry-identity-baseline.F5VmqB",
+    "workspaceBaselineReverified": true,
+    "iconSha256": "300207737806d6e5e037ed2932b137f60b73c99b4fb07991cd4f50069f3f09b7",
+    "scope": "Prepare reviewed version1.1.10, hosted verification, explicit pending1.1.9 supersession, submission readback and maintainer evidence; continue publication if Mozilla approves within this bounded run",
+    "elapsedMinutesAtRecord": 25.52
+  }
+}

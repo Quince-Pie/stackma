@@ -1,5 +1,10 @@
 # Tab Gantry repository, listing URL and icon
 
+**Later release:** [listed 1.1.10](listed-1.1.10.md) now includes the SVG in its
+package and replaces pending 1.1.9 with explicit owner authorization. The
+observations below describe the preceding URL/icon migration, which preserved
+1.1.9 at that time.
+
 On 2026-09-27 the owner chose to **keep the existing add-on ID** and rename only
 the AMO URL and GitHub repository, after considering a new add-on identity.
 The supplied `extension/icon.svg` is the new artwork. Existing installed-user

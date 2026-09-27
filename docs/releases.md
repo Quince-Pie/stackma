@@ -1,8 +1,9 @@
 # Releasing Tab Gantry
 
 Use the canonical repository `Quince-Pie/tab-gantry` and AMO slug `tab-gantry`.
-The [URL and icon migration](url-and-icon-rename.md) preserves the add-on ID and
-pending 1.1.9 submission. Dispatch historical recovery from current `main` in
+The [URL and icon migration](url-and-icon-rename.md) preserves the add-on ID.
+The owner subsequently authorized [listed 1.1.10](listed-1.1.10.md) with the new
+icon to replace pending 1.1.9. Dispatch historical recovery from current `main` in
 the renamed repository; old event snapshots can still contain the old name.
 
 The [Tab Gantry rename](tab-gantry-rename.md) covers unlisted 1.1.8, listed 1.1.9,
@@ -17,7 +18,7 @@ the signed XPI in Firefox 156, and publishes a complete immutable GitHub Release
 
 The controller is deployed and has passed local and hosted CI. Unlisted 1.1.6
 and 1.1.8 completed signing, permanent installation and immutable publication.
-Listed 1.1.9 awaits Mozilla review; listed publication and default-AMO update
+Listed 1.1.10 awaits Mozilla review; listed publication and default-AMO update
 delivery remain separate gates. [Hosted acceptance](release-acceptance.md)
 records the owner-authorized setup, real runs and remaining Mozilla gates.
 The owner later authorized [unlisted 1.1.6](unlisted-1.1.6.md) as a one-off
@@ -283,8 +284,10 @@ not reservations or approval:
   owner approval, Mozilla disabled its pending file when listed 1.1.9 was created.
 - **1.1.8** is the signed, published unlisted **Tab Gantry** personal build.
   A real manual upgrade from 1.1.6 preserved groups and local storage.
-- **1.1.9** is the renamed listed submission awaiting Mozilla review. See the
-  [rename record](tab-gantry-rename.md) for exact source and recovery instructions.
+- **1.1.9** was the renamed listed submission. The owner later authorized 1.1.10
+  to replace it, and Mozilla disabled its pending file on creation of 1.1.10.
+- **1.1.10** includes the new SVG and is submitted as `tab_gantry-1.1.10.zip`,
+  awaiting Mozilla review. See its [submission record](listed-1.1.10.md).
 - **1.1.0, 1.1.2 and 1.1.3** have disabled AMO files. Preserve them. Older missing
   sources and the normalization incident are recorded in [AMO formats](amo-formats.md).
 - **v1.1.1** is immutable with no assets, at a commit declaring 1.1.0. It cannot

@@ -1,5 +1,10 @@
 # Tab Gantry rename and release sequence
 
+**Later submission:** the owner explicitly chose [listed 1.1.10](listed-1.1.10.md)
+with the new icon to replace pending 1.1.9. Mozilla accepted it and disabled the
+older pending file. Use that record for current recovery and update acceptance;
+the 1.1.9 procedures below are historical.
+
 **Subsequent URL/icon migration:** the owner retained the add-on ID and chose
 the `tab-gantry` repository and AMO URL. See [the later migration record](url-and-icon-rename.md).
 The source and release observations below describe the original rename sequence.

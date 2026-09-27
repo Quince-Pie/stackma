@@ -42,9 +42,10 @@ The renamed personal build, **1.1.8**, is available as a
 Use Firefox's Add-ons Manager → Install Add-on From File. It replaces an existing
 Stackma installation without uninstalling it; the real 1.1.6 → 1.1.8 upgrade test
 preserved native groups and local storage. This unlisted build is distributed
-through GitHub. Listed **1.1.9** has been submitted to Mozilla for review under
-**Tab Gantry - Automatic Tab Groups**. Automatic AMO updates require approval of
-a compatible listed version; see the [rename and release record](docs/tab-gantry-rename.md).
+through GitHub. Listed **1.1.10**, including the new icon, has been submitted to
+Mozilla under **Tab Gantry - Automatic Tab Groups**, replacing pending 1.1.9.
+Automatic AMO updates require approval of a compatible listed version; see the
+[current submission record](docs/listed-1.1.10.md).
 
 ## Generated names
 
