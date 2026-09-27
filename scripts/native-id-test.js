@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { FirefoxDriver } from "./webdriver.js";
+import { createLoadedPopup } from "./popup-tab.js";
 
 const output = "artifacts/native-id-test.json";
 async function sourceHash() {
@@ -84,7 +85,8 @@ try {
     const groups = (await browser.tabGroups.query({})).filter(group => group.id === groupId);
     const retrieved = await browser.tabGroups.get(groupId);
     const updated = await browser.tabGroups.update(groupId, { title: "update-by-ambiguous-id" });
-    return { tabGroupIds: tabs.map(tab => tab.groupId), groups, retrieved, updated };
+    return { tabGroupIds: tabs.map(tab => tab.groupId), groups, retrieved, updated,
+      windowId: tabs[0].windowId, popupUrl: browser.runtime.getURL("popup.html") };
   }, report.nativeCreation.tabIds);
   assert.ok(report.extensionAPI.groups.length >= 2);
   assert.equal(new Set(report.extensionAPI.tabGroupIds).size, 1);
@@ -99,10 +101,14 @@ try {
   }, report.nativeCreation.tabIds);
   assert.deepEqual(report.afterUpdate.map(group => group.title), ["update-by-ambiguous-id", report.nativeCreation.titles[1]]);
 
-  const popup = await driver.addon(addonId, browser => browser.tabs.create({
-    active: true, url: browser.runtime.getURL("popup.html"),
-  }));
-  report.popupGuard = await driver.tab(popup.id, async groupId => {
+  // tabs.create resolves before navigation completes. Wait for the exact
+  // top-level popup load before selecting its Marionette window actor; an
+  // initial about:blank actor is destroyed when the extension page takes over.
+  const popup = await driver.addon(addonId, createLoadedPopup, report.extensionAPI.windowId);
+  report.popupGuard = await driver.tab(popup.id, async (groupId, expectedUrl) => {
+    if (document.location.href !== expectedUrl || document.readyState !== "complete") {
+      throw new Error("Popup guard requires the completed extension popup document");
+    }
     for (let attempt = 0; attempt < 300; attempt++) {
       const open = [...document.querySelectorAll(`button[data-group-id="${groupId}"][data-action="open"]`)];
       if (open.length >= 2) return {
@@ -115,7 +121,7 @@ try {
       await new Promise(resolve => setTimeout(resolve, 10));
     }
     throw new Error("Popup did not display the colliding native groups");
-  }, report.extensionAPI.retrieved.id);
+  }, report.extensionAPI.retrieved.id, report.extensionAPI.popupUrl);
   assert.equal(report.popupGuard.allOpenDisabled, true);
   assert.equal(report.popupGuard.allCopyEnabled, true);
 
