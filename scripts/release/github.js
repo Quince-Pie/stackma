@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
 import { setTimeout as delay } from "node:timers/promises";
-import { digestFile, run, sha256, versionFromTag } from "./package.js";
+import { artifactNames, digestFile, releaseBrand, run, sha256, versionFromTag } from "./package.js";
 
 export class GitHub {
   constructor(repository, token, fetchImpl = fetch) {
@@ -158,7 +158,8 @@ export async function publishRelease({ github, record, directory, notesPath, ver
   const { tag, version, commit } = record;
   assert.equal(versionFromTag(tag), version);
   assert.match(commit, /^[a-f0-9]{40}$/u);
-  const names = [`stackma-${version}.xpi`, `stackma-${version}-source.zip`, "release.json", "SHA256SUMS"];
+  const assets = artifactNames(record), { displayName } = releaseBrand(record);
+  const names = [assets.xpi, assets.source, "release.json", "SHA256SUMS"];
   const files = Object.fromEntries(await Promise.all(names.map(async name => [name, await digestFile(`${directory}/${name}`)])));
   assert.deepEqual(files[names[0]], record.signed);
   assert.deepEqual(files[names[1]], record.source);
@@ -173,13 +174,13 @@ export async function publishRelease({ github, record, directory, notesPath, ver
     const installation = record.channel === "unlisted"
       ? `This is a self-distributed (unlisted) release. Download the XPI and use Firefox's Add-ons Manager → Install Add-on From File. It is not available from the AMO listing or delivered through AMO automatic updates. This installation can receive a future compatible listed version higher than ${version}; its add-on ID and default AMO update service are unchanged.`
       : "Install from [Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/stackma/) for normal automatic updates, or download the XPI and use Firefox's Add-ons Manager → Install Add-on From File.";
-    await writeFile(notesPath, `${marker}\n\nMozilla-signed Stackma ${version} for Firefox 156 and newer.\n\n${installation}\n\nSource commit: ${commit}. See SHA256SUMS and release.json for package identities and Firefox verification.\n`);
+    await writeFile(notesPath, `${marker}\n\nMozilla-signed ${displayName} ${version} for Firefox 156 and newer.\n\n${installation}\n\nSource commit: ${commit}. See SHA256SUMS and release.json for package identities and Firefox verification.\n`);
     // Explicit --draft preserves completed uploads if a later operation fails.
     // Never retry a write here; the next run reconciles server state first.
     // The pre-existing, verified tag is the target. Passing a historical
     // target_commitish is unnecessary and can require workflow-write scope.
     await github.cli(["release", "create", tag, "--draft", "--verify-tag",
-      "--title", `Stackma ${version}`, "--notes-file", notesPath, "--generate-notes"]);
+      "--title", `${displayName} ${version}`, "--notes-file", notesPath, "--generate-notes"]);
     history = await github.releases();
     release = matchingRelease(history, tag, marker);
     assert(release, "Created draft is not visible; rerun to reconcile");

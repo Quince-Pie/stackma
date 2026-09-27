@@ -3,9 +3,10 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { artifactNames, brandMetadata } from '../release/package.js';
 
 const manifest = JSON.parse(await readFile('extension/manifest.json', 'utf8'));
-const path = resolve('dist', `stackma-${manifest.version}.xpi`);
+const path = resolve('dist', artifactNames({ version: manifest.version, ...brandMetadata(manifest) }).xpi);
 const build = () => execFileSync(process.execPath, ['scripts/build.js'], {
   stdio: 'inherit', timeout: 60_000,
 });

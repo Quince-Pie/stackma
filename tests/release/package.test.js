@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { validateMetadata, VersionMismatchError, versionFromTag } from "../../scripts/release/package.js";
+import { artifactNames, brandMetadata, releaseBrand, validateMetadata, VersionMismatchError, versionFromTag } from "../../scripts/release/package.js";
 import { readPayload, signatureFiles, verifyPayload } from "../../scripts/release/archive.js";
 import { verifyQueuePolicy } from "../../scripts/ci/check-workflows.js";
 import { archive, temporary } from "./fixtures.js";
@@ -31,6 +31,22 @@ test("every declared version and the stable add-on identity must agree", () => {
   assert.throws(() => validateMetadata("v1.1.2", manifest, pkg, lock));
   assert.throws(() => validateMetadata("v1.1.1", manifest, pkg, { ...lock, version: "1.1.0" }));
   assert.throws(() => validateMetadata("v1.1.1", { ...manifest, browser_specific_settings: { gecko: { id: "other", strict_min_version: "156.0" } } }, pkg, lock));
+});
+
+test("frozen source branding preserves legacy records and names renamed release assets", () => {
+  const gecko = { id: "stackma@extensions.local", strict_min_version: "156.0" };
+  const legacy = { version: "1.1.7", name: "Stackma", browser_specific_settings: { gecko } };
+  const pkg = { version: "1.1.7", name: "stackma" }, lock = { ...pkg, packages: { "": { ...pkg } } };
+  assert.deepEqual(validateMetadata("v1.1.7", legacy, pkg, lock), { version: "1.1.7", id: gecko.id });
+  assert.deepEqual(artifactNames({ version: "1.1.7" }), { xpi: "stackma-1.1.7.xpi", source: "stackma-1.1.7-source.zip" });
+  const manifest = { ...legacy, name: "Tab Gantry" }, renamed = { ...pkg, name: "tab-gantry" };
+  const metadata = validateMetadata("v1.1.7", manifest, renamed, { ...renamed, packages: { "": renamed } });
+  assert.deepEqual(brandMetadata(manifest), { displayName: "Tab Gantry", artifactPrefix: "tab-gantry" });
+  assert.equal(metadata.id, gecko.id);
+  assert.deepEqual(artifactNames(metadata), { xpi: "tab-gantry-1.1.7.xpi", source: "tab-gantry-1.1.7-source.zip" });
+  assert.throws(() => validateMetadata("v1.1.7", manifest, pkg, lock));
+  for (const value of [{ artifactPrefix: "../escape" }, { displayName: "Tab Gantry" },
+    { displayName: "Other", artifactPrefix: "tab-gantry" }, { displayName: "Tab Gantry", artifactPrefix: "stackma" }]) assert.throws(() => releaseBrand(value));
 });
 
 test("signed payload accepts only exact original bytes plus known signature files", async t => {

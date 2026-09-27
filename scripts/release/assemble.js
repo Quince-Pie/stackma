@@ -1,17 +1,18 @@
 import assert from "node:assert/strict";
 import { copyFile, readFile, writeFile } from "node:fs/promises";
-import { digestFile } from "./package.js";
+import { artifactNames, digestFile } from "./package.js";
 
 const directory = "artifacts/release-signed";
 const signing = JSON.parse(await readFile(`${directory}/signing.json`, "utf8"));
 const verification = JSON.parse(await readFile("artifacts/release-verification.json", "utf8"));
-const filename = `stackma-${signing.version}.xpi`;
+const names = artifactNames(signing);
+const filename = names.xpi;
 const actual = await digestFile(`${directory}/${filename}`);
 assert.deepEqual(actual, signing.signed);
 assert.equal(verification.passed, true);
 assert.equal(verification.sha256, actual.sha256);
 assert(verification.checks.includes("permanent XPI installation with verified Mozilla signature"));
-const sourceName = `stackma-${signing.version}-source.zip`;
+const sourceName = names.source;
 await copyFile("artifacts/release-input/source.zip", `${directory}/${sourceName}`);
 assert.deepEqual(await digestFile(`${directory}/${sourceName}`), signing.source);
 const files = { [filename]: actual, [sourceName]: signing.source };

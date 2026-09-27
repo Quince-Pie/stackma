@@ -4,7 +4,7 @@ import { createGroupIdGuard } from "./group-id-guard.js";
 
 /** @param {unknown} error */
 function onError(error) {
-  console.error("Stackma: grouping or naming could not finish", error);
+  console.error("Tab Gantry: grouping or naming could not finish", error);
   void browser.action.setBadgeBackgroundColor({ color: "#b42318" }).catch(console.error);
   void browser.action.setBadgeText({ text: "!" }).catch(console.error);
 }

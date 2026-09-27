@@ -3,13 +3,14 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { FirefoxDriver } from "./webdriver.js";
+import { artifactNames, brandMetadata } from "./release/package.js";
 
 // Test a frozen product tree using the reviewed controller's test code. Keep
 // output/XPI paths relative to the controller, not the historical checkout.
 const sourceRoot = resolve(process.argv.find(arg => arg.startsWith("--source-root="))?.slice("--source-root=".length) ?? ".");
 const manifest = JSON.parse(await readFile(join(sourceRoot, "extension/manifest.json"), "utf8"));
 const signed = process.argv.includes("--signed");
-const path = process.argv.find(arg => arg.startsWith("--xpi="))?.slice("--xpi=".length) ?? `dist/stackma-${manifest.version}.xpi`;
+const path = process.argv.find(arg => arg.startsWith("--xpi="))?.slice("--xpi=".length) ?? `dist/${artifactNames({ version: manifest.version, ...brandMetadata(manifest) }).xpi}`;
 const output = resolve(process.argv.find(arg => arg.startsWith("--output="))?.slice("--output=".length) ?? "evidence/package.json");
 await mkdir(dirname(output), { recursive: true });
 const files = (await readdir(join(sourceRoot, "extension"))).sort();
@@ -51,6 +52,9 @@ try {
     throw new Error("Packaged extension did not group a related tab");
   }, files);
   assert.deepEqual(result.actual, expected);
+  assert.equal(result.manifest.name, manifest.name, "Installed product name differs from the frozen source");
+  assert.equal(result.manifest.version, manifest.version);
+  assert.equal(id, manifest.browser_specific_settings.gecko.id);
   assert.deepEqual(result.manifest.permissions, ["webNavigation", "tabGroups", "storage"]);
   const pack = JSON.parse(await readFile(join(sourceRoot, "naming-data/en-v1.json"), "utf8"));
   assert(pack.pairs.some(pair => `${pair.adjective}-${pair.noun}` === result.name));

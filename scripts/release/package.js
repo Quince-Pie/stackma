@@ -7,6 +7,26 @@ import { promisify } from "node:util";
 export const run = promisify(execFile);
 export const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
 
+// Branding belongs to the frozen product source. Keep legacy records byte-
+// compatible by adding fields only for the renamed product, never to old tags.
+export function brandMetadata(manifest) {
+  return manifest.name === "Tab Gantry" ? { displayName: "Tab Gantry", artifactPrefix: "tab-gantry" } : {};
+}
+
+export function releaseBrand(record) {
+  if (record.displayName === undefined && record.artifactPrefix === undefined) {
+    return { displayName: "Stackma", artifactPrefix: "stackma" };
+  }
+  assert.equal(record.displayName, "Tab Gantry", "Unexpected release display name");
+  assert.equal(record.artifactPrefix, "tab-gantry", "Unexpected release artifact prefix");
+  return { displayName: record.displayName, artifactPrefix: record.artifactPrefix };
+}
+
+export function artifactNames(record) {
+  const { artifactPrefix } = releaseBrand(record);
+  return { xpi: `${artifactPrefix}-${record.version}.xpi`, source: `${artifactPrefix}-${record.version}-source.zip` };
+}
+
 // AMO's normalize task writes json.dumps(..., indent=2): ASCII-escaped JSON,
 // two-space indentation and no trailing newline. Keep our manifest in that
 // representation before packaging, so its bytes survive upload normalization.
@@ -51,7 +71,13 @@ export function validateMetadata(tag, manifest, pkg, lock) {
   }
   assert.equal(manifest.browser_specific_settings.gecko.id, "stackma@extensions.local");
   assert.equal(manifest.browser_specific_settings.gecko.strict_min_version, "156.0");
-  return { version, id: manifest.browser_specific_settings.gecko.id };
+  const brand = brandMetadata(manifest);
+  if (brand.artifactPrefix) {
+    assert.equal(pkg.name, brand.artifactPrefix);
+    assert.equal(lock.name, brand.artifactPrefix);
+    assert.equal(lock.packages[""].name, brand.artifactPrefix);
+  }
+  return { version, id: manifest.browser_specific_settings.gecko.id, ...brand };
 }
 
 export async function digestFile(path) {

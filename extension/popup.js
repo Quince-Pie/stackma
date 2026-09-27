@@ -114,7 +114,7 @@ export function createPopup(api, doc, clipboard, closePopup) {
       await api.windows.update(current.windowId, { focused: true });
       closePopup();
     } catch (error) {
-      console.error("Stackma: could not open the selected group", error);
+      console.error("Tab Gantry: could not open the selected group", error);
       notify("Could not open this group. The list has been refreshed; try again.", true);
       await requestRefresh();
     } finally {
@@ -163,12 +163,12 @@ export function createPopup(api, doc, clipboard, closePopup) {
           void clipboard.writeText(title).then(
             () => notify("Group name copied."),
             error => {
-              console.error("Stackma: could not copy the group name", error);
+              console.error("Tab Gantry: could not copy the group name", error);
               notify("Could not copy. Select the displayed name and copy it manually.", true);
             },
           );
         } catch (error) {
-          console.error("Stackma: could not copy the group name", error);
+          console.error("Tab Gantry: could not copy the group name", error);
           notify("Could not copy. Select the displayed name and copy it manually.", true);
         }
       });
@@ -215,11 +215,11 @@ export function createPopup(api, doc, clipboard, closePopup) {
         if (visible.some(group => ambiguous.has(group.id))) notify(ambiguousMessage, true);
         else if (message.textContent === ambiguousMessage) notify("");
       } catch (error) {
-        console.error("Stackma: could not read groups", error);
+        console.error("Tab Gantry: could not read groups", error);
         rows = [];
         list.replaceChildren();
         count.textContent = "Groups are unavailable.";
-        notify("Could not read groups. Reopen Stackma to try again.", true);
+        notify("Could not read groups. Reopen Tab Gantry to try again.", true);
       }
     }
   }
@@ -244,7 +244,7 @@ export function createPopup(api, doc, clipboard, closePopup) {
     void api.action.setBadgeText({ text: "" }).then(
       () => { issue.hidden = true; },
       error => {
-        console.error("Stackma: could not dismiss the notice", error);
+        console.error("Tab Gantry: could not dismiss the notice", error);
         notify("Could not dismiss the notice. Try again.", true);
       },
     ).finally(() => { dismiss.disabled = false; });
@@ -252,8 +252,8 @@ export function createPopup(api, doc, clipboard, closePopup) {
   const badge = api.action.getBadgeText({}).then(
     text => { issue.hidden = text !== "!"; },
     error => {
-      console.error("Stackma: could not read the notice", error);
-      notify("Could not read Stackma’s latest status.", true);
+      console.error("Tab Gantry: could not read the notice", error);
+      notify("Could not read Tab Gantry’s latest status.", true);
     },
   );
   void requestRefresh();
