@@ -1,5 +1,21 @@
 # Listed 1.1.7 and recovery from an incomplete listing
 
+**Submitted:** [version PR #10](https://github.com/Quince-Pie/stackma/pull/10)
+merged as `bc43c338e5a245a3116084d33ecbaa170885c358` after CI passed. The
+[automatic publisher](https://github.com/Quince-Pie/stackma/actions/runs/36281036540)
+passed source verification, created the protected tag and started its signing
+job under the unchanged main-only environment policy. Mozilla accepted **listed
+version 6517688 / 1.1.7** with source attached and inherited license `10390`.
+
+The hosted run completed successfully in `awaiting-review`, with permanent
+signature verification and GitHub publication correctly skipped. The owner API
+observation at **2026-09-27 00:17 UTC** reports the listing as
+`nominated` and the file as `unreviewed`. Independent downloads matched the tested
+source archive, normalized package payload and original license terms. This is
+verified submission, not public availability. The scheduled resumer remains the
+post-approval path; signed publication and actual 1.1.6 → 1.1.7 update delivery
+remain gated on Mozilla. See the [live evidence](../evidence/release/listed-1.1.7.json).
+
 The owner requested **1.1.7 on addons.mozilla.org**, after installing signed
 unlisted 1.1.6. The product change is only the next version. Keep the same
 `stackma@extensions.local` ID and default AMO updater so approved, compatible
@@ -54,8 +70,13 @@ GitHub's public-repository default event policy begins enforcement on
 **`.github/workflows/release.yml` only**, allowing `pull_request_target` and
 `workflow_dispatch`. It preserves added restrictions, does not relax other
 policies, and reports inherited/actor constraints for manual review. Current
-administrator inspection found no existing or inherited policy. Runtime jobs
+administrator inspection before setup found no existing or inherited policy. Runtime jobs
 receive no administrator token.
+
+The policy was applied as repository policy **5782** and all seven policy checks
+passed. Fine-grained tokens need GitHub's **Administration: write** permission
+even to inspect this Actions policy API; use an authorized administrator session,
+never broaden the runtime job token for that check.
 
 Alternatives were checked against the same source/credential contract. Allowing
 `refs/pull/*/merge` in secret environments would admit PR-context workflow code
