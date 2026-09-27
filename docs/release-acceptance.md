@@ -1,6 +1,11 @@
 # Hosted acceptance and remaining provider gates
 
-**Latest submission:** [listed 1.1.10](listed-1.1.10.md) includes the new SVG and
+**Current handoff:** the [revised icon release](icon-refresh.md) provides signed
+unlisted 1.1.11 and verified listed 1.1.12 submission. The latter replaced pending
+1.1.10 with explicit authorization. Listed approval/publication and actual
+1.1.11 → 1.1.12 default-AMO delivery remain open.
+
+**Earlier submission:** [listed 1.1.10](listed-1.1.10.md) includes the preceding SVG and
 replaces pending 1.1.9 with explicit owner authorization. Mozilla accepted the
 matching package/source/license and disabled the older pending file. Its public
 approval, signed publication and actual 1.1.8 → 1.1.10 update remain separate gates.

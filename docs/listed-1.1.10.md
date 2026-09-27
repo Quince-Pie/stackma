@@ -1,5 +1,9 @@
 # Listed 1.1.10: new icon and current AMO filename
 
+**Superseded by owner choice:** [listed 1.1.12](icon-refresh.md) includes the
+subsequently revised SVG. Mozilla disabled pending 1.1.10 when accepting that
+submission. Keep this historical source/tag; use the later record for recovery.
+
 The owner requested listed **1.1.10** after being told it would replace pending
 listed **1.1.9** and include the new SVG icon. Keep add-on ID
 `stackma@extensions.local`, AMO ID `3078021`, the `tab-gantry` listing/repository,
