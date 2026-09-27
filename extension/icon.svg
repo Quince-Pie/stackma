@@ -1,24 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-  <title>Tab Gantry</title>
-  <!--
-    16 x 16 grid, 1 unit = 1 px at 16 px; every straight edge lies on an integer line.
-    Gantry: the outline of a tab. Steel 2, corner radii 3 outer / 1 inner, feet flare r1 onto the rail line y = 15.
-    Tab: one primitive, "v-2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v2z" from its lower-left corner: 3 x 3 with r1 shoulders,
-         so its flat top is 1 unit, exactly one rope, hung at its centre. Tabs of one colour share a path (no seams).
-    y: girder 1-3 | ropes 3-6 | lifted pair 6-9 | clearance 9-12, one tab high ("1-over-1") | grounded 12-15
-    x: legs 1-3, 13-15; every line from 3 to 13 is an edge; mirror axis x = 8.
-    Colours: Firefox tab-group palette (tabGroups.Color grey, green, orange, purple); dark pair follows the toolbar.
-  -->
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="#455bd4" role="img" aria-labelledby="title" aria-describedby="desc">
+  <title id="title">Tab Gantry — Automatic Tab Groups</title>
+  <desc id="desc">A gantry shaped like a browser tab lifts one tab above two aligned tabs. The three tabs are identical; the gantry repeats their upper contour at twice the scale.</desc>
   <style>
     @media (prefers-color-scheme: dark) {
-      .grey { fill: #949297 }
-      .green { fill: #4acca6 }
-      .orange { fill: #ff9565 }
-      .purple { fill: #d490ff }
+      #mark { fill: #a6b5ff; }
+      #tab-lifted { fill: #63d8ba; }
     }
   </style>
-  <path class="grey" fill="#515054" d="M0 15A1 1 0 0 0 1 14V4A3 3 0 0 1 4 1H12A3 3 0 0 1 15 4V14A1 1 0 0 0 16 15H13V4A1 1 0 0 0 12 3H10V7H9V3H7V7H6V3H4A1 1 0 0 0 3 4V15Z"/>
-  <path class="green" fill="#008865" d="M5 9v-2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v2zM8 9v-2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v2z"/>
-  <path class="orange" fill="#cd4208" d="M4 15v-2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v2z"/>
-  <path class="purple" fill="#9540c8" d="M9 15v-2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v2z"/>
+  <g id="mark">
+    <path id="frame" d="M2 30V6A4 4 0 0 1 6 2H26A4 4 0 0 1 30 6V30H26V6H18V12H14V6H6V30Z"/>
+    <path id="tab-lifted" fill="#008575" transform="translate(9 10)" d="M0 4V2A2 2 0 0 1 2 0H12A2 2 0 0 1 14 2V4Z"/>
+    <path id="tab-middle" transform="translate(9 20)" d="M0 4V2A2 2 0 0 1 2 0H12A2 2 0 0 1 14 2V4Z"/>
+    <path id="tab-bottom" transform="translate(9 26)" d="M0 4V2A2 2 0 0 1 2 0H12A2 2 0 0 1 14 2V4Z"/>
+  </g>
 </svg>
