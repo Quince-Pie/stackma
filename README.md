@@ -1,8 +1,10 @@
-# Stackma
+# Tab Gantry
+
+Formerly Stackma. The Firefox add-on ID and existing update path are unchanged.
 
 Automatic related-tab stacks for **Firefox desktop 156** using native tab groups.
 Open a link in a new tab: it joins the opener's group, or starts a group with the
-opener. Descendants stay together, including bursts of new tabs. New Stackma groups
+opener. Descendants stay together, including bursts of new tabs. New Tab Gantry groups
 receive a generated word-pair name. Firefox supplies the group menus, colors and
 collapse controls; manual names remain yours.
 
@@ -24,11 +26,11 @@ Add-on**, and select `extension/manifest.json`. It starts immediately. Allow it 
 private windows in Firefox's add-on settings if wanted. Temporary installation
 lasts until Firefox restarts.
 
-`npm run build` produces `dist/stackma-VERSION.xpi` for the version in
+`npm run build` produces `dist/tab-gantry-VERSION.xpi` for the version in
 `extension/manifest.json`. Permanent installation in Firefox Release requires
-Mozilla signing. Each listed release is submitted to the Stackma listing on Mozilla
+Mozilla signing. Each listed release is submitted to the Tab Gantry listing on Mozilla
 Add-ons, becomes available there once Mozilla approves it, and is then published
-as a GitHub Release; see [Releasing Stackma](docs/releases.md). The toolbar popup
+as a GitHub Release; see [Releasing Tab Gantry](docs/releases.md). The toolbar popup
 searches open group names, copies complete names, opens a selected group, and
 shows a notice if grouping or naming fails. Details remain in the local extension
 console.
@@ -48,7 +50,7 @@ fallback. Search and copying work with either form.
 
 Joining an existing group or preserving a child group during a late-parent merge
 keeps that group's name, including a deliberately blank name. Rename or clear any
-name in Firefox's group menu; Stackma does not regenerate it later. Colors remain
+name in Firefox's group menu; Tab Gantry does not regenerate it later. Colors remain
 native Firefox choices. Native session restore preserves completed names.
 
 The `tabGroups` permission provides native group metadata. `storage` keeps only
@@ -102,7 +104,7 @@ tested on Linux, where `nix develop` provides both tools.
 ```sh
 node naming-data/build-pack.mjs --check  # the word pack matches its inputs
 node scripts/compile-names.js --check    # name-catalog.js matches the word pack
-node scripts/build.js                    # writes dist/stackma-VERSION.xpi
+node scripts/build.js                    # writes dist/tab-gantry-VERSION.xpi
 ```
 
 The build packages exactly the files in `extension/`, with sorted names and fixed
@@ -128,7 +130,7 @@ Within `nix develop`, workflow checks are `node scripts/ci/check-workflows.js`,
 The [CI record](docs/ci.md) explains the source/changelog audit, verification and
 remaining GitHub-hosted execution boundary.
 
-[Releasing Stackma](docs/releases.md) starts with **Actions → Release**
+[Releasing Tab Gantry](docs/releases.md) starts with **Actions → Release**
 (`prepare-release.yml`): enter the next unused version, approve CI if requested,
 and merge the generated version PR. **Publish release** then verifies the merged
 source, creates its tag and submits it to the existing Mozilla listing. After
@@ -160,11 +162,11 @@ an API limitation, not an atomicity guarantee provided by the extension.
 Title assignment and popup navigation have the same check/commit limitation:
 observed edits cancel naming, but Firefox offers no conditional title write or
 atomic validate-and-activate operation. Other writers can introduce duplicate
-names. A crash or ambiguous creation reply can leave a group unnamed; Stackma
+names. A crash or ambiguous creation reply can leave a group unnamed; Tab Gantry
 does not infer ownership from a blank title. Storage failures are reported and
 can defer private-history cleanup until a later operation or session termination.
 
-Firefox 156 can also assign duplicate native group IDs. Stackma detects observed
+Firefox 156 can also assign duplicate native group IDs. Tab Gantry detects observed
 ambiguity and leaves affected names/membership unchanged; popup Open is disabled
 for those groups. Use Firefox's tab strip to manage them. Mozilla's proposed fix
 is still under review; see the [native-ID evidence](docs/naming-qualification.md#native-identity-discovery-and-guarded-failure-policy).
@@ -176,7 +178,7 @@ the privacy bug with a native tab-move fallback. No newer fix has been establish
 
 Completed native groups survive normal Firefox session restore. A process crash,
 disablement, or creation before event registration can lose pending relationship
-events. Stackma does not guess or retroactively reorganize existing tabs on
+events. Tab Gantry does not guess or retroactively reorganize existing tabs on
 startup. Event-page sleep/wake is supported; it does not promise crash recovery
 of events Firefox never delivered. See [qualification and evidence](docs/qualification.md)
 for source versions, comparisons, exact verification coverage and claim limits.
@@ -191,7 +193,7 @@ bounded work; no design is claimed universally fastest. The
 [naming measurements](docs/naming-performance.md) compare six selectors and a
 transient context cache on the delivered guarded pipeline.
 
-Stackma retains an exclusive child-branch group when its parent relationship arrives late,
+Tab Gantry retains an exclusive child-branch group when its parent relationship arrives late,
 preserving its identity, name, color, collapse and save-on-close setting. An existing
 opener group always wins. If several child groups must merge, the first exclusive
 group in event order survives; one group cannot preserve several different IDs.
@@ -205,7 +207,7 @@ claim is provisional, with a [fixed evaluation protocol](docs/naming-human-evalu
 ## License
 
 Copyright (C) 2026 Quince Pie <pie@quince.org>.
-Stackma's original code and project-authored material are licensed under
+Tab Gantry's original code and project-authored material are licensed under
 [WTFPL, Version 2](LICENSE).
 
 The CMU pronunciation data and derived metadata retain their separate

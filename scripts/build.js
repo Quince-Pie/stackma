@@ -4,6 +4,7 @@ import { mkdir, mkdtemp, readFile, readdir, rm, utimes, writeFile, copyFile } fr
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { promisify } from "node:util";
+import { artifactNames, brandMetadata } from "./release/package.js";
 
 const run = promisify(execFile);
 await run(process.execPath, ["naming-data/build-pack.mjs", "--check"], { timeout: 30_000 });
@@ -15,7 +16,8 @@ const files = (await readdir(source, { withFileTypes: true }))
     if (!entry.isFile()) throw new Error(`Unexpected extension entry: ${entry.name}`);
     return entry.name;
   }).sort();
-const output = resolve("dist", `stackma-${manifest.version}.xpi`);
+const filename = artifactNames({ version: manifest.version, ...brandMetadata(manifest) }).xpi;
+const output = resolve("dist", filename);
 const stage = await mkdtemp(join(tmpdir(), "stackma-build-"));
 const epoch = new Date("2020-01-01T00:00:00Z");
 try {
@@ -30,7 +32,7 @@ try {
     cwd: stage, timeout: 30_000, env: { ...process.env, TZ: "UTC", LC_ALL: "C" },
   });
   const digest = createHash("sha256").update(await readFile(output)).digest("hex");
-  await writeFile(`${output}.sha256`, `${digest}  stackma-${manifest.version}.xpi\n`);
+  await writeFile(`${output}.sha256`, `${digest}  ${filename}\n`);
   console.log(`${output}\nSHA-256 ${digest}`);
 } finally {
   await rm(stage, { recursive: true, force: true });

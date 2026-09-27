@@ -3,7 +3,7 @@ import { appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { PendingReviewError, ReleaseClient, signRelease } from "./amo.js";
-import { versionFromTag } from "./package.js";
+import { artifactNames, releaseBrand, versionFromTag } from "./package.js";
 import { GitHub } from "./github.js";
 import { requireResolvedPriorReleases, UnresolvedReleaseError } from "./repository.js";
 import { readRetirements } from "./retirement.js";
@@ -23,6 +23,7 @@ export async function runSigning({ env = process.env, directory = "artifacts/rel
   assert.equal(context.version, versionFromTag(context.tag));
   assert.equal(context.id, "stackma@extensions.local");
   assert.equal(context.channel, "listed");
+  const { displayName } = releaseBrand(context);
   assert(!retired.has(context.tag), "This release intent was explicitly retired; do not resume it");
   const supersede = env.SUPERSEDE_PENDING ?? "";
   if (supersede !== "") {
@@ -42,7 +43,7 @@ export async function runSigning({ env = process.env, directory = "artifacts/rel
   let result;
   try {
     result = await sign({
-      client, context, directory, output: `${signedDirectory}/stackma-${context.version}.xpi`, supersede, approvalWaitMs: wait,
+      client, context, directory, output: `${signedDirectory}/${artifactNames(context).xpi}`, supersede, approvalWaitMs: wait,
       report: state => log(JSON.stringify(state)),
       beforeWrite: async () => assert.equal(await github.commit(context.tag), context.commit, "Remote tag moved before Mozilla submission"),
       checkPriorReleases: versions => requireResolvedPriorReleases(github, context.tag, versions, context.priorReleases, retired),
@@ -58,8 +59,8 @@ export async function runSigning({ env = process.env, directory = "artifacts/rel
   const { state, ...record } = result;
   if (state === "awaiting-review") {
     await setOutput(state);
-    log(`::notice title=Awaiting Mozilla review::${command(`Stackma ${context.version} is submitted and awaits Mozilla review. The GitHub release follows approval.`)}`);
-    await summarize(`## Awaiting Mozilla review\n\nStackma ${context.version} is submitted to the listed channel as AMO version ${record.versionId}. ` +
+    log(`::notice title=Awaiting Mozilla review::${command(`${displayName} ${context.version} is submitted and awaits Mozilla review. The GitHub release follows approval.`)}`);
+    await summarize(`## Awaiting Mozilla review\n\n${displayName} ${context.version} is submitted to the listed channel as AMO version ${record.versionId}. ` +
       `Its package matches the tested XPI and its source is attached. Mozilla has not approved it yet (file status: ${record.fileStatus}).\n\n` +
       `Nothing else is required. **Resume approved releases** checks every 6 hours and runs **Publish release** for ${context.tag} after approval. ` +
       `To publish sooner after approval, run **Publish release** with tag ${context.tag}.\n`);

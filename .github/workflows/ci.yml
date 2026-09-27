@@ -142,7 +142,7 @@ jobs:
 
       - name: Stage the verified package for this attempt
         run: |
-          packages=(dist/stackma-*.xpi)
+          packages=(dist/*.xpi)
           (( ${#packages[@]} == 1 ))
           package=${packages[0]}
           [[ -f "$package" ]]

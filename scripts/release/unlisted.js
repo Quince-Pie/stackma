@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import { ReleaseClient, signRelease } from "./amo.js";
 import { publishRelease } from "./github.js";
 import { RepositoryGitHub, ensureTag } from "./repository.js";
-import { digestFile, run, sha256, versionFromTag } from "./package.js";
+import { artifactNames, digestFile, run, sha256, versionFromTag } from "./package.js";
 import { releaseChannelAt } from "./unlisted-policy.js";
 import { readRetirements } from "./retirement.js";
 
@@ -103,7 +103,8 @@ export async function runUnlisted({ tag, pullNumber, env = process.env }) {
     await ensureTag(github, tag, commit, { create: true });
     const client = new ReleaseClient({ apiKey: env.AMO_JWT_ISSUER ?? env.JWT_ISSUER,
       apiSecret: env.AMO_JWT_SECRET ?? env.JWT_SECRET });
-    const result = await signRelease({ client, context, directory, output: `${signedDirectory}/stackma-${context.version}.xpi`,
+    const filename = artifactNames(context).xpi;
+    const result = await signRelease({ client, context, directory, output: `${signedDirectory}/${filename}`,
       approvalWaitMs: 15 * 60_000, report: state => console.log(JSON.stringify(state)),
       beforeWrite: async () => {
         assert.equal(await github.commit(tag), commit, "Remote tag changed before Mozilla write");
@@ -119,7 +120,7 @@ export async function runUnlisted({ tag, pullNumber, env = process.env }) {
     const { state: _state, ...record } = result;
     await writeFile(`${signedDirectory}/signing.json`, JSON.stringify({ ...context, ...record }, null, 2) + "\n");
     await run(process.execPath, [script("package-test.js"), "--signed", `--source-root=${process.cwd()}`,
-      `--xpi=${signedDirectory}/stackma-${context.version}.xpi`, "--output=artifacts/release-verification.json"], { env, timeout: 180_000 });
+      `--xpi=${signedDirectory}/${filename}`, "--output=artifacts/release-verification.json"], { env, timeout: 180_000 });
     await run(process.execPath, [script("release/assemble.js")], { env, timeout: 30_000 });
     await requireIdlePublisher(github);
     const release = JSON.parse(await readFile(`${signedDirectory}/release.json`, "utf8"));

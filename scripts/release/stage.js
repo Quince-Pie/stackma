@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { digestFile, run, sha256, validateMetadata } from "./package.js";
+import { artifactNames, digestFile, run, sha256, validateMetadata } from "./package.js";
 import { intentTagsAt } from "./intent.js";
 import { releaseChannelAt } from "./unlisted-policy.js";
 
@@ -27,7 +27,7 @@ if (process.argv.includes("--check")) {
 } else {
   const directory = resolve("artifacts/release-input");
   await mkdir(directory, { recursive: true });
-  const xpi = `dist/stackma-${metadata.version}.xpi`;
+  const xpi = `dist/${artifactNames(metadata).xpi}`;
   const tested = JSON.parse(await readFile("artifacts/ci/package.json", "utf8"));
   const unsigned = await digestFile(xpi);
   assert.equal(tested.passed, true);

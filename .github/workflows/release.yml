@@ -156,7 +156,10 @@ jobs:
       - name: Verify a permanent installation and assemble release assets
         if: steps.amo.outputs.state == 'approved-and-signed'
         run: |
-          nix develop --no-update-lock-file --command node scripts/package-test.js --source-root=release-source --signed --xpi="artifacts/release-signed/stackma-${RELEASE_TAG#v}.xpi" --output=artifacts/release-verification.json
+          packages=(artifacts/release-signed/*.xpi)
+          (( ${#packages[@]} == 1 ))
+          [[ -f "${packages[0]}" ]]
+          nix develop --no-update-lock-file --command node scripts/package-test.js --source-root=release-source --signed --xpi="${packages[0]}" --output=artifacts/release-verification.json
           nix develop --no-update-lock-file --command node scripts/release/assemble.js
       - name: Preserve the verified signed release
         id: signed

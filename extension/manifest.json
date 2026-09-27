@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Stackma",
+  "name": "Tab Gantry",
   "version": "1.1.7",
   "description": "Automatically stack new related tabs in Firefox\u2019s native tab groups. Preserve pinned tabs and separate windows.",
   "permissions": [
@@ -15,7 +15,7 @@
     "type": "module"
   },
   "action": {
-    "default_title": "Stackma \u2014 automatic related-tab stacks",
+    "default_title": "Tab Gantry - Automatic Tab Groups",
     "default_popup": "popup.html",
     "default_icon": "icon.svg"
   },

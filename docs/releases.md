@@ -1,4 +1,8 @@
-# Releasing Stackma
+# Releasing Tab Gantry
+
+The [Tab Gantry rename](tab-gantry-rename.md) covers unlisted 1.1.8, listed 1.1.9,
+and the owner's explicit replacement of pending 1.1.7. Keep the established ID
+and historical release identities when recovering older versions.
 
 **Release** prepares a version PR. Human merge authorizes submission to the
 existing listed Mozilla add-on and subsequent GitHub publication. **Publish
@@ -161,14 +165,19 @@ Firefox independently verifies permanent installation/signature, exact packaged
 files, grouping and naming. AMO's HTML license representation is checked without
 accepting changed terms or link destinations.
 
-Every GitHub release has four assets: `stackma-VERSION.xpi`,
-`stackma-VERSION-source.zip`, `release.json` and `SHA256SUMS`. Draft assets must
+New Tab Gantry releases have four assets: `tab-gantry-VERSION.xpi`,
+`tab-gantry-VERSION-source.zip`, `release.json` and `SHA256SUMS`. Draft assets must
 match by name, size and SHA-256. Only a complete draft is published; the immutable
 release and every asset's native release attestation are then verified. That
 attestation proves membership/bytes, not independent build provenance or a SLSA
 level. A delayed older release does not displace a newer Latest release.
 Keep the generated identity marker at the beginning of release notes; it identifies
 controller-owned publications for recovery.
+
+Versions through 1.1.7 retain their original `stackma-` asset names and record
+format. Branding is read from the frozen release source, so a later rename does
+not rewrite an older release. The add-on ID, AMO slug, repository URL, ownership
+markers and existing Actions policy/concurrency names remain stable identifiers.
 
 AMO may make the listed version available before GitHub publication. There is no
 cross-service transaction or rollback. Firefox keeps ID `stackma@extensions.local`,

@@ -3,7 +3,7 @@ import { appendFile, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { run, serializeManifest, validateMetadata, versionFromTag } from "./package.js";
+import { brandMetadata, releaseBrand, run, serializeManifest, validateMetadata, versionFromTag } from "./package.js";
 import { RepositoryGitHub } from "./repository.js";
 import { intentPath, intentTagsAt, intentText } from "./intent.js";
 
@@ -114,11 +114,12 @@ export async function prepareRelease({ github, tag, mainCommit, cwd = process.cw
     await github.post("git/refs", { ref: `refs/heads/${branch}`, sha: head });
   }
   const marker = `<!-- stackma-release-pr:${tag}:${base}:${expected.tree} -->`;
+  const { displayName } = releaseBrand(brandMetadata(JSON.parse(expected.entries.find(entry => entry.path === "extension/manifest.json").content)));
   assert.equal((await github.get(`git/ref/heads/${branch}`))?.object.sha, head, "Release branch changed during preparation");
   if (!pull) {
     pull = await github.post("pulls", {
       head: branch, base: "main", title: `release: Prepare ${tag}`,
-      body: `${marker}\n\nPrepare Stackma ${version} for the existing Mozilla listing. This updates the manifest, package version, and root lockfile versions and adds ${intentPath(tag)} as durable release intent. Existing intent records remain unchanged.\n\nApprove the bot-triggered CI run if GitHub requests it, review the changes, and merge this PR. Merging starts Publish release: it verifies the exact merged source, creates ${tag}, submits or resumes Mozilla signing, and publishes the verified package after approval. Do not create a tag or GitHub Release manually.\n\nIf Mozilla needs more review time, the run succeeds as awaiting review; Resume approved releases completes publication after approval. To recover using corrected release tooling, dispatch Publish release from main with tag ${tag}. See [the release guide](https://github.com/${github.repository}/blob/main/docs/releases.md).\n`,
+      body: `${marker}\n\nPrepare ${displayName} ${version} for the existing Mozilla listing. This updates the manifest, package version, and root lockfile versions and adds ${intentPath(tag)} as durable release intent. Existing intent records remain unchanged.\n\nApprove the bot-triggered CI run if GitHub requests it, review the changes, and merge this PR. Merging starts Publish release: it verifies the exact merged source, creates ${tag}, submits or resumes Mozilla signing, and publishes the verified package after approval. Do not create a tag or GitHub Release manually.\n\nIf Mozilla needs more review time, the run succeeds as awaiting review; Resume approved releases completes publication after approval. To recover using corrected release tooling, dispatch Publish release from main with tag ${tag}. See [the release guide](https://github.com/${github.repository}/blob/main/docs/releases.md).\n`,
     });
   }
   assert.equal(pull.state, "open");
