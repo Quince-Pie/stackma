@@ -2,8 +2,8 @@
 
 Use the canonical repository `Quince-Pie/tab-gantry` and AMO slug `tab-gantry`.
 The [URL and icon migration](url-and-icon-rename.md) preserves the add-on ID.
-The owner subsequently authorized [listed 1.1.10](listed-1.1.10.md) with the new
-icon to replace pending 1.1.9. Dispatch historical recovery from current `main` in
+The [latest icon refresh](icon-refresh.md) delivers unlisted 1.1.11 and listed
+1.1.12's verified submission, replacing pending 1.1.10. Dispatch historical recovery from current `main` in
 the renamed repository; old event snapshots can still contain the old name.
 
 The [Tab Gantry rename](tab-gantry-rename.md) covers unlisted 1.1.8, listed 1.1.9,
@@ -16,10 +16,10 @@ release** tests the frozen source, submits or reconciles that version, verifies
 the signed XPI in Firefox 156, and publishes a complete immutable GitHub Release.
 **Resume approved releases** continues after a long Mozilla review.
 
-The controller is deployed and has passed local and hosted CI. Unlisted 1.1.6
-and 1.1.8 completed signing, permanent installation and immutable publication.
-Listed 1.1.10 awaits Mozilla review; listed publication and default-AMO update
-delivery remain separate gates. [Hosted acceptance](release-acceptance.md)
+The controller is deployed and has passed local and hosted CI. Unlisted 1.1.6,
+1.1.8 and 1.1.11 completed signing, permanent installation and immutable publication.
+Listed publication and default-AMO update delivery remain separate gates while
+Mozilla reviews the submission. [Hosted acceptance](release-acceptance.md)
 records the owner-authorized setup, real runs and remaining Mozilla gates.
 The owner later authorized [unlisted 1.1.6](unlisted-1.1.6.md) as a one-off
 self-distributed release. Use that page for this version; the normal workflow
@@ -286,8 +286,12 @@ not reservations or approval:
   A real manual upgrade from 1.1.6 preserved groups and local storage.
 - **1.1.9** was the renamed listed submission. The owner later authorized 1.1.10
   to replace it, and Mozilla disabled its pending file on creation of 1.1.10.
-- **1.1.10** includes the new SVG and is submitted as `tab_gantry-1.1.10.zip`,
-  awaiting Mozilla review. See its [submission record](listed-1.1.10.md).
+- **1.1.10** was submitted with the preceding SVG. The owner authorized 1.1.12
+  with revised artwork to replace it, and Mozilla disabled its pending file.
+- **1.1.11** is the signed, published unlisted build with the revised SVG;
+  actual 1.1.8 → 1.1.11 manual upgrade checks passed.
+- **1.1.12** is the matching listed submission, `tab_gantry-1.1.12.zip`, awaiting
+  review. See the [current icon/release record](icon-refresh.md).
 - **1.1.0, 1.1.2 and 1.1.3** have disabled AMO files. Preserve them. Older missing
   sources and the normalization incident are recorded in [AMO formats](amo-formats.md).
 - **v1.1.1** is immutable with no assets, at a commit declaring 1.1.0. It cannot

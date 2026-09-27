@@ -37,15 +37,15 @@ searches open group names, copies complete names, opens a selected group, and
 shows a notice if grouping or naming fails. Details remain in the local extension
 console.
 
-The renamed personal build, **1.1.8**, is available as a
-[Mozilla-signed XPI](https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.8/tab-gantry-1.1.8.xpi).
+The personal build with the revised icon, **1.1.11**, is available as a
+[Mozilla-signed XPI](https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.11/tab-gantry-1.1.11.xpi).
 Use Firefox's Add-ons Manager → Install Add-on From File. It replaces an existing
-Stackma installation without uninstalling it; the real 1.1.6 → 1.1.8 upgrade test
+installation without uninstalling it; the real 1.1.8 → 1.1.11 upgrade test
 preserved native groups and local storage. This unlisted build is distributed
-through GitHub. Listed **1.1.10**, including the new icon, has been submitted to
-Mozilla under **Tab Gantry - Automatic Tab Groups**, replacing pending 1.1.9.
+through GitHub. Listed **1.1.12**, with the same icon, has been submitted under
+**Tab Gantry - Automatic Tab Groups**, replacing pending 1.1.10.
 Automatic AMO updates require approval of a compatible listed version; see the
-[current submission record](docs/listed-1.1.10.md).
+[current release record](docs/icon-refresh.md).
 
 ## Generated names
 

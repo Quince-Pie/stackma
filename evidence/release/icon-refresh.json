@@ -1,0 +1,661 @@
+{
+  "schema": 1,
+  "observed": "2026-09-27T20:46:59.408Z",
+  "request": "Use latest owner SVG in AMO listing, deliver unlisted1.1.11 and listed1.1.12 regardless of current review, and preserve then clean the old local checkout.",
+  "contract": {
+    "addonId": "stackma@extensions.local",
+    "amoId": 3078021,
+    "amoSlug": "tab-gantry",
+    "repository": "Quince-Pie/tab-gantry",
+    "firefoxMinimum": "156.0",
+    "unchanged": [
+      "Grouping code and naming data",
+      "Permissions and MV3",
+      "WTFPL and CMU terms",
+      "Installed-user identity and default AMO updater"
+    ]
+  },
+  "icon": {
+    "sourceSha256": "4b0b634ab7b77f2f7057478cee7457170ca9b29791dedee2eb42e68230358487",
+    "render": {
+      "source": "extension/icon.svg",
+      "sourceSha256": "4b0b634ab7b77f2f7057478cee7457170ca9b29791dedee2eb42e68230358487",
+      "output": "listing/icon.png",
+      "bytes": 1789,
+      "sha256": "bda9dc45991b1caee800f487edf54464d938001fb8bafe9c73ab851a7470b989",
+      "firefox": "156.0",
+      "palette": "light",
+      "width": 128,
+      "height": 128
+    },
+    "amo": {
+      "observed": "2026-09-27T20:19:51.886Z",
+      "addonId": 3078021,
+      "guid": "stackma@extensions.local",
+      "slug": "tab-gantry",
+      "sourceSvgSha256": "4b0b634ab7b77f2f7057478cee7457170ca9b29791dedee2eb42e68230358487",
+      "uploadSha256": "bda9dc45991b1caee800f487edf54464d938001fb8bafe9c73ab851a7470b989",
+      "modified": "674f7513",
+      "cdnUrl": "https://addons.mozilla.org/user-media/addon_icons/3078/3078021-128.png?modified=674f7513",
+      "cdnSha256": "8c7d8fe99f3e30ea991695f80b2c1bd1af63617b60ca622fa8d1a9e0c6450392",
+      "rgbaSha256": "cf32a38424d2eb409d11be7d87901718e1ce05de2fab9d31c995b26c344d291a",
+      "pixelsIdentical": true,
+      "width": 128,
+      "height": 128,
+      "otherListingMetadataUnchanged": true,
+      "versionMetadataUnchanged": true,
+      "versions": [
+        {
+          "version": "1.1.8",
+          "id": 6518363,
+          "status": "public",
+          "licenseId": 10405
+        },
+        {
+          "version": "1.1.10",
+          "id": 6518667,
+          "status": "unreviewed",
+          "licenseId": 10390
+        }
+      ]
+    },
+    "merge": {
+      "observed": "2026-09-27T20:26:31.266Z",
+      "pullRequest": 20,
+      "reviewedHead": "49f3df754d4008b89e24473b88ffc4fdaa2999a1",
+      "ciRun": 36347876627,
+      "sha": "b6787797437977e6c1006d364f87a3aa568db221",
+      "merged": true,
+      "message": "Pull Request successfully merged"
+    },
+    "hostedCI": {
+      "observed": "2026-09-27T20:26:31.266Z",
+      "id": 36347876627,
+      "head": "49f3df754d4008b89e24473b88ffc4fdaa2999a1",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36347876627"
+    }
+  },
+  "workspace": {
+    "auditCounts": {
+      "total": 45,
+      "current": 21,
+      "historical": 23,
+      "unique": 1,
+      "tracked": 21,
+      "untracked": 24
+    },
+    "cleanup": {
+      "observed": "2026-09-27T20:30:39.577Z",
+      "authority": "Owner chose Save a recovery branch, then update this checkout",
+      "recoveryBranch": "recovery/local-release-work-20260927",
+      "recoveryCommit": "59e7c4ca88154bb7fe0935cf6ff9d8a9c7b7ac4c",
+      "archivedFiles": 45,
+      "allArchivedBlobsMatch": true,
+      "externalBackup": "/tmp/tab-gantry-refresh-baseline.8uQL1o",
+      "updatedMain": "b6787797437977e6c1006d364f87a3aa568db221",
+      "status": "clean",
+      "ownerIconPreserved": true,
+      "remoteRecoveryBranchCreated": false,
+      "commands": "Create local branch; stage only45 audited paths; commit; verify exact blobs; switchmain; fast-forward origin/main. No reset,clean,stash,force or file deletion commands."
+    },
+    "auditSha256": "537c0b11179e01590027dc10178604a2d680e267d3ecd6e07cd9a6a5b13e7975"
+  },
+  "navigationFix": {
+    "file": "scripts/native-id-test.js",
+    "sha256": "a18456d0bea11941245020db91a50f21d1bc83fb627e9cbc39d89a95b413e7ca",
+    "mechanism": "Use existing createLoadedPopup exactURL topframe onCompleted listener registered before tabs.create, with5s timeout and cleanup; select Marionette actor only after load; assert expectedURL and complete readyState",
+    "helperTests": "6/6 passed",
+    "firefoxRuns": [
+      {
+        "passed": true,
+        "browser": {
+          "version": "156.0",
+          "buildId": "20260909172920"
+        },
+        "sourceBefore": "39542e98e6b590ea00ab8ff42150b87d71c46b5ce6e174663eb7eb86e1a004d2",
+        "sourceAfter": "39542e98e6b590ea00ab8ff42150b87d71c46b5ce6e174663eb7eb86e1a004d2",
+        "popupGuard": {
+          "allCopyEnabled": true,
+          "allOpenDisabled": true,
+          "matchingRows": 2,
+          "message": "Firefox cannot distinguish some groups. Open those groups from Firefox’s tab bar."
+        }
+      },
+      {
+        "passed": true,
+        "browser": {
+          "version": "156.0",
+          "buildId": "20260909172920"
+        },
+        "sourceBefore": "39542e98e6b590ea00ab8ff42150b87d71c46b5ce6e174663eb7eb86e1a004d2",
+        "sourceAfter": "39542e98e6b590ea00ab8ff42150b87d71c46b5ce6e174663eb7eb86e1a004d2",
+        "popupGuard": {
+          "allCopyEnabled": true,
+          "allOpenDisabled": true,
+          "matchingRows": 3,
+          "message": "Firefox cannot distinguish some groups. Open those groups from Firefox’s tab bar."
+        }
+      },
+      {
+        "passed": true,
+        "browser": {
+          "version": "156.0",
+          "buildId": "20260909172920"
+        },
+        "sourceBefore": "39542e98e6b590ea00ab8ff42150b87d71c46b5ce6e174663eb7eb86e1a004d2",
+        "sourceAfter": "39542e98e6b590ea00ab8ff42150b87d71c46b5ce6e174663eb7eb86e1a004d2",
+        "popupGuard": {
+          "allCopyEnabled": true,
+          "allOpenDisabled": true,
+          "matchingRows": 3,
+          "message": "Firefox cannot distinguish some groups. Open those groups from Firefox’s tab bar."
+        }
+      }
+    ],
+    "initialFailure": {
+      "run": 36347570204,
+      "job": 108699754144,
+      "artifactId": 10941352360,
+      "artifactDigest": "sha256:a8dbce440fbd2605907e2c90239e899882c29a789275b61065defd15bbd8c923",
+      "stage": "afterUpdate completed; popupGuard result absent",
+      "error": "AbortError: Actor MarionetteCommands destroyed before executeScript resolved"
+    },
+    "primarySource": {
+      "checkout": "/tmp/stackma/firefox",
+      "commit": "9e9b5f17f56187c1f5c8b9cdf79a01ff51a7b643",
+      "paths": [
+        "browser/components/extensions/parent/ext-tabs.js:tabs.create returns before load",
+        "toolkit/components/extensions/WebNavigation.sys.mjs:onStateChange",
+        "remote/marionette/evaluate.sys.mjs:unload rejection"
+      ]
+    },
+    "scope": "Fixture readiness only. Existing helper handles pre-response completion, unrelated events, errors, deadline and cleanup. Product assertions remain unchanged; no blind retries."
+  },
+  "unlisted": {
+    "pr": {
+      "observed": "2026-09-27T20:27:16.427Z",
+      "number": 21,
+      "head": "138917d2a6a50c3e0ba5cf38316723553c15ae9e",
+      "base": "b6787797437977e6c1006d364f87a3aa568db221",
+      "url": "https://github.com/Quince-Pie/tab-gantry/pull/21"
+    },
+    "merge": {
+      "observed": "2026-09-27T20:31:02.778Z",
+      "pullRequest": 21,
+      "head": "138917d2a6a50c3e0ba5cf38316723553c15ae9e",
+      "ciRun": 36348086005,
+      "sha": "87c55d7ef94bfcb08cccfe380e61d29a2a0f1c34",
+      "merged": true,
+      "message": "Pull Request successfully merged"
+    },
+    "prCI": {
+      "observed": "2026-09-27T20:31:02.778Z",
+      "id": 36348086005,
+      "head": "138917d2a6a50c3e0ba5cf38316723553c15ae9e",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36348086005"
+    },
+    "mainCI": {
+      "observed": "2026-09-27T20:32:35.825Z",
+      "id": 36348323623,
+      "head": "87c55d7ef94bfcb08cccfe380e61d29a2a0f1c34",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36348323623"
+    },
+    "record": {
+      "tag": "v1.1.11",
+      "commit": "87c55d7ef94bfcb08cccfe380e61d29a2a0f1c34",
+      "version": "1.1.11",
+      "id": "stackma@extensions.local",
+      "displayName": "Tab Gantry",
+      "artifactPrefix": "tab-gantry",
+      "channel": "unlisted",
+      "unsigned": {
+        "bytes": 24823,
+        "sha256": "1bc362196f99d87520d4bec7699038e61aa01e86eb2179a1a184a5d268694c96"
+      },
+      "source": {
+        "bytes": 785641,
+        "sha256": "8d377c843551f59a7ec0d48bfe544e0cae473d9b1db5f365427498d692db3c12"
+      },
+      "license": {
+        "name": "WTFPL 2.0; CMU data terms retained",
+        "sha256": "ef832d30a91a4e1092627ac39cd3933b586a18dcb290bc8a9a1f509aa77bbe81",
+        "apiSha256": "7d7fe17a1f0e298361be4f27309b89ddc33363e33c0812635e02faff6a62d96d"
+      },
+      "tools": {
+        "node": "v24.20.0",
+        "git": "git version 2.55.0",
+        "webExt": "10.7.0"
+      },
+      "priorReleases": [
+        "v1.1.4",
+        "v1.1.5",
+        "v1.1.6",
+        "v1.1.7",
+        "v1.1.8",
+        "v1.1.9",
+        "v1.1.10"
+      ],
+      "versionId": 6519793,
+      "signed": {
+        "sha256": "bd0b5d665847222a8ff95f1a725d167b4d7ff6bc4595f7912a40bbd797c61617",
+        "bytes": 33926
+      },
+      "files": {
+        "tab-gantry-1.1.11.xpi": {
+          "bytes": 33926,
+          "sha256": "bd0b5d665847222a8ff95f1a725d167b4d7ff6bc4595f7912a40bbd797c61617"
+        },
+        "tab-gantry-1.1.11-source.zip": {
+          "bytes": 785641,
+          "sha256": "8d377c843551f59a7ec0d48bfe544e0cae473d9b1db5f365427498d692db3c12"
+        }
+      },
+      "firefox": "156.0",
+      "firefoxBuildId": "20260909172920"
+    },
+    "releaseId": 397802436,
+    "url": "https://github.com/Quince-Pie/tab-gantry/releases/tag/v1.1.11",
+    "publishedAt": "2026-09-27T20:36:27Z",
+    "immutable": true,
+    "assets": [
+      {
+        "name": "release.json",
+        "url": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.11/release.json",
+        "bytes": 1444,
+        "sha256": "93e734ad9dffaf5086d1704747f0cc251e9c9caa476c9bff7940fa53ac769416"
+      },
+      {
+        "name": "SHA256SUMS",
+        "url": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.11/SHA256SUMS",
+        "bytes": 262,
+        "sha256": "2ba16f8339051d91746378401a3bd308cf45f24028dbb61f55640cbfeb58c247"
+      },
+      {
+        "name": "tab-gantry-1.1.11-source.zip",
+        "url": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.11/tab-gantry-1.1.11-source.zip",
+        "bytes": 785641,
+        "sha256": "8d377c843551f59a7ec0d48bfe544e0cae473d9b1db5f365427498d692db3c12"
+      },
+      {
+        "name": "tab-gantry-1.1.11.xpi",
+        "url": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.11/tab-gantry-1.1.11.xpi",
+        "bytes": 33926,
+        "sha256": "bd0b5d665847222a8ff95f1a725d167b4d7ff6bc4595f7912a40bbd797c61617"
+      }
+    ],
+    "publicDownloadsVerified": true,
+    "nativeAttestations": "All four assets verified by successful unlisted publisher completion",
+    "manualUpgrade": {
+      "passed": true,
+      "method": "manual signed-XPI replacement in an isolated Firefox profile",
+      "defaultAmoUpdateDeliveryTested": false,
+      "startedAt": "2026-09-27T20:36:37.558Z",
+      "id": "stackma@extensions.local",
+      "from": {
+        "version": "1.1.8",
+        "name": "Tab Gantry"
+      },
+      "to": {
+        "version": "1.1.11",
+        "name": "Tab Gantry"
+      },
+      "expectedNewSha256": "bd0b5d665847222a8ff95f1a725d167b4d7ff6bc4595f7912a40bbd797c61617",
+      "inputs": {
+        "oldSha256": "3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a",
+        "newSha256": "bd0b5d665847222a8ff95f1a725d167b4d7ff6bc4595f7912a40bbd797c61617"
+      },
+      "browser": {
+        "version": "156.0",
+        "buildId": "20260909172920",
+        "geckodriver": "0.37.1"
+      },
+      "before": {
+        "active": true,
+        "bytes": 33637,
+        "id": "stackma@extensions.local",
+        "installDate": 1790541398609,
+        "name": "Tab Gantry",
+        "permanent": true,
+        "sha256": "3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a",
+        "signed": true,
+        "version": "1.1.8"
+      },
+      "after": {
+        "active": true,
+        "bytes": 33926,
+        "id": "stackma@extensions.local",
+        "installDate": 1790541398609,
+        "name": "Tab Gantry",
+        "permanent": true,
+        "sha256": "bd0b5d665847222a8ff95f1a725d167b4d7ff6bc4595f7912a40bbd797c61617",
+        "signed": true,
+        "version": "1.1.11"
+      },
+      "continuity": {
+        "group": {
+          "collapsed": true,
+          "color": "purple",
+          "id": 1790541398666057,
+          "title": "Retain my research — 日本語",
+          "windowId": 1
+        },
+        "bothTabGroupIdsRetained": true,
+        "extensionStorageRetained": true
+      },
+      "finishedAt": "2026-09-27T20:36:39.151Z"
+    },
+    "manualHarness": {
+      "original": "evidence/release/tab-gantry-manual-upgrade.mjs",
+      "adaptation": "Only import path, from1.1.8/TabGantry andto1.1.11/TabGantry constants, and success message changed",
+      "exercisedSha256": "28b2931711cf3cae5a54e4904a19d18f1bbae0a89c403e6838a7eabcec2046e5"
+    }
+  },
+  "listed": {
+    "preparation": {
+      "observed": "2026-09-27T20:31:21.118Z",
+      "base": "87c55d7ef94bfcb08cccfe380e61d29a2a0f1c34",
+      "workflow_run_id": 36348340963,
+      "run_url": "https://api.github.com/repos/Quince-Pie/tab-gantry/actions/runs/36348340963",
+      "html_url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36348340963"
+    },
+    "review": {
+      "observed": "2026-09-27T20:32:27.575Z",
+      "number": 22,
+      "head": "095696295e58785f89f49bf45804adcc8e785887",
+      "base": "87c55d7ef94bfcb08cccfe380e61d29a2a0f1c34",
+      "tree": "205eb187a45dfb6c340f2e93b35ba0ecb39f09f6",
+      "exactVersionTreeVerified": true,
+      "iconSha256": "4b0b634ab7b77f2f7057478cee7457170ca9b29791dedee2eb42e68230358487",
+      "files": [
+        {
+          "name": "extension/manifest.json",
+          "patch": "@@ -1,7 +1,7 @@\n {\n   \"manifest_version\": 3,\n   \"name\": \"Tab Gantry\",\n-  \"version\": \"1.1.11\",\n+  \"version\": \"1.1.12\",\n   \"description\": \"Automatically stack new related tabs in Firefox\\u2019s native tab groups. Preserve pinned tabs and separate windows.\",\n   \"permissions\": [\n     \"webNavigation\","
+        },
+        {
+          "name": "package-lock.json",
+          "patch": "@@ -1,12 +1,12 @@\n {\n   \"name\": \"tab-gantry\",\n-  \"version\": \"1.1.11\",\n+  \"version\": \"1.1.12\",\n   \"lockfileVersion\": 3,\n   \"requires\": true,\n   \"packages\": {\n     \"\": {\n       \"name\": \"tab-gantry\",\n-      \"version\": \"1.1.11\",\n+      \"version\": \"1.1.12\",\n       \"license\": \"WTFPL\",\n       \"devDependencies\": {\n         \"@types/firefox-webext-browser\": \"143.0.0\","
+        },
+        {
+          "name": "package.json",
+          "patch": "@@ -1,6 +1,6 @@\n {\n   \"name\": \"tab-gantry\",\n-  \"version\": \"1.1.11\",\n+  \"version\": \"1.1.12\",\n   \"author\": \"Quince Pie <pie@quince.org>\",\n   \"license\": \"WTFPL\",\n   \"private\": true,"
+        },
+        {
+          "name": "release-intents/v1.1.12.json",
+          "patch": "@@ -0,0 +1,4 @@\n+{\n+  \"schema\": 1,\n+  \"tag\": \"v1.1.12\"\n+}"
+        }
+      ],
+      "ci": [
+        {
+          "id": 36348369354,
+          "status": "completed",
+          "conclusion": "action_required",
+          "url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36348369354"
+        }
+      ]
+    },
+    "ci": {
+      "observed": "2026-09-27T20:37:41.048Z",
+      "id": 36348369354,
+      "head": "095696295e58785f89f49bf45804adcc8e785887",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36348369354"
+    },
+    "merge": {
+      "observed": "2026-09-27T20:37:41.047Z",
+      "pullRequest": 22,
+      "reviewedHead": "095696295e58785f89f49bf45804adcc8e785887",
+      "ciRun": 36348369354,
+      "personalBuildAccepted": true,
+      "sha": "af369f2af48ea914d7e448345a4f1f55fc9a175a",
+      "merged": true,
+      "message": "Pull Request successfully merged"
+    },
+    "authorization": {
+      "observed": "2026-09-27T20:37:42.496Z",
+      "authority": "Owner requested a new public build regardless of existing pending review; exact pending1.1.10 replacement",
+      "inputs": {
+        "tag": "v1.1.12",
+        "pull-request": "22",
+        "supersede": "1.1.10"
+      },
+      "workflow_run_id": 36348733406,
+      "run_url": "https://api.github.com/repos/Quince-Pie/tab-gantry/actions/runs/36348733406",
+      "html_url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36348733406"
+    },
+    "providerHandoff": {
+      "observed": "2026-09-27T20:45:52.622Z",
+      "method": "Independent authenticated GET/downloads compared to immutable hosted input digest; normalized payload, exact icon, attached source and complete inherited terms verified",
+      "addon": {
+        "id": 3078021,
+        "guid": "stackma@extensions.local",
+        "slug": "tab-gantry",
+        "status": "nominated"
+      },
+      "version": {
+        "id": 6519819,
+        "version": "1.1.12",
+        "channel": "listed",
+        "fileId": 5063965,
+        "status": "unreviewed",
+        "filename": "tab_gantry-1.1.12.zip",
+        "url": "https://addons.mozilla.org/firefox/downloads/file/5063965/tab_gantry-1.1.12.zip",
+        "sha256": "0c686b995f91752b2dc53602e9363b4c855a8ecf71368946bc4e8a8d9f1c399b",
+        "bytes": 24823
+      },
+      "source": {
+        "sha256": "077e7432affc13536c0f2e941f3e9d2c2038f2c55e40348f13bec2ca7c6619de",
+        "bytes": 785827,
+        "matches": true
+      },
+      "payloadMatches": true,
+      "icon": {
+        "sha256": "4b0b634ab7b77f2f7057478cee7457170ca9b29791dedee2eb42e68230358487",
+        "bytes": 989
+      },
+      "license": {
+        "id": 10390,
+        "sha256": "ef832d30a91a4e1092627ac39cd3933b586a18dcb290bc8a9a1f509aa77bbe81",
+        "matches": true
+      },
+      "previous": {
+        "id": 6518667,
+        "version": "1.1.10",
+        "status": "disabled"
+      },
+      "personal": {
+        "id": 6519793,
+        "version": "1.1.11",
+        "channel": "unlisted",
+        "status": "public",
+        "signedSha256": "sha256:bd0b5d665847222a8ff95f1a725d167b4d7ff6bc4595f7912a40bbd797c61617"
+      },
+      "permanentSignatureAcceptance": false,
+      "publicListingAcceptance": false,
+      "defaultAmoUpdateDelivery": false
+    },
+    "ordinaryGuard": {
+      "observed": "2026-09-27T20:42:02.722Z",
+      "run": 36348733807,
+      "job": 108703539561,
+      "conclusion": "failure",
+      "reasons": [
+        "Process completed with exit code 1.",
+        "AMO version 1.1.10 is still awaiting Mozilla review. Creating 1.1.12 now would disable it: AMO disables every older listed version awaiting review when a new version is created. No AMO version was created for 1.1.12.\n\nTo keep the pending version, wait for Mozilla's decision, then rerun this workflow run or run Publish release with tag v1.1.12.\nTo replace it deliberately, run Publish release with tag v1.1.12 and supersede 1.1.10."
+      ],
+      "authorizedContinuation": 36348733406
+    },
+    "source": {
+      "context": {
+        "tag": "v1.1.12",
+        "commit": "af369f2af48ea914d7e448345a4f1f55fc9a175a",
+        "version": "1.1.12",
+        "id": "stackma@extensions.local",
+        "displayName": "Tab Gantry",
+        "artifactPrefix": "tab-gantry",
+        "channel": "listed",
+        "unsigned": {
+          "bytes": 24823,
+          "sha256": "1aa94c1011d9f1567aff3370da5d91fd9e6e4f16670ac80cce1b85cec10afba5"
+        },
+        "source": {
+          "bytes": 785827,
+          "sha256": "077e7432affc13536c0f2e941f3e9d2c2038f2c55e40348f13bec2ca7c6619de"
+        },
+        "license": {
+          "name": "WTFPL 2.0; CMU data terms retained",
+          "sha256": "ef832d30a91a4e1092627ac39cd3933b586a18dcb290bc8a9a1f509aa77bbe81"
+        },
+        "tools": {
+          "node": "v24.20.0",
+          "git": "git version 2.55.0",
+          "webExt": "10.7.0"
+        },
+        "priorReleases": [
+          "v1.1.4",
+          "v1.1.5",
+          "v1.1.6",
+          "v1.1.7",
+          "v1.1.8",
+          "v1.1.9",
+          "v1.1.10",
+          "v1.1.11"
+        ]
+      },
+      "artifact": {
+        "id": 10941128530,
+        "digest": "sha256:786f438cec0db194dac4a429a81395939804c44458eac604002a07e4ae676f86",
+        "run": 36348733406
+      },
+      "icon": {
+        "sha256": "4b0b634ab7b77f2f7057478cee7457170ca9b29791dedee2eb42e68230358487",
+        "bytes": 989
+      },
+      "manifestMatchesSource": true
+    },
+    "publisher": {
+      "id": 36348733406,
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36348733406",
+      "jobs": [
+        {
+          "id": 108703662218,
+          "name": "Resolve the approved release source",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 108703741390,
+          "name": "Verify the release commit / Verify Firefox 156 extension",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 108704089168,
+          "name": "Tag the verified release commit",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 108704165217,
+          "name": "Sign and verify with Mozilla",
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ],
+      "terminalConclusionClaimed": false
+    },
+    "recovery": {
+      "resumerState": "active",
+      "schedule": "41 */6 * * * UTC",
+      "manual": "gh workflow run release.yml --ref main --repo Quince-Pie/tab-gantry -f tag=v1.1.12"
+    }
+  },
+  "provider": {
+    "observation": {
+      "observed": "2026-09-27T20:17:36.920Z",
+      "policy": [
+        {
+          "item": "ruleset \"Stackma release tags\"",
+          "status": "ok",
+          "detail": "",
+          "writes": []
+        },
+        {
+          "item": "ruleset \"Stackma main history\"",
+          "status": "ok",
+          "detail": "",
+          "writes": []
+        },
+        {
+          "item": "environment release-signing",
+          "status": "ok",
+          "detail": "",
+          "writes": []
+        },
+        {
+          "item": "environment release-publication",
+          "status": "ok",
+          "detail": "",
+          "writes": []
+        },
+        {
+          "item": "immutable releases",
+          "status": "ok",
+          "detail": "",
+          "writes": []
+        },
+        {
+          "item": "Actions may create pull requests",
+          "status": "ok",
+          "detail": "",
+          "writes": []
+        },
+        {
+          "item": "release workflow events",
+          "status": "ok",
+          "detail": "",
+          "writes": []
+        }
+      ],
+      "amoDeployment": {
+        "target": "production",
+        "version": "2026.09.17-1",
+        "source": "https://github.com/mozilla/addons-server",
+        "commit": "c03d3c661bdbe22bb8f4a52fc46d63668bb31751",
+        "build": "https://github.com/mozilla/addons-server/actions/runs/35715997718",
+        "python": "3.13",
+        "django": "5.2",
+        "addons-linter": "10.12.0"
+      }
+    },
+    "sources": [
+      "docs/unlisted-1.1.6.md",
+      "docs/url-and-icon-rename.md",
+      "docs/release-design.md"
+    ],
+    "scope": "Same deployed AMO revision and same release mechanism; no new distribution channel or architectural/performance claim"
+  },
+  "acceptance": {
+    "local": "153 extension checks, strict lint/typecheck/build and actual package install passed; readiness helper6/6 and browser3/3",
+    "hosted": "Icon repair, unlisted PR/main and listed PR CI pass",
+    "unlisted": "Signed permanent install, immutable publication, native attestations, public bytes and manual upgrade passed",
+    "listed": "Accepted and independently verified; exact pending1.1.10 superseded; Mozilla approval/signing/publication and default-AMO delivery remain pending",
+    "cleanup": "Exact old files retained on local recovery branch; original checkout fast-forwarded and clean",
+    "universalOptimality": "Not claimed"
+  },
+  "budget": {
+    "started": "2026-09-27T20:16:50Z",
+    "limitMinutes": 100,
+    "elapsedWallMinutes": 30.16,
+    "delegationUpperBoundMinutes": 27
+  },
+  "verificationScope": "All source verification and provider comparisons use frozen commits, locked dependencies and Firefox156; no benchmark or review-latency superiority is claimed."
+}
