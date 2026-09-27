@@ -80,6 +80,27 @@ test("renamed publication uses frozen branding without changing the legacy owner
   assert(f.calls.slice(before).every(a => a[1] === "verify-asset"));
 });
 
+test("a successful draft create waits for visibility without repeating the mutation", async t => {
+  const f = await fixture(t), read = f.github.releases;
+  let missing = 3, pauses = 0;
+  f.github.releases = async () => f.history.length && missing-- > 0 ? [] : read();
+  const result = await publishRelease({ ...f.options, pause: async ms => { assert.equal(ms, 15_000); pauses++; } });
+  assert(result.immutable); assert.equal(pauses, 3);
+  assert.equal(f.calls.filter(a => a[1] === "create").length, 1);
+});
+
+test("unobservable created drafts stop after bounded reads and remain recoverable", async t => {
+  const f = await fixture(t), read = f.github.releases;
+  let readsAfterCreate = 0, pauses = 0;
+  f.github.releases = async () => { if (f.history.length) { readsAfterCreate++; return []; } return read(); };
+  await assert.rejects(() => publishRelease({ ...f.options, pause: async () => { pauses++; } }), /not visible after bounded reads/u);
+  assert.equal(readsAfterCreate, 6); assert.equal(pauses, 5);
+  assert.equal(f.calls.filter(a => a[1] === "create").length, 1);
+  assert.equal(f.history.length, 1); assert(f.history[0].draft);
+  f.github.releases = read; await publishRelease(f.options);
+  assert.equal(f.calls.filter(a => a[1] === "create").length, 1);
+});
+
 for(const failure of ["failCreate","failUpload"]) test(`${failure}: reconcile completed remote work without overwrite`,async t=>{
   const f=await fixture(t);f.state[failure]=true;
   await assert.rejects(()=>publishRelease(f.options));
