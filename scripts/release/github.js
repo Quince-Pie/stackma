@@ -173,7 +173,7 @@ export async function publishRelease({ github, record, directory, notesPath, ver
   if (!release) {
     const installation = record.channel === "unlisted"
       ? `This is a self-distributed (unlisted) release. Download the XPI and use Firefox's Add-ons Manager → Install Add-on From File. It is not available from the AMO listing or delivered through AMO automatic updates. This installation can receive a future compatible listed version higher than ${version}; its add-on ID and default AMO update service are unchanged.`
-      : "Install from [Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/stackma/) for normal automatic updates, or download the XPI and use Firefox's Add-ons Manager → Install Add-on From File.";
+      : "Install from [Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/tab-gantry/) for normal automatic updates, or download the XPI and use Firefox's Add-ons Manager → Install Add-on From File.";
     await writeFile(notesPath, `${marker}\n\nMozilla-signed ${displayName} ${version} for Firefox 156 and newer.\n\n${installation}\n\nSource commit: ${commit}. See SHA256SUMS and release.json for package identities and Firefox verification.\n`);
     // Explicit --draft preserves completed uploads if a later operation fails.
     // Never retry a write here; the next run reconciles server state first.

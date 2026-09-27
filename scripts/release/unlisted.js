@@ -73,8 +73,8 @@ export async function runUnlisted({ tag, pullNumber, env = process.env }) {
   const lock = await open(lockPath, "wx"); // All local worktrees share this lock.
   try {
     await lock.writeFile(JSON.stringify({ pid: process.pid, tag, commit }) + "\n");
-    const repository = env.GITHUB_REPOSITORY ?? "Quince-Pie/stackma";
-    assert.equal(repository, "Quince-Pie/stackma");
+    const repository = env.GITHUB_REPOSITORY ?? "Quince-Pie/tab-gantry";
+    assert.equal(repository, "Quince-Pie/tab-gantry");
     const token = env.GH_TOKEN || env.GITHUB_TOKEN;
     const github = new RepositoryGitHub(repository, token);
     await run("gh", ["--version"], { env, timeout: 10_000 });

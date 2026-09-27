@@ -234,7 +234,8 @@ export async function signRelease({ client, context, directory, output, verify =
   const checkListing = async () => {
     const addon = await client.fetchJson(addonUrl);
     assert.equal(addon.guid, context.id, "The existing AMO add-on must match the manifest ID");
-    assert.equal(addon.slug, "stackma", "Unexpected AMO listing");
+    // The immutable GUID identifies the add-on. Its owner-editable listing
+    // slug can change without changing installed-user or release identity.
     assert.equal(addon.is_disabled, false, "AMO listing is disabled or its state is unavailable");
     // An enabled listing with no approved/pending listed file is incomplete.
     // AMO permits submitting a new listed version from that state; approval

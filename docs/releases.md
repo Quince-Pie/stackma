@@ -1,5 +1,10 @@
 # Releasing Tab Gantry
 
+Use the canonical repository `Quince-Pie/tab-gantry` and AMO slug `tab-gantry`.
+The [URL and icon migration](url-and-icon-rename.md) preserves the add-on ID and
+pending 1.1.9 submission. Dispatch historical recovery from current `main` in
+the renamed repository; old event snapshots can still contain the old name.
+
 The [Tab Gantry rename](tab-gantry-rename.md) covers unlisted 1.1.8, listed 1.1.9,
 and the owner's explicit replacement of pending 1.1.7. Keep the established ID
 and historical release identities when recovering older versions.
@@ -65,9 +70,9 @@ an administrator's token, separate from the publisher's job token:
 ```sh
 nix develop .#release
 gh auth login
-node scripts/release/repository-policy.js --repository=Quince-Pie/stackma
+node scripts/release/repository-policy.js --repository=Quince-Pie/tab-gantry
 # Only after reviewing and authorizing settings changes:
-node scripts/release/repository-policy.js --repository=Quince-Pie/stackma --apply
+node scripts/release/repository-policy.js --repository=Quince-Pie/tab-gantry --apply
 ```
 
 It preserves existing reviewers/timers: inspect those separately for unattended
@@ -329,7 +334,7 @@ zizmor --offline --persona=pedantic .github/workflows
 shellcheck scripts/ci/*.sh
 nix flake check --all-systems --no-build --no-update-lock-file
 nixfmt --check flake.nix
-node scripts/release/resume.js --dry-run --repository=Quince-Pie/stackma
+node scripts/release/resume.js --dry-run --repository=Quince-Pie/tab-gantry
 ```
 
 Use a disposable checkout for build/browser checks to preserve local work:

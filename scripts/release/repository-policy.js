@@ -229,7 +229,7 @@ export async function runPolicy({ client, apply = false, log = console.log }) {
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
-  const repository = process.argv.find(arg => arg.startsWith("--repository="))?.slice("--repository=".length) ?? process.env.GITHUB_REPOSITORY ?? "Quince-Pie/stackma";
+  const repository = process.argv.find(arg => arg.startsWith("--repository="))?.slice("--repository=".length) ?? process.env.GITHUB_REPOSITORY ?? "Quince-Pie/tab-gantry";
   let token = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
   if (!token) {
     try { token = (await promisify(execFile)("gh", ["auth", "token"], { timeout: 30_000 })).stdout.trim(); }
