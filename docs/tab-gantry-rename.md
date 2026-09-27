@@ -1,5 +1,9 @@
 # Tab Gantry rename and release sequence
 
+**Subsequent URL/icon migration:** the owner retained the add-on ID and chose
+the `tab-gantry` repository and AMO URL. See [the later migration record](url-and-icon-rename.md).
+The source and release observations below describe the original rename sequence.
+
 The owner requested the rename on 2026-09-27, including an unlisted build to
 install immediately and then a listed build for Mozilla review. The owner
 explicitly approved replacing pending listed **1.1.7** with renamed **1.1.9**.

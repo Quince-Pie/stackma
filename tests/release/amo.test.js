@@ -23,7 +23,7 @@ async function fixture(t, overrides = {}) {
     signal: AbortSignal.timeout(2000), pollMs: 1,
     async fetchJson(url) {
       if (url.pathname.endsWith("site/")) return { read_only: state.readOnly ?? false };
-      return { guid: context.id, slug: "stackma", status: state.addonStatus ?? (state.addonPublic ? "public" : "nominated"), is_disabled: state.addonDisabled ?? false };
+      return { guid: state.guid ?? context.id, slug: state.slug ?? "stackma", status: state.addonStatus ?? (state.addonPublic ? "public" : "nominated"), is_disabled: state.addonDisabled ?? false };
     },
     async version(_id, version = context.version) {
       events.push("get-version");
@@ -47,6 +47,19 @@ test("existing approved listed version resumes without upload or write", async t
   assert.equal(result.versionId, 42);
   assert.equal(result.state, "approved-and-signed");
   assert(!f.events.includes("upload") && !f.events.includes("create") && !f.events.includes("patch-source"));
+});
+
+test("an owner-renamed listing resumes the same immutable add-on without writes", async t => {
+  const f = await fixture(t, { slug: "tab-gantry" });
+  const result = await signRelease(f.options);
+  assert.equal(result.state, "approved-and-signed"); assert.equal(result.versionId, 42);
+  assert(!f.events.some(event => ["upload", "create", "patch-source", "patch-license"].includes(event)));
+});
+
+test("a matching listing slug cannot substitute another add-on ID", async t => {
+  const f = await fixture(t, { slug: "tab-gantry", guid: "another@extensions.local" });
+  await assert.rejects(() => signRelease(f.options), /match the manifest ID/u);
+  assert.deepEqual(f.events, []);
 });
 
 test("unlisted creation preserves pending listed versions and attaches source before missing terms", async t => {

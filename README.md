@@ -1,6 +1,8 @@
 # Tab Gantry
 
 Formerly Stackma. The Firefox add-on ID and existing update path are unchanged.
+The repository and AMO URL use `tab-gantry`; see the
+[URL and icon migration](docs/url-and-icon-rename.md).
 
 Automatic related-tab stacks for **Firefox desktop 156** using native tab groups.
 Open a link in a new tab: it joins the opener's group, or starts a group with the
@@ -36,7 +38,7 @@ shows a notice if grouping or naming fails. Details remain in the local extensio
 console.
 
 The renamed personal build, **1.1.8**, is available as a
-[Mozilla-signed XPI](https://github.com/Quince-Pie/stackma/releases/download/v1.1.8/tab-gantry-1.1.8.xpi).
+[Mozilla-signed XPI](https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.8/tab-gantry-1.1.8.xpi).
 Use Firefox's Add-ons Manager → Install Add-on From File. It replaces an existing
 Stackma installation without uninstalling it; the real 1.1.6 → 1.1.8 upgrade test
 preserved native groups and local storage. This unlisted build is distributed
@@ -115,6 +117,9 @@ node scripts/build.js                    # writes dist/tab-gantry-VERSION.xpi
 The build packages exactly the files in `extension/`, with sorted names and fixed
 timestamps, and prints the archive's SHA-256. Files elsewhere are not packaged;
 `listing/icon.png` is the 128-pixel listing icon uploaded to Mozilla Add-ons.
+Render it from `extension/icon.svg` with `node scripts/render-listing-icon.js`
+using the documented Firefox toolchain. Listing artwork and frozen release
+packages are separate: a changed SVG ships in the next version.
 
 ## CI and maintenance
 

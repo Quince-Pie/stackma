@@ -57,6 +57,7 @@ test("publish stages a draft, verifies all digests, publishes once and verifies 
   assert.equal(f.calls.filter(a=>a[1]==="verify-asset").length,4);
   assert(f.calls[0].includes("--draft") && f.calls[0].includes("--verify-tag"));
   assert(!f.calls[0].includes("--target"), "existing verified tags need no historical target_commitish");
+  assert.match(f.history[0].body, /https:\/\/addons\.mozilla\.org\/firefox\/addon\/tab-gantry\//u);
   const previous=f.calls.length;await publishRelease(f.options);
   assert(f.calls.slice(previous).every(a=>a[1]==="verify-asset"));
 });
