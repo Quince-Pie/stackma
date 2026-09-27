@@ -9,6 +9,10 @@ below is superseded. A future default-AMO update test can start from signed
 Unlisted signing does not establish listed-channel publication or automatic
 update delivery.
 
+The owner has now requested listed **1.1.7**. Its [submission record](listed-1.1.7.md)
+documents the successful hosted merge trigger, exact source/license verification
+and remaining Mozilla-review/update-delivery gates.
+
 This is the continuation of the local [design qualification](release-design.md).
 On 2026-09-26 the owner authorized completing repository setup and live release
 acceptance, and supplied administrator API access through the ignored local

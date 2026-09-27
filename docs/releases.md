@@ -253,20 +253,26 @@ and is outside the operated contract. Version 1.1.5 is retired with the
 
 ## Existing versions and rollout
 
-Read-only observations on 2026-09-26 are not reservations or approval:
+Current and historical release states are recorded separately; observations are
+not reservations or approval:
 
 - **1.1.4**, commit `997087de3e07b3ffb0b3968e1617b80997a42a6b`, AMO version
-  `6511539`, is unreviewed with source. The new controller rebuilt, installed and
-  matched its payload/source/license using only GET requests. Leave it pending;
-  after rollout, dispatch this tag from main to use corrected tooling.
+  `6511539`, was initially unreviewed with matching source. The owner subsequently
+  disabled it; preserve that state.
+- **1.1.5** was tagged but its signing job never started. Its unsubmitted intent
+  is explicitly retired with [pre-execution evidence](listed-1.1.7.md).
+- **1.1.6** is signed, verified and published for [unlisted self-distribution](unlisted-1.1.6.md).
+- **1.1.7** is [submitted to the listed channel](listed-1.1.7.md), awaiting Mozilla
+  review. It retains the same ID and can update installed 1.1.6 after approval.
 - **1.1.0, 1.1.2 and 1.1.3** have disabled AMO files. Preserve them. Older missing
   sources and the normalization incident are recorded in [AMO formats](amo-formats.md).
 - **v1.1.1** is immutable with no assets, at a commit declaring 1.1.0. It cannot
   be reused or supplemented. An explanatory note edit requires separate remote
   authorization.
 
-Retain existing tags, releases, PRs and submissions. This change does not bump the
-product version, alter product code/licenses or move the listing icon.
+Retain existing tags, releases, PRs and submissions. The controller redesign
+preserved product behavior and licenses; the subsequent 1.1.6 and 1.1.7 releases
+change only product version fields.
 
 During rollout, let all old release runs finish and ensure there are no queued
 old controllers or manual submissions. Inventory tags against AMO versions before

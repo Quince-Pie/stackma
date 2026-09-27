@@ -1,0 +1,200 @@
+{
+  "schema": 1,
+  "observed": "2026-09-27T00:19:06.022Z",
+  "request": "Listed 1.1.7 on addons.mozilla.org after the owner installed unlisted 1.1.6; stable identity and product behavior preserved.",
+  "source": {
+    "tag": "v1.1.7",
+    "commit": "bc43c338e5a245a3116084d33ecbaa170885c358",
+    "version": "1.1.7",
+    "id": "stackma@extensions.local",
+    "channel": "listed",
+    "unsigned": {
+      "bytes": 24528,
+      "sha256": "c630d37db4ef800089fdb736819f207b9346c030ac224705d4aae7ea370c0c54"
+    },
+    "source": {
+      "bytes": 746325,
+      "sha256": "7335955f2f4baa629afef371696ac8f509c680829d4e52a68e7eab17b450293a"
+    },
+    "license": {
+      "name": "WTFPL 2.0; CMU data terms retained",
+      "sha256": "ef832d30a91a4e1092627ac39cd3933b586a18dcb290bc8a9a1f509aa77bbe81"
+    },
+    "tools": {
+      "node": "v24.20.0",
+      "git": "git version 2.55.0",
+      "webExt": "10.7.0"
+    },
+    "priorReleases": [
+      "v1.1.4",
+      "v1.1.5",
+      "v1.1.6"
+    ],
+    "artifactId": 10918334973,
+    "artifactDigest": "sha256:4f00802795103f4a2a5637db200c36785268c31726ef652966587686f8dd5b3f",
+    "artifactRun": 36281036540
+  },
+  "preparation": {
+    "workflowRun": 36280811508,
+    "conclusion": "success",
+    "versionPullRequest": 10,
+    "url": "https://github.com/Quince-Pie/stackma/pull/10",
+    "versionHead": "dc7242569dc9c007385460b1fad14ed7a16cfd93",
+    "versionCI": 36280837273,
+    "versionCIConclusion": "success",
+    "mergeCommit": "bc43c338e5a245a3116084d33ecbaa170885c358",
+    "productChange": "Only four version fields and the immutable 1.1.7 intent record"
+  },
+  "controller": {
+    "pullRequest": 9,
+    "mergeCommit": "9aee545ef416dd9dcfcb192cb2b449d46f1de3d3",
+    "ciRun": 36280627891,
+    "ciConclusion": "success",
+    "localReleaseTests": "207/207",
+    "independentAffectedTests": "103/103",
+    "workflowLint": "pass",
+    "securityAnalysis": "zizmor passes with a documented manual dangerous-triggers audit for closed/merged/same-repository source on protected main; no unsafe checkout opt-in"
+  },
+  "settings": {
+    "eventPolicyId": 5782,
+    "workflowPath": ".github/workflows/release.yml",
+    "events": [
+      "pull_request_target",
+      "workflow_dispatch"
+    ],
+    "enforcement": "active",
+    "allPolicyChecks": "7/7 passed",
+    "environments": "unchanged: main branch only",
+    "retiredVersion": "v1.1.5",
+    "retirementEvidence": "evidence/release/listed-recovery.json"
+  },
+  "hostedPublisher": {
+    "observed": "2026-09-27T00:16:31.030Z",
+    "id": 36281036540,
+    "event": "pull_request_target",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/Quince-Pie/stackma/actions/runs/36281036540",
+    "jobs": [
+      {
+        "id": 108512749284,
+        "name": "Resolve the approved release source",
+        "conclusion": "success",
+        "runnerId": 1000003417
+      },
+      {
+        "id": 108512790314,
+        "name": "Verify the release commit / Verify Firefox 156 extension",
+        "conclusion": "success",
+        "runnerId": 1000003418
+      },
+      {
+        "id": 108513070980,
+        "name": "Tag the verified release commit",
+        "conclusion": "success",
+        "runnerId": 1000003419
+      },
+      {
+        "id": 108513132614,
+        "name": "Sign and verify with Mozilla",
+        "conclusion": "success",
+        "runnerId": 1000003420
+      },
+      {
+        "id": 108515472500,
+        "name": "Publish the verified signed release",
+        "conclusion": "skipped",
+        "runnerId": null
+      }
+    ],
+    "signingState": "awaiting-review",
+    "signedInstallation": "skipped",
+    "publication": "skipped"
+  },
+  "mozilla": {
+    "observed": "2026-09-27T00:17:46.427Z",
+    "addonStatus": "nominated",
+    "disabled": false,
+    "version": {
+      "id": 6517688,
+      "version": "1.1.7",
+      "channel": "listed",
+      "status": "unreviewed",
+      "hash": "sha256:ea5171087a5bc9705a69be42b0cd88da6f2fd72ead9b9c9e43f4679a3703d176",
+      "sourcePresent": true,
+      "licenseId": 10390
+    },
+    "baseline": {
+      "id": 6517542,
+      "version": "1.1.6",
+      "channel": "unlisted",
+      "status": "public",
+      "hash": "sha256:21748c0bb759d1005c39c9abcf2752021a48d9618bdccc86fddb32984df64033",
+      "is_disabled": false
+    },
+    "deployment": {
+      "target": "production",
+      "version": "2026.09.17-1",
+      "source": "https://github.com/mozilla/addons-server",
+      "commit": "c03d3c661bdbe22bb8f4a52fc46d63668bb31751",
+      "build": "https://github.com/mozilla/addons-server/actions/runs/35715997718",
+      "python": "3.13",
+      "django": "5.2",
+      "addons-linter": "10.12.0"
+    },
+    "resume": {
+      "state": "active",
+      "url": "https://github.com/Quince-Pie/stackma/blob/main/.github/workflows/resume-release.yml"
+    }
+  },
+  "submissionVerification": {
+    "observed": "2026-09-27T00:06:09.062Z",
+    "method": "Authenticated GET/downloads only; compare owner source, normalized payload and inherited license to the immutable tested-input artifact",
+    "versionId": 6517688,
+    "channel": "listed",
+    "fileStatus": "unreviewed",
+    "licenseId": 10390,
+    "licenseMatches": true,
+    "sourceSha256": "7335955f2f4baa629afef371696ac8f509c680829d4e52a68e7eab17b450293a",
+    "sourceBytes": 746325,
+    "payloadMatches": true,
+    "amoFileSha256": "ea5171087a5bc9705a69be42b0cd88da6f2fd72ead9b9c9e43f4679a3703d176",
+    "amoFileBytes": 24528,
+    "permanentSignatureAcceptance": false,
+    "publicListingAcceptance": false
+  },
+  "acceptance": {
+    "trustedMergeTrigger": "passed: signing job 108513132614 received runner 1000003420 and executed authenticated submission under the unchanged environment policy",
+    "listedSourceOnCreate": "passed: remote source SHA256 matches the tested immutable input artifact",
+    "inheritedLicense": "passed: listed 1.1.7 uses predecessor listed 1.1.4 license 10390 with complete matching WTFPL/CMU terms; unlisted 1.1.6 license 10403 untouched",
+    "publicAvailability": "pending Mozilla review",
+    "signedPermanentInstallation": "pending Mozilla approval/signing",
+    "githubPublication": "pending Mozilla approval/signing",
+    "actualUpdateFrom1_1_6": "pending a public approved 1.1.7; existing real-updater harness prepared in docs/listed-1.1.7.md",
+    "pendingReviewRun": "passed: hosted run finished successfully in verified awaiting-review state, with permanent-signature verification and GitHub publication skipped"
+  },
+  "recovery": {
+    "run": "https://github.com/Quince-Pie/stackma/actions/runs/36281036540",
+    "resume": "Resume approved releases remains enabled; schedule 41 */6 * * * UTC. After approval, main-dispatched publication reconstructs the frozen source and reuses all checks.",
+    "manual": "gh workflow run release.yml --ref main -f tag=v1.1.7 --repo Quince-Pie/stackma",
+    "warning": "Do not supersede or disable pending 1.1.7 to accelerate review. Existing 1.1.6 remains installable; external review duration is not controlled."
+  },
+  "budget": {
+    "started": "2026-09-26T23:28:27Z",
+    "limitMinutes": 75,
+    "elapsedMinutesAtRecord": 50.65
+  },
+  "scope": "Qualified recovery and verified listed submission. Public availability, signed publication and default-AMO update delivery are separate gates. No universal-optimality claim.",
+  "logEvidence": {
+    "observed": "2026-09-27T00:17:47.122Z",
+    "runId": 36281036540,
+    "archiveBytes": 222110,
+    "archiveSha256": "e1b0dfa80def6396aca4baee475be68b5fa20ee2208c8eba0863d7cb4c81096b",
+    "awaitingReviewVerified": true,
+    "versionId": 6517688,
+    "checkoutRefs": [
+      "bc43c338e5a245a3116084d33ecbaa170885c358"
+    ],
+    "sourceHashObserved": true
+  }
+}
