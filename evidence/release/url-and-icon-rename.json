@@ -1,0 +1,620 @@
+{
+  "schema": 1,
+  "observed": "2026-09-27T10:42:19.651Z",
+  "authority": {
+    "initialRequest": "Rename repository and reconsider AMO identity; use supplied extension/icon.svg",
+    "clarification": "Keep the existing add-on ID; rename only the AMO URL and GitHub repository.",
+    "scope": "Rename the same provider objects and update icon/links; preserve pending1.1.9 and frozen releases. No new listing or submission."
+  },
+  "contract": {
+    "addonId": "stackma@extensions.local",
+    "amoId": 3078021,
+    "repositoryId": 1384275718,
+    "repositoryNodeId": "R_kgDOUoJfBg",
+    "firefoxMinimum": "156.0",
+    "productLogicPermissionsAndLicenses": "unchanged",
+    "newRepository": "Quince-Pie/tab-gantry",
+    "newAmoSlug": "tab-gantry"
+  },
+  "qualification": {
+    "decision": "Retain immutable identities; rename mutable URLs. Identify AMO by GUID, never owner-editable slug.",
+    "alternatives": [
+      {
+        "design": "New AMO ID/listing",
+        "result": "Rejected by owner after clarifying manual reinstall and loss of automatic upgrade continuity"
+      },
+      {
+        "design": "Create a new GitHub repository",
+        "result": "Explicitly outside owner request; same-repository rename preserves existing objects"
+      },
+      {
+        "design": "Keep hardcoded old slug or follow authenticated redirects",
+        "result": "Reject: old slug blocks authorized rename; forwarding credentials through redirects is unnecessary. Use GUID and canonical repository paths."
+      }
+    ],
+    "scope": "Routine URL/icon migration and affected release recovery; no algorithmic performance claim or universal-optimality claim",
+    "decisionChangingGaps": "None for completed migration gates; Mozilla approval and actual update delivery remain independent"
+  },
+  "sources": [
+    {
+      "url": "https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository",
+      "observed": "2026-09-27",
+      "scope": "Same-repository rename, web/git redirects, exception for hosted actions; old name must not be reused"
+    },
+    {
+      "url": "https://docs.github.com/en/repositories/working-with-files/using-files/downloading-source-code-archives#stability-of-source-code-archives",
+      "observed": "2026-09-27",
+      "scope": "Auto-generated archive root names can change; attached release-source assets are verified instead"
+    },
+    {
+      "url": "https://github.com/cli/cli/blob/0cf1092493af067646fc5f3db9421c6a6ec9c938/pkg/cmd/release/shared/attestation.go",
+      "version": "Installed gh2.101.0",
+      "observed": "2026-09-27",
+      "relatedPaths": [
+        "pkg/cmd/release/verify/verify.go",
+        "pkg/cmd/release/verify-asset/verify_asset.go",
+        "pkg/cmd/attestation/api/client.go"
+      ],
+      "scope": "Native signer, tag and digest checks accept historical repository-name claims; supplemented by actual post-rename verification"
+    },
+    {
+      "url": "https://mozilla.github.io/addons-server/topics/api/addons.html#edit",
+      "observed": "2026-09-27",
+      "deployedVersion": "2026.09.17-1",
+      "deployedCommit": "c03d3c661bdbe22bb8f4a52fc46d63668bb31751",
+      "relatedPaths": [
+        "src/olympia/addons/serializers.py:AddonSerializer.validate_slug/update/_save_icon",
+        "src/olympia/addons/models.py:Addon.clean_slug/get_lookup_field",
+        "src/olympia/api/fields.py:OutgoingURLTranslationField",
+        "src/olympia/addons/tasks.py:resize_icon",
+        "src/olympia/amo/utils.py:resize_image/pngcrush_image",
+        "src/olympia/amo/decorators.py:set_modified_on",
+        "src/olympia/amo/tasks.py:set_modified_on_object"
+      ],
+      "scope": "Slug uniqueness/exact lookup, writable support URL, no version replacement on metadata edits, async icon processing and modified hash",
+      "limits": "Published docs omit support_url from the edit field list; deployed writable serializer establishes it and actual readback confirms the change. Oldslug redirects are not guaranteed."
+    },
+    {
+      "url": "https://extensionworkshop.com/documentation/develop/extensions-and-the-add-on-id/",
+      "observed": "2026-09-27",
+      "scope": "Stable identity controls installed add-on data and updates"
+    },
+    {
+      "source": "Supplied Firefox checkout",
+      "commit": "9e9b5f17f56187c1f5c8b9cdf79a01ff51a7b643",
+      "observed": "2026-09-27",
+      "paths": [
+        "modules/libpref/init/StaticPrefList.yaml",
+        "layout/style/PreferenceSheet.cpp"
+      ],
+      "scope": "prefers-color-scheme content override1 means light; actual renderer runsFirefox156"
+    }
+  ],
+  "implementation": {
+    "pullRequest": 16,
+    "observed": "2026-09-27T10:33:33.784Z",
+    "url": "https://github.com/Quince-Pie/tab-gantry/pull/16",
+    "reviewedHead": "10c249b3328205904713430c8103e718ff19c2fc",
+    "ciRun": 36312638439,
+    "sha": "34431e1550a44851ec0e8a8e1646ad1718a9c1dc",
+    "merged": true,
+    "message": "Pull Request successfully merged",
+    "localChecks": {
+      "baselineReleaseTests": 212,
+      "releaseTests": 214,
+      "npmCheck": "passed: typecheck, extension tests, strict web-ext lint",
+      "build": "passed",
+      "firefoxPackage": "passed: every packaged file and real grouping/naming checked",
+      "renderer": "128px PNG rendered in Firefox156; original owner SVG unchanged"
+    },
+    "prCI": {
+      "observed": "2026-09-27T10:31:31.097Z",
+      "id": 36312638439,
+      "status": "completed",
+      "conclusion": "success",
+      "head": "10c249b3328205904713430c8103e718ff19c2fc",
+      "url": "https://github.com/Quince-Pie/stackma/actions/runs/36312638439"
+    },
+    "renamedMainCI": {
+      "observed": "2026-09-27T10:35:43.859Z",
+      "runs": [
+        {
+          "id": 36312922478,
+          "head": "34431e1550a44851ec0e8a8e1646ad1718a9c1dc",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36312922478"
+        }
+      ]
+    }
+  },
+  "repository": {
+    "observed": "2026-09-27T10:31:34.322Z",
+    "repository": {
+      "id": 1384275718,
+      "nodeId": "R_kgDOUoJfBg",
+      "fullName": "Quince-Pie/tab-gantry",
+      "defaultBranch": "main"
+    },
+    "refsPreserved": true,
+    "releaseObjectsAndAssetDigestsPreserved": true,
+    "inventory": [
+      {
+        "id": 395301544,
+        "tag": "v1.1.1",
+        "name": "v1.1.1",
+        "draft": false,
+        "immutable": true,
+        "assets": []
+      },
+      {
+        "id": 397417719,
+        "tag": "v1.1.6",
+        "name": "Stackma 1.1.6",
+        "draft": false,
+        "immutable": true,
+        "assets": [
+          {
+            "id": 591592065,
+            "name": "release.json",
+            "bytes": 1298,
+            "digest": "sha256:f5784d5573e66548981c5550b832d0a24d856e5aefa07b435af2d9d2e48a9ce4",
+            "url": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.6/release.json"
+          },
+          {
+            "id": 591592074,
+            "name": "SHA256SUMS",
+            "bytes": 254,
+            "digest": "sha256:5d29cbf3e38a390598ff4d7573badd4a34e22a0d3eda96982dead80fcb099cc5",
+            "url": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.6/SHA256SUMS"
+          },
+          {
+            "id": 591592053,
+            "name": "stackma-1.1.6-source.zip",
+            "bytes": 733190,
+            "digest": "sha256:1b439e70f44d125a5634cf5f8e23695acdb56bc5e1dcb60dda5066b187ef13dd",
+            "url": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.6/stackma-1.1.6-source.zip"
+          },
+          {
+            "id": 591592042,
+            "name": "stackma-1.1.6.xpi",
+            "bytes": 33632,
+            "digest": "sha256:21748c0bb759d1005c39c9abcf2752021a48d9618bdccc86fddb32984df64033",
+            "url": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.6/stackma-1.1.6.xpi"
+          }
+        ]
+      },
+      {
+        "id": 397575283,
+        "tag": "v1.1.8",
+        "name": "Tab Gantry 1.1.8",
+        "draft": false,
+        "immutable": true,
+        "assets": [
+          {
+            "id": 592541572,
+            "name": "release.json",
+            "bytes": 1397,
+            "digest": "sha256:8be4d58621d7d23bd52bad71ca3366594423488e838075fb267f20c408565857",
+            "url": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.8/release.json"
+          },
+          {
+            "id": 592541582,
+            "name": "SHA256SUMS",
+            "bytes": 260,
+            "digest": "sha256:106f5bdf0d6a7e0cd32f676e36298f4309851f3b859f94237bf0bffdadb99cac",
+            "url": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.8/SHA256SUMS"
+          },
+          {
+            "id": 592541554,
+            "name": "tab-gantry-1.1.8-source.zip",
+            "bytes": 754866,
+            "digest": "sha256:f8f58a4fdd1d59b2fb31d37ee52fcd17a486035c3f472bd27318608a6f03658b",
+            "url": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.8/tab-gantry-1.1.8-source.zip"
+          },
+          {
+            "id": 592541536,
+            "name": "tab-gantry-1.1.8.xpi",
+            "bytes": 33637,
+            "digest": "sha256:3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a",
+            "url": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.8/tab-gantry-1.1.8.xpi"
+          }
+        ]
+      }
+    ],
+    "policy": [
+      {
+        "item": "ruleset \"Stackma release tags\"",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      },
+      {
+        "item": "ruleset \"Stackma main history\"",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      },
+      {
+        "item": "environment release-signing",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      },
+      {
+        "item": "environment release-publication",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      },
+      {
+        "item": "immutable releases",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      },
+      {
+        "item": "Actions may create pull requests",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      },
+      {
+        "item": "release workflow events",
+        "status": "ok",
+        "detail": "",
+        "writes": []
+      }
+    ],
+    "secretMetadataPreserved": true,
+    "secretNames": {
+      "repository": [],
+      "signing": [
+        {
+          "name": "AMO_JWT_ISSUER",
+          "created": "2026-09-26T20:18:52Z",
+          "updated": "2026-09-26T20:18:52Z"
+        },
+        {
+          "name": "AMO_JWT_SECRET",
+          "created": "2026-09-26T20:18:53Z",
+          "updated": "2026-09-26T20:18:53Z"
+        }
+      ],
+      "publication": []
+    },
+    "nativeVerification": "Passed: two release and eight asset native attestation checks",
+    "publicDownloadVerification": "All eight attached assets match at both old redirected and new canonical URLs",
+    "refs": {
+      "count": 26,
+      "sha256": "b85bb3d7c6af7ea21b088fc3fbfa5a419f26739bec6c26b906a9f719d53d82da"
+    },
+    "nativeChecks": [
+      {
+        "tag": "v1.1.6",
+        "command": "verify",
+        "passed": true
+      },
+      {
+        "tag": "v1.1.6",
+        "command": "verify-asset",
+        "asset": "release.json",
+        "passed": true
+      },
+      {
+        "tag": "v1.1.6",
+        "command": "verify-asset",
+        "asset": "SHA256SUMS",
+        "passed": true
+      },
+      {
+        "tag": "v1.1.6",
+        "command": "verify-asset",
+        "asset": "stackma-1.1.6-source.zip",
+        "passed": true
+      },
+      {
+        "tag": "v1.1.6",
+        "command": "verify-asset",
+        "asset": "stackma-1.1.6.xpi",
+        "passed": true
+      },
+      {
+        "tag": "v1.1.8",
+        "command": "verify",
+        "passed": true
+      },
+      {
+        "tag": "v1.1.8",
+        "command": "verify-asset",
+        "asset": "release.json",
+        "passed": true
+      },
+      {
+        "tag": "v1.1.8",
+        "command": "verify-asset",
+        "asset": "SHA256SUMS",
+        "passed": true
+      },
+      {
+        "tag": "v1.1.8",
+        "command": "verify-asset",
+        "asset": "tab-gantry-1.1.8-source.zip",
+        "passed": true
+      },
+      {
+        "tag": "v1.1.8",
+        "command": "verify-asset",
+        "asset": "tab-gantry-1.1.8.xpi",
+        "passed": true
+      }
+    ],
+    "publicDownloads": [
+      {
+        "tag": "v1.1.6",
+        "asset": "release.json",
+        "bytes": 1298,
+        "digest": "sha256:f5784d5573e66548981c5550b832d0a24d856e5aefa07b435af2d9d2e48a9ce4",
+        "oldUrl": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.6/release.json",
+        "newUrl": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.6/release.json",
+        "bothVerified": true
+      },
+      {
+        "tag": "v1.1.6",
+        "asset": "SHA256SUMS",
+        "bytes": 254,
+        "digest": "sha256:5d29cbf3e38a390598ff4d7573badd4a34e22a0d3eda96982dead80fcb099cc5",
+        "oldUrl": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.6/SHA256SUMS",
+        "newUrl": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.6/SHA256SUMS",
+        "bothVerified": true
+      },
+      {
+        "tag": "v1.1.6",
+        "asset": "stackma-1.1.6-source.zip",
+        "bytes": 733190,
+        "digest": "sha256:1b439e70f44d125a5634cf5f8e23695acdb56bc5e1dcb60dda5066b187ef13dd",
+        "oldUrl": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.6/stackma-1.1.6-source.zip",
+        "newUrl": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.6/stackma-1.1.6-source.zip",
+        "bothVerified": true
+      },
+      {
+        "tag": "v1.1.6",
+        "asset": "stackma-1.1.6.xpi",
+        "bytes": 33632,
+        "digest": "sha256:21748c0bb759d1005c39c9abcf2752021a48d9618bdccc86fddb32984df64033",
+        "oldUrl": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.6/stackma-1.1.6.xpi",
+        "newUrl": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.6/stackma-1.1.6.xpi",
+        "bothVerified": true
+      },
+      {
+        "tag": "v1.1.8",
+        "asset": "release.json",
+        "bytes": 1397,
+        "digest": "sha256:8be4d58621d7d23bd52bad71ca3366594423488e838075fb267f20c408565857",
+        "oldUrl": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.8/release.json",
+        "newUrl": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.8/release.json",
+        "bothVerified": true
+      },
+      {
+        "tag": "v1.1.8",
+        "asset": "SHA256SUMS",
+        "bytes": 260,
+        "digest": "sha256:106f5bdf0d6a7e0cd32f676e36298f4309851f3b859f94237bf0bffdadb99cac",
+        "oldUrl": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.8/SHA256SUMS",
+        "newUrl": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.8/SHA256SUMS",
+        "bothVerified": true
+      },
+      {
+        "tag": "v1.1.8",
+        "asset": "tab-gantry-1.1.8-source.zip",
+        "bytes": 754866,
+        "digest": "sha256:f8f58a4fdd1d59b2fb31d37ee52fcd17a486035c3f472bd27318608a6f03658b",
+        "oldUrl": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.8/tab-gantry-1.1.8-source.zip",
+        "newUrl": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.8/tab-gantry-1.1.8-source.zip",
+        "bothVerified": true
+      },
+      {
+        "tag": "v1.1.8",
+        "asset": "tab-gantry-1.1.8.xpi",
+        "bytes": 33637,
+        "digest": "sha256:3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a",
+        "oldUrl": "https://github.com/Quince-Pie/stackma/releases/download/v1.1.8/tab-gantry-1.1.8.xpi",
+        "newUrl": "https://github.com/Quince-Pie/tab-gantry/releases/download/v1.1.8/tab-gantry-1.1.8.xpi",
+        "bothVerified": true
+      }
+    ],
+    "nativeLogSha256": "ce977575c64502454cc7eda97c713af518ac91e2bf97d6e4a0763fa8d76cbe2f"
+  },
+  "mozilla": {
+    "rename": {
+      "observed": "2026-09-27T10:34:16.711Z",
+      "method": "Owner-authorized metadata PATCH through immutable numeric ID",
+      "id": 3078021,
+      "guid": "stackma@extensions.local",
+      "oldSlug": "stackma",
+      "newSlug": "tab-gantry",
+      "url": "https://addons.mozilla.org/en-US/firefox/addon/tab-gantry/",
+      "name": {
+        "en-US": "Tab Gantry - Automatic Tab Groups"
+      },
+      "addonStatus": "nominated",
+      "changedFields": [
+        "slug",
+        "description",
+        "support_url"
+      ],
+      "descriptionProseUnchanged": true,
+      "supportUrl": {
+        "en-US": "https://github.com/Quince-Pie/tab-gantry"
+      },
+      "sourceVersionAndLicenseCheck": "Passed: versions1.1.6 through1.1.9 unchanged, excluding derived license URL"
+    },
+    "icon": {
+      "observed": "2026-09-27T10:34:18.197Z",
+      "method": "Multipart icon-only PATCH",
+      "expectedModified": "d0feffd9",
+      "inputSha256": "8d11e66fc9bdde6f46047c85315f66e39ce9b0ca8e41a0e0bf969e5332a4eb3a",
+      "inputBytes": 2632,
+      "completion": "Processed CDN icon verified anonymously and pixel-identical at 128px",
+      "verifiedAt": "2026-09-27T10:36:32.366Z",
+      "cdnUrl": "https://addons.mozilla.org/user-media/addon_icons/3078/3078021-128.png?modified=d0feffd9",
+      "cdnSha256": "a96ddc2901676590f5580c939b7bbf2afa4914c1d2112298bcc7c7e83a4001b7",
+      "cdnBytes": 1687,
+      "pixels": {
+        "width": 128,
+        "height": 128,
+        "rgbaSha256": "d61d4f09fad2d680072790de079684e9311013d55f0f689388383930b4140876"
+      },
+      "verifierRepair": "Initial about:blank script could not use crypto.subtle. Read exact decoded RGBA bytes through Firefox and hash them in Node instead. No metadata write was repeated.",
+      "versionSourceAndLicenseMetadataUnchanged": true,
+      "versions": [
+        {
+          "id": 6517542,
+          "version": "1.1.6",
+          "channel": "unlisted",
+          "is_disabled": false,
+          "file": {
+            "id": 5061690,
+            "hash": "sha256:21748c0bb759d1005c39c9abcf2752021a48d9618bdccc86fddb32984df64033",
+            "size": 33632,
+            "status": "public"
+          },
+          "source": "https://addons.mozilla.org/firefox/downloads/source/6517542",
+          "license": {
+            "id": 10403,
+            "name": {
+              "en-US": "WTFPL 2.0; CMU data terms retained"
+            },
+            "textSha256": "51257521a62aea081b2e81037e0cc9ca4cd765caddd1eec9c208c52c106418ef"
+          }
+        },
+        {
+          "id": 6517688,
+          "version": "1.1.7",
+          "channel": "listed",
+          "is_disabled": false,
+          "file": {
+            "id": 5061836,
+            "hash": "sha256:ea5171087a5bc9705a69be42b0cd88da6f2fd72ead9b9c9e43f4679a3703d176",
+            "size": 24528,
+            "status": "disabled"
+          },
+          "source": "https://addons.mozilla.org/firefox/downloads/source/6517688",
+          "license": {
+            "id": 10390,
+            "name": {
+              "en-US": "WTFPL 2.0; CMU data terms retained"
+            },
+            "textSha256": "51257521a62aea081b2e81037e0cc9ca4cd765caddd1eec9c208c52c106418ef"
+          }
+        },
+        {
+          "id": 6518363,
+          "version": "1.1.8",
+          "channel": "unlisted",
+          "is_disabled": false,
+          "file": {
+            "id": 5062510,
+            "hash": "sha256:3a17c71723947e179f816706f381d274cc3c1e71c50c40d8f2df33479455e81a",
+            "size": 33637,
+            "status": "public"
+          },
+          "source": "https://addons.mozilla.org/firefox/downloads/source/6518363",
+          "license": {
+            "id": 10405,
+            "name": {
+              "en-US": "WTFPL 2.0; CMU data terms retained"
+            },
+            "textSha256": "51257521a62aea081b2e81037e0cc9ca4cd765caddd1eec9c208c52c106418ef"
+          }
+        },
+        {
+          "id": 6518401,
+          "version": "1.1.9",
+          "channel": "listed",
+          "is_disabled": false,
+          "file": {
+            "id": 5062548,
+            "hash": "sha256:4d96d0927977e895650f07d9153af72346bd788d358b2fd2b967fc50b2848da6",
+            "size": 24536,
+            "status": "unreviewed"
+          },
+          "source": "https://addons.mozilla.org/firefox/downloads/source/6518401",
+          "license": {
+            "id": 10390,
+            "name": {
+              "en-US": "WTFPL 2.0; CMU data terms retained"
+            },
+            "textSha256": "51257521a62aea081b2e81037e0cc9ca4cd765caddd1eec9c208c52c106418ef"
+          }
+        }
+      ],
+      "currentSlug": "tab-gantry",
+      "currentStatus": "nominated",
+      "sourceSvgSha256": "300207737806d6e5e037ed2932b137f60b73c99b4fb07991cd4f50069f3f09b7"
+    },
+    "existingSubmissionRecovery": {
+      "observed": "2026-09-27T10:38:23.979Z",
+      "controller": "10c249b3328205904713430c8103e718ff19c2fc",
+      "tag": "v1.1.9",
+      "sourceCommit": "62cc348012ac3f0cf6d4839a4d4294a8cfc9d876",
+      "artifactId": 10927953552,
+      "artifactDigest": "6063463d0125077316b329174a974ce266e2e9992c8616625b0bc4c8a1e653fe",
+      "result": {
+        "state": "awaiting-review",
+        "versionId": 6518401,
+        "fileStatus": "unreviewed"
+      },
+      "allProviderRequestsReadOnly": true,
+      "requestCount": 5,
+      "purpose": "Current controller recovers the unchanged pending1.1.9 through renamed GitHub and AMO URLs, using original digest-verified hosted inputs"
+    },
+    "hostedResumer": {
+      "observed": "2026-09-27T10:39:53.081Z",
+      "id": 36313215736,
+      "head": "34431e1550a44851ec0e8a8e1646ad1718a9c1dc",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Quince-Pie/tab-gantry/actions/runs/36313215736",
+      "jobs": [
+        {
+          "id": 108602989208,
+          "name": "Publish Mozilla-approved versions",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": []
+        }
+      ],
+      "logEvidence": {
+        "bytes": 69381,
+        "sha256": "c57f47b0eb9592e97503c3e791a61b163b4fbfd5ce8f1f65552e677350001c6f",
+        "observedResult": "No approved unpublished version or retained incomplete publication needs recovery.",
+        "noPublisherDispatched": true
+      }
+    }
+  },
+  "workspace": {
+    "originalTrackedAndUntrackedContentsUnchanged": true,
+    "originalUserIconUnchanged": true,
+    "sharedOrigin": "git@github.com:Quince-Pie/tab-gantry.git",
+    "isolatedWorktree": "/tmp/tab-gantry-identity"
+  },
+  "acceptance": {
+    "localVerification": "passed",
+    "hostedCI": "passed before and after rename",
+    "providerRename": "passed with same identities",
+    "oldDownloadsAndNativeAttestations": "passed",
+    "amoListingIcon": "pixel-identical at128px after provider recompression",
+    "pending1_1_9": "preserved and unreviewed",
+    "packagedIcon": "committed for next package; existing1.1.8 and1.1.9 are unchanged",
+    "defaultAmoUpdate": "not established by this migration; still requires approved listed release and actual Firefox update test",
+    "qualification": "achieved for documented retained-identity migration scope",
+    "universalOptimality": "not established"
+  },
+  "budget": {
+    "started": "2026-09-27T10:17:01Z",
+    "limitMinutes": 110,
+    "elapsedWallMinutesAtRecord": 25.31,
+    "delegation": "Two bounded read-only investigations, at most27 agent-minutes; included within total110-minute effort budget"
+  }
+}

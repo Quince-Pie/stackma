@@ -6,7 +6,14 @@ The supplied `extension/icon.svg` is the new artwork. Existing installed-user
 update continuity, product logic, browser support and license terms remain the
 constraints. No new AMO add-on is created for this migration.
 
-| Item | Retained or intended value |
+**Completed:** [PR #16](https://github.com/Quince-Pie/tab-gantry/pull/16) merged as
+`34431e1550a44851ec0e8a8e1646ad1718a9c1dc`. The repository and listing URL were
+renamed, the description/support links updated, and the processed AMO icon
+verified. Listed 1.1.9 remains pending with its original package and source.
+The [machine-readable evidence](../evidence/release/url-and-icon-rename.json)
+records the separate local, hosted and live-provider checks.
+
+| Item | Verified value |
 | --- | --- |
 | Firefox ID | `stackma@extensions.local`, retained |
 | AMO numeric ID | `3078021`, retained |
@@ -24,9 +31,9 @@ continuity requirement. See Mozilla's [ID documentation](https://extensionworksh
 ## Provider boundaries and migration
 
 Mozilla's [edit API](https://mozilla.github.io/addons-server/topics/api/addons.html#edit)
-allows a slug-only change using the stable numeric ID. The migration also changes
-only the repository link in the owner's existing description, retaining its
-prose. The deployed server was inspected at production `2026.09.17-1`, commit
+allows a slug-only change using the stable numeric ID. The migration also updates
+the repository links in the owner's existing description and support website,
+retaining the description prose. The deployed server was inspected at production `2026.09.17-1`, commit
 `c03d3c661bdbe22bb8f4a52fc46d63668bb31751`, observed 2026-09-27.
 `AddonSerializer.validate_slug`, `Addon.clean_slug` and the exact object lookup
 establish the uniqueness/30-character limit and current-slug lookup. Old AMO
@@ -47,6 +54,7 @@ Local operator defaults now use the canonical repository name; authenticated
 HTTP calls continue rejecting redirects. Rename the same repository object with
 a name-only PATCH, then verify its ID, refs, release assets, policies and secret
 names. Update the local `origin` URL without touching working files.
+Do not reuse the old GitHub repository name: that would break its redirects.
 
 Native release-attestation verification was inspected in installed `gh` 2.101.0,
 upstream commit `0cf1092493af067646fc5f3db9421c6a6ec9c938`. It verifies the GitHub
@@ -100,7 +108,31 @@ installation passed. The supplied SVG's SHA-256 is
 `300207737806d6e5e037ed2932b137f60b73c99b4fb07991cd4f50069f3f09b7`;
 its rendered listing PNG's SHA-256 is
 `8d11e66fc9bdde6f46047c85315f66e39ce9b0ca8e41a0e0bf969e5332a4eb3a`.
-These are local implementation checks. Live rename, CDN icon verification and
-hosted CI results will be recorded separately after the provider operations.
-Mozilla review remains independent; this migration does not establish approval,
-default-AMO update delivery or universal optimality.
+Those are local implementation checks. [PR CI](https://github.com/Quince-Pie/tab-gantry/actions/runs/36312638439)
+passed before migration, and fresh [main CI](https://github.com/Quince-Pie/tab-gantry/actions/runs/36312922478)
+passed in the renamed repository. Live checks established:
+
+- The same repository ID/node ID, all 26 captured refs, three release objects,
+  eight attached asset identities/digests and secret metadata survived rename;
+  all seven repository-policy checks passed.
+- All eight assets matched at both old redirected and new canonical public
+  URLs. `gh release verify` passed for 1.1.6 and 1.1.8, and `verify-asset` passed
+  for all eight assets using the new repository name. The historical empty
+  immutable v1.1.1 release was preserved.
+- Mozilla served the expected icon marker `d0feffd9`. Its recompressed 128px
+  PNG differs in bytes but has identical decoded RGBA pixels. Add-on identity,
+  name, summary, categories, and versions 1.1.6–1.1.9 source/file/license metadata
+  were unchanged, apart from URLs derived from the new slug.
+- The new controller recovered the original digest-verified hosted inputs for
+  1.1.9 and verified its existing payload/source/license with **five GETs and no
+  provider writes**. It returned `awaiting-review`.
+- A fresh [hosted resumer](https://github.com/Quince-Pie/tab-gantry/actions/runs/36313215736)
+  passed in the renamed repository and correctly dispatched no publisher while
+  no approved version needed completion.
+
+The main checkout's existing tracked and untracked edits, including the owner's
+SVG, were preserved. Only its shared `origin` configuration changed to
+`git@github.com:Quince-Pie/tab-gantry.git`; implementation used an isolated worktree.
+Qualification is scoped to this URL/icon migration with retained identities.
+Mozilla review remains independent; the migration does not establish listed
+approval/publication, default-AMO update delivery or universal optimality.
