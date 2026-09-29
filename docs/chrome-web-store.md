@@ -42,7 +42,10 @@ Only an owner can do these steps; nothing here is automated.
    [Developer Dashboard](https://chrome.google.com/webstore/devconsole):
    **Add new item** → choose the ZIP → **Upload**
    ([Publish in the Chrome Web Store](https://developer.chrome.com/docs/webstore/publish)).
-   Use the release's own `tab-gantry-VERSION-chrome.zip`. Download it from that
+   Use the release's own `tab-gantry-VERSION-chrome.zip`. Only releases whose
+   tag contains `chrome/` have one. Never upload a build of an untagged commit:
+   it carries the last release's version number with different code.
+   Download it from that
    run's CI artifacts, or run `npm run build` on the release tag: the build is
    reproducible, with fixed timestamps and file modes, so the SHA-256 matches. New publishers can publish at most two
    extensions at first.
