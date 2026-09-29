@@ -54,8 +54,9 @@ Automatic AMO updates require approval of a compatible listed version; see the
 ### Chrome
 
 Run `npm run build`, then open `chrome://extensions`, enable **Developer mode**,
-choose **Load unpacked** and select `dist/chrome`. To group private tabs, allow
-the extension in Incognito in its details page.
+choose **Load unpacked** and select `dist/chrome`. Released versions are
+published to the Chrome Web Store ([publishing guide](docs/chrome-web-store.md)).
+To group private tabs, allow the extension in Incognito in its details page.
 Chrome shows the permission warnings "View and manage your tab groups" and "Read
 your browsing history"; no URLs or page content are read.
 
@@ -147,8 +148,10 @@ the next version.
 [CI](.github/workflows/ci.yml) checks pull requests, `main`, merge queues and a
 weekly UTC schedule. It uses the locked Nix toolchain and a verified Firefox
 156.0 download, runs source/workflow/browser checks, and compares two builds of
-each package. Successful runs provide the unsigned XPI directly as an artifact,
-with separate diagnostics and checksums. Artifacts expire after 14 days.
+each package. It also tests the Chrome ZIP in checksum-pinned Chrome for Testing
+154 and in 148, the declared minimum. Successful runs provide the unsigned XPI
+and the Chrome ZIP directly as artifacts, with separate diagnostics and
+checksums. Artifacts expire after 14 days.
 
 [Dependabot](.github/dependabot.yml) proposes weekly npm, Actions and Nix-lock
 updates. Minor/patch updates are grouped; majors remain separately reviewable.
@@ -166,10 +169,13 @@ remaining GitHub-hosted execution boundary.
 and merge the generated version PR. **Publish release** then verifies the merged
 source, creates its tag and submits it to the existing Mozilla listing. After
 Mozilla approves the version, it verifies the signed XPI in Firefox and publishes
-an immutable GitHub Release. A run whose version still awaits review ends
-successfully, and **Resume approved releases** completes the GitHub publication
-after approval. Wait for Mozilla's decision before merging the next release PR:
-submitting a new version would disable the pending one, so the workflow refuses.
+an immutable GitHub Release. The same run submits the tested Chrome ZIP to the
+Chrome Web Store with a short-lived, keyless credential; see
+[Chrome Web Store publishing](docs/chrome-web-store.md). A run whose version
+still awaits review ends successfully, and **Resume approved releases** completes
+the GitHub publication after approval. Wait for Mozilla's decision before
+merging the next release PR: submitting a new version would disable the pending
+one, so the workflow refuses.
 Do not create tags or GitHub Releases manually. The guide covers secrets,
 repository settings, recovery, and the unusable `v1.1.1` release. Ordinary CI
 runs remain read-only and do not release the extension.

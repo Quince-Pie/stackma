@@ -1,7 +1,8 @@
 # Chrome support
 
 Tab Gantry runs in **Chrome 148 and later** on desktop, from the same grouping,
-naming and popup code as Firefox.
+naming and popup code as Firefox. The Chrome package is published through the
+Chrome Web Store; see [Chrome Web Store publishing](chrome-web-store.md).
 
 ## Minimum version
 
@@ -119,8 +120,10 @@ behaviors:
 - a private window's naming and cleanup
 - the popup's list, search, copy and Open
 
-Set `CHROME_VERSION` to require an exact build. A deliberate mutation that gives
-Chrome Firefox's `openerTabId` wiring fails the Ctrl+T test.
+Set `CHROME_VERSION` to require an exact build. CI installs checksum-pinned
+Chrome for Testing 154.0.8037.57 and 148.0.7778.178 and runs the suite on both.
+A deliberate mutation that gives Chrome Firefox's `openerTabId` wiring fails the
+Ctrl+T test.
 
 ## Limits
 

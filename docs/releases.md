@@ -38,8 +38,8 @@ These administrator actions require authorization separately from implementation
 1. Enable **immutable releases before publication**. Verification afterward
    cannot undo a publication made with the setting off. The ordinary workflow
    token cannot read this administrative setting.
-2. Create `release-signing` and `release-publication` environments with explicit
-   deployment **branch** policies allowing only `main`. For unattended completion,
+2. Create `release-signing`, `release-publication` and `release-chrome-web-store`
+   environments with explicit deployment **branch** policies allowing only `main`. For unattended completion,
    use human PR merge as approval and configure no additional environment
    reviewers/timers. Deliberately configured reviewers introduce another manual
    step; the workflow does not remove them.
@@ -86,6 +86,24 @@ with **no branch restriction**, and no `release-publication` environment.
 Administrative settings and stored secrets were not inspected at that stage.
 The later [authenticated rollout](release-acceptance.md) records the completed
 policy setup and the remaining publication/update gates.
+
+## Chrome Web Store
+
+For sources that contain `chrome/`, **Publish release** also runs **Submit to the
+Chrome Web Store**. It starts after verification and tagging, runs beside Mozilla
+signing, and never gates the GitHub Release. CI has already tested the Chrome ZIP
+in Chrome 154 and at the declared minimum, 148. The job submits it, or reconciles
+a version already submitted, staged or published. It holds no stored secret: its
+GitHub OIDC token is exchanged for a short-lived token of the service account
+linked to the publisher. Without the `release-chrome-web-store` variables it
+reports "not configured" and succeeds; older release sources report "not
+applicable".
+
+A version already in Chrome review blocks a new submission, as on AMO. To replace
+it deliberately, dispatch Publish release with `chrome-supersede` set to that
+exact version; the store then cancels that review (at most six per day). Setup,
+first submission, recovery and sources are in
+[Chrome Web Store publishing](chrome-web-store.md).
 
 ## Normal operation
 

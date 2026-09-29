@@ -194,6 +194,30 @@ test("Firefox installer never extracts an archive that fails verification", asyn
   assert.equal(await readFile(envFile, "utf8"), "");
 });
 
+test("Chrome installer never extracts or grants setuid to an archive that fails verification", async t => {
+  const data = await fixture(t);
+  await mockRunnerPlatform(data.directory);
+  const trace = join(data.directory, "privileged");
+  for (const command of ["unzip", "sudo"]) {
+    await writeFile(join(data.directory, command), `#!/usr/bin/env bash\nprintf '${command} ' >> "$STACKMA_PRIVILEGED_TRACE"\n`);
+    await chmod(join(data.directory, command), 0o700);
+  }
+  const envFile = join(data.directory, "github-env");
+  await writeFile(envFile, "");
+  const result = await run(resolve("scripts/ci/install-chrome.sh"), [], {
+    ...data.env,
+    RUNNER_TEMP: data.directory,
+    GITHUB_ENV: envFile,
+    STACKMA_PRIVILEGED_TRACE: trace,
+  });
+  assert.notEqual(result.code, 0);
+  assert.match(result.stderr, /mismatch/);
+  const files = await readdir(data.directory);
+  assert(!files.includes("privileged"), "no extraction or sudo after a failed digest");
+  assert(!files.some(name => name.startsWith("tab-gantry-chrome-1")));
+  assert.equal(await readFile(envFile, "utf8"), "");
+});
+
 test("Nix installer refuses an existing installation before downloading or exporting paths", async t => {
   const data = await fixture(t);
   await mockRunnerPlatform(data.directory);

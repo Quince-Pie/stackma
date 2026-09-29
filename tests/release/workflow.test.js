@@ -58,6 +58,52 @@ test("recovery executes the reviewed controller against frozen product files", a
   assert.equal([...ci.matchAll(/node \.release-controller\/scripts\/release\/stage\.js/g)].length, 2);
 });
 
+test("Chrome Web Store submission is keyless, isolated and runs only reviewed controller code", async () => {
+  const chrome = release.slice(release.indexOf("\n  chrome:"), release.indexOf("\n  publish:"));
+  assert.match(chrome, /needs: \[resolve, verify, tag\]/u);
+  assert.match(chrome, /environment: release-chrome-web-store/u);
+  assert.deepEqual([...chrome.matchAll(/^ {6}([\w-]+): (read|write)/gmu)].map(match => `${match[1]}:${match[2]}`), ["contents:read", "id-token:write"]);
+  assert(!/secrets\./u.test(chrome), "workload identity federation needs no stored credential");
+  assert.match(chrome, /ref: \$\{\{ github\.sha \}\}/u);
+  assert(!chrome.includes("release-source"), "no frozen or historical script runs with the store credential");
+  assert(!chrome.includes("npm ci"), "the credentialed job installs no npm dependencies");
+  assert.match(chrome, /artifact-ids: \$\{\{ needs\.verify\.outputs\.release-input-id \}\}\n\s+path: artifacts\/release-input\n\s+digest-mismatch: error/u);
+  assert.match(chrome, /CHROME_SUPERSEDE_PENDING: \$\{\{ inputs\.chrome-supersede \}\}/u);
+  assert.match(chrome, /nix develop \.#release --no-update-lock-file --command node scripts\/release\/chrome-submit\.js$/mu);
+  for (const name of ["CWS_PUBLISHER_ID", "CWS_ITEM_ID", "CWS_WORKLOAD_IDENTITY_PROVIDER", "CWS_SERVICE_ACCOUNT"]) {
+    assert.match(chrome, new RegExp(`${name}: \\$\\{\\{ vars\\.${name} \\}\\}`, "u"));
+  }
+  // The GitHub release never waits on the store, and the store never gates it.
+  const publish = release.slice(release.indexOf("\n  publish:"));
+  assert.match(publish, /needs: \[resolve, sign\]/u);
+});
+
+test("only the Chrome Web Store job can request an OIDC token", async () => {
+  // The Google trust condition admits this repository's main-branch jobs; the
+  // repository keeps that set to the one environment-gated job.
+  const workflows = [".github/workflows/ci.yml", ".github/workflows/prepare-release.yml", ".github/workflows/release.yml", ".github/workflows/resume-release.yml"];
+  const grants = [];
+  for (const path of workflows) {
+    const text = await readFile(path, "utf8");
+    for (const match of text.matchAll(/^\s+id-token:\s*(\S+)/gmu)) grants.push({ path, value: match[1], at: match.index });
+  }
+  assert.deepEqual(grants.map(({ path, value }) => `${path}:${value}`), [".github/workflows/release.yml:write"]);
+  const chrome = release.indexOf("\n  chrome:"), publish = release.indexOf("\n  publish:");
+  assert(grants[0].at > chrome && grants[0].at < publish, "id-token: write belongs to the chrome job only");
+  assert(!/^permissions:[^\n]*\n(?:\s+.*\n)*?\s+id-token/mu.test(release.slice(0, release.indexOf("\njobs:"))), "no workflow-level id-token grant");
+});
+
+test("CI verifies the Chrome package only for sources that contain it", async () => {
+  const ci = await readFile(".github/workflows/ci.yml", "utf8");
+  const chromeSteps = [...ci.matchAll(/- name: ([^\n]*Chrome[^\n]*)\n\s+(?:if: ([^\n]+))?/gu)];
+  assert(chromeSteps.length >= 5);
+  for (const [, name, condition] of chromeSteps) {
+    assert.equal(condition, "${{ hashFiles('chrome/manifest.json') != '' }}", `${name} must skip historical sources`);
+  }
+  assert.match(ci, /--output=artifacts\/ci\/chrome-package\.json/u);
+  assert.match(ci, /--output=artifacts\/ci\/chrome-minimum\.json/u);
+});
+
 test("the scheduler holds only read access plus workflow dispatch, on main", () => {
   assert.match(resume, /^permissions:\n  contents: read\n\n/mu);
   assert.deepEqual([...resume.matchAll(/^ {6}(\w+): (read|write)/gmu)].map(match => `${match[1]}:${match[2]}`), ["contents:read", "actions:write"]);

@@ -155,3 +155,22 @@ updates and branch-protection settings are repository controls, not granted by
 the read-only workflow. Required checks should include merge-group events when
 using a merge queue. Manual dispatch and the weekly schedule require the workflow
 on the default branch.
+
+## Chrome additions
+
+For sources containing `chrome/manifest.json`, the same job also:
+
+- installs checksum-pinned Chrome for Testing 154.0.8037.57 and 148.0.7778.178
+  (`scripts/ci/install-chrome.sh`). Each SHA-256 matched the bucket's MD5
+  metadata when pinned. Each build's own `chrome_sandbox` helper is made setuid,
+  the option Chromium documents for Ubuntu's user-namespace restriction.
+- runs `npm run test:chrome` against the built ZIP in both builds, writing
+  `artifacts/ci/chrome-package.json` and `artifacts/ci/chrome-minimum.json`,
+  which release staging requires to match the ZIP's digest.
+- builds both packages twice and compares their bytes, then uploads the verified
+  Chrome ZIP with the attempt-numbered name used for the XPI.
+
+The timeout rose from 20 to 30 minutes for the two browser downloads. Older
+sources skip every Chrome step through `hashFiles`, so historical release
+recovery is unchanged. These steps were verified locally on the same builds; they
+have not yet run on a GitHub-hosted runner.
