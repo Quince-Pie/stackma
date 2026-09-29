@@ -51,6 +51,8 @@ Only an owner can do these steps; nothing here is automated.
      a detailed description, a category, a language, at least one 1280x800
      screenshot and the 440x280 small promo tile
      ([image requirements](https://developer.chrome.com/docs/webstore/images)).
+     Upload `listing/chrome/small-promo-tile.png`, then
+     `listing/chrome/screenshot-1.png` and `screenshot-2.png` in that order.
      The 128px icon comes from the package. The
      [branding guidelines](https://developer.chrome.com/docs/webstore/branding)
      require "for Google Chrome™" wording if the listing names Chrome.

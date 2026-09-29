@@ -35,7 +35,9 @@ function untrack(session) {
 }
 
 /**
- * A fresh, bounded headless Chrome controlled over --remote-debugging-pipe.
+ * A fresh, bounded Chrome controlled over --remote-debugging-pipe. It is
+ * headless and reaches only loopback unless a caller, such as the listing
+ * screenshot capture, asks otherwise.
  * Extensions load through CDP Extensions.loadUnpacked, which requires the pipe
  * and --enable-unsafe-extension-debugging; Chrome 137 removed --load-extension
  * from branded builds. Functions passed to scripts cannot capture variables.
@@ -59,6 +61,9 @@ export class ChromeDriver {
     startupTimeoutMs = 40_000,
     maxLifetimeMs = 300_000,
     expectedVersion = process.env.CHROME_VERSION,
+    headless = true,
+    offline = true,
+    env = process.env,
     args = [],
   } = {}) {
     const driver = new ChromeDriver();
@@ -66,17 +71,17 @@ export class ChromeDriver {
     driver.profileRoot = await mkdtemp(join(tmpdir(), "tab-gantry-chrome-"));
     try {
       driver.#process = spawn(chrome, [
-        "--headless", "--no-first-run", "--no-default-browser-check", "--disable-sync",
+        ...headless ? ["--headless"] : [], "--no-first-run", "--no-default-browser-check", "--disable-sync",
         "--disable-background-networking", "--disable-component-update", "--disable-default-apps",
         "--mute-audio", "--password-store=basic", "--window-size=1280,800",
         // Chromium and Chrome for Testing otherwise apply field-trial testing
         // configs that branded Chrome does not; test the default features.
         "--disable-field-trial-config",
         // Loopback stays reachable; every other destination fails fast.
-        "--proxy-server=127.0.0.1:9",
+        ...offline ? ["--proxy-server=127.0.0.1:9"] : [],
         "--remote-debugging-pipe", "--enable-unsafe-extension-debugging",
         `--user-data-dir=${join(driver.profileRoot, "profile")}`, ...args, "about:blank",
-      ], { detached: true, stdio: ["ignore", "pipe", "pipe", "pipe", "pipe"] });
+      ], { detached: true, env, stdio: ["ignore", "pipe", "pipe", "pipe", "pipe"] });
       driver.#exitHandler = () => driver.#kill("SIGKILL");
       process.once("exit", driver.#exitHandler);
       track(driver);
