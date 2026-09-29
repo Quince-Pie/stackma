@@ -262,7 +262,7 @@ for (const windowId of [1, 2, 3]) {
       assert.equal(row.children[2].children[0].disabled, true);
       assert.equal(row.children[2].children[1].disabled, false);
     }
-    assert.match(f.element("message").textContent, /Firefox cannot distinguish/);
+    assert.match(f.element("message").textContent, /cannot distinguish some groups/);
     assert.ok(!f.element("message").textContent.includes(duplicateTitle));
     if (windowId === 3) assert.ok(f.rows().every(row => row.children[0].textContent !== duplicateTitle));
     f.action(0, "open").dispatch("click");
@@ -285,7 +285,7 @@ test("an ID collision introduced after rendering is caught by the explicit-open 
   for (const row of f.rows().filter(row => row.children[2].children[0].dataset.groupId === "11")) {
     assert.equal(row.children[2].children[0].disabled, true, "finally must not re-enable ambiguous controls");
   }
-  assert.match(f.element("message").textContent, /Firefox cannot distinguish/);
+  assert.match(f.element("message").textContent, /cannot distinguish some groups/);
 });
 
 test("a collision appearing during tab enumeration prevents even same-title same-window selection", async () => {
@@ -301,5 +301,5 @@ test("a collision appearing during tab enumeration prevents even same-title same
   await setImmediate();
   assert.deepEqual(f.calls.activated, []);
   assert.deepEqual(f.calls.focused, []);
-  assert.match(f.element("message").textContent, /Firefox cannot distinguish/);
+  assert.match(f.element("message").textContent, /cannot distinguish some groups/);
 });

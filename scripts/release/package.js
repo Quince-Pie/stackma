@@ -24,7 +24,8 @@ export function releaseBrand(record) {
 
 export function artifactNames(record) {
   const { artifactPrefix } = releaseBrand(record);
-  return { xpi: `${artifactPrefix}-${record.version}.xpi`, source: `${artifactPrefix}-${record.version}-source.zip` };
+  return { xpi: `${artifactPrefix}-${record.version}.xpi`, source: `${artifactPrefix}-${record.version}-source.zip`,
+    chrome: `${artifactPrefix}-${record.version}-chrome.zip` };
 }
 
 // AMO's normalize task writes json.dumps(..., indent=2): ASCII-escaped JSON,

@@ -8,7 +8,8 @@ const NONE = -1;
 const DONE = Promise.resolve();
 const validId = (/** @type {unknown} */ id) => typeof id === "number" && Number.isInteger(id) && id >= 0;
 const message = (/** @type {unknown} */ error) => error && typeof error === "object" && "message" in error && typeof error.message === "string" ? error.message : "";
-const missingTab = (/** @type {unknown} */ error) => /^Invalid tab ID:/.test(message(error));
+// Firefox: "Invalid tab ID: 1". Chrome: "No tab with id: 1."
+export const missingTab = (/** @type {unknown} */ error) => /^(?:Invalid tab ID|No tab with id):/.test(message(error));
 const privacyMismatch = (/** @type {unknown} */ error) => /^Cannot move (?:non-private|private) tabs to (?:private|non-private) window$/.test(message(error));
 
 class IncompleteJoinError extends Error {
@@ -21,7 +22,7 @@ class IncompleteJoinError extends Error {
 class UnconfirmedCreationError extends Error {
   /** @param {unknown} cause */
   constructor(cause) {
-    super("Firefox did not confirm creation of a new group", { cause });
+    super("The browser did not confirm creation of a new group", { cause });
   }
 }
 

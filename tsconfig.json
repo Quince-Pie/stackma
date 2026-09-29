@@ -8,7 +8,8 @@
     "module": "NodeNext",
     "lib": ["ES2024", "DOM"],
     "types": ["firefox-webext-browser"],
+    "rootDirs": ["extension", "chrome/extension"],
     "skipLibCheck": true
   },
-  "include": ["extension/**/*.js"]
+  "include": ["extension/**/*.js", "chrome/extension/**/*.js"]
 }

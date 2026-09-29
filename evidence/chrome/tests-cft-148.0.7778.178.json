@@ -1,0 +1,167 @@
+{
+  "passed": true,
+  "zip": "dist/tab-gantry-1.1.12-chrome.zip",
+  "results": [
+    {
+      "name": "packaged-files-manifest-and-chrome-diagnostics",
+      "passed": true,
+      "durationMs": 78,
+      "details": {
+        "installWarnings": [],
+        "manifestErrors": [],
+        "runtimeErrors": [],
+        "incognito": true
+      }
+    },
+    {
+      "name": "link",
+      "passed": true,
+      "durationMs": 90,
+      "details": {
+        "name": "golden-violin"
+      }
+    },
+    {
+      "name": "noreferrer",
+      "passed": true,
+      "durationMs": 87,
+      "details": {
+        "name": "frosty-lake"
+      }
+    },
+    {
+      "name": "window.open",
+      "passed": true,
+      "durationMs": 82,
+      "details": {
+        "name": "windy-hill"
+      }
+    },
+    {
+      "name": "iframe",
+      "passed": true,
+      "durationMs": 86,
+      "details": {
+        "name": "mossy-canoe"
+      }
+    },
+    {
+      "name": "middle-click",
+      "passed": true,
+      "durationMs": 85,
+      "details": {
+        "name": "dotted-window"
+      }
+    },
+    {
+      "name": "ctrl-t-is-not-a-link-relationship",
+      "passed": true,
+      "durationMs": 1592,
+      "details": {
+        "openerTabId": 1973403765
+      }
+    },
+    {
+      "name": "duplicate-is-not-a-link-relationship",
+      "passed": true,
+      "durationMs": 1581
+    },
+    {
+      "name": "existing-group-keeps-its-name",
+      "passed": true,
+      "durationMs": 1587
+    },
+    {
+      "name": "pinned-source-is-left-alone",
+      "passed": true,
+      "durationMs": 1583
+    },
+    {
+      "name": "separate-window-is-left-alone",
+      "passed": true,
+      "durationMs": 1593
+    },
+    {
+      "name": "burst-joins-one-named-group",
+      "passed": true,
+      "durationMs": 114,
+      "details": {
+        "tabs": 5,
+        "name": "tiny-petal"
+      }
+    },
+    {
+      "name": "service-worker-wakes-for-a-link",
+      "passed": true,
+      "durationMs": 115,
+      "details": {
+        "name": "striped-leaf"
+      }
+    },
+    {
+      "name": "private-window-names-and-forgets",
+      "passed": true,
+      "durationMs": 107,
+      "details": {
+        "name": "sparkly-blossom"
+      }
+    },
+    {
+      "name": "popup-lists-searches-copies-and-opens",
+      "passed": true,
+      "durationMs": 176,
+      "details": {
+        "listed": 1,
+        "copied": "gliding-dolphin"
+      }
+    },
+    {
+      "name": "no-extension-errors",
+      "passed": true,
+      "durationMs": 1
+    }
+  ],
+  "bytes": 29503,
+  "sha256": "af6e54d6542dbf3b24eeb638c9f61920caae6a2940c639191e83f7074188369a",
+  "files": {
+    "CMU-LICENSE.txt": "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a",
+    "LICENSE": "e5bbd815aebeda8a9c6632d1f6307bb942e07c7d3fa2191691b14709428ecc59",
+    "core.js": "8173f6d5fd82c832b127b2f19ddfc22e3d7b054faeb3083849ec9a94a0c65e70",
+    "group-id-guard.js": "8fa4ab538cf2149b8c54f39f0cecfdd5fc6054febc07a6c35f0d9fa07f0c86af",
+    "icon-128.png": "7388982de52305a38cf77616fa0a3163768a540359676adc135974e8db89b792",
+    "icon-16.png": "72bbcc192b1c3894810ffc594de51b22ff8948f25aa4edc78110903e8e104c44",
+    "icon-24.png": "e12452e3a15aff370e2c153e98aa41b77f140b0caa143e15ab35cc408b61ff7f",
+    "icon-32.png": "7c6b3182904cfe14ec9479e9ce0a5106b55054bd7b52d013f45f435704155dd3",
+    "icon-48.png": "020e126b4c88c49fd22cb78baedac03f83ae8659cb49a6769fde9f029e12631d",
+    "icon.svg": "4b0b634ab7b77f2f7057478cee7457170ca9b29791dedee2eb42e68230358487",
+    "manifest.json": "0674344b5eb2bddfe4522e682a37e4f7c6868ad6ce1166bb50c7d161ee7b7efc",
+    "name-catalog.js": "75263bb976c806ecc8637147d92c96153728df02393e55c3260bb425281bc41c",
+    "name-generator.js": "c5f0549ab7ed7050c555d573700a13b0165c230de5caa25814f9b939ab8682b7",
+    "namer.js": "34065591ee7422dfecf668ebcf6b537137c87756ace0d838ea56a4ad4d2b85b2",
+    "popup.css": "768634b2207c0f7e3714f231986778aee468a02ccba335a900965408d0cc83b0",
+    "popup.html": "a6779cf0da27c28279d792798ded2ce456cf6a7954ba270b7825f895caaca683",
+    "popup.js": "61442804a0768bdfc4e7d2a81f8210b744bd8af368c7640875248e53ac88e74f",
+    "service-worker.js": "3ab9e823ffdc3b499a628eed58f6ffca2dc2b3db6fd1f2349f613b5389c9c13e",
+    "stacker.js": "757dc83783c44fbaf107de161beaabe626be05b3db3dbee80d9b185d0647cda8"
+  },
+  "chrome": "148.0.7778.178",
+  "product": "Chrome/148.0.7778.178",
+  "checks": [
+    "packaged-files-manifest-and-chrome-diagnostics",
+    "link",
+    "noreferrer",
+    "window.open",
+    "iframe",
+    "middle-click",
+    "ctrl-t-is-not-a-link-relationship",
+    "duplicate-is-not-a-link-relationship",
+    "existing-group-keeps-its-name",
+    "pinned-source-is-left-alone",
+    "separate-window-is-left-alone",
+    "burst-joins-one-named-group",
+    "service-worker-wakes-for-a-link",
+    "private-window-names-and-forgets",
+    "popup-lists-searches-copies-and-opens",
+    "no-extension-errors"
+  ]
+}
