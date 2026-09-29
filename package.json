@@ -25,6 +25,7 @@
     "test:alternatives": "node --test experiments/*.test.js",
     "test:package": "node scripts/package-test.js",
     "benchmark": "node scripts/benchmark.js --phase=confirmation",
+    "benchmark:chrome": "node scripts/chrome-benchmark.js --suite=stackers --phase=confirmation && node scripts/chrome-benchmark.js --suite=entry --phase=confirmation",
     "build": "node scripts/build.js"
   },
   "devDependencies": {

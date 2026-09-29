@@ -1,0 +1,1317 @@
+{
+  "scope": "Chrome support and Chrome Web Store publication for Tab Gantry; claims are scoped to these observations.",
+  "chromiumSource": {
+    "tag": "154.0.8037.57",
+    "chromeVersionFile": [
+      "MAJOR=154",
+      "MINOR=0",
+      "BUILD=8037",
+      "PATCH=57"
+    ],
+    "archive": {
+      "storePath": "/nix/store/j8ngypbg3qrmqjpbhsck1frfvkr8frwz-source.tar.zstd",
+      "narHash": "sha256-LqS0Up2B1g7YWGx9N85hwMDQ2SktPjvxlJDfo8gxFOg=",
+      "provenance": "nixpkgs fixed-output fetch of upstream Chromium at the tag, signed by cache.nixos.org; the source of the local Chromium 154.0.8037.57 build"
+    },
+    "crossCheckedAgainstGooglesource": [
+      "chrome/browser/ui/tabs/tab_strip_model.cc",
+      "chrome/browser/extensions/api/web_navigation/* (+archive at refs/tags/154.0.8037.57)"
+    ],
+    "crossCheckResult": "byte-identical",
+    "files": [
+      {
+        "path": "chrome/browser/ui/tabs/tab_strip_model.cc",
+        "sha256": "b2f24af6457bf83c430673baeab02dd287bdf52895596371b63765937c432925",
+        "finding": "TabStripModel::AddTab: link and typed-at-end transitions inherit the active tab as opener"
+      },
+      {
+        "path": "chrome/browser/extensions/extension_tab_util.cc",
+        "sha256": "d4a75ad5922192536fcc1e345b7342a3071dd2663375bb0a9c65656b6ef30e65",
+        "finding": "CreateTabObject: openerTabId = tab strip GetOpenerForTab; GetTabById: linear window/tab scan, then prerender frame scan on a miss; GetGroupById: PersistentHash per group; kGroupNotFoundError"
+      },
+      {
+        "path": "chrome/browser/extensions/extension_tab_util.h",
+        "sha256": "cf9b07a3cf2476a6021ce35a618a254aac1fad8b8f03d5f077e56b1525b4af7f",
+        "finding": "kTabNotFoundError = \"No tab with id: *.\""
+      },
+      {
+        "path": "chrome/browser/extensions/api/tabs/tabs_api.cc",
+        "sha256": "2922364b1076f401ed020f877f3b750eba96e1d05d4c28c17d1126c28eef172e",
+        "finding": "TabsGroupFunction::Run: split companions included; AddTabsToGroup then RespondNow"
+      },
+      {
+        "path": "chrome/browser/extensions/api/tab_groups/tab_groups_event_router.cc",
+        "sha256": "83388a26898e0b9988ff60638ca4427477244742ff8758c883e7580c246be1db",
+        "finding": "OnTabGroupChanged(kCreated) broadcasts synchronously"
+      },
+      {
+        "path": "chrome/browser/extensions/api/web_navigation/web_navigation_tab_observer.cc",
+        "sha256": "6d7a73e3523026f051187ef537298553c7f538100a0df0a2472f679f00806a8f",
+        "finding": "DidOpenRequestedURL: new tab/window dispositions only"
+      },
+      {
+        "path": "chrome/browser/extensions/api/web_navigation/web_navigation_event_router.cc",
+        "sha256": "2ac62927d287e7a6fadf86f6d32c48a1411b3d563f76ba7d439198d5971bf880",
+        "finding": "RecordNewWebContents: no event without a source frame; delayed until the tab is in a tab strip"
+      },
+      {
+        "path": "chrome/browser/extensions/api/web_navigation/web_navigation_api_helpers.cc",
+        "sha256": "12e4721408d07fdf45073e60a2231884f45b123cdc7cc7e53ccc559ee5f0e51b",
+        "finding": "DispatchOnCreatedNavigationTarget: details carry no windowId"
+      },
+      {
+        "path": "extensions/browser/events/event_dispatch_helper.cc",
+        "sha256": "9ef8d9666d646b4e33e8ad04c6a5705a60216fd0c3fb52273c45bb46072ec37c",
+        "finding": "ready workers receive events synchronously through the active listener path"
+      },
+      {
+        "path": "extensions/browser/service_worker/service_worker_task_queue.cc",
+        "sha256": "f7eac69bbc9c23368f0b9c7f9981579fdb6e4739071fdbdd99a7939f76ef3f92",
+        "finding": "ShouldEnqueueTask is !IsReadyToRunTasks"
+      },
+      {
+        "path": "extensions/browser/event_router.cc",
+        "sha256": "8fe5fcb5ba191601fe00f0e222aa845b9669877b84158325a186f6951714c43b",
+        "finding": "RouteDispatchEvent over the worker's associated EventDispatcher"
+      },
+      {
+        "path": "extensions/renderer/service_worker_data.cc",
+        "sha256": "49174029dd110f7c2f82ab5f3e2c09a2e4894520d4b6779a3f80378b7fa435e6",
+        "finding": "EventDispatcher endpoint created on the ServiceWorkerHost associated pipe"
+      },
+      {
+        "path": "extensions/renderer/native_extension_bindings_system.cc",
+        "sha256": "52e937ac17de23cc09e86ff4c79b6647bd01837f608500b1accf4e62b06a34a2",
+        "finding": "browser global for every extension context; service worker listeners always registered as lazy"
+      },
+      {
+        "path": "chrome/browser/devtools/protocol/extensions_handler.cc",
+        "sha256": "86ac661223b7dadeb3b67a40e9b56a88078153980e7b27fd8d43a0aed8087d31",
+        "finding": "Extensions.loadUnpacked and enableInIncognito"
+      },
+      {
+        "path": "components/variations/variations_switches.cc",
+        "sha256": "57bf44a0e39162c93122a4cc5ec972560a1e1280810533b179934be792926835",
+        "finding": "non-branded builds apply the field-trial testing config unless --disable-field-trial-config"
+      },
+      {
+        "path": "docs/security/apparmor-userns-restrictions.md",
+        "sha256": "80359a19eb33071f6de0078910ac0f9da3494b93f73aced7b6d0032e3d707dbc",
+        "finding": "setuid sandbox helper option for Ubuntu 23.10+"
+      }
+    ]
+  },
+  "chromeForTesting": [
+    {
+      "version": "154.0.8037.57",
+      "archiveSha256": "ceee2972074d441ea7c4ba8bcc0eaab77e7e87680f6653d73d3065851fe10302",
+      "gcsMd5": "D+qnMtvRxrB1r9bMVeDIrw=="
+    },
+    {
+      "version": "148.0.7778.178",
+      "archiveSha256": "05b6843867b4ee40f280327b748397a158b84ccbe20b94c3e89740d15422988f",
+      "gcsMd5": "3i0XUJQILqnxVjhGsegXfw=="
+    }
+  ],
+  "observations": {
+    "openerAndProvenance": "Chromium 154 probe: Ctrl+T and tabs.duplicate report openerTabId = active tab with no navigation-target event; target=_blank, rel=noreferrer/opener, window.open (+noopener), iframe links, middle-click and Ctrl+click emit onCreatedNavigationTarget with the source tab and no windowId.",
+    "eventOrder": "60/60 probe groups: tabGroups.onCreated delivered before tabs.group resolved (Chromium 154).",
+    "errors": {
+      "tabsGet": "No tab with id: 987654.",
+      "tabGroupsGet": "No group with id: 987654."
+    },
+    "incognito": "Spanning worker groups incognito tabs with explicit windowId or groupId while a normal window is focused; default current window fails with 'Tabs can only be moved between windows in the same profile.'"
+  },
+  "controls": {
+    "chrome147AsBuilt": "Extensions.loadUnpacked: This extension requires Google Chrome for Testing version 148 or greater.",
+    "chrome147WithoutFloor": "With --disable-field-trial-config no service worker runs (browser is undefined); Chrome for Testing 147 defines browser only through its field-trial testing config.",
+    "chrome148WithoutFieldTrials": "service worker runs; browser is an object",
+    "manifestDiagnostics": {
+      "firefoxManifestInChrome": "'background.scripts' requires manifest version of 2 or lower.",
+      "chromePackage": "no install warnings, manifest errors or runtime errors"
+    }
+  },
+  "mutationChecks": [
+    {
+      "mutation": "Chrome entry also enqueues tabs.onCreated openerTabId",
+      "detectedBy": "ctrl-t-is-not-a-link-relationship (real Chromium 154)"
+    },
+    {
+      "mutation": "missing-tab recognition limited to Firefox's message",
+      "detectedBy": "tests/entry.test.js (2 failures)"
+    },
+    {
+      "mutation": "pending Chrome Web Store review not blocking",
+      "detectedBy": "tests/release/chrome-web-store.test.js"
+    },
+    {
+      "mutation": "tag check removed before publish",
+      "detectedBy": "tests/release/chrome-web-store.test.js"
+    },
+    {
+      "mutation": "newer rejected or cancelled submissions ignored when deciding supersession",
+      "detectedBy": "tests/release/chrome-web-store.test.js (an older version never follows a newer rejected or cancelled submission)"
+    }
+  ],
+  "performance": {
+    "rule": "Declared before confirmation: a challenger is materially faster in a scenario only with a median at least 20% lower and at least 10 of 12 rotation-paired blocks; selection keeps the project's priority of lower retained state, then bounded work, then latency.",
+    "environment": {
+      "browser": "Chrome/154.0.8037.57",
+      "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+      "logicalCpus": 32,
+      "kernel": "6.18.52",
+      "node": "v24.20.0"
+    },
+    "delivered": {
+      "entryDate": "2026-09-29T04:50:44.096Z",
+      "stackersDate": "2026-09-29T04:52:14.288Z",
+      "sources": {
+        "extension/core.js": "8173f6d5fd82c832b127b2f19ddfc22e3d7b054faeb3083849ec9a94a0c65e70",
+        "extension/stacker.js": "757dc83783c44fbaf107de161beaabe626be05b3db3dbee80d9b185d0647cda8",
+        "extension/namer.js": "34065591ee7422dfecf668ebcf6b537137c87756ace0d838ea56a4ad4d2b85b2",
+        "extension/group-id-guard.js": "8fa4ab538cf2149b8c54f39f0cecfdd5fc6054febc07a6c35f0d9fa07f0c86af",
+        "extension/name-generator.js": "c5f0549ab7ed7050c555d573700a13b0165c230de5caa25814f9b939ab8682b7",
+        "extension/name-catalog.js": "75263bb976c806ecc8637147d92c96153728df02393e55c3260bb425281bc41c",
+        "experiments/query-stacker.js": "c8a0ed1d26fd98892fecd28a38abb094efb32024f11fc446db5e1c97404c90b0",
+        "experiments/dependency-stacker.js": "8c655252e3be70820544885059a7e319cbd1fb5f30b96aae3e6ec30a2976bee6",
+        "chrome/extension/service-worker.js": "3ab9e823ffdc3b499a628eed58f6ffca2dc2b3db6fd1f2349f613b5389c9c13e"
+      },
+      "entry": {
+        "baseline": "lookup",
+        "grouped": [
+          {
+            "scenario": "2/single",
+            "challenger": "created-cache",
+            "baselineMedianMs": 22.1,
+            "challengerMedianMs": 21.5,
+            "medianReduction": 0.027,
+            "pairedWins": 9,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "created-cache",
+            "baselineMedianMs": 22.6,
+            "challengerMedianMs": 17.05,
+            "medianReduction": 0.246,
+            "pairedWins": 11,
+            "material": true
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "created-cache",
+            "baselineMedianMs": 41.45,
+            "challengerMedianMs": 39.15,
+            "medianReduction": 0.055,
+            "pairedWins": 9,
+            "material": false
+          },
+          {
+            "scenario": "40/burst8",
+            "challenger": "created-cache",
+            "baselineMedianMs": 38.8,
+            "challengerMedianMs": 38.4,
+            "medianReduction": 0.01,
+            "pairedWins": 9,
+            "material": false
+          },
+          {
+            "scenario": "40/cold",
+            "challenger": "created-cache",
+            "baselineMedianMs": 33,
+            "challengerMedianMs": 35.4,
+            "medianReduction": -0.073,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "512/cold",
+            "challenger": "created-cache",
+            "baselineMedianMs": 55,
+            "challengerMedianMs": 54.2,
+            "medianReduction": 0.015,
+            "pairedWins": 7,
+            "material": false
+          }
+        ],
+        "groupedAndNamed": [
+          {
+            "scenario": "2/single",
+            "challenger": "created-cache",
+            "baselineMedianMs": 32.6,
+            "challengerMedianMs": 34.2,
+            "medianReduction": -0.049,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "created-cache",
+            "baselineMedianMs": 33.25,
+            "challengerMedianMs": 32.8,
+            "medianReduction": 0.014,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "created-cache",
+            "baselineMedianMs": 53.55,
+            "challengerMedianMs": 51.85,
+            "medianReduction": 0.032,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "40/burst8",
+            "challenger": "created-cache",
+            "baselineMedianMs": 139.2,
+            "challengerMedianMs": 138,
+            "medianReduction": 0.009,
+            "pairedWins": 9,
+            "material": false
+          },
+          {
+            "scenario": "40/cold",
+            "challenger": "created-cache",
+            "baselineMedianMs": 41.9,
+            "challengerMedianMs": 45.9,
+            "medianReduction": -0.095,
+            "pairedWins": 5,
+            "material": false
+          },
+          {
+            "scenario": "512/cold",
+            "challenger": "created-cache",
+            "baselineMedianMs": 65.65,
+            "challengerMedianMs": 63.2,
+            "medianReduction": 0.037,
+            "pairedWins": 9,
+            "material": false
+          }
+        ],
+        "lifecycle": [
+          {
+            "variant": "lookup",
+            "unrelatedTabs": 20,
+            "workerRunningAfter": false,
+            "workerStarts": 0,
+            "createdEventsReceived": 0
+          },
+          {
+            "variant": "created-cache",
+            "unrelatedTabs": 20,
+            "workerRunningAfter": true,
+            "workerStarts": 1,
+            "createdEventsReceived": 20
+          }
+        ]
+      },
+      "stackers": {
+        "baseline": "batch",
+        "admission": [
+          {
+            "scenario": "2/single",
+            "challenger": "fifo",
+            "baselineMedianMs": 0.7,
+            "challengerMedianMs": 0.7,
+            "medianReduction": 0,
+            "pairedWins": 5,
+            "material": false
+          },
+          {
+            "scenario": "2/single",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 0.7,
+            "challengerMedianMs": 0.6,
+            "medianReduction": 0.143,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "2/single",
+            "challenger": "query",
+            "baselineMedianMs": 0.7,
+            "challengerMedianMs": 0.7,
+            "medianReduction": 0,
+            "pairedWins": 5,
+            "material": false
+          },
+          {
+            "scenario": "2/single",
+            "challenger": "selective-query",
+            "baselineMedianMs": 0.7,
+            "challengerMedianMs": 0.7,
+            "medianReduction": 0,
+            "pairedWins": 3,
+            "material": false
+          },
+          {
+            "scenario": "2/single",
+            "challenger": "dependency",
+            "baselineMedianMs": 0.7,
+            "challengerMedianMs": 0.7,
+            "medianReduction": 0,
+            "pairedWins": 5,
+            "material": false
+          },
+          {
+            "scenario": "33/siblings32",
+            "challenger": "fifo",
+            "baselineMedianMs": 3.95,
+            "challengerMedianMs": 26.6,
+            "medianReduction": -5.734,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "33/siblings32",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 3.95,
+            "challengerMedianMs": 4.05,
+            "medianReduction": -0.025,
+            "pairedWins": 3,
+            "material": false
+          },
+          {
+            "scenario": "33/siblings32",
+            "challenger": "query",
+            "baselineMedianMs": 3.95,
+            "challengerMedianMs": 4.05,
+            "medianReduction": -0.025,
+            "pairedWins": 5,
+            "material": false
+          },
+          {
+            "scenario": "33/siblings32",
+            "challenger": "selective-query",
+            "baselineMedianMs": 3.95,
+            "challengerMedianMs": 4.3,
+            "medianReduction": -0.089,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "33/siblings32",
+            "challenger": "dependency",
+            "baselineMedianMs": 3.95,
+            "challengerMedianMs": 4.2,
+            "medianReduction": -0.063,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "fifo",
+            "baselineMedianMs": 0.85,
+            "challengerMedianMs": 0.9,
+            "medianReduction": -0.059,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 0.85,
+            "challengerMedianMs": 0.9,
+            "medianReduction": -0.059,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "query",
+            "baselineMedianMs": 0.85,
+            "challengerMedianMs": 1.3,
+            "medianReduction": -0.529,
+            "pairedWins": 1,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "selective-query",
+            "baselineMedianMs": 0.85,
+            "challengerMedianMs": 0.85,
+            "medianReduction": 0,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "dependency",
+            "baselineMedianMs": 0.85,
+            "challengerMedianMs": 0.9,
+            "medianReduction": -0.059,
+            "pairedWins": 3,
+            "material": false
+          },
+          {
+            "scenario": "40/siblings32",
+            "challenger": "fifo",
+            "baselineMedianMs": 3.75,
+            "challengerMedianMs": 16.8,
+            "medianReduction": -3.48,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "40/siblings32",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 3.75,
+            "challengerMedianMs": 3.9,
+            "medianReduction": -0.04,
+            "pairedWins": 2,
+            "material": false
+          },
+          {
+            "scenario": "40/siblings32",
+            "challenger": "query",
+            "baselineMedianMs": 3.75,
+            "challengerMedianMs": 3.75,
+            "medianReduction": 0,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "40/siblings32",
+            "challenger": "selective-query",
+            "baselineMedianMs": 3.75,
+            "challengerMedianMs": 3.5,
+            "medianReduction": 0.067,
+            "pairedWins": 9,
+            "material": false
+          },
+          {
+            "scenario": "40/siblings32",
+            "challenger": "dependency",
+            "baselineMedianMs": 3.75,
+            "challengerMedianMs": 3.8,
+            "medianReduction": -0.013,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "40/chain32",
+            "challenger": "fifo",
+            "baselineMedianMs": 16.75,
+            "challengerMedianMs": 16.75,
+            "medianReduction": 0,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "40/chain32",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 16.75,
+            "challengerMedianMs": 16.55,
+            "medianReduction": 0.012,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "40/chain32",
+            "challenger": "query",
+            "baselineMedianMs": 16.75,
+            "challengerMedianMs": 24.1,
+            "medianReduction": -0.439,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "40/chain32",
+            "challenger": "selective-query",
+            "baselineMedianMs": 16.75,
+            "challengerMedianMs": 16.4,
+            "medianReduction": 0.021,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "40/chain32",
+            "challenger": "dependency",
+            "baselineMedianMs": 16.75,
+            "challengerMedianMs": 16.4,
+            "medianReduction": 0.021,
+            "pairedWins": 8,
+            "material": false
+          },
+          {
+            "scenario": "40/independent16",
+            "challenger": "fifo",
+            "baselineMedianMs": 43.65,
+            "challengerMedianMs": 44.35,
+            "medianReduction": -0.016,
+            "pairedWins": 5,
+            "material": false
+          },
+          {
+            "scenario": "40/independent16",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 43.65,
+            "challengerMedianMs": 45.4,
+            "medianReduction": -0.04,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "40/independent16",
+            "challenger": "query",
+            "baselineMedianMs": 43.65,
+            "challengerMedianMs": 50.95,
+            "medianReduction": -0.167,
+            "pairedWins": 1,
+            "material": false
+          },
+          {
+            "scenario": "40/independent16",
+            "challenger": "selective-query",
+            "baselineMedianMs": 43.65,
+            "challengerMedianMs": 45.8,
+            "medianReduction": -0.049,
+            "pairedWins": 5,
+            "material": false
+          },
+          {
+            "scenario": "40/independent16",
+            "challenger": "dependency",
+            "baselineMedianMs": 43.65,
+            "challengerMedianMs": 17.65,
+            "medianReduction": 0.596,
+            "pairedWins": 12,
+            "material": true
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "fifo",
+            "baselineMedianMs": 6.3,
+            "challengerMedianMs": 6.5,
+            "medianReduction": -0.032,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 6.3,
+            "challengerMedianMs": 6.75,
+            "medianReduction": -0.071,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "query",
+            "baselineMedianMs": 6.3,
+            "challengerMedianMs": 14.5,
+            "medianReduction": -1.302,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "selective-query",
+            "baselineMedianMs": 6.3,
+            "challengerMedianMs": 6.7,
+            "medianReduction": -0.063,
+            "pairedWins": 3,
+            "material": false
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "dependency",
+            "baselineMedianMs": 6.3,
+            "challengerMedianMs": 6.55,
+            "medianReduction": -0.04,
+            "pairedWins": 5,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings32",
+            "challenger": "fifo",
+            "baselineMedianMs": 15.1,
+            "challengerMedianMs": 38.5,
+            "medianReduction": -1.55,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings32",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 15.1,
+            "challengerMedianMs": 15.9,
+            "medianReduction": -0.053,
+            "pairedWins": 3,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings32",
+            "challenger": "query",
+            "baselineMedianMs": 15.1,
+            "challengerMedianMs": 20.7,
+            "medianReduction": -0.371,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings32",
+            "challenger": "selective-query",
+            "baselineMedianMs": 15.1,
+            "challengerMedianMs": 21.8,
+            "medianReduction": -0.444,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings32",
+            "challenger": "dependency",
+            "baselineMedianMs": 15.1,
+            "challengerMedianMs": 15.15,
+            "medianReduction": -0.003,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings128",
+            "challenger": "fifo",
+            "baselineMedianMs": 83.25,
+            "challengerMedianMs": 154.55,
+            "medianReduction": -0.856,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings128",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 83.25,
+            "challengerMedianMs": 44.05,
+            "medianReduction": 0.471,
+            "pairedWins": 12,
+            "material": true
+          },
+          {
+            "scenario": "512/siblings128",
+            "challenger": "query",
+            "baselineMedianMs": 83.25,
+            "challengerMedianMs": 105.25,
+            "medianReduction": -0.264,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings128",
+            "challenger": "selective-query",
+            "baselineMedianMs": 83.25,
+            "challengerMedianMs": 106.05,
+            "medianReduction": -0.274,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings128",
+            "challenger": "dependency",
+            "baselineMedianMs": 83.25,
+            "challengerMedianMs": 85,
+            "medianReduction": -0.021,
+            "pairedWins": 7,
+            "material": false
+          }
+        ]
+      }
+    },
+    "initial": {
+      "note": "Ran before message-only edits to namer.js, group-id-guard.js and popup.js; retained, not replaced.",
+      "entryDate": "2026-09-29T04:16:23.284Z",
+      "stackersDate": "2026-09-29T04:19:53.639Z",
+      "sources": {
+        "extension/core.js": "8173f6d5fd82c832b127b2f19ddfc22e3d7b054faeb3083849ec9a94a0c65e70",
+        "extension/stacker.js": "757dc83783c44fbaf107de161beaabe626be05b3db3dbee80d9b185d0647cda8",
+        "extension/namer.js": "6b997bc3d7fb68b487c8c307e9688bf00dca977759f08680fc754a231e4002f2",
+        "extension/group-id-guard.js": "aaa384ab2de262a5bb9ba10283e5d290fbe6d0aac573cabafc2d5b156e7639a0",
+        "extension/name-generator.js": "c5f0549ab7ed7050c555d573700a13b0165c230de5caa25814f9b939ab8682b7",
+        "extension/name-catalog.js": "75263bb976c806ecc8637147d92c96153728df02393e55c3260bb425281bc41c",
+        "experiments/query-stacker.js": "c8a0ed1d26fd98892fecd28a38abb094efb32024f11fc446db5e1c97404c90b0",
+        "experiments/dependency-stacker.js": "8c655252e3be70820544885059a7e319cbd1fb5f30b96aae3e6ec30a2976bee6",
+        "chrome/extension/service-worker.js": "3ab9e823ffdc3b499a628eed58f6ffca2dc2b3db6fd1f2349f613b5389c9c13e"
+      },
+      "entry": {
+        "baseline": "lookup",
+        "grouped": [
+          {
+            "scenario": "2/single",
+            "challenger": "created-cache",
+            "baselineMedianMs": 21.2,
+            "challengerMedianMs": 19.45,
+            "medianReduction": 0.083,
+            "pairedWins": 9,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "created-cache",
+            "baselineMedianMs": 21.45,
+            "challengerMedianMs": 17.35,
+            "medianReduction": 0.191,
+            "pairedWins": 11,
+            "material": false
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "created-cache",
+            "baselineMedianMs": 39.4,
+            "challengerMedianMs": 38.75,
+            "medianReduction": 0.017,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "40/burst8",
+            "challenger": "created-cache",
+            "baselineMedianMs": 37.4,
+            "challengerMedianMs": 39.05,
+            "medianReduction": -0.044,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "40/cold",
+            "challenger": "created-cache",
+            "baselineMedianMs": 33.9,
+            "challengerMedianMs": 37.55,
+            "medianReduction": -0.108,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "512/cold",
+            "challenger": "created-cache",
+            "baselineMedianMs": 51.15,
+            "challengerMedianMs": 54.2,
+            "medianReduction": -0.06,
+            "pairedWins": 5,
+            "material": false
+          }
+        ],
+        "groupedAndNamed": [
+          {
+            "scenario": "2/single",
+            "challenger": "created-cache",
+            "baselineMedianMs": 32.05,
+            "challengerMedianMs": 33.65,
+            "medianReduction": -0.05,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "created-cache",
+            "baselineMedianMs": 33.25,
+            "challengerMedianMs": 33.8,
+            "medianReduction": -0.017,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "created-cache",
+            "baselineMedianMs": 45.9,
+            "challengerMedianMs": 45.95,
+            "medianReduction": -0.001,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "40/burst8",
+            "challenger": "created-cache",
+            "baselineMedianMs": 137.5,
+            "challengerMedianMs": 136.2,
+            "medianReduction": 0.009,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "40/cold",
+            "challenger": "created-cache",
+            "baselineMedianMs": 45.3,
+            "challengerMedianMs": 46.55,
+            "medianReduction": -0.028,
+            "pairedWins": 3,
+            "material": false
+          },
+          {
+            "scenario": "512/cold",
+            "challenger": "created-cache",
+            "baselineMedianMs": 60.5,
+            "challengerMedianMs": 65.35,
+            "medianReduction": -0.08,
+            "pairedWins": 3,
+            "material": false
+          }
+        ],
+        "lifecycle": [
+          {
+            "variant": "lookup",
+            "unrelatedTabs": 20,
+            "workerRunningAfter": false,
+            "workerStarts": 0,
+            "createdEventsReceived": 0
+          },
+          {
+            "variant": "created-cache",
+            "unrelatedTabs": 20,
+            "workerRunningAfter": true,
+            "workerStarts": 1,
+            "createdEventsReceived": 20
+          }
+        ]
+      },
+      "stackers": {
+        "baseline": "batch",
+        "admission": [
+          {
+            "scenario": "2/single",
+            "challenger": "fifo",
+            "baselineMedianMs": 0.6,
+            "challengerMedianMs": 0.7,
+            "medianReduction": -0.167,
+            "pairedWins": 3,
+            "material": false
+          },
+          {
+            "scenario": "2/single",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 0.6,
+            "challengerMedianMs": 0.75,
+            "medianReduction": -0.25,
+            "pairedWins": 3,
+            "material": false
+          },
+          {
+            "scenario": "2/single",
+            "challenger": "query",
+            "baselineMedianMs": 0.6,
+            "challengerMedianMs": 0.75,
+            "medianReduction": -0.25,
+            "pairedWins": 1,
+            "material": false
+          },
+          {
+            "scenario": "2/single",
+            "challenger": "selective-query",
+            "baselineMedianMs": 0.6,
+            "challengerMedianMs": 0.85,
+            "medianReduction": -0.417,
+            "pairedWins": 1,
+            "material": false
+          },
+          {
+            "scenario": "2/single",
+            "challenger": "dependency",
+            "baselineMedianMs": 0.6,
+            "challengerMedianMs": 0.7,
+            "medianReduction": -0.167,
+            "pairedWins": 3,
+            "material": false
+          },
+          {
+            "scenario": "33/siblings32",
+            "challenger": "fifo",
+            "baselineMedianMs": 4.05,
+            "challengerMedianMs": 24.15,
+            "medianReduction": -4.963,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "33/siblings32",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 4.05,
+            "challengerMedianMs": 4.15,
+            "medianReduction": -0.025,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "33/siblings32",
+            "challenger": "query",
+            "baselineMedianMs": 4.05,
+            "challengerMedianMs": 4.15,
+            "medianReduction": -0.025,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "33/siblings32",
+            "challenger": "selective-query",
+            "baselineMedianMs": 4.05,
+            "challengerMedianMs": 4,
+            "medianReduction": 0.012,
+            "pairedWins": 8,
+            "material": false
+          },
+          {
+            "scenario": "33/siblings32",
+            "challenger": "dependency",
+            "baselineMedianMs": 4.05,
+            "challengerMedianMs": 4.3,
+            "medianReduction": -0.062,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "fifo",
+            "baselineMedianMs": 0.9,
+            "challengerMedianMs": 0.9,
+            "medianReduction": 0,
+            "pairedWins": 5,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 0.9,
+            "challengerMedianMs": 0.95,
+            "medianReduction": -0.056,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "query",
+            "baselineMedianMs": 0.9,
+            "challengerMedianMs": 1.15,
+            "medianReduction": -0.278,
+            "pairedWins": 1,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "selective-query",
+            "baselineMedianMs": 0.9,
+            "challengerMedianMs": 0.8,
+            "medianReduction": 0.111,
+            "pairedWins": 8,
+            "material": false
+          },
+          {
+            "scenario": "40/single",
+            "challenger": "dependency",
+            "baselineMedianMs": 0.9,
+            "challengerMedianMs": 0.8,
+            "medianReduction": 0.111,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "40/siblings32",
+            "challenger": "fifo",
+            "baselineMedianMs": 3.65,
+            "challengerMedianMs": 15.95,
+            "medianReduction": -3.37,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "40/siblings32",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 3.65,
+            "challengerMedianMs": 3.85,
+            "medianReduction": -0.055,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "40/siblings32",
+            "challenger": "query",
+            "baselineMedianMs": 3.65,
+            "challengerMedianMs": 3.4,
+            "medianReduction": 0.068,
+            "pairedWins": 8,
+            "material": false
+          },
+          {
+            "scenario": "40/siblings32",
+            "challenger": "selective-query",
+            "baselineMedianMs": 3.65,
+            "challengerMedianMs": 3.45,
+            "medianReduction": 0.055,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "40/siblings32",
+            "challenger": "dependency",
+            "baselineMedianMs": 3.65,
+            "challengerMedianMs": 3.65,
+            "medianReduction": 0,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "40/chain32",
+            "challenger": "fifo",
+            "baselineMedianMs": 16.5,
+            "challengerMedianMs": 16.05,
+            "medianReduction": 0.027,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "40/chain32",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 16.5,
+            "challengerMedianMs": 16.4,
+            "medianReduction": 0.006,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "40/chain32",
+            "challenger": "query",
+            "baselineMedianMs": 16.5,
+            "challengerMedianMs": 24.45,
+            "medianReduction": -0.482,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "40/chain32",
+            "challenger": "selective-query",
+            "baselineMedianMs": 16.5,
+            "challengerMedianMs": 16.3,
+            "medianReduction": 0.012,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "40/chain32",
+            "challenger": "dependency",
+            "baselineMedianMs": 16.5,
+            "challengerMedianMs": 16.3,
+            "medianReduction": 0.012,
+            "pairedWins": 9,
+            "material": false
+          },
+          {
+            "scenario": "40/independent16",
+            "challenger": "fifo",
+            "baselineMedianMs": 47.35,
+            "challengerMedianMs": 46.85,
+            "medianReduction": 0.011,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "40/independent16",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 47.35,
+            "challengerMedianMs": 47.35,
+            "medianReduction": 0,
+            "pairedWins": 9,
+            "material": false
+          },
+          {
+            "scenario": "40/independent16",
+            "challenger": "query",
+            "baselineMedianMs": 47.35,
+            "challengerMedianMs": 52.55,
+            "medianReduction": -0.11,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "40/independent16",
+            "challenger": "selective-query",
+            "baselineMedianMs": 47.35,
+            "challengerMedianMs": 47.45,
+            "medianReduction": -0.002,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "40/independent16",
+            "challenger": "dependency",
+            "baselineMedianMs": 47.35,
+            "challengerMedianMs": 17.8,
+            "medianReduction": 0.624,
+            "pairedWins": 12,
+            "material": true
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "fifo",
+            "baselineMedianMs": 6.55,
+            "challengerMedianMs": 6.4,
+            "medianReduction": 0.023,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 6.55,
+            "challengerMedianMs": 6.6,
+            "medianReduction": -0.008,
+            "pairedWins": 5,
+            "material": false
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "query",
+            "baselineMedianMs": 6.55,
+            "challengerMedianMs": 13.35,
+            "medianReduction": -1.038,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "selective-query",
+            "baselineMedianMs": 6.55,
+            "challengerMedianMs": 6.7,
+            "medianReduction": -0.023,
+            "pairedWins": 6,
+            "material": false
+          },
+          {
+            "scenario": "512/single",
+            "challenger": "dependency",
+            "baselineMedianMs": 6.55,
+            "challengerMedianMs": 6.75,
+            "medianReduction": -0.031,
+            "pairedWins": 3,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings32",
+            "challenger": "fifo",
+            "baselineMedianMs": 15.45,
+            "challengerMedianMs": 38.8,
+            "medianReduction": -1.511,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings32",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 15.45,
+            "challengerMedianMs": 16.1,
+            "medianReduction": -0.042,
+            "pairedWins": 4,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings32",
+            "challenger": "query",
+            "baselineMedianMs": 15.45,
+            "challengerMedianMs": 22.7,
+            "medianReduction": -0.469,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings32",
+            "challenger": "selective-query",
+            "baselineMedianMs": 15.45,
+            "challengerMedianMs": 22.55,
+            "medianReduction": -0.46,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings32",
+            "challenger": "dependency",
+            "baselineMedianMs": 15.45,
+            "challengerMedianMs": 15.45,
+            "medianReduction": 0,
+            "pairedWins": 7,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings128",
+            "challenger": "fifo",
+            "baselineMedianMs": 83.65,
+            "challengerMedianMs": 154.05,
+            "medianReduction": -0.842,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings128",
+            "challenger": "wide-batch",
+            "baselineMedianMs": 83.65,
+            "challengerMedianMs": 43.6,
+            "medianReduction": 0.479,
+            "pairedWins": 12,
+            "material": true
+          },
+          {
+            "scenario": "512/siblings128",
+            "challenger": "query",
+            "baselineMedianMs": 83.65,
+            "challengerMedianMs": 105.4,
+            "medianReduction": -0.26,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings128",
+            "challenger": "selective-query",
+            "baselineMedianMs": 83.65,
+            "challengerMedianMs": 106.1,
+            "medianReduction": -0.268,
+            "pairedWins": 0,
+            "material": false
+          },
+          {
+            "scenario": "512/siblings128",
+            "challenger": "dependency",
+            "baselineMedianMs": 83.65,
+            "challengerMedianMs": 82.5,
+            "medianReduction": 0.014,
+            "pairedWins": 8,
+            "material": false
+          }
+        ]
+      }
+    },
+    "outcome": {
+      "entry": "Lookup retained by the state-first rule. Grouped-and-named: no material difference in either run. Group formation at 40 tabs: cache 24.6% lower (11/12) in the delivered run, 19.1% (11/12) initially.",
+      "stackers": "Selected (32) retained by the state-first rule. Material challengers in both runs: dependency for 16 simultaneous independent relationships, Batch 128 for 128 simultaneous siblings."
+    }
+  },
+  "independentReview": {
+    "findings": [
+      {
+        "severity": "medium",
+        "issue": "an older version could be resubmitted after a newer rejected or cancelled submission; unknown states failed open",
+        "resolution": "all submitted versions count for supersession; unknown states throw"
+      },
+      {
+        "severity": "low",
+        "issue": "after delayed processing, a different submitted draft could be reported as superseded",
+        "resolution": "the exact version must be submitted after publish"
+      },
+      {
+        "severity": "low",
+        "issue": "archive bytes depended on the builder's umask; the summary credited the tested digest without an upload",
+        "resolution": "entries are 0644 regular files (checked in CI); only uploading runs credit the digest"
+      },
+      {
+        "severity": "low",
+        "issue": "store warnings were plain log lines",
+        "resolution": "annotations and summary entries"
+      },
+      {
+        "severity": "low",
+        "issue": "the Google trust condition admits any main-branch job with id-token: write",
+        "resolution": "workflow test keeps id-token: write on the Chrome job only"
+      }
+    ]
+  },
+  "packages": {
+    "xpi": "0245f740c7a1cf62eeaf3c1653ab342498aa43145b080061de005b0a423fe815",
+    "chromeZip": "af6e54d6542dbf3b24eeb638c9f61920caae6a2940c639191e83f7074188369a",
+    "version": "1.1.12"
+  }
+}

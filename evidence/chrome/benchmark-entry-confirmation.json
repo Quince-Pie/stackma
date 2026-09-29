@@ -1,0 +1,2947 @@
+{
+  "suite": "entry",
+  "phase": "confirmation",
+  "repetitions": 12,
+  "warmups": 2,
+  "date": "2026-09-29T04:50:44.096Z",
+  "node": "v24.20.0",
+  "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+  "hardware": {
+    "architecture": "x64",
+    "kernel": "6.18.52",
+    "logicalCpus": 32,
+    "ramBytes": 98613456896
+  },
+  "samples": [
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 0,
+      "variant": "lookup",
+      "targetMs": 7.599853515625,
+      "enqueueMs": 13.39990234375,
+      "groupMs": 28.099853515625,
+      "titleMs": 40.19970703125,
+      "doneMs": 40.2998046875,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 0,
+      "variant": "created-cache",
+      "targetMs": 9,
+      "enqueueMs": 9,
+      "groupMs": 27.89990234375,
+      "titleMs": 52.199951171875,
+      "doneMs": 52.199951171875,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 1,
+      "variant": "created-cache",
+      "targetMs": 7.899658203125,
+      "enqueueMs": 7.999755859375,
+      "groupMs": 25.7998046875,
+      "titleMs": 41.899658203125,
+      "doneMs": 41.999755859375,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 1,
+      "variant": "lookup",
+      "targetMs": 8.19970703125,
+      "enqueueMs": 15.499755859375,
+      "groupMs": 30.7998046875,
+      "titleMs": 42.499755859375,
+      "doneMs": 42.499755859375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 2,
+      "variant": "lookup",
+      "targetMs": 7.699951171875,
+      "enqueueMs": 13.300048828125,
+      "groupMs": 27.89990234375,
+      "titleMs": 39.60009765625,
+      "doneMs": 39.60009765625,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 2,
+      "variant": "created-cache",
+      "targetMs": 8.39990234375,
+      "enqueueMs": 8.39990234375,
+      "groupMs": 24.699951171875,
+      "titleMs": 38.699951171875,
+      "doneMs": 38.800048828125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 3,
+      "variant": "created-cache",
+      "targetMs": 10.099853515625,
+      "enqueueMs": 10.099853515625,
+      "groupMs": 27.89990234375,
+      "titleMs": 43.89990234375,
+      "doneMs": 43.89990234375,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 3,
+      "variant": "lookup",
+      "targetMs": 7.39990234375,
+      "enqueueMs": 13.89990234375,
+      "groupMs": 31.2998046875,
+      "titleMs": 42.2998046875,
+      "doneMs": 42.39990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 4,
+      "variant": "lookup",
+      "targetMs": 6.89990234375,
+      "enqueueMs": 10.7998046875,
+      "groupMs": 18.7998046875,
+      "titleMs": 26.5,
+      "doneMs": 26.5,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 4,
+      "variant": "created-cache",
+      "targetMs": 7.699951171875,
+      "enqueueMs": 7.699951171875,
+      "groupMs": 17,
+      "titleMs": 33,
+      "doneMs": 33,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 5,
+      "variant": "created-cache",
+      "targetMs": 7.999755859375,
+      "enqueueMs": 7.999755859375,
+      "groupMs": 21.999755859375,
+      "titleMs": 29.899658203125,
+      "doneMs": 29.899658203125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 5,
+      "variant": "lookup",
+      "targetMs": 6.89990234375,
+      "enqueueMs": 10.39990234375,
+      "groupMs": 20.69970703125,
+      "titleMs": 27.499755859375,
+      "doneMs": 27.499755859375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 6,
+      "variant": "lookup",
+      "targetMs": 8.199951171875,
+      "enqueueMs": 12.099853515625,
+      "groupMs": 22,
+      "titleMs": 33.099853515625,
+      "doneMs": 33.099853515625,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 6,
+      "variant": "created-cache",
+      "targetMs": 8.199951171875,
+      "enqueueMs": 8.199951171875,
+      "groupMs": 17.800048828125,
+      "titleMs": 33,
+      "doneMs": 33,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 7,
+      "variant": "created-cache",
+      "targetMs": 12.2998046875,
+      "enqueueMs": 12.2998046875,
+      "groupMs": 25.599853515625,
+      "titleMs": 37.499755859375,
+      "doneMs": 37.499755859375,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 7,
+      "variant": "lookup",
+      "targetMs": 7.099853515625,
+      "enqueueMs": 10.699951171875,
+      "groupMs": 18.89990234375,
+      "titleMs": 26.599853515625,
+      "doneMs": 26.599853515625,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 8,
+      "variant": "lookup",
+      "targetMs": 7.39990234375,
+      "enqueueMs": 10.89990234375,
+      "groupMs": 20.800048828125,
+      "titleMs": 28,
+      "doneMs": 28,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 8,
+      "variant": "created-cache",
+      "targetMs": 7.39990234375,
+      "enqueueMs": 7.39990234375,
+      "groupMs": 20.999755859375,
+      "titleMs": 28.69970703125,
+      "doneMs": 28.69970703125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 9,
+      "variant": "created-cache",
+      "targetMs": 7.999755859375,
+      "enqueueMs": 8.099853515625,
+      "groupMs": 18.7998046875,
+      "titleMs": 35.399658203125,
+      "doneMs": 35.399658203125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 9,
+      "variant": "lookup",
+      "targetMs": 7.399658203125,
+      "enqueueMs": 11.099853515625,
+      "groupMs": 20.7998046875,
+      "titleMs": 32.099853515625,
+      "doneMs": 32.099853515625,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 10,
+      "variant": "lookup",
+      "targetMs": 7.300048828125,
+      "enqueueMs": 11.900146484375,
+      "groupMs": 22.199951171875,
+      "titleMs": 27.60009765625,
+      "doneMs": 27.699951171875,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 10,
+      "variant": "created-cache",
+      "targetMs": 6.89990234375,
+      "enqueueMs": 6.89990234375,
+      "groupMs": 16.499755859375,
+      "titleMs": 28.7998046875,
+      "doneMs": 28.7998046875,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 11,
+      "variant": "created-cache",
+      "targetMs": 7,
+      "enqueueMs": 7,
+      "groupMs": 14,
+      "titleMs": 25.5,
+      "doneMs": 25.5,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 2,
+      "shape": "single",
+      "repetition": 11,
+      "variant": "lookup",
+      "targetMs": 7.999755859375,
+      "enqueueMs": 11.7998046875,
+      "groupMs": 23.599853515625,
+      "titleMs": 36.099853515625,
+      "doneMs": 36.099853515625,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 0,
+      "variant": "lookup",
+      "targetMs": 7.7001953125,
+      "enqueueMs": 11.400146484375,
+      "groupMs": 20.400146484375,
+      "titleMs": 34.800048828125,
+      "doneMs": 34.900146484375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 0,
+      "variant": "created-cache",
+      "targetMs": 8.199951171875,
+      "enqueueMs": 8.300048828125,
+      "groupMs": 22.900146484375,
+      "titleMs": 35.5,
+      "doneMs": 35.60009765625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 1,
+      "variant": "created-cache",
+      "targetMs": 7.7001953125,
+      "enqueueMs": 7.7001953125,
+      "groupMs": 17.800048828125,
+      "titleMs": 34.300048828125,
+      "doneMs": 34.300048828125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 1,
+      "variant": "lookup",
+      "targetMs": 7.900146484375,
+      "enqueueMs": 11.699951171875,
+      "groupMs": 23.60009765625,
+      "titleMs": 35.400146484375,
+      "doneMs": 35.400146484375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 2,
+      "variant": "lookup",
+      "targetMs": 6.900146484375,
+      "enqueueMs": 10.300048828125,
+      "groupMs": 18,
+      "titleMs": 26.5,
+      "doneMs": 26.5,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 2,
+      "variant": "created-cache",
+      "targetMs": 7.099853515625,
+      "enqueueMs": 7.099853515625,
+      "groupMs": 17,
+      "titleMs": 34.599853515625,
+      "doneMs": 34.699951171875,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 3,
+      "variant": "created-cache",
+      "targetMs": 7,
+      "enqueueMs": 7,
+      "groupMs": 14,
+      "titleMs": 31.699951171875,
+      "doneMs": 31.699951171875,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 3,
+      "variant": "lookup",
+      "targetMs": 7.800048828125,
+      "enqueueMs": 11.60009765625,
+      "groupMs": 23.199951171875,
+      "titleMs": 35.10009765625,
+      "doneMs": 35.199951171875,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 4,
+      "variant": "lookup",
+      "targetMs": 7.599853515625,
+      "enqueueMs": 11.300048828125,
+      "groupMs": 24.300048828125,
+      "titleMs": 37,
+      "doneMs": 37,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 4,
+      "variant": "created-cache",
+      "targetMs": 7.300048828125,
+      "enqueueMs": 7.300048828125,
+      "groupMs": 17.10009765625,
+      "titleMs": 33.800048828125,
+      "doneMs": 33.800048828125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 5,
+      "variant": "created-cache",
+      "targetMs": 7.60009765625,
+      "enqueueMs": 7.60009765625,
+      "groupMs": 14.900146484375,
+      "titleMs": 27.699951171875,
+      "doneMs": 27.699951171875,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 5,
+      "variant": "lookup",
+      "targetMs": 8.300048828125,
+      "enqueueMs": 12.300048828125,
+      "groupMs": 23.300048828125,
+      "titleMs": 31.39990234375,
+      "doneMs": 31.5,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 6,
+      "variant": "lookup",
+      "targetMs": 7.39990234375,
+      "enqueueMs": 11.10009765625,
+      "groupMs": 20,
+      "titleMs": 28.300048828125,
+      "doneMs": 28.39990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 6,
+      "variant": "created-cache",
+      "targetMs": 7.89990234375,
+      "enqueueMs": 7.89990234375,
+      "groupMs": 17.89990234375,
+      "titleMs": 32.199951171875,
+      "doneMs": 32.199951171875,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 7,
+      "variant": "created-cache",
+      "targetMs": 8,
+      "enqueueMs": 8,
+      "groupMs": 18.400146484375,
+      "titleMs": 31,
+      "doneMs": 31.10009765625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 7,
+      "variant": "lookup",
+      "targetMs": 7.900146484375,
+      "enqueueMs": 11.900146484375,
+      "groupMs": 23.300048828125,
+      "titleMs": 31.2001953125,
+      "doneMs": 31.2001953125,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 8,
+      "variant": "lookup",
+      "targetMs": 7.800048828125,
+      "enqueueMs": 11.5,
+      "groupMs": 22,
+      "titleMs": 33.300048828125,
+      "doneMs": 33.39990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 8,
+      "variant": "created-cache",
+      "targetMs": 7.2001953125,
+      "enqueueMs": 7.2001953125,
+      "groupMs": 14.60009765625,
+      "titleMs": 26.7001953125,
+      "doneMs": 26.7001953125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 9,
+      "variant": "created-cache",
+      "targetMs": 7.199951171875,
+      "enqueueMs": 7.199951171875,
+      "groupMs": 14.800048828125,
+      "titleMs": 33.400146484375,
+      "doneMs": 33.400146484375,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 9,
+      "variant": "lookup",
+      "targetMs": 7.39990234375,
+      "enqueueMs": 11,
+      "groupMs": 21.2998046875,
+      "titleMs": 33.199951171875,
+      "doneMs": 33.2998046875,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 10,
+      "variant": "lookup",
+      "targetMs": 7.60009765625,
+      "enqueueMs": 11.2001953125,
+      "groupMs": 24,
+      "titleMs": 31.60009765625,
+      "doneMs": 31.60009765625,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 10,
+      "variant": "created-cache",
+      "targetMs": 7.39990234375,
+      "enqueueMs": 7.39990234375,
+      "groupMs": 21.2998046875,
+      "titleMs": 33.599853515625,
+      "doneMs": 33.599853515625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 11,
+      "variant": "created-cache",
+      "targetMs": 7.60009765625,
+      "enqueueMs": 7.60009765625,
+      "groupMs": 14.900146484375,
+      "titleMs": 27.60009765625,
+      "doneMs": 27.60009765625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "single",
+      "repetition": 11,
+      "variant": "lookup",
+      "targetMs": 7.5,
+      "enqueueMs": 11.10009765625,
+      "groupMs": 21.5,
+      "titleMs": 33.10009765625,
+      "doneMs": 33.199951171875,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 0,
+      "variant": "lookup",
+      "targetMs": 16.499755859375,
+      "enqueueMs": 20.89990234375,
+      "groupMs": 43.099853515625,
+      "titleMs": 59.599853515625,
+      "doneMs": 59.599853515625,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 0,
+      "variant": "created-cache",
+      "targetMs": 13.5,
+      "enqueueMs": 13.5,
+      "groupMs": 38.199951171875,
+      "titleMs": 45,
+      "doneMs": 45,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 1,
+      "variant": "created-cache",
+      "targetMs": 15.39990234375,
+      "enqueueMs": 15.39990234375,
+      "groupMs": 34.2998046875,
+      "titleMs": 46.599853515625,
+      "doneMs": 46.599853515625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 1,
+      "variant": "lookup",
+      "targetMs": 14.099853515625,
+      "enqueueMs": 18.39990234375,
+      "groupMs": 40.599853515625,
+      "titleMs": 52.39990234375,
+      "doneMs": 52.39990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 2,
+      "variant": "lookup",
+      "targetMs": 14.199951171875,
+      "enqueueMs": 19.099853515625,
+      "groupMs": 43.39990234375,
+      "titleMs": 54.89990234375,
+      "doneMs": 54.89990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 2,
+      "variant": "created-cache",
+      "targetMs": 14.499755859375,
+      "enqueueMs": 14.499755859375,
+      "groupMs": 33.19970703125,
+      "titleMs": 51.099853515625,
+      "doneMs": 51.099853515625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 3,
+      "variant": "created-cache",
+      "targetMs": 14.10009765625,
+      "enqueueMs": 14.10009765625,
+      "groupMs": 33.699951171875,
+      "titleMs": 52.5,
+      "doneMs": 52.5,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 3,
+      "variant": "lookup",
+      "targetMs": 14.699951171875,
+      "enqueueMs": 19,
+      "groupMs": 41.699951171875,
+      "titleMs": 58.900146484375,
+      "doneMs": 59,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 4,
+      "variant": "lookup",
+      "targetMs": 14.60009765625,
+      "enqueueMs": 18.800048828125,
+      "groupMs": 41,
+      "titleMs": 53.199951171875,
+      "doneMs": 53.199951171875,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 4,
+      "variant": "created-cache",
+      "targetMs": 14.300048828125,
+      "enqueueMs": 14.300048828125,
+      "groupMs": 40.800048828125,
+      "titleMs": 56,
+      "doneMs": 56.099853515625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 5,
+      "variant": "created-cache",
+      "targetMs": 17.89990234375,
+      "enqueueMs": 17.89990234375,
+      "groupMs": 41.599853515625,
+      "titleMs": 56.499755859375,
+      "doneMs": 56.499755859375,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 5,
+      "variant": "lookup",
+      "targetMs": 14.5,
+      "enqueueMs": 18.5,
+      "groupMs": 41.60009765625,
+      "titleMs": 53.89990234375,
+      "doneMs": 53.89990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 6,
+      "variant": "lookup",
+      "targetMs": 17.199951171875,
+      "enqueueMs": 21.89990234375,
+      "groupMs": 46.60009765625,
+      "titleMs": 53,
+      "doneMs": 53,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 6,
+      "variant": "created-cache",
+      "targetMs": 11.80029296875,
+      "enqueueMs": 11.80029296875,
+      "groupMs": 21.60009765625,
+      "titleMs": 47.10009765625,
+      "doneMs": 47.10009765625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 7,
+      "variant": "created-cache",
+      "targetMs": 15.5,
+      "enqueueMs": 15.5,
+      "groupMs": 41.7998046875,
+      "titleMs": 50.39990234375,
+      "doneMs": 50.5,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 7,
+      "variant": "lookup",
+      "targetMs": 10.300048828125,
+      "enqueueMs": 14.099853515625,
+      "groupMs": 37.699951171875,
+      "titleMs": 49.89990234375,
+      "doneMs": 49.89990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 8,
+      "variant": "lookup",
+      "targetMs": 14.199951171875,
+      "enqueueMs": 18.300048828125,
+      "groupMs": 40,
+      "titleMs": 52.199951171875,
+      "doneMs": 52.199951171875,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 8,
+      "variant": "created-cache",
+      "targetMs": 15.800048828125,
+      "enqueueMs": 15.800048828125,
+      "groupMs": 43.5,
+      "titleMs": 51.10009765625,
+      "doneMs": 51.199951171875,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 9,
+      "variant": "created-cache",
+      "targetMs": 17.39990234375,
+      "enqueueMs": 17.39990234375,
+      "groupMs": 48.199951171875,
+      "titleMs": 56,
+      "doneMs": 56.10009765625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 9,
+      "variant": "lookup",
+      "targetMs": 14.39990234375,
+      "enqueueMs": 18.499755859375,
+      "groupMs": 42.099853515625,
+      "titleMs": 53.999755859375,
+      "doneMs": 53.999755859375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 10,
+      "variant": "lookup",
+      "targetMs": 13.5,
+      "enqueueMs": 17.39990234375,
+      "groupMs": 38.800048828125,
+      "titleMs": 44.5,
+      "doneMs": 44.60009765625,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 10,
+      "variant": "created-cache",
+      "targetMs": 14.400146484375,
+      "enqueueMs": 14.400146484375,
+      "groupMs": 34.400146484375,
+      "titleMs": 54.000244140625,
+      "doneMs": 54.000244140625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 11,
+      "variant": "created-cache",
+      "targetMs": 14.5,
+      "enqueueMs": 14.5,
+      "groupMs": 40.10009765625,
+      "titleMs": 53,
+      "doneMs": 53,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "single",
+      "repetition": 11,
+      "variant": "lookup",
+      "targetMs": 14.599853515625,
+      "enqueueMs": 18.800048828125,
+      "groupMs": 41.300048828125,
+      "titleMs": 54.599853515625,
+      "doneMs": 54.599853515625,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 0,
+      "variant": "lookup",
+      "targetMs": 6.900146484375,
+      "enqueueMs": 10.7001953125,
+      "groupMs": 33.2001953125,
+      "titleMs": 128.2001953125,
+      "doneMs": 128.80029296875,
+      "calls": {
+        "tabs.get": 20,
+        "tabs.group": 3,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 0,
+      "variant": "created-cache",
+      "targetMs": 7.199951171875,
+      "enqueueMs": 7.199951171875,
+      "groupMs": 39,
+      "titleMs": 121.7998046875,
+      "doneMs": 121.7998046875,
+      "calls": {
+        "tabs.get": 12,
+        "tabs.group": 2,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 1,
+      "variant": "created-cache",
+      "targetMs": 6.900146484375,
+      "enqueueMs": 6.900146484375,
+      "groupMs": 34.800048828125,
+      "titleMs": 127.5,
+      "doneMs": 127.5,
+      "calls": {
+        "tabs.get": 12,
+        "tabs.group": 2,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 1,
+      "variant": "lookup",
+      "targetMs": 7.199951171875,
+      "enqueueMs": 10.699951171875,
+      "groupMs": 40.199951171875,
+      "titleMs": 129.199951171875,
+      "doneMs": 129.199951171875,
+      "calls": {
+        "tabs.get": 20,
+        "tabs.group": 3,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 2,
+      "variant": "lookup",
+      "targetMs": 7.5,
+      "enqueueMs": 11,
+      "groupMs": 38.7998046875,
+      "titleMs": 143.099853515625,
+      "doneMs": 143.099853515625,
+      "calls": {
+        "tabs.get": 20,
+        "tabs.group": 3,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 2,
+      "variant": "created-cache",
+      "targetMs": 7.900146484375,
+      "enqueueMs": 8,
+      "groupMs": 43.400146484375,
+      "titleMs": 139.800048828125,
+      "doneMs": 139.800048828125,
+      "calls": {
+        "tabs.get": 12,
+        "tabs.group": 2,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 3,
+      "variant": "created-cache",
+      "targetMs": 7.400146484375,
+      "enqueueMs": 7.400146484375,
+      "groupMs": 36.199951171875,
+      "titleMs": 140.400146484375,
+      "doneMs": 140.400146484375,
+      "calls": {
+        "tabs.get": 11,
+        "tabs.group": 2,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 3,
+      "variant": "lookup",
+      "targetMs": 7.2998046875,
+      "enqueueMs": 10.89990234375,
+      "groupMs": 37.199951171875,
+      "titleMs": 145.5,
+      "doneMs": 145.5,
+      "calls": {
+        "tabs.get": 20,
+        "tabs.group": 3,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 4,
+      "variant": "lookup",
+      "targetMs": 7.999755859375,
+      "enqueueMs": 11.599853515625,
+      "groupMs": 38.7998046875,
+      "titleMs": 139.999755859375,
+      "doneMs": 143.39990234375,
+      "calls": {
+        "tabs.get": 20,
+        "tabs.group": 3,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 4,
+      "variant": "created-cache",
+      "targetMs": 7.300048828125,
+      "enqueueMs": 7.300048828125,
+      "groupMs": 36,
+      "titleMs": 139.199951171875,
+      "doneMs": 139.199951171875,
+      "calls": {
+        "tabs.get": 11,
+        "tabs.group": 2,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 5,
+      "variant": "created-cache",
+      "targetMs": 7.5,
+      "enqueueMs": 7.5,
+      "groupMs": 41.60009765625,
+      "titleMs": 139.900146484375,
+      "doneMs": 139.900146484375,
+      "calls": {
+        "tabs.get": 12,
+        "tabs.group": 2,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 5,
+      "variant": "lookup",
+      "targetMs": 8.10009765625,
+      "enqueueMs": 11.800048828125,
+      "groupMs": 54.5,
+      "titleMs": 139.900146484375,
+      "doneMs": 139.900146484375,
+      "calls": {
+        "tabs.get": 20,
+        "tabs.group": 3,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 6,
+      "variant": "lookup",
+      "targetMs": 7.2998046875,
+      "enqueueMs": 10.7998046875,
+      "groupMs": 49.2998046875,
+      "titleMs": 135.499755859375,
+      "doneMs": 135.499755859375,
+      "calls": {
+        "tabs.get": 19,
+        "tabs.group": 3,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 6,
+      "variant": "created-cache",
+      "targetMs": 7.5,
+      "enqueueMs": 7.5,
+      "groupMs": 39.199951171875,
+      "titleMs": 131.5,
+      "doneMs": 131.5,
+      "calls": {
+        "tabs.get": 11,
+        "tabs.group": 2,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 7,
+      "variant": "created-cache",
+      "targetMs": 7.099853515625,
+      "enqueueMs": 7.099853515625,
+      "groupMs": 39,
+      "titleMs": 130.5,
+      "doneMs": 130.5,
+      "calls": {
+        "tabs.get": 11,
+        "tabs.group": 2,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 7,
+      "variant": "lookup",
+      "targetMs": 7.699951171875,
+      "enqueueMs": 12,
+      "groupMs": 43.39990234375,
+      "titleMs": 139,
+      "doneMs": 139,
+      "calls": {
+        "tabs.get": 20,
+        "tabs.group": 3,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 8,
+      "variant": "lookup",
+      "targetMs": 5.89990234375,
+      "enqueueMs": 9.800048828125,
+      "groupMs": 37.39990234375,
+      "titleMs": 133.599853515625,
+      "doneMs": 134.300048828125,
+      "calls": {
+        "tabs.get": 20,
+        "tabs.group": 3,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 8,
+      "variant": "created-cache",
+      "targetMs": 7.10009765625,
+      "enqueueMs": 7.10009765625,
+      "groupMs": 32.60009765625,
+      "titleMs": 133.300048828125,
+      "doneMs": 133.300048828125,
+      "calls": {
+        "tabs.get": 12,
+        "tabs.group": 2,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 9,
+      "variant": "created-cache",
+      "targetMs": 7.699951171875,
+      "enqueueMs": 7.699951171875,
+      "groupMs": 46.39990234375,
+      "titleMs": 143.999755859375,
+      "doneMs": 143.999755859375,
+      "calls": {
+        "tabs.get": 12,
+        "tabs.group": 2,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 9,
+      "variant": "lookup",
+      "targetMs": 7.300048828125,
+      "enqueueMs": 10.699951171875,
+      "groupMs": 38.199951171875,
+      "titleMs": 140.60009765625,
+      "doneMs": 140.60009765625,
+      "calls": {
+        "tabs.get": 20,
+        "tabs.group": 3,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 10,
+      "variant": "lookup",
+      "targetMs": 7.5,
+      "enqueueMs": 11,
+      "groupMs": 37.800048828125,
+      "titleMs": 138.5,
+      "doneMs": 139.400146484375,
+      "calls": {
+        "tabs.get": 20,
+        "tabs.group": 3,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 10,
+      "variant": "created-cache",
+      "targetMs": 7.199951171875,
+      "enqueueMs": 7.199951171875,
+      "groupMs": 36.60009765625,
+      "titleMs": 136.800048828125,
+      "doneMs": 136.800048828125,
+      "calls": {
+        "tabs.get": 11,
+        "tabs.group": 2,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 11,
+      "variant": "created-cache",
+      "targetMs": 7.5,
+      "enqueueMs": 7.5,
+      "groupMs": 37.800048828125,
+      "titleMs": 141.39990234375,
+      "doneMs": 141.5,
+      "calls": {
+        "tabs.get": 11,
+        "tabs.group": 2,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "burst8",
+      "repetition": 11,
+      "variant": "lookup",
+      "targetMs": 7.300048828125,
+      "enqueueMs": 10.800048828125,
+      "groupMs": 49.199951171875,
+      "titleMs": 133,
+      "doneMs": 133.300048828125,
+      "calls": {
+        "tabs.get": 20,
+        "tabs.group": 3,
+        "tabGroups.get": 2,
+        "tabGroups.query": 2,
+        "windows.getAll": 1,
+        "tabGroups.update": 1
+      },
+      "created": 8
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 0,
+      "variant": "lookup",
+      "targetMs": 30.699951171875,
+      "enqueueMs": 30.900146484375,
+      "groupMs": 32.300048828125,
+      "titleMs": 41.800048828125,
+      "doneMs": 41.900146484375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 0,
+      "variant": "created-cache",
+      "targetMs": 32.10009765625,
+      "enqueueMs": 32.10009765625,
+      "groupMs": 33.60009765625,
+      "titleMs": 41.5,
+      "doneMs": 41.60009765625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 1,
+      "variant": "created-cache",
+      "targetMs": 34.500244140625,
+      "enqueueMs": 34.500244140625,
+      "groupMs": 36.2001953125,
+      "titleMs": 46.60009765625,
+      "doneMs": 46.7001953125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 1,
+      "variant": "lookup",
+      "targetMs": 30.39990234375,
+      "enqueueMs": 30.599853515625,
+      "groupMs": 32.2998046875,
+      "titleMs": 41.7998046875,
+      "doneMs": 41.7998046875,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 2,
+      "variant": "lookup",
+      "targetMs": 30.199951171875,
+      "enqueueMs": 30.5,
+      "groupMs": 32,
+      "titleMs": 40.300048828125,
+      "doneMs": 40.300048828125,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 2,
+      "variant": "created-cache",
+      "targetMs": 31.2001953125,
+      "enqueueMs": 31.2001953125,
+      "groupMs": 32.7001953125,
+      "titleMs": 41.900146484375,
+      "doneMs": 42.000244140625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 3,
+      "variant": "created-cache",
+      "targetMs": 30.10009765625,
+      "enqueueMs": 30.10009765625,
+      "groupMs": 31.800048828125,
+      "titleMs": 40.10009765625,
+      "doneMs": 40.199951171875,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 3,
+      "variant": "lookup",
+      "targetMs": 29.10009765625,
+      "enqueueMs": 29.199951171875,
+      "groupMs": 30.699951171875,
+      "titleMs": 34.800048828125,
+      "doneMs": 34.800048828125,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 4,
+      "variant": "lookup",
+      "targetMs": 31.300048828125,
+      "enqueueMs": 31.400146484375,
+      "groupMs": 32.900146484375,
+      "titleMs": 41.400146484375,
+      "doneMs": 41.400146484375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 4,
+      "variant": "created-cache",
+      "targetMs": 28.800048828125,
+      "enqueueMs": 28.800048828125,
+      "groupMs": 30.400146484375,
+      "titleMs": 38.400146484375,
+      "doneMs": 38.400146484375,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 5,
+      "variant": "created-cache",
+      "targetMs": 28.2001953125,
+      "enqueueMs": 28.300048828125,
+      "groupMs": 32,
+      "titleMs": 39.800048828125,
+      "doneMs": 39.800048828125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 5,
+      "variant": "lookup",
+      "targetMs": 30.39990234375,
+      "enqueueMs": 30.699951171875,
+      "groupMs": 32.099853515625,
+      "titleMs": 41.89990234375,
+      "doneMs": 41.89990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 6,
+      "variant": "lookup",
+      "targetMs": 38.89990234375,
+      "enqueueMs": 39.10009765625,
+      "groupMs": 40.60009765625,
+      "titleMs": 47.199951171875,
+      "doneMs": 47.300048828125,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 6,
+      "variant": "created-cache",
+      "targetMs": 38.699951171875,
+      "enqueueMs": 38.699951171875,
+      "groupMs": 40.699951171875,
+      "titleMs": 49.400146484375,
+      "doneMs": 49.5,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 7,
+      "variant": "created-cache",
+      "targetMs": 50.5,
+      "enqueueMs": 50.5,
+      "groupMs": 52.400146484375,
+      "titleMs": 64.800048828125,
+      "doneMs": 64.800048828125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 7,
+      "variant": "lookup",
+      "targetMs": 42.10009765625,
+      "enqueueMs": 42.400146484375,
+      "groupMs": 45.699951171875,
+      "titleMs": 52.400146484375,
+      "doneMs": 52.400146484375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 8,
+      "variant": "lookup",
+      "targetMs": 35.10009765625,
+      "enqueueMs": 35.199951171875,
+      "groupMs": 36.800048828125,
+      "titleMs": 47.800048828125,
+      "doneMs": 47.89990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 8,
+      "variant": "created-cache",
+      "targetMs": 33,
+      "enqueueMs": 33,
+      "groupMs": 34.599853515625,
+      "titleMs": 45,
+      "doneMs": 45.099853515625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 9,
+      "variant": "created-cache",
+      "targetMs": 37,
+      "enqueueMs": 37,
+      "groupMs": 38.5,
+      "titleMs": 48,
+      "doneMs": 48.099853515625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 9,
+      "variant": "lookup",
+      "targetMs": 38.099853515625,
+      "enqueueMs": 38.199951171875,
+      "groupMs": 39.89990234375,
+      "titleMs": 50.89990234375,
+      "doneMs": 50.89990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 10,
+      "variant": "lookup",
+      "targetMs": 34.300048828125,
+      "enqueueMs": 34.400146484375,
+      "groupMs": 36.10009765625,
+      "titleMs": 47.2001953125,
+      "doneMs": 47.300048828125,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 10,
+      "variant": "created-cache",
+      "targetMs": 37.7001953125,
+      "enqueueMs": 37.800048828125,
+      "groupMs": 39.800048828125,
+      "titleMs": 48.900146484375,
+      "doneMs": 48.900146484375,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 11,
+      "variant": "created-cache",
+      "targetMs": 39.400146484375,
+      "enqueueMs": 39.400146484375,
+      "groupMs": 41.60009765625,
+      "titleMs": 52,
+      "doneMs": 52.10009765625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 40,
+      "shape": "cold",
+      "repetition": 11,
+      "variant": "lookup",
+      "targetMs": 31.10009765625,
+      "enqueueMs": 31.199951171875,
+      "groupMs": 33.10009765625,
+      "titleMs": 37.800048828125,
+      "doneMs": 37.800048828125,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 0,
+      "variant": "lookup",
+      "targetMs": 40.099853515625,
+      "enqueueMs": 40.2998046875,
+      "groupMs": 47.999755859375,
+      "titleMs": 59.39990234375,
+      "doneMs": 59.39990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 0,
+      "variant": "created-cache",
+      "targetMs": 39.89990234375,
+      "enqueueMs": 39.89990234375,
+      "groupMs": 47.5,
+      "titleMs": 58.89990234375,
+      "doneMs": 58.89990234375,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 1,
+      "variant": "created-cache",
+      "targetMs": 39.60009765625,
+      "enqueueMs": 39.60009765625,
+      "groupMs": 47.199951171875,
+      "titleMs": 58.5,
+      "doneMs": 58.60009765625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 1,
+      "variant": "lookup",
+      "targetMs": 39.5,
+      "enqueueMs": 39.900146484375,
+      "groupMs": 47.300048828125,
+      "titleMs": 59.10009765625,
+      "doneMs": 59.2001953125,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 2,
+      "variant": "lookup",
+      "targetMs": 47,
+      "enqueueMs": 47.10009765625,
+      "groupMs": 55.10009765625,
+      "titleMs": 66.199951171875,
+      "doneMs": 66.300048828125,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 2,
+      "variant": "created-cache",
+      "targetMs": 48.7001953125,
+      "enqueueMs": 48.7001953125,
+      "groupMs": 55.900146484375,
+      "titleMs": 61.300048828125,
+      "doneMs": 61.300048828125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 3,
+      "variant": "created-cache",
+      "targetMs": 48.699951171875,
+      "enqueueMs": 48.800048828125,
+      "groupMs": 57.10009765625,
+      "titleMs": 63.699951171875,
+      "doneMs": 63.699951171875,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 3,
+      "variant": "lookup",
+      "targetMs": 39.39990234375,
+      "enqueueMs": 39.499755859375,
+      "groupMs": 47.89990234375,
+      "titleMs": 63.999755859375,
+      "doneMs": 64.099853515625,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 4,
+      "variant": "lookup",
+      "targetMs": 47,
+      "enqueueMs": 47.199951171875,
+      "groupMs": 55.10009765625,
+      "titleMs": 67.900146484375,
+      "doneMs": 68,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 4,
+      "variant": "created-cache",
+      "targetMs": 46.699951171875,
+      "enqueueMs": 46.699951171875,
+      "groupMs": 54,
+      "titleMs": 64.5,
+      "doneMs": 64.5,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 5,
+      "variant": "created-cache",
+      "targetMs": 47.89990234375,
+      "enqueueMs": 47.89990234375,
+      "groupMs": 55.60009765625,
+      "titleMs": 67.699951171875,
+      "doneMs": 67.699951171875,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 5,
+      "variant": "lookup",
+      "targetMs": 47.10009765625,
+      "enqueueMs": 47.400146484375,
+      "groupMs": 55,
+      "titleMs": 65.400146484375,
+      "doneMs": 65.5,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 6,
+      "variant": "lookup",
+      "targetMs": 47.5,
+      "enqueueMs": 47.699951171875,
+      "groupMs": 55.099853515625,
+      "titleMs": 65.800048828125,
+      "doneMs": 65.800048828125,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 6,
+      "variant": "created-cache",
+      "targetMs": 48,
+      "enqueueMs": 48.10009765625,
+      "groupMs": 55.60009765625,
+      "titleMs": 65.900146484375,
+      "doneMs": 66.10009765625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 7,
+      "variant": "created-cache",
+      "targetMs": 49.5,
+      "enqueueMs": 49.5,
+      "groupMs": 57.60009765625,
+      "titleMs": 68.699951171875,
+      "doneMs": 68.800048828125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 7,
+      "variant": "lookup",
+      "targetMs": 48.39990234375,
+      "enqueueMs": 48.499755859375,
+      "groupMs": 56.599853515625,
+      "titleMs": 68.7998046875,
+      "doneMs": 68.89990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 8,
+      "variant": "lookup",
+      "targetMs": 40.699951171875,
+      "enqueueMs": 41.300048828125,
+      "groupMs": 53.89990234375,
+      "titleMs": 59.300048828125,
+      "doneMs": 59.39990234375,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 8,
+      "variant": "created-cache",
+      "targetMs": 46.39990234375,
+      "enqueueMs": 46.39990234375,
+      "groupMs": 53.699951171875,
+      "titleMs": 64.099853515625,
+      "doneMs": 64.099853515625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 9,
+      "variant": "created-cache",
+      "targetMs": 44.099853515625,
+      "enqueueMs": 44.099853515625,
+      "groupMs": 51.800048828125,
+      "titleMs": 62.699951171875,
+      "doneMs": 62.699951171875,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 9,
+      "variant": "lookup",
+      "targetMs": 47.5,
+      "enqueueMs": 47.699951171875,
+      "groupMs": 55,
+      "titleMs": 65.800048828125,
+      "doneMs": 65.800048828125,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 10,
+      "variant": "lookup",
+      "targetMs": 40.199951171875,
+      "enqueueMs": 40.300048828125,
+      "groupMs": 49.10009765625,
+      "titleMs": 61.10009765625,
+      "doneMs": 61.199951171875,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 10,
+      "variant": "created-cache",
+      "targetMs": 41.5,
+      "enqueueMs": 41.60009765625,
+      "groupMs": 49,
+      "titleMs": 60,
+      "doneMs": 60.10009765625,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 11,
+      "variant": "created-cache",
+      "targetMs": 43.60009765625,
+      "enqueueMs": 43.60009765625,
+      "groupMs": 54.39990234375,
+      "titleMs": 60.300048828125,
+      "doneMs": 60.300048828125,
+      "calls": {
+        "tabs.get": 2,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    },
+    {
+      "tabs": 512,
+      "shape": "cold",
+      "repetition": 11,
+      "variant": "lookup",
+      "targetMs": 47.400146484375,
+      "enqueueMs": 47.60009765625,
+      "groupMs": 55.7001953125,
+      "titleMs": 67.400146484375,
+      "doneMs": 67.5,
+      "calls": {
+        "tabs.get": 3,
+        "tabs.group": 1,
+        "tabGroups.get": 2,
+        "windows.getAll": 1,
+        "tabGroups.query": 1,
+        "tabGroups.update": 1
+      },
+      "created": 1
+    }
+  ],
+  "setup": [
+    {
+      "tabs": 2,
+      "elapsedMs": 90.88013600000002
+    },
+    {
+      "tabs": 40,
+      "elapsedMs": 291.98028400000004
+    },
+    {
+      "tabs": 512,
+      "elapsedMs": 3797.0488779999996
+    }
+  ],
+  "sources": {
+    "extension/core.js": "8173f6d5fd82c832b127b2f19ddfc22e3d7b054faeb3083849ec9a94a0c65e70",
+    "extension/stacker.js": "757dc83783c44fbaf107de161beaabe626be05b3db3dbee80d9b185d0647cda8",
+    "extension/namer.js": "34065591ee7422dfecf668ebcf6b537137c87756ace0d838ea56a4ad4d2b85b2",
+    "extension/group-id-guard.js": "8fa4ab538cf2149b8c54f39f0cecfdd5fc6054febc07a6c35f0d9fa07f0c86af",
+    "extension/name-generator.js": "c5f0549ab7ed7050c555d573700a13b0165c230de5caa25814f9b939ab8682b7",
+    "extension/name-catalog.js": "75263bb976c806ecc8637147d92c96153728df02393e55c3260bb425281bc41c",
+    "experiments/query-stacker.js": "c8a0ed1d26fd98892fecd28a38abb094efb32024f11fc446db5e1c97404c90b0",
+    "experiments/dependency-stacker.js": "8c655252e3be70820544885059a7e319cbd1fb5f30b96aae3e6ec30a2976bee6",
+    "chrome/extension/service-worker.js": "3ab9e823ffdc3b499a628eed58f6ffca2dc2b3db6fd1f2349f613b5389c9c13e"
+  },
+  "browser": {
+    "version": "154.0.8037.57",
+    "product": "Chrome/154.0.8037.57"
+  },
+  "variants": [
+    "lookup",
+    "created-cache"
+  ],
+  "lifecycle": [
+    {
+      "variant": "lookup",
+      "unrelatedTabs": 20,
+      "workerRunningAfter": false,
+      "workerStarts": 0,
+      "createdEventsReceived": 0
+    },
+    {
+      "variant": "created-cache",
+      "unrelatedTabs": 20,
+      "workerRunningAfter": true,
+      "workerStarts": 1,
+      "createdEventsReceived": 20
+    }
+  ],
+  "passed": true
+}

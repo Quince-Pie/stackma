@@ -101,8 +101,9 @@ npm run test:package
 Set `FIREFOX` to the Firefox 156 executable and `GECKODRIVER` to geckodriver if
 needed. For Chrome, `npm run test:chrome` tests the built ZIP in the browser named
 by `CHROME` (default `chromium`; 148 or later). `CHROME_VERSION` requires an
-exact build. Browser tests create disposable profiles. They do not touch your
-profile.
+exact build, and `npm run benchmark:chrome` reproduces the
+[Chrome measurements](docs/chrome.md#performance-qualification). Browser tests
+create disposable profiles. They do not touch your profile.
 `extension/` is directly loadable; JavaScript is checked with strict TypeScript
 without a bundler or transpilation step. Build archives have sorted entries,
 fixed timestamps and fixed file modes. The build checks that the editorial data,
