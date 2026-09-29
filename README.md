@@ -141,6 +141,10 @@ PNG icons are rendered from the SVG by `node scripts/render-chrome-icons.js`.
 Files elsewhere are not packaged; `listing/icon.png` is the 128-pixel listing
 icon uploaded to Mozilla Add-ons. Render it from `extension/icon.svg` with
 `node scripts/render-listing-icon.js` using the documented Firefox toolchain.
+`listing/chrome/` holds the Chrome Web Store small promo tile, rendered from the
+SVG by `node scripts/render-chrome-promo.js`, and two 1280x800 screenshots taken
+by `node scripts/capture-chrome-screenshots.js`. That script needs Xvfb and the
+network: it drives a visible Chrome through live Wikipedia and Wikivoyage pages.
 Listing artwork and frozen release packages are separate: a changed SVG ships in
 the next version.
 
