@@ -1,0 +1,55 @@
+{
+  "source": "extension/icon.svg",
+  "sourceSha256": "4b0b634ab7b77f2f7057478cee7457170ca9b29791dedee2eb42e68230358487",
+  "palette": "light",
+  "renderer": "Chrome/154.0.8037.57",
+  "geometry": {
+    "icon-16.png": {
+      "inset": 0
+    },
+    "icon-24.png": {
+      "inset": 0
+    },
+    "icon-32.png": {
+      "inset": 0
+    },
+    "icon-48.png": {
+      "inset": 0
+    },
+    "icon-128.png": {
+      "inset": 8
+    }
+  },
+  "files": {
+    "icon-16.png": {
+      "width": 16,
+      "height": 16,
+      "bytes": 300,
+      "sha256": "72bbcc192b1c3894810ffc594de51b22ff8948f25aa4edc78110903e8e104c44"
+    },
+    "icon-24.png": {
+      "width": 24,
+      "height": 24,
+      "bytes": 550,
+      "sha256": "e12452e3a15aff370e2c153e98aa41b77f140b0caa143e15ab35cc408b61ff7f"
+    },
+    "icon-32.png": {
+      "width": 32,
+      "height": 32,
+      "bytes": 414,
+      "sha256": "7c6b3182904cfe14ec9479e9ce0a5106b55054bd7b52d013f45f435704155dd3"
+    },
+    "icon-48.png": {
+      "width": 48,
+      "height": 48,
+      "bytes": 619,
+      "sha256": "020e126b4c88c49fd22cb78baedac03f83ae8659cb49a6769fde9f029e12631d"
+    },
+    "icon-128.png": {
+      "width": 128,
+      "height": 128,
+      "bytes": 1645,
+      "sha256": "7388982de52305a38cf77616fa0a3163768a540359676adc135974e8db89b792"
+    }
+  }
+}

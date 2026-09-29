@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Gantry",
+  "description": "Automatically stack new related tabs in the browser’s native tab groups. Preserve pinned tabs and separate windows.",
+  "minimum_chrome_version": "148",
+  "incognito": "spanning",
+  "permissions": [
+    "webNavigation",
+    "tabGroups",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Tab Gantry - Automatic Tab Groups",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon-16.png",
+      "24": "icon-24.png",
+      "32": "icon-32.png"
+    }
+  },
+  "icons": {
+    "16": "icon-16.png",
+    "32": "icon-32.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  }
+}

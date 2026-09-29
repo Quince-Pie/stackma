@@ -38,12 +38,12 @@ test("frozen source branding preserves legacy records and names renamed release 
   const legacy = { version: "1.1.7", name: "Stackma", browser_specific_settings: { gecko } };
   const pkg = { version: "1.1.7", name: "stackma" }, lock = { ...pkg, packages: { "": { ...pkg } } };
   assert.deepEqual(validateMetadata("v1.1.7", legacy, pkg, lock), { version: "1.1.7", id: gecko.id });
-  assert.deepEqual(artifactNames({ version: "1.1.7" }), { xpi: "stackma-1.1.7.xpi", source: "stackma-1.1.7-source.zip" });
+  assert.deepEqual(artifactNames({ version: "1.1.7" }), { xpi: "stackma-1.1.7.xpi", source: "stackma-1.1.7-source.zip", chrome: "stackma-1.1.7-chrome.zip" });
   const manifest = { ...legacy, name: "Tab Gantry" }, renamed = { ...pkg, name: "tab-gantry" };
   const metadata = validateMetadata("v1.1.7", manifest, renamed, { ...renamed, packages: { "": renamed } });
   assert.deepEqual(brandMetadata(manifest), { displayName: "Tab Gantry", artifactPrefix: "tab-gantry" });
   assert.equal(metadata.id, gecko.id);
-  assert.deepEqual(artifactNames(metadata), { xpi: "tab-gantry-1.1.7.xpi", source: "tab-gantry-1.1.7-source.zip" });
+  assert.deepEqual(artifactNames(metadata), { xpi: "tab-gantry-1.1.7.xpi", source: "tab-gantry-1.1.7-source.zip", chrome: "tab-gantry-1.1.7-chrome.zip" });
   assert.throws(() => validateMetadata("v1.1.7", manifest, pkg, lock));
   for (const value of [{ artifactPrefix: "../escape" }, { displayName: "Tab Gantry" },
     { displayName: "Other", artifactPrefix: "tab-gantry" }, { displayName: "Tab Gantry", artifactPrefix: "stackma" }]) assert.throws(() => releaseBrand(value));

@@ -19,6 +19,7 @@
     "test:metadata": "node scripts/metadata-test.js",
     "test:naming": "node scripts/naming-test.js",
     "test:native-ids": "node scripts/native-id-test.js",
+    "test:chrome": "node scripts/chrome-test.js",
     "check:catalog": "node naming-data/build-pack.mjs --check && node scripts/compile-names.js --check",
     "benchmark:naming": "node scripts/naming-benchmark.js --confirmation",
     "test:alternatives": "node --test experiments/*.test.js",

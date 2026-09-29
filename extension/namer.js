@@ -80,7 +80,7 @@ export function createNamer(api, { onError = console.error, choose = chooseName 
     let found = false;
     for (const group of groups) {
       if (group.id !== job.id) continue;
-      if (found) throw new Error("Firefox returned an ambiguous group ID; its name was left unchanged");
+      if (found) throw new Error("The browser returned an ambiguous group ID; its name was left unchanged");
       found = true;
     }
     const windowIds = new Set(windows.filter(win => win.incognito === incognito).map(win => win.id));
@@ -150,14 +150,16 @@ export function createNamer(api, { onError = console.error, choose = chooseName 
   }
 
   /** A different creation with the same ID invalidates pending authority.
-   * Firefox dispatches its own create event before resolving tabs.group, hence
-   * before the stacker grants the first naming attempt. @param {browser.tabGroups.TabGroup} group
+   * Firefox and Chrome dispatch the group's own create event before resolving
+   * tabs.group, hence before the stacker grants the first naming attempt. Chrome
+   * sends both on one worker pipe: observers run inside AddTabsToGroup, then
+   * RespondNow. @param {browser.tabGroups.TabGroup} group
    */
   function created(group) {
     const job = pending.get(group.id);
     if (job && !job.cancelled) {
       job.cancelled = true;
-      report(new Error("Firefox reused a pending group ID; its name was left unchanged"));
+      report(new Error("The browser reused a pending group ID; its name was left unchanged"));
     }
   }
 

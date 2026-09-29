@@ -79,7 +79,7 @@ export function createGroupIdGuard(api) {
     }
     for (const id of requested) {
       if (duplicates.has(id)) {
-        throw new Error(`Firefox reported duplicate native group ID: ${id}`);
+        throw new Error(`The browser reported duplicate native group ID: ${id}`);
       }
     }
   }

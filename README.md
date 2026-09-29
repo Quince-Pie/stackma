@@ -4,11 +4,12 @@ Formerly Stackma. The Firefox add-on ID and existing update path are unchanged.
 The repository and AMO URL use `tab-gantry`; see the
 [URL and icon migration](docs/url-and-icon-rename.md).
 
-Automatic related-tab stacks for **Firefox desktop 156** using native tab groups.
-Open a link in a new tab: it joins the opener's group, or starts a group with the
-opener. Descendants stay together, including bursts of new tabs. New Tab Gantry groups
-receive a generated word-pair name. Firefox supplies the group menus, colors and
-collapse controls; manual names remain yours.
+Automatic related-tab stacks for **Firefox desktop 156** and **Chrome 148 or
+later** using native tab groups. Open a link in a new tab: it joins the opener's
+group, or starts a group with the opener. Descendants stay together, including
+bursts of new tabs. New Tab Gantry groups receive a generated word-pair name.
+Firefox supplies the group menus, colors and collapse controls; manual names
+remain yours.
 
 - Pinned endpoints and relationships across windows are left alone, as requested.
 - Unrelated new tabs are left alone. There are no domain, title or active-tab guesses.
@@ -20,6 +21,9 @@ collapse controls; manual names remain yours.
 - Grouping a split-view tab also groups its companion, as Firefox requires.
 - Automatic work happens once per observed creation. Later manual changes stay
   yours. Firefox itself may also inherit a group during tab creation.
+- In Chrome, a tab counts as related only when a page opened it: Chrome reports
+  the active tab as the opener of Ctrl+T and New Tab button tabs too, so those
+  stay alone. See [Chrome support](docs/chrome.md).
 
 ## Install
 
@@ -46,6 +50,14 @@ through GitHub. Listed **1.1.12**, with the same icon, has been submitted under
 **Tab Gantry - Automatic Tab Groups**, replacing pending 1.1.10.
 Automatic AMO updates require approval of a compatible listed version; see the
 [current release record](docs/icon-refresh.md).
+
+### Chrome
+
+Run `npm run build`, then open `chrome://extensions`, enable **Developer mode**,
+choose **Load unpacked** and select `dist/chrome`. To group private tabs, allow
+the extension in Incognito in its details page.
+Chrome shows the permission warnings "View and manage your tab groups" and "Read
+your browsing history"; no URLs or page content are read.
 
 ## Generated names
 
@@ -86,11 +98,15 @@ npm run test:package
 ```
 
 Set `FIREFOX` to the Firefox 156 executable and `GECKODRIVER` to geckodriver if
-needed. Browser tests create disposable profiles. They do not touch your profile.
+needed. For Chrome, `npm run test:chrome` tests the built ZIP in the browser named
+by `CHROME` (default `chromium`; 148 or later). `CHROME_VERSION` requires an
+exact build. Browser tests create disposable profiles. They do not touch your
+profile.
 `extension/` is directly loadable; JavaScript is checked with strict TypeScript
-without a bundler or transpilation step. Build archives have sorted entries and
-fixed timestamps. The build checks that the editorial data, compact runtime
-catalog and packaged CMU license agree. To intentionally edit the word pack:
+without a bundler or transpilation step. Build archives have sorted entries,
+fixed timestamps and fixed file modes. The build checks that the editorial data,
+compact runtime catalog and packaged CMU license agree. To intentionally edit the
+word pack:
 
 ```sh
 node naming-data/build-pack.mjs
@@ -112,23 +128,27 @@ tested on Linux, where `nix develop` provides both tools.
 ```sh
 node naming-data/build-pack.mjs --check  # the word pack matches its inputs
 node scripts/compile-names.js --check    # name-catalog.js matches the word pack
-node scripts/build.js                    # writes dist/tab-gantry-VERSION.xpi
+node scripts/build.js                    # writes the XPI and Chrome ZIP to dist/
 ```
 
-The build packages exactly the files in `extension/`, with sorted names and fixed
-timestamps, and prints the archive's SHA-256. Files elsewhere are not packaged;
-`listing/icon.png` is the 128-pixel listing icon uploaded to Mozilla Add-ons.
-Render it from `extension/icon.svg` with `node scripts/render-listing-icon.js`
-using the documented Firefox toolchain. Listing artwork and frozen release
-packages are separate: a changed SVG ships in the next version.
+The build packages exactly the files in `extension/`, with sorted names, fixed
+timestamps and 0644 modes, and prints the archive's SHA-256. The Chrome ZIP uses
+the same files except Firefox's `manifest.json` and `background.js`, plus
+`chrome/extension/` and a manifest derived from `chrome/manifest.json`; Chrome's
+PNG icons are rendered from the SVG by `node scripts/render-chrome-icons.js`.
+Files elsewhere are not packaged; `listing/icon.png` is the 128-pixel listing
+icon uploaded to Mozilla Add-ons. Render it from `extension/icon.svg` with
+`node scripts/render-listing-icon.js` using the documented Firefox toolchain.
+Listing artwork and frozen release packages are separate: a changed SVG ships in
+the next version.
 
 ## CI and maintenance
 
 [CI](.github/workflows/ci.yml) checks pull requests, `main`, merge queues and a
 weekly UTC schedule. It uses the locked Nix toolchain and a verified Firefox
-156.0 download, runs source/workflow/browser checks, and compares two XPI builds.
-Successful runs provide the unsigned XPI directly as an artifact, with separate
-diagnostics and checksums. Artifacts expire after 14 days.
+156.0 download, runs source/workflow/browser checks, and compares two builds of
+each package. Successful runs provide the unsigned XPI directly as an artifact,
+with separate diagnostics and checksums. Artifacts expire after 14 days.
 
 [Dependabot](.github/dependabot.yml) proposes weekly npm, Actions and Nix-lock
 updates. Minor/patch updates are grouped; majors remain separately reviewable.

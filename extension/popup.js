@@ -30,7 +30,7 @@ export function createPopup(api, doc, clipboard, closePopup) {
   /** @type {Promise<void> | undefined} */
   let refreshing;
   const owner = api.windows.getCurrent();
-  const ambiguousMessage = "Firefox cannot distinguish some groups. Open those groups from Firefox’s tab bar.";
+  const ambiguousMessage = "The browser cannot distinguish some groups. Open those groups from the tab bar.";
 
   /** @param {string} text @param {boolean} [error] */
   function notify(text, error = false) {
