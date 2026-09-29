@@ -17,7 +17,7 @@ export const rulesets = [
     conditions: { ref_name: { include: ["~DEFAULT_BRANCH"], exclude: [] } },
     rules: [{ type: "deletion" }, { type: "non_fast_forward" }] },
 ];
-export const environments = ["release-signing", "release-publication"];
+export const environments = ["release-signing", "release-publication", "release-chrome-web-store"];
 export const releaseEventPolicy = {
   name: "Stackma release workflow events", enforcement: "active",
   conditions: { workflow_path: { include: [".github/workflows/release.yml"], exclude: [] } },

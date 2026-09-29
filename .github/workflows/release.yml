@@ -27,6 +27,11 @@ on: # zizmor: ignore[dangerous-triggers]
         type: string
         required: false
         default: ''
+      chrome-supersede:
+        description: Leave empty. Only to replace a Chrome Web Store version still in review, enter that version; its review is cancelled.
+        type: string
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -180,6 +185,41 @@ jobs:
             artifacts/release-verification.json.log
           if-no-files-found: ignore
           retention-days: 14
+
+  chrome:
+    name: Submit to the Chrome Web Store
+    needs: [resolve, verify, tag]
+    runs-on: ubuntu-24.04
+    environment: release-chrome-web-store
+    timeout-minutes: 20
+    permissions:
+      contents: read # Read the release tag before each store write.
+      id-token: write # Exchange this job's OIDC token for a short-lived store credential.
+    env:
+      RELEASE_TAG: ${{ needs.resolve.outputs.tag }}
+      RELEASE_COMMIT: ${{ needs.resolve.outputs.commit }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - name: Install the locked release tools
+        run: bash scripts/ci/install-nix.sh
+      - name: Download this run's verified release inputs
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          artifact-ids: ${{ needs.verify.outputs.release-input-id }}
+          path: artifacts/release-input
+          digest-mismatch: error
+      - name: Submit or reconcile the tested Chrome package
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CWS_PUBLISHER_ID: ${{ vars.CWS_PUBLISHER_ID }}
+          CWS_ITEM_ID: ${{ vars.CWS_ITEM_ID }}
+          CWS_WORKLOAD_IDENTITY_PROVIDER: ${{ vars.CWS_WORKLOAD_IDENTITY_PROVIDER }}
+          CWS_SERVICE_ACCOUNT: ${{ vars.CWS_SERVICE_ACCOUNT }}
+          CHROME_SUPERSEDE_PENDING: ${{ inputs.chrome-supersede }}
+        run: nix develop .#release --no-update-lock-file --command node scripts/release/chrome-submit.js
 
   publish:
     name: Publish the verified signed release

@@ -37,7 +37,7 @@ jobs:
   verify:
     name: Verify Firefox 156 extension
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 30
     outputs:
       release-input-id: ${{ steps.release-input.outputs.artifact-id }}
     env:
@@ -99,6 +99,11 @@ jobs:
       - name: Install verified Firefox 156.0
         run: bash scripts/ci/install-firefox.sh
 
+      # Sources from before Chrome support have no Chrome package to verify.
+      - name: Install verified Chrome for Testing 154 and minimum 148
+        if: ${{ hashFiles('chrome/manifest.json') != '' }}
+        run: bash scripts/ci/install-chrome.sh
+
       - name: Record the tested environment
         run: nix develop --no-update-lock-file --command node scripts/ci/record-environment.js
 
@@ -119,6 +124,18 @@ jobs:
 
       - name: Verify the installed package
         run: nix develop --no-update-lock-file --command npm run test:package -- --output=artifacts/ci/package.json
+
+      - name: Test the Chrome package in Chrome 154
+        if: ${{ hashFiles('chrome/manifest.json') != '' }}
+        run: |
+          CHROME="$CHROME_STABLE" CHROME_VERSION="$CHROME_STABLE_VERSION" CHROME_DEVEL_SANDBOX="$CHROME_STABLE_SANDBOX" \
+            nix develop --no-update-lock-file --command npm run test:chrome -- --output=artifacts/ci/chrome-package.json
+
+      - name: Test the Chrome package at minimum_chrome_version 148
+        if: ${{ hashFiles('chrome/manifest.json') != '' }}
+        run: |
+          CHROME="$CHROME_MINIMUM" CHROME_VERSION="$CHROME_MINIMUM_VERSION" CHROME_DEVEL_SANDBOX="$CHROME_MINIMUM_SANDBOX" \
+            nix develop --no-update-lock-file --command npm run test:chrome -- --output=artifacts/ci/chrome-minimum.json
 
       - name: Confirm validation did not change tracked inputs
         run: git diff --exit-code HEAD
@@ -157,6 +174,29 @@ jobs:
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           path: dist/upload/${{ github.run_attempt }}/*.xpi
+          archive: false
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Stage the verified Chrome package for this attempt
+        if: ${{ hashFiles('chrome/manifest.json') != '' }}
+        run: |
+          packages=(dist/*-chrome.zip)
+          (( ${#packages[@]} == 1 ))
+          package=${packages[0]}
+          [[ -f "$package" ]]
+          upload_dir="dist/upload-chrome/${GITHUB_RUN_ATTEMPT:?}"
+          filename="$(basename "${package%.zip}")-attempt-${GITHUB_RUN_ATTEMPT}.zip"
+          mkdir -p "$upload_dir"
+          cp -- "$package" "$upload_dir/$filename"
+          cmp -- "$package" "$upload_dir/$filename"
+          (cd "$upload_dir" && sha256sum -- "$filename" > "$filename.sha256")
+
+      - name: Upload the verified Chrome package
+        if: ${{ hashFiles('chrome/manifest.json') != '' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          path: dist/upload-chrome/${{ github.run_attempt }}/*.zip
           archive: false
           if-no-files-found: error
           retention-days: 14

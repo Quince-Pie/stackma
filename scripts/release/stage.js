@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
-import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { chromeVersion } from "../chrome-package.js";
 import { artifactNames, digestFile, run, sha256, validateMetadata } from "./package.js";
 import { intentTagsAt } from "./intent.js";
 import { releaseChannelAt } from "./unlisted-policy.js";
@@ -22,6 +23,13 @@ assert(!allTracked.some(path => /(^|\/)\.env(?:\.|$)/u.test(path)), "Environment
 const tracked = (await run("git", ["ls-files", "extension/"])).stdout.trim().split("\n").map(path => path.slice(10)).sort();
 const { readdir } = await import("node:fs/promises");
 assert.deepEqual((await readdir("extension")).sort(), tracked, "Every packaged file must be committed");
+// Sources from before Chrome support stage exactly as before.
+const chrome = await access("chrome/manifest.json").then(() => true, () => false);
+if (chrome) {
+  chromeVersion(metadata.version);
+  const trackedChrome = (await run("git", ["ls-files", "chrome/extension/"])).stdout.trim().split("\n").map(path => path.slice(17)).sort();
+  assert.deepEqual((await readdir("chrome/extension")).sort(), trackedChrome, "Every packaged Chrome file must be committed");
+}
 if (process.argv.includes("--check")) {
   console.log(`Release identity and committed inputs verified: ${tag} at ${commit}`);
 } else {
@@ -44,8 +52,23 @@ if (process.argv.includes("--check")) {
   await writeFile(`${directory}/license.txt`, licenseText);
   const license = { name: "WTFPL 2.0; CMU data terms retained", sha256: sha256(licenseText) };
   const tools = { node: process.version, git: (await run("git", ["--version"])).stdout.trim(), webExt: pkg.devDependencies["web-ext"] };
+  let chromePackage;
+  if (chrome) {
+    // Both the stable and minimum-version runs must have tested these bytes.
+    const zip = `dist/${artifactNames(metadata).chrome}`;
+    const digest = await digestFile(zip);
+    const reports = await Promise.all(["artifacts/ci/chrome-package.json", "artifacts/ci/chrome-minimum.json"]
+      .map(async path => JSON.parse(await readFile(path, "utf8"))));
+    for (const report of reports) {
+      assert.equal(report.passed, true);
+      assert.equal(report.sha256, digest.sha256, "Chrome release must use the tested ZIP");
+    }
+    await copyFile(zip, `${directory}/chrome.zip`);
+    chromePackage = { ...digest, tested: reports.map(report => report.chrome) };
+  }
   const context = { tag, commit, ...metadata, channel, unsigned, source, license, tools,
-    ...(intents ? { priorReleases: intents.filter(other => other !== tag) } : {}) };
+    ...(intents ? { priorReleases: intents.filter(other => other !== tag) } : {}),
+    ...(chromePackage ? { chrome: chromePackage } : {}) };
   await writeFile(`${directory}/context.json`, JSON.stringify(context, null, 2) + "\n");
   console.log(`Prepared ${tag} from ${commit}; unsigned SHA-256 ${unsigned.sha256}`);
 }

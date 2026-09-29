@@ -75,7 +75,7 @@ test("checking is read-only and reports every missing or weaker setting", async 
   const logs = [];
   assert.equal(await runPolicy({ client: w.client, log: line => logs.push(line) }), false);
   assert.equal(w.writes().length, 0);
-  assert.deepEqual(logs.map(line => line.split(" ")[0]), ["MISSING", "MISSING", "DRIFT", "MISSING", "DRIFT", "OK", "MISSING"]);
+  assert.deepEqual(logs.map(line => line.split(" ")[0]), ["MISSING", "MISSING", "DRIFT", "MISSING", "MISSING", "DRIFT", "OK", "MISSING"]);
   assert(w.requests.every(request => request.auth === "Bearer admin-token" && request.redirect === "manual"));
 });
 

@@ -17,6 +17,7 @@ const report = {
   npm: version('npm'), nix: version('nix'),
   firefox: version(process.env.FIREFOX),
   geckodriver: version(process.env.GECKODRIVER ?? 'geckodriver'),
+  ...(process.env.CHROME_STABLE ? { chromeStable: version(process.env.CHROME_STABLE), chromeMinimum: version(process.env.CHROME_MINIMUM) } : {}),
   actionlint: version('actionlint'), zizmor: version('zizmor'),
 };
 await mkdir('artifacts/ci', { recursive: true });
