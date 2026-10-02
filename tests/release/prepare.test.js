@@ -9,9 +9,9 @@ import { run } from "../../scripts/release/package.js";
 import { temporary } from "./fixtures.js";
 
 const initial = [
-  { version: "1.1.0", permissions: ["storage"], browser_specific_settings: { gecko: { id: "stackma@extensions.local", strict_min_version: "156.0" } } },
-  { name: "stackma", version: "1.1.0", private: true, scripts: { preversion: "must never run" }, devDependencies: { example: "1.1.0" } },
-  { name: "stackma", version: "1.1.0", lockfileVersion: 3, packages: { "": { name: "stackma", version: "1.1.0" }, "node_modules/example": { version: "1.1.0", integrity: "original" } } },
+  { name: "Tab Gantry", version: "1.1.0", permissions: ["storage"], browser_specific_settings: { gecko: { id: "stackma@extensions.local", strict_min_version: "156.0" } } },
+  { name: "tab-gantry", version: "1.1.0", private: true, scripts: { preversion: "must never run" }, devDependencies: { example: "1.1.0" } },
+  { name: "tab-gantry", version: "1.1.0", lockfileVersion: 3, packages: { "": { name: "tab-gantry", version: "1.1.0" }, "node_modules/example": { version: "1.1.0", integrity: "original" } } },
 ];
 const serialize = value => JSON.stringify(value, null, 2) + "\n";
 

@@ -5,7 +5,7 @@ import test from "node:test";
 import { digestFile, run, sha256 } from "../../scripts/release/package.js";
 import { temporary } from "./fixtures.js";
 
-async function fixture(t, { historicalStage = false, branded = false, chrome = false } = {}) {
+async function fixture(t, { historicalStage = false, chrome = false } = {}) {
   const directory=await temporary(t);
   for(const path of ["extension","scripts/release","naming-data","dist","artifacts/ci",...(chrome?["chrome/extension"]:[])]) await mkdir(`${directory}/${path}`,{recursive:true});
   for(const file of ["package.js","intent.js","unlisted-policy.js","stage.js"]) await copyFile(resolve(`scripts/release/${file}`),`${directory}/scripts/release/${file}`);
@@ -19,13 +19,13 @@ async function fixture(t, { historicalStage = false, branded = false, chrome = f
     }
   }
   if (historicalStage) await writeFile(`${directory}/scripts/release/stage.js`, 'throw new Error("obsolete release controller");\n');
-  const version="1.1.1",pkg={type:"module",version,devDependencies:{"web-ext":"10.7.0"},...(branded?{name:"tab-gantry"}:{})};
+  const version="1.1.1",pkg={type:"module",version,devDependencies:{"web-ext":"10.7.0"},name:"tab-gantry"};
   await writeFile(`${directory}/package.json`,JSON.stringify(pkg));
-  await writeFile(`${directory}/package-lock.json`,JSON.stringify({version,...(branded?{name:"tab-gantry"}:{}),packages:{"":{version,...(branded?{name:"tab-gantry"}:{})}}}));
-  await writeFile(`${directory}/extension/manifest.json`,JSON.stringify({version,...(branded?{name:"Tab Gantry"}:{}),browser_specific_settings:{gecko:{id:"stackma@extensions.local",strict_min_version:"156.0"}}}));
+  await writeFile(`${directory}/package-lock.json`,JSON.stringify({version,name:"tab-gantry",packages:{"":{version,name:"tab-gantry"}}}));
+  await writeFile(`${directory}/extension/manifest.json`,JSON.stringify({version,name:"Tab Gantry",browser_specific_settings:{gecko:{id:"stackma@extensions.local",strict_min_version:"156.0"}}}));
   await writeFile(`${directory}/LICENSE`,"Project license\n");await writeFile(`${directory}/naming-data/CMU-LICENSE.txt`,"CMU notice\n");
   await writeFile(`${directory}/.gitignore`,"artifacts/\ndist/\n.env\n");
-  await writeFile(`${directory}/dist/${branded?"tab-gantry":"stackma"}-${version}.xpi`,"verified test package");
+  await writeFile(`${directory}/dist/tab-gantry-${version}.xpi`,"verified test package");
   await writeFile(`${directory}/artifacts/ci/package.json`,JSON.stringify({passed:true,sha256:sha256("verified test package")}));
   const git=async(...args)=>(await run("git",["-c","core.hooksPath=/dev/null","-c","commit.gpgsign=false","-c","user.name=Stackma tests","-c","user.email=tests@example.invalid",...args],{cwd:directory,timeout:30000})).stdout.trim();
   await git("init","--quiet");await git("add","--all");await git("commit","--quiet","-m","test: Record release staging fixture");
@@ -40,7 +40,6 @@ test("staging binds the tested XPI and reproducible committed source without loc
   await f.execute([],{TZ:"America/Chicago"});
   const context=JSON.parse(await readFile(`${f.directory}/artifacts/release-input/context.json`,"utf8"));
   assert.equal(context.unsigned.sha256,sha256("verified test package"));
-  assert(!Object.hasOwn(context,"displayName") && !Object.hasOwn(context,"artifactPrefix"), "Legacy release context shape must remain unchanged");
   const text=await readFile(`${f.directory}/artifacts/release-input/license.txt`,"utf8");
   assert.equal(text,text.trim());assert.match(text,/CMU notice/u);assert.equal(context.license.sha256,sha256(text));
   await f.execute([],{TZ:"Pacific/Auckland"});
@@ -51,7 +50,7 @@ test("staging binds the tested XPI and reproducible committed source without loc
 });
 
 test("staging binds Tab Gantry branding and filenames to the committed product", async t => {
-  const f = await fixture(t, { branded: true }); await f.execute();
+  const f = await fixture(t); await f.execute();
   const context = JSON.parse(await readFile(`${f.directory}/artifacts/release-input/context.json`, "utf8"));
   assert.equal(context.displayName, "Tab Gantry"); assert.equal(context.artifactPrefix, "tab-gantry");
   assert.equal(context.id, "stackma@extensions.local");
@@ -78,7 +77,7 @@ test("a current controller stages historical source without executing or changin
 });
 
 test("a Chrome-capable source stages the ZIP both Chrome runs tested", async t => {
-  const f = await fixture(t, { branded: true, chrome: true });
+  const f = await fixture(t, { chrome: true });
   await f.execute(["--check"]);
   await f.execute();
   const context = JSON.parse(await readFile(`${f.directory}/artifacts/release-input/context.json`, "utf8"));
@@ -91,7 +90,7 @@ test("a Chrome-capable source stages the ZIP both Chrome runs tested", async t =
 });
 
 test("sources without Chrome support stage no Chrome fields", async t => {
-  const f = await fixture(t, { branded: true }); await f.execute();
+  const f = await fixture(t); await f.execute();
   const context = JSON.parse(await readFile(`${f.directory}/artifacts/release-input/context.json`, "utf8"));
   assert(!Object.hasOwn(context, "chrome"));
 });
@@ -99,7 +98,7 @@ test("sources without Chrome support stage no Chrome fields", async t => {
 test("untracked payload, mismatched versions and changed package bytes fail staging",async t=>{
   const f=await fixture(t);
   await assert.rejects(()=>f.execute(["--check"],{RELEASE_TAG:"v1.1.2"}),error=>error.stderr.includes("must agree"));
-  await writeFile(`${f.directory}/dist/stackma-1.1.1.xpi`,"changed");
+  await writeFile(`${f.directory}/dist/tab-gantry-1.1.1.xpi`,"changed");
   await assert.rejects(()=>f.execute(),error=>error.stderr.includes("installed, tested XPI"));
   await writeFile(`${f.directory}/extension/untracked.js`,"extra");
   await assert.rejects(()=>f.execute(["--check"]),error=>error.stderr.includes("Every packaged file must be committed"));

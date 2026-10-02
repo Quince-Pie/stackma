@@ -7,16 +7,14 @@ import { promisify } from "node:util";
 export const run = promisify(execFile);
 export const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
 
-// Branding belongs to the frozen product source. Keep legacy records byte-
-// compatible by adding fields only for the renamed product, never to old tags.
+// Branding belongs to the frozen product source. Tags before v1.1.8 predate
+// this name; they are terminal history that the controller no longer releases.
 export function brandMetadata(manifest) {
-  return manifest.name === "Tab Gantry" ? { displayName: "Tab Gantry", artifactPrefix: "tab-gantry" } : {};
+  assert.equal(manifest.name, "Tab Gantry", "Only Tab Gantry sources can be released; tags before v1.1.8 are terminal history");
+  return { displayName: "Tab Gantry", artifactPrefix: "tab-gantry" };
 }
 
 export function releaseBrand(record) {
-  if (record.displayName === undefined && record.artifactPrefix === undefined) {
-    return { displayName: "Stackma", artifactPrefix: "stackma" };
-  }
   assert.equal(record.displayName, "Tab Gantry", "Unexpected release display name");
   assert.equal(record.artifactPrefix, "tab-gantry", "Unexpected release artifact prefix");
   return { displayName: record.displayName, artifactPrefix: record.artifactPrefix };
@@ -73,11 +71,9 @@ export function validateMetadata(tag, manifest, pkg, lock) {
   assert.equal(manifest.browser_specific_settings.gecko.id, "stackma@extensions.local");
   assert.equal(manifest.browser_specific_settings.gecko.strict_min_version, "156.0");
   const brand = brandMetadata(manifest);
-  if (brand.artifactPrefix) {
-    assert.equal(pkg.name, brand.artifactPrefix);
-    assert.equal(lock.name, brand.artifactPrefix);
-    assert.equal(lock.packages[""].name, brand.artifactPrefix);
-  }
+  assert.equal(pkg.name, brand.artifactPrefix);
+  assert.equal(lock.name, brand.artifactPrefix);
+  assert.equal(lock.packages[""].name, brand.artifactPrefix);
   return { version, id: manifest.browser_specific_settings.gecko.id, ...brand };
 }
 

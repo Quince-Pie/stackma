@@ -6,12 +6,11 @@ import { checkAmoPublication, GitHub, matchingRelease, publishRelease } from "..
 import { digestFile, sha256 } from "../../scripts/release/package.js";
 import { temporary } from "./fixtures.js";
 
-async function fixture(t, { branded = false } = {}) {
+async function fixture(t) {
   const directory=await temporary(t), tag="v1.1.1", version="1.1.1", commit="a".repeat(40);
-  const prefix=branded?"tab-gantry":"stackma";
-  const xpi=`${prefix}-${version}.xpi`, source=`${prefix}-${version}-source.zip`;
+  const xpi=`tab-gantry-${version}.xpi`, source=`tab-gantry-${version}-source.zip`;
   await writeFile(`${directory}/${xpi}`,"signed XPI"); await writeFile(`${directory}/${source}`,"source");
-  const record={tag,version,commit,channel:"listed",...(branded?{displayName:"Tab Gantry",artifactPrefix:"tab-gantry"}:{}),unsigned:{sha256:sha256("unsigned")},signed:await digestFile(`${directory}/${xpi}`),source:await digestFile(`${directory}/${source}`)};
+  const record={tag,version,commit,channel:"listed",displayName:"Tab Gantry",artifactPrefix:"tab-gantry",unsigned:{sha256:sha256("unsigned")},signed:await digestFile(`${directory}/${xpi}`),source:await digestFile(`${directory}/${source}`)};
   await writeFile(`${directory}/release.json`,JSON.stringify(record));
   const names=[xpi,source,"release.json"];
   const sums=await Promise.all(names.map(async name=>`${(await digestFile(`${directory}/${name}`)).sha256}  ${name}\n`));
@@ -72,7 +71,7 @@ test("unlisted publication explains manual installation and the higher listed up
 });
 
 test("renamed publication uses frozen branding without changing the legacy ownership marker", async t => {
-  const f = await fixture(t, { branded: true }); await publishRelease(f.options);
+  const f = await fixture(t); await publishRelease(f.options);
   assert.match(f.history[0].body, /^<!-- stackma-release:/u);
   assert.match(f.history[0].body, /Mozilla-signed Tab Gantry 1\.1\.1/u);
   assert.deepEqual(f.history[0].assets.map(a => a.name).sort(), ["SHA256SUMS", "release.json", "tab-gantry-1.1.1-source.zip", "tab-gantry-1.1.1.xpi"]);

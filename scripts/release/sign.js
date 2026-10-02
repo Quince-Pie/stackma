@@ -23,8 +23,8 @@ export async function runSigning({ env = process.env, directory = "artifacts/rel
   assert.equal(context.version, versionFromTag(context.tag));
   assert.equal(context.id, "stackma@extensions.local");
   assert.equal(context.channel, "listed");
-  const { displayName } = releaseBrand(context);
   assert(!retired.has(context.tag), "This release intent was explicitly retired; do not resume it");
+  const { displayName } = releaseBrand(context);
   const supersede = env.SUPERSEDE_PENDING ?? "";
   if (supersede !== "") {
     assert.match(supersede, /^\d+\.\d+\.\d+$/u, "supersede must be the AMO version awaiting review, for example 1.1.4");
