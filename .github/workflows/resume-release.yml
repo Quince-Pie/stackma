@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: stackma-release-resume
+  group: tab-gantry-release-resume
   cancel-in-progress: false
 
 defaults:

@@ -11,10 +11,10 @@ fail() {
 : "${RUNNER_TEMP:?RUNNER_TEMP is required}"
 : "${GITHUB_ENV:?GITHUB_ENV is required}"
 [[ $(uname -s) == Linux && $(uname -m) == x86_64 ]] || fail 'requires Linux x86_64'
-destination="$RUNNER_TEMP/stackma-firefox-156.0"
+destination="$RUNNER_TEMP/tab-gantry-firefox-156.0"
 [[ ! -e $destination && ! -L $destination ]] || fail 'destination already exists'
 script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-work=$(mktemp -d "$RUNNER_TEMP/stackma-firefox.XXXXXXXXXX")
+work=$(mktemp -d "$RUNNER_TEMP/tab-gantry-firefox.XXXXXXXXXX")
 trap 'rm -rf -- "$work"' EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM

@@ -69,7 +69,7 @@ export async function runUnlisted({ tag, pullNumber, env = process.env }) {
   assert.equal(await releaseChannelAt(tag, commit), "unlisted", "Frozen source does not authorize unlisted distribution");
   assert(!(await readRetirements()).has(tag), "This release intent was retired");
   const common = resolve(await git(["rev-parse", "--git-common-dir"]));
-  const lockPath = join(common, "stackma-unlisted.lock");
+  const lockPath = join(common, "tab-gantry-unlisted.lock");
   const lock = await open(lockPath, "wx"); // All local worktrees share this lock.
   try {
     await lock.writeFile(JSON.stringify({ pid: process.pid, tag, commit }) + "\n");

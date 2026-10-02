@@ -1,5 +1,5 @@
 {
-  description = "Stackma: Firefox 156 related-tab stacks";
+  description = "Tab Gantry: Firefox and Chrome related-tab stacks";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";

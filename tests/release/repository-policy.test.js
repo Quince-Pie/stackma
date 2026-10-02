@@ -15,7 +15,7 @@ function world(overrides = {}) {
   const requests = [];
   const fetchImpl = async (url, options) => {
     const target = new URL(url), method = options.method;
-    const path = target.pathname.replace("/repos/Quince-Pie/stackma", "");
+    const path = target.pathname.replace("/repos/Quince-Pie/tab-gantry", "");
     const body = options.body === undefined ? undefined : JSON.parse(options.body);
     requests.push({ method, path, body, auth: options.headers.Authorization, redirect: options.redirect });
     assert.equal(options.headers["X-GitHub-Api-Version"], "2026-03-10");
@@ -67,7 +67,7 @@ function world(overrides = {}) {
     }
     return assert.fail(`Unexpected ${method} ${path}`);
   };
-  return { state, requests, client: new AdminClient("Quince-Pie/stackma", "admin-token", fetchImpl), writes: () => requests.filter(request => request.method !== "GET") };
+  return { state, requests, client: new AdminClient("Quince-Pie/tab-gantry", "admin-token", fetchImpl), writes: () => requests.filter(request => request.method !== "GET") };
 }
 
 test("checking is read-only and reports every missing or weaker setting", async () => {
@@ -135,7 +135,7 @@ test("changing an environment's branch policy keeps its reviewers and wait timer
 });
 
 test("a drifted ruleset is restored, keeping extra rules but dropping a tag creation rule, and extra deploy policies are only reported", async () => {
-  const drifted = { id: 3, name: "Stackma release tags", source_type: "Repository", target: "tag", enforcement: "evaluate",
+  const drifted = { id: 3, name: "Tab Gantry release tags", source_type: "Repository", target: "tag", enforcement: "evaluate",
     bypass_actors: [{ actor_id: 5, actor_type: "RepositoryRole", bypass_mode: "always" }],
     conditions: { ref_name: { include: ["refs/tags/v*"], exclude: [] } }, rules: [{ type: "deletion" }, { type: "creation" }, { type: "required_signatures" }] };
   const w = world({ rulesets: [drifted], policies: { "release-signing": [{ id: 2, name: "release/*", type: "branch" }] },
@@ -193,12 +193,12 @@ test("disabled pull-request creation is restored without changing default token 
 test("missing administrator rights stop with a clear message, and a token is required", async () => {
   const w = world({ status: { "GET /rulesets": 403 } });
   await assert.rejects(() => runPolicy({ client: w.client, log: () => {} }), /HTTP 403; use a token of a repository administrator/u);
-  assert.throws(() => new AdminClient("Quince-Pie/stackma", ""), /administrator token is required/u);
+  assert.throws(() => new AdminClient("Quince-Pie/tab-gantry", ""), /administrator token is required/u);
   const duplicate = world({ rulesets: [{ ...rulesets[0], id: 1, source_type: "Repository" }, { ...rulesets[0], id: 2, source_type: "Repository" }] });
   await assert.rejects(() => inspect(duplicate.client), /Several rulesets are named/u);
 });
 
 test("malformed settings replies never echo private response bodies", async () => {
-  const client = new AdminClient("Quince-Pie/stackma", "fixture-token", async () => new Response("synthetic-private-response"));
+  const client = new AdminClient("Quince-Pie/tab-gantry", "fixture-token", async () => new Response("synthetic-private-response"));
   await assert.rejects(() => client.request("GET", "/rulesets"), error => /unreadable JSON/u.test(error.message) && !String(error.stack).includes("synthetic-private"));
 });

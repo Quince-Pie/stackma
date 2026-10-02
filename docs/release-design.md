@@ -8,7 +8,7 @@ Observation date: **2026-09-26**. Baseline: `997087de3e07b3ffb0b3968e1617b80997a
 **plus the supplied working tree**, not HEAD alone. The baseline included pending
 review handling, a scheduler, a repository policy helper, tests, documentation
 and `listing/icon.png`. Its 124 release tests passed before changes. A binary
-patch/untracked snapshot was saved at `/tmp/stackma-release-baseline.Laq90D`;
+patch/untracked snapshot was saved outside the repository;
 the old operator guide is also preserved in [release history](release-history.md).
 No reset, clean, stash, commit, push or remote mutation was performed in the
 project. Disposable worktrees isolate browser/build experiments.
@@ -108,9 +108,8 @@ governs public interfaces; repository HEAD is not treated as production.
 | [release-it 21.1.0 `ef1f03b…`](https://github.com/release-it/release-it/blob/ef1f03b3a09d3057c9e1af47879c4deba3f3fd40/lib/plugin/github/GitHub.js) | Followed create/upload/publish retry/parallel asset paths; these do not supply AMO state/byte reconciliation. |
 | [Release Please 17.11.2 `05c6a4f…`](https://github.com/googleapis/release-please/tree/05c6a4f71022304d4edad24ea90c1c16324503d5/src), [action 5.0.0 `45996ed…`](https://github.com/googleapis/release-please-action/tree/45996ed1f6d02564a971a2fa1b5860e934307cf7), [create-pull-request 8.1.1 `5f6978f…`](https://github.com/peter-evans/create-pull-request/tree/5f6978faf089d4d20b00c7766989d076bb2fc7f1/src) | Fresh primary bytes matched archived snippets. Traced RP manifest/extra-files/empty-changelog gates through GitHub code-suggester `updateRef(force)`. CPR resets/force-with-lease or API force-update and PR rewrites. Action 5.0.0 actually locks RP **17.6.0**, not latest library 17.11.2; the old comparison conflated them. |
 
-`/tmp/stackma-release-sources/` was absent. Added reference checkouts stayed outside
-the project. Source notes were retained at `/tmp/stackma-mozilla-research.md` and
-`/tmp/stackma-github-research.md`; material findings are captured here.
+No earlier reference-source directory existed. Added reference checkouts stayed outside
+the project, as did the source notes; material findings are captured here.
 
 ## Mechanism mapping and invariants
 
@@ -276,7 +275,7 @@ assumption; the revised merge-event adapter was exercised against actual PR #3.
 Local source/type/lint/unit/installer/release/workflow checks and Firefox product,
 metadata, naming, native-ID, version-boundary and package checks passed. An unsigned
 permanent installation was rejected as `ERROR_SIGNEDSTATE_REQUIRED`. These facts
-do not establish a successful approved Stackma signed installation or hosted run.
+do not establish a successful approved Tab Gantry signed installation or hosted run.
 
 **Contract/local verification:** implemented and verified within the recorded
 scope; remote setup and hosted acceptance remain open. **Design qualification:**

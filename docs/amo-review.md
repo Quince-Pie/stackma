@@ -8,7 +8,7 @@ Reviewed 2026-09-26 against `997087de3e07b3ffb0b3968e1617b80997a42a6b` (`v1.1.4`
 after fast-forwarding the local checkout. A 240-minute total budget began at
 16:01:43 UTC and covers investigation, two bounded research delegations, an
 independent review, implementation, verification and documentation.
-[Releasing Stackma](releases.md) is the operator guide; this record explains the
+[Releasing Tab Gantry](releases.md) is the operator guide; this record explains the
 choices. No push, commit, tag, GitHub setting, AMO submission or AMO edit was made.
 
 ## Contract and selection rule
@@ -39,7 +39,7 @@ with existing tags. No latency, throughput or universal-optimality claim is made
 | How are versions listed? | `filter=all_without_unlisted` lists all non-deleted listed versions for authors. "Awaiting review" serializes as `unreviewed`. Pages hold at most 50. | same revision, `addons/views.py` 600–700, `constants/base.py` 40–52, `api/pagination.py` |
 | Why did the first release never fit a 20-minute wait? | A first listing needs human review. A nominated add-on's new version is also held back from automatic approval for `INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED`, 24 hours by default and configurable in AMO's database. | `reviewers/models.py` 642–664, `constants/config_keys.py` 53–55 |
 | Is a 15-minute wait useful later? | The last public schedule ran automatic approval every 5 minutes. It was reference-only and removed in December 2024, so the production schedule is not public. | `scripts/crontab/crontab.tpl` at `c8f5e7c` |
-| Can the preparation job, which has no AMO credentials, see pending versions? | No. The anonymous API returns 401 for Stackma's nominated listing and 404 for absent versions. It shows only approved listed versions of public add-ons. | live read-only requests, 2026-09-26 |
+| Can the preparation job, which has no AMO credentials, see pending versions? | No. The anonymous API returns 401 for Tab Gantry's nominated listing and 404 for absent versions. It shows only approved listed versions of public add-ons. | live read-only requests, 2026-09-26 |
 | Which ref do environment branch rules check? | The run's `GITHUB_REF`, which is `refs/heads/main` for a merged pull request, so a `main` rule admits automatic releases. | GitHub [deployment branches](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments#deployment-branches-and-tags), [pull_request event](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request) |
 | Can a workflow resume another? | A `workflow_dispatch` created with `GITHUB_TOKEN` always creates a run, needs `actions: write`, and at API version 2026-03-10 returns the new run's URL. | [triggering a workflow](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow), [dispatch API](https://docs.github.com/en/rest/actions/workflows?apiVersion=2026-03-10#create-a-workflow-dispatch-event) |
 | Can the release workflow's token bypass a tag-creation rule? | Not on a user-owned repository: GitHub rejects the GitHub Actions app as a bypass actor there. | [rulesets API](https://docs.github.com/en/rest/repos/rules?apiVersion=2026-03-10), community report linked in the research notes |

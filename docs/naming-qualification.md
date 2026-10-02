@@ -6,7 +6,7 @@ This feature follows the user-supplied [Pro.md](Pro.md), SHA-256
 `498f76151c221a0fde7c32748e060a654d5a551f1e4d787c42147f0e3ffb0bb6`.
 The before/after contract and pre-comparison selection rule are in
 [naming-design.md](naming-design.md). Version 1.0.1 left newly created groups
-unnamed. Version 1.1.0 names only newly created Stackma groups. Join/reuse,
+unnamed. Version 1.1.0 names only newly created Tab Gantry groups. Join/reuse,
 manual metadata, native colors, pins, windows and browser-reported-source policy
 retain their established meaning. This is an English non-secret alias feature.
 
@@ -86,7 +86,7 @@ leaves usability superiority for further study. [MASCARA's full paper](https://p
 includes longer secrets, choice among alternatives and practice; its outcomes do
 not establish two-word tab-group binding. Jacobs/Dell/Bannard's phrase-recall
 [primary article](https://pmc.ncbi.nlm.nih.gov/articles/PMC5734641/) supports testing
-familiar combinations, not a measured Stackma vocabulary optimum. Its indexed
+familiar combinations, not a measured Tab Gantry vocabulary optimum. Its indexed
 methods/results were accessible during review; direct access subsequently met a
 browser challenge. No unexamined result is inherited as a feature guarantee.
 
@@ -126,7 +126,7 @@ write cannot resurrect a closed window's entries.
 
 If cleanup's storage read/write/removal fails, the error is reported and private
 generated history may remain in session RAM until a later private assignment
-filters closed-window entries, or the extension/browser session ends. Stackma
+filters closed-window entries, or the extension/browser session ends. Tab Gantry
 never writes it to storage.local or a file. Browser process crashes and add-on
 unload can lose a pending assignment. Unowned blank groups are never adopted on
 startup. These limits do not justify rewriting manual names.
@@ -234,7 +234,7 @@ latency dominance over the cache. The comparison keeps that tradeoff visible.
 
 The [delivery manifest](../evidence/naming-delivery.json) ties the package,
 source hashes, native reports and final comparison inputs to the same revision.
-The unsigned `dist/stackma-1.1.0.xpi` is 23,873 bytes, SHA-256
+The unsigned 1.1.0 XPI is 23,873 bytes, SHA-256
 `896566be9e7a9b83076690c43473bcbca83f85b5d20d7e10726a90e5067e830f`.
 Two clean build invocations produced identical bytes; Firefox installed the XPI,
 verified every packaged source hash, and grouped/named a real related pair.

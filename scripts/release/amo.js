@@ -77,7 +77,7 @@ export class ReleaseClient {
 
   async fetch(url, method = "GET", body) {
     return this.nodeFetch(url, { method, body, headers: {
-      Authorization: await this.apiAuth.getAuthHeader(), Accept: "application/json", "User-Agent": "stackma-release/2",
+      Authorization: await this.apiAuth.getAuthHeader(), Accept: "application/json", "User-Agent": "tab-gantry-release/2",
       ...(typeof body === "string" ? { "Content-Type": "application/json" } : {}),
     } });
   }

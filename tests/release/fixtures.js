@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { crc32 } from "node:zlib";
 
 export async function temporary(t) {
-  const path = await mkdtemp(join(tmpdir(), "stackma-release-test-"));
+  const path = await mkdtemp(join(tmpdir(), "tab-gantry-release-test-"));
   t.after(() => rm(path, { recursive: true, force: true }));
   return path;
 }

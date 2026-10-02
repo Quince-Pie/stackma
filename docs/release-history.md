@@ -1,4 +1,4 @@
-# Releasing Stackma
+# Releasing Tab Gantry
 
 > Historical operator guide, preserved with all working-tree edits supplied to
 > the 2026-09-26 redesign. Its implementation descriptions are superseded by
@@ -7,7 +7,7 @@
 The **Release** workflow (`prepare-release.yml`) creates a version-update PR.
 Merging that PR starts **Publish release** (`release.yml`), which submits a stable
 version to the existing **listed**
-[Stackma add-on](https://addons.mozilla.org/firefox/addon/stackma/). If Mozilla
+[Tab Gantry add-on](https://addons.mozilla.org/firefox/addon/tab-gantry/). If Mozilla
 approves it within the signing job's wait, the same run verifies the signed package
 in Firefox 156 and publishes an immutable GitHub Release. Otherwise the run ends
 successfully in the **awaiting review** state, and **Resume approved releases**
@@ -132,7 +132,7 @@ not automatically delete branches; GitHub's optional delete-after-merge setting
 works because release uses the event's merge commit, not the remaining branch.
 
 On 2026-09-26, a read-only owner query showed the listing still **nominated**:
-Mozilla has not yet approved any Stackma version. Version **1.1.4** awaits review
+Mozilla has not yet approved any Tab Gantry version. Version **1.1.4** awaits review
 with its source attached. Versions 1.1.0, 1.1.2 and 1.1.3 are disabled because
 each later submission disabled the pending one before it. The `v1.1.2` and
 `v1.1.3` tags therefore have no AMO or GitHub release and remain as history.
@@ -243,7 +243,7 @@ still requires every original member to match exactly, including the manifest.
 
 ### The accidentally published v1.1.1
 
-The manually published [v1.1.1 release](https://github.com/Quince-Pie/stackma/releases/tag/v1.1.1)
+The manually published [v1.1.1 release](https://github.com/Quince-Pie/tab-gantry/releases/tag/v1.1.1)
 is immutable, has no uploaded assets, and points to `6611e23`, whose manifest and
 npm versions are still `1.1.0`. The failed workflow stopped during resolution;
 its CI, tagging, Mozilla submission and publication jobs were skipped. Renaming a
@@ -320,7 +320,7 @@ npm run test:ci
 npm run test:release
 node scripts/ci/check-workflows.js
 zizmor --offline --persona=pedantic .github/workflows
-node scripts/release/resume.js --dry-run --repository=Quince-Pie/stackma
+node scripts/release/resume.js --dry-run --repository=Quince-Pie/tab-gantry
 npm run build
 npm run test:package -- --output=artifacts/local-package.json
 ```

@@ -28,7 +28,7 @@ async function stage(directory, entries) {
 
 async function archive(filename, entries) {
   const output = resolve("dist", filename);
-  const directory = await mkdtemp(join(tmpdir(), "stackma-build-"));
+  const directory = await mkdtemp(join(tmpdir(), "tab-gantry-build-"));
   try {
     await stage(directory, entries);
     await rm(output, { force: true });

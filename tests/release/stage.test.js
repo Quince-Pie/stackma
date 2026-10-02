@@ -27,7 +27,7 @@ async function fixture(t, { historicalStage = false, chrome = false } = {}) {
   await writeFile(`${directory}/.gitignore`,"artifacts/\ndist/\n.env\n");
   await writeFile(`${directory}/dist/tab-gantry-${version}.xpi`,"verified test package");
   await writeFile(`${directory}/artifacts/ci/package.json`,JSON.stringify({passed:true,sha256:sha256("verified test package")}));
-  const git=async(...args)=>(await run("git",["-c","core.hooksPath=/dev/null","-c","commit.gpgsign=false","-c","user.name=Stackma tests","-c","user.email=tests@example.invalid",...args],{cwd:directory,timeout:30000})).stdout.trim();
+  const git=async(...args)=>(await run("git",["-c","core.hooksPath=/dev/null","-c","commit.gpgsign=false","-c","user.name=Tab Gantry tests","-c","user.email=tests@example.invalid",...args],{cwd:directory,timeout:30000})).stdout.trim();
   await git("init","--quiet");await git("add","--all");await git("commit","--quiet","-m","test: Record release staging fixture");
   const execute=async(args=[],environment={})=>run(process.execPath,["scripts/release/stage.js",...args],{cwd:directory,timeout:30000,env:{...process.env,RELEASE_TAG:"v1.1.1",RELEASE_COMMIT:await git("rev-parse","HEAD"),...environment}});
   return{directory,git,execute};

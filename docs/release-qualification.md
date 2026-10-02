@@ -11,7 +11,7 @@ The later [policy review](release-policy-review.md) corrects the version-compone
 limit and makes preparation the primary **Release** entry point.
 
 Reviewed 2026-09-24 against baseline `2a73512`. Scope: GitHub.com, hosted Ubuntu
-24.04 x86-64, the existing listed Stackma add-on, stable version tags, and Firefox
+24.04 x86-64, the existing listed Tab Gantry add-on, stable version tags, and Firefox
 156. Implementing the workflow did not authorize publishing, modifying the pending
 AMO submission, configuring remote secrets, moving tags, pushing or committing
 this work. The user supplied Mozilla credentials for context; only read-only

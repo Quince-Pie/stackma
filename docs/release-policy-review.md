@@ -1,4 +1,4 @@
-# Applying the release recommendation to Stackma
+# Applying the release recommendation to Tab Gantry
 
 Reviewed 2026-09-24 against `6611e237beb647e400262a0d030030858c36990b` and
 the supplied `/tmp/RELEASE-RECOMMENDATION.md`. Its content digest and this change's
@@ -16,7 +16,7 @@ It does not supply a tested Firefox pipeline, establish a performance winner, or
 claim universal perfection. Its applicable principles are worth using; adopting
 all named technologies would not establish their guarantees for this extension.
 
-The review covers the claims that affect Stackma's design: GitHub release
+The review covers the claims that affect Tab Gantry's design: GitHub release
 immutability and attestations, workflow/event authority, controlled builds,
 version ordering, Mozilla signing and distribution, and recovery. It is not an
 exhaustive certification of the report's unrelated language, registry or product
@@ -36,7 +36,7 @@ selected by these diagnostic/UI corrections, and no speed claim is made.
 | Short-lived publication authority | GitHub uses job-scoped `GITHUB_TOKEN`. AMO currently uses an issuer/secret to mint JWTs; the secret itself is long-lived. It must remain in `release-signing`, with its owner responsible for rotation. An npm OIDC/stage-only recipe does not configure AMO. |
 | Independently controlled authorization | Named jobs/environments alone are not independent approval. The current policy uses human source merge plus any configured environment reviewers. Read-only inspection found no environments configured at the time of review; the release guide contains the required setup. No two-party-review claim is made. |
 | SLSA provenance, SBOMs and independent rebuilding | Useful for additional specified threats, but not present merely because a GitHub release is immutable. This pipeline does not claim SLSA conformance, an SBOM, or independent rebuild verification. Adding an attestation step alone would not establish build isolation or defeat a compromised release authority. |
-| TUF/custom update protocol | The listed add-on receives updates through Firefox/AMO. Stackma owns no custom updater to replace with TUF. No new distribution channel is introduced. |
+| TUF/custom update protocol | The listed add-on receives updates through Firefox/AMO. Tab Gantry owns no custom updater to replace with TUF. No new distribution channel is introduced. |
 | Rehearsed recovery and consumer verification | Local fault tests exist, including lost writes, conflicts, older-version completion, invalid source and unsigned installation. The complete hosted AMO/GitHub success path and account/key-rotation recovery remain unverified. |
 
 The material trust assumptions remain GitHub's enforcement, Mozilla's signing and

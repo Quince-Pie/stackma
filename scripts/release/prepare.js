@@ -42,7 +42,7 @@ export async function versionTree(tag, base, cwd) {
   assert.equal(await git(["ls-tree", base, "--", path], cwd), "", "Release intent already exists; never overwrite it");
   const paths = [...versionPaths, path];
   contents.push(intentText(tag));
-  const directory = await mkdtemp(join(tmpdir(), "stackma-version-"));
+  const directory = await mkdtemp(join(tmpdir(), "tab-gantry-version-"));
   const env = { ...process.env, GIT_INDEX_FILE: join(directory, "index") };
   try {
     await git(["read-tree", base], cwd, env);
@@ -113,7 +113,7 @@ export async function prepareRelease({ github, tag, mainCommit, cwd = process.cw
     // Server-side create-if-absent: a competing branch creation fails, not overwrites.
     await github.post("git/refs", { ref: `refs/heads/${branch}`, sha: head });
   }
-  const marker = `<!-- stackma-release-pr:${tag}:${base}:${expected.tree} -->`;
+  const marker = `<!-- tab-gantry-release-pr:${tag}:${base}:${expected.tree} -->`;
   const { displayName } = releaseBrand(brandMetadata(JSON.parse(expected.entries.find(entry => entry.path === "extension/manifest.json").content)));
   assert.equal((await github.get(`git/ref/heads/${branch}`))?.object.sha, head, "Release branch changed during preparation");
   if (!pull) {

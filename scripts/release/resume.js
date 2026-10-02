@@ -220,7 +220,7 @@ async function publishedTags(github) {
     assert(Array.isArray(releases), "Cannot establish release history");
     for (const release of releases) if (!release.draft) {
       tags.add(release.tag_name);
-      const marker = /^<!-- stackma-release:(v\d+\.\d+\.\d+):[a-f0-9]{40}:[a-f0-9]{64}:[a-f0-9]{64} -->/u.exec(release.body ?? "");
+      const marker = /^<!-- tab-gantry-release:(v\d+\.\d+\.\d+):[a-f0-9]{40}:[a-f0-9]{64}:[a-f0-9]{64} -->/u.exec(release.body ?? "");
       if (stable(release.tag_name) && marker?.[1] === release.tag_name) owned.add(release.tag_name);
     }
     if (releases.length < 100) return { tags, owned };

@@ -1,6 +1,6 @@
-# Stackma 1.1.6: explicitly authorized unlisted release
+# Tab Gantry 1.1.6: explicitly authorized unlisted release
 
-**Published 2026-09-26:** [signed XPI and release assets](https://github.com/Quince-Pie/stackma/releases/tag/v1.1.6).
+**Published 2026-09-26:** [signed XPI and release assets](https://github.com/Quince-Pie/tab-gantry/releases/tag/v1.1.6).
 Mozilla version `6517542` is approved in the unlisted channel. Permanent Firefox
 156 installation, all four native GitHub asset attestations and unauthenticated
 download hashes passed. The [acceptance evidence](../evidence/release/unlisted-1.1.6.json)
@@ -122,7 +122,7 @@ release, rerun the same command from the same frozen source after approval; it
 reconciles instead of blindly repeating writes. `artifacts/unlisted-status.json`
 records the signing outcome; `artifacts/release-publication.json` records verified
 immutable publication. A failed process leaves
-remote objects intact. A stale `.git/stackma-unlisted.lock` requires checking that
+remote objects intact. A stale `.git/tab-gantry-unlisted.lock` requires checking that
 the recorded process and all provider requests have finished before removing
 that local lock. A timeout alone does not establish provider cancellation.
 

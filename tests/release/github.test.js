@@ -23,7 +23,7 @@ async function fixture(t) {
     async cli(args){
       calls.push(args); const command=args[1];
       if(command==="create") {
-        history.push({id:100,tag_name:tag,body:await readFile(args[args.indexOf("--notes-file")+1],"utf8"),assets:[],draft:true,prerelease:false,html_url:"https://github.com/Quince-Pie/stackma/releases/tag/v1.1.1"});
+        history.push({id:100,tag_name:tag,body:await readFile(args[args.indexOf("--notes-file")+1],"utf8"),assets:[],draft:true,prerelease:false,html_url:"https://github.com/Quince-Pie/tab-gantry/releases/tag/v1.1.1"});
         if(state.failCreate) {state.failCreate=false;throw new Error("lost create response");}
       } else if(command==="verify-asset") {
         if(state.attestationFailures-- > 0) throw new Error("attestation pending");
@@ -70,9 +70,9 @@ test("unlisted publication explains manual installation and the higher listed up
   assert.equal(f.history[0].assets.length, 4);
 });
 
-test("renamed publication uses frozen branding without changing the legacy ownership marker", async t => {
+test("publication uses frozen branding and the ownership marker", async t => {
   const f = await fixture(t); await publishRelease(f.options);
-  assert.match(f.history[0].body, /^<!-- stackma-release:/u);
+  assert.match(f.history[0].body, /^<!-- tab-gantry-release:/u);
   assert.match(f.history[0].body, /Mozilla-signed Tab Gantry 1\.1\.1/u);
   assert.deepEqual(f.history[0].assets.map(a => a.name).sort(), ["SHA256SUMS", "release.json", "tab-gantry-1.1.1-source.zip", "tab-gantry-1.1.1.xpi"]);
   const create = f.calls.find(a => a[1] === "create"); assert.equal(create[create.indexOf("--title") + 1], "Tab Gantry 1.1.1");
@@ -174,7 +174,7 @@ test("a newer release observed during asset staging remains Latest",async t=>{
 });
 
 test("release listing checks pages beyond the first two and bounds inconclusive history",async()=>{
-  const github=new GitHub("Quince-Pie/stackma","test");let page=0;
+  const github=new GitHub("Quince-Pie/tab-gantry","test");let page=0;
   github.get=async()=>++page<4?Array.from({length:100},()=>({tag_name:"older"})):[];
   assert.equal((await github.releases()).length,300);assert.equal(page,4);
   page=0;github.get=async()=>{page++;return Array(100).fill({});};
@@ -182,7 +182,7 @@ test("release listing checks pages beyond the first two and bounds inconclusive 
 });
 
 test("annotated tag resolution preserves the commit and rejects malformed objects",async()=>{
-  const github=new GitHub("Quince-Pie/stackma","test");let calls=0;
+  const github=new GitHub("Quince-Pie/tab-gantry","test");let calls=0;
   github.get=async()=>({object:++calls===1?{type:"tag",sha:"a".repeat(40)}:{type:"commit",sha:"b".repeat(40)}});
   assert.equal(await github.commit("v1.1.1"),"b".repeat(40));
   github.get=async()=>({object:{type:"tree",sha:"a".repeat(40)}});
@@ -205,11 +205,11 @@ test("competing same-tag draft cannot redirect an upload to a different release 
 test("GitHub transport targets the validated release ID and never redirects credentials",async t=>{
   const dir=await temporary(t), file=`${dir}/asset.xpi`;await writeFile(file,"bytes");
   const calls=[];
-  const github=new GitHub("Quince-Pie/stackma","test-token",async(url,options)=>{calls.push({url,options});return new Response(null,{status:201});});
+  const github=new GitHub("Quince-Pie/tab-gantry","test-token",async(url,options)=>{calls.push({url,options});return new Response(null,{status:201});});
   await github.mutate(123,{file,name:"asset.xpi"});
   await github.mutate(123,{body:{tag_name:"v1.1.1",draft:false,make_latest:"true"}});
-  assert.equal(calls[0].url,"https://uploads.github.com/repos/Quince-Pie/stackma/releases/123/assets?name=asset.xpi");
-  assert.equal(calls[1].url,"https://api.github.com/repos/Quince-Pie/stackma/releases/123");
+  assert.equal(calls[0].url,"https://uploads.github.com/repos/Quince-Pie/tab-gantry/releases/123/assets?name=asset.xpi");
+  assert.equal(calls[1].url,"https://api.github.com/repos/Quince-Pie/tab-gantry/releases/123");
   assert(calls.every(c=>c.options.redirect==="error"));
   assert.equal(calls[0].options.body.toString(),"bytes");
   assert.equal(JSON.parse(calls[1].options.body).draft,false);
@@ -219,7 +219,7 @@ test("GitHub transport targets the validated release ID and never redirects cred
 test("failed GitHub reads cancel their bodies and distinguish absence from authorization failure",async()=>{
   for(const status of [404,401,403,500]) {
     let cancelled=false;
-    const github=new GitHub("Quince-Pie/stackma","test",async()=>({status,ok:false,body:{async cancel(){cancelled=true;}}}));
+    const github=new GitHub("Quince-Pie/tab-gantry","test",async()=>({status,ok:false,body:{async cancel(){cancelled=true;}}}));
     if(status===404) assert.equal(await github.get("releases/tags/v1.1.1"),null);
     else await assert.rejects(()=>github.get("releases/tags/v1.1.1"),new RegExp(`HTTP ${status}`,"u"));
     assert(cancelled);
@@ -227,12 +227,12 @@ test("failed GitHub reads cancel their bodies and distinguish absence from autho
 });
 
 test("malformed successful GitHub responses do not expose provider bodies", async () => {
-  const github = new GitHub("Quince-Pie/stackma", "test-token", async () => new Response("synthetic-private-response"));
+  const github = new GitHub("Quince-Pie/tab-gantry", "test-token", async () => new Response("synthetic-private-response"));
   await assert.rejects(() => github.get("releases"), error => /unreadable JSON/u.test(error.message) && !String(error.stack).includes("synthetic-private"));
 });
 
 test("current REST recovery gets integrated source from the merged event, never PR head or obsolete fields", async () => {
-  const github = new GitHub("Quince-Pie/stackma", "fixture");
+  const github = new GitHub("Quince-Pie/tab-gantry", "fixture");
   const pull = { number: 3, merged: true, head: { sha: "a".repeat(40) }, merge_commit_sha: "b".repeat(40) };
   const events = [{ id: 1, event: "merged", commit_id: "c".repeat(40) }];
   github.get = async path => path === "pulls/3" ? pull : events;
@@ -249,7 +249,7 @@ test("current REST recovery gets integrated source from the merged event, never 
 });
 
 test("merged PR event recovery scans complete bounded history and rejects repeated pages", async () => {
-  const github = new GitHub("Quince-Pie/stackma", "fixture");
+  const github = new GitHub("Quince-Pie/tab-gantry", "fixture");
   let pages = 0;
   github.get = async path => path === "pulls/3" ? { number: 3, merged: true }
     : ++pages === 1 ? Array.from({ length: 100 }, (_, i) => ({ id: i + 1, event: "labeled" }))

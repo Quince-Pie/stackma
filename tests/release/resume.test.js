@@ -46,7 +46,7 @@ function world(overrides = {}) {
       return Response.json(state.versionPage ? state.versionPage(history, page) : history);
     }
     assert.equal(target.hostname, "api.github.com");
-    const path = target.pathname.replace("/repos/Quince-Pie/stackma/", "");
+    const path = target.pathname.replace("/repos/Quince-Pie/tab-gantry/", "");
     if (path === "git/matching-refs/tags/v") return Response.json(state.tags.map(tag => ({ ref: `refs/tags/${tag}`, object: { sha: "a".repeat(40), type: "commit" } })));
     if (path === "releases") {
       const page = Number(target.searchParams.get("page") ?? 1);
@@ -71,11 +71,11 @@ function world(overrides = {}) {
       return jobs === null ? new Response(null, { status: 404 }) : Response.json({ total_count: jobs.length, jobs });
     }
     if (path === "actions/workflows/release.yml/dispatches" && method === "POST") {
-      return Response.json({ workflow_run_id: 99, run_url: "https://api.github.com/repos/Quince-Pie/stackma/actions/runs/99", html_url: "https://github.com/Quince-Pie/stackma/actions/runs/99" });
+      return Response.json({ workflow_run_id: 99, run_url: "https://api.github.com/repos/Quince-Pie/tab-gantry/actions/runs/99", html_url: "https://github.com/Quince-Pie/tab-gantry/actions/runs/99" });
     }
     return assert.fail(`Unexpected request ${method} ${target}`);
   };
-  const github = new GitHubClient("Quince-Pie/stackma", "workflow-token", fetchImpl);
+  const github = new GitHubClient("Quince-Pie/tab-gantry", "workflow-token", fetchImpl);
   return { state, requests, fetchImpl, github, posts: () => requests.filter(request => request.method === "POST") };
 }
 
@@ -91,10 +91,10 @@ test("an approved tag without a published release is dispatched once on main, an
   const w = world();
   const logs = [];
   const plan = await runResume({ github: w.github, fetchImpl: w.fetchImpl, log: line => logs.push(line) });
-  assert.deepEqual(plan, { action: "dispatch", tag: "v1.1.4", attempts: 0, notes: [], attention: [], run: "https://github.com/Quince-Pie/stackma/actions/runs/99" });
-  assert(logs.some(line => line.includes("Run: https://github.com/Quince-Pie/stackma/actions/runs/99")));
+  assert.deepEqual(plan, { action: "dispatch", tag: "v1.1.4", attempts: 0, notes: [], attention: [], run: "https://github.com/Quince-Pie/tab-gantry/actions/runs/99" });
+  assert(logs.some(line => line.includes("Run: https://github.com/Quince-Pie/tab-gantry/actions/runs/99")));
   const [post] = w.posts();
-  assert.equal(post.url.pathname, "/repos/Quince-Pie/stackma/actions/workflows/release.yml/dispatches");
+  assert.equal(post.url.pathname, "/repos/Quince-Pie/tab-gantry/actions/workflows/release.yml/dispatches");
   assert.deepEqual(JSON.parse(post.body), { ref: "main", inputs: { tag: "v1.1.4" } });
   assert(w.requests.every(request => request.redirect === "error"));
   assert(w.requests.filter(request => request.url.hostname === "addons.mozilla.org").every(request => !request.auth));
@@ -175,14 +175,14 @@ test("the oldest approved version is dispatched first and a capped tag does not 
 });
 
 test("the command fails only when an approved version needs a person, so GitHub notifies the schedule's owner", async () => {
-  const env = { GITHUB_REPOSITORY: "Quince-Pie/stackma", GH_TOKEN: "workflow-token" };
+  const env = { GITHUB_REPOSITORY: "Quince-Pie/tab-gantry", GH_TOKEN: "workflow-token" };
   const stuck = world({ dispatched: [run("Publish release v1.1.4"), run("Publish release v1.1.4")] });
   assert.equal(await cli({ argv: [], env, fetchImpl: stuck.fetchImpl, log: () => {} }), 1);
   const ready = world();
   assert.equal(await cli({ argv: ["--dry-run"], env, fetchImpl: ready.fetchImpl, log: () => {} }), 0);
   assert.equal(ready.posts().length, 0);
   const outage = world({ failures: { "addons.mozilla.org": 503 } });
-  assert.equal(await cli({ argv: ["--repository=Quince-Pie/stackma"], env: { GH_TOKEN: "workflow-token" }, fetchImpl: outage.fetchImpl, log: () => {} }), 0);
+  assert.equal(await cli({ argv: ["--repository=Quince-Pie/tab-gantry"], env: { GH_TOKEN: "workflow-token" }, fetchImpl: outage.fetchImpl, log: () => {} }), 0);
   await assert.rejects(() => cli({ argv: [], env: {}, fetchImpl: ready.fetchImpl, log: () => {} }), /GITHUB_REPOSITORY/u);
 });
 
@@ -211,7 +211,7 @@ test("a dry run reports the dispatch without writing, and dispatching requires a
   assert.equal(plan.action, "dispatch");
   assert.equal(w.posts().length, 0);
   assert(logs.some(line => line.startsWith("Would dispatch Publish release for v1.1.4")));
-  await assert.rejects(() => new GitHubClient("Quince-Pie/stackma", undefined, w.fetchImpl).dispatch("v1.1.4"), /requires GH_TOKEN/u);
+  await assert.rejects(() => new GitHubClient("Quince-Pie/tab-gantry", undefined, w.fetchImpl).dispatch("v1.1.4"), /requires GH_TOKEN/u);
   await assert.rejects(() => w.github.dispatch("v1.1"), /stable vMAJOR/u);
 });
 
@@ -391,7 +391,7 @@ test("human dispatches do not consume the automatic-history search bound", async
 });
 
 const ownedRelease = tag => ({ tag_name: tag, draft: false,
-  body: `<!-- stackma-release:${tag}:${"a".repeat(40)}:${"b".repeat(64)}:${"c".repeat(64)} -->` });
+  body: `<!-- tab-gantry-release:${tag}:${"a".repeat(40)}:${"b".repeat(64)}:${"c".repeat(64)} -->` });
 const gateJob = (run, conclusion = "success", completed = run.updated_at) => ({
   run_id: run.id, name: "Publish the verified signed release", status: "completed", conclusion: "failure",
   steps: [{ name: "Reconcile, publish and verify the immutable release", status: "completed", conclusion, completed_at: completed }],
@@ -507,7 +507,7 @@ test("a lost dispatch acknowledgement is not retried before activity is reconcil
       }
       return response;
     };
-    const github = new GitHubClient("Quince-Pie/stackma", "workflow-token", fetchImpl);
+    const github = new GitHubClient("Quince-Pie/tab-gantry", "workflow-token", fetchImpl);
     const first = await runResume({ github, fetchImpl, log: () => {} });
     assert.equal(first.action, "retry-later");
     assert.equal(w.posts().length, 1);
@@ -524,7 +524,7 @@ test("GitHub response bodies are bounded without relying on Content-Length", asy
       start(controller) { controller.enqueue(new TextEncoder().encode(" ".repeat(64))); },
       cancel() { cancelled = true; },
     }), { headers });
-    const github = new GitHubClient("Quince-Pie/stackma", undefined, fetchImpl, { responseBytes: 32 });
+    const github = new GitHubClient("Quince-Pie/tab-gantry", undefined, fetchImpl, { responseBytes: 32 });
     await assert.rejects(() => github.get("releases"), /32-byte response bound/u);
     assert(cancelled);
   }
@@ -542,7 +542,7 @@ test("a stalled dispatch response body times out and the next run reconciles acc
     }
     return response;
   };
-  const github = new GitHubClient("Quince-Pie/stackma", "workflow-token", fetchImpl, { timeoutMs: 20 });
+  const github = new GitHubClient("Quince-Pie/tab-gantry", "workflow-token", fetchImpl, { timeoutMs: 20 });
   // AbortSignal.timeout is unref'ed; keep the isolated test process alive.
   const keepAlive = setTimeout(() => {}, 1000);
   try {
@@ -560,6 +560,6 @@ test("an already-expired deadline rejects cleanly before reading JSON", async ()
     await new Promise(resolve => setTimeout(resolve, 10));
     return Response.json({ message: "late headers" });
   };
-  const github = new GitHubClient("Quince-Pie/stackma", undefined, fetchImpl, { timeoutMs: 1 });
+  const github = new GitHubClient("Quince-Pie/tab-gantry", undefined, fetchImpl, { timeoutMs: 1 });
   await assert.rejects(() => github.get("releases"), /body timed out/u);
 });

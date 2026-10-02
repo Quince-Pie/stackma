@@ -11,7 +11,7 @@ matching package/source/license and disabled the older pending file. Its public
 approval, signed publication and actual 1.1.8 → 1.1.10 update remain separate gates.
 
 **Current handoff, 2026-09-27:** the owner renamed the extension to **Tab Gantry**.
-Unlisted [1.1.8 is signed and published](https://github.com/Quince-Pie/stackma/releases/tag/v1.1.8),
+Unlisted [1.1.8 is signed and published](https://github.com/Quince-Pie/tab-gantry/releases/tag/v1.1.8),
 and a real manual upgrade from 1.1.6 preserved native groups and local storage. Listed
 1.1.9 was submitted with explicit authorization to replace pending 1.1.7; Mozilla
 disabled the older pending file on creation. The title is now **Tab Gantry -
@@ -22,7 +22,7 @@ superseded 1.1.7 or owner-disabled 1.1.4.
 
 **Later owner-authorized change:** the owner disabled listed 1.1.4, merged the
 1.1.5 version PR, then requested unlisted 1.1.6. That release is now signed,
-verified and [published](https://github.com/Quince-Pie/stackma/releases/tag/v1.1.6);
+verified and [published](https://github.com/Quince-Pie/tab-gantry/releases/tag/v1.1.6);
 see its [acceptance record](unlisted-1.1.6.md). The historical 1.1.4 → 1.1.5 plan
 below is superseded. A future default-AMO update test can start from signed
 1.1.6 and target a compatible approved **listed** version higher than 1.1.6.
@@ -42,12 +42,12 @@ initial implementation used approximately 85 minutes.
 
 ## Established on GitHub
 
-- [Implementation PR #4](https://github.com/Quince-Pie/stackma/pull/4) was reviewed
+- [Implementation PR #4](https://github.com/Quince-Pie/tab-gantry/pull/4) was reviewed
   at head `742e313385bd8ea1d4a579511bdb94840cf56ddb` and merged as
   `e020a3f1fc092f07c0d4314ee3cb1193b7a5e7f6` after
-  [hosted CI passed](https://github.com/Quince-Pie/stackma/actions/runs/36269477579).
+  [hosted CI passed](https://github.com/Quince-Pie/tab-gantry/actions/runs/36269477579).
   CI exercised the real hosted tools, Firefox tests, reproducible packages and
-  artifact uploads. The earlier [implementation-only run](https://github.com/Quince-Pie/stackma/actions/runs/36269187663)
+  artifact uploads. The earlier [implementation-only run](https://github.com/Quince-Pie/tab-gantry/actions/runs/36269187663)
   also passed.
 - Active rulesets now prevent moving/deleting `v*` tags and force-pushing/deleting
   main. The signing and publication environments allow only the `main` branch.
@@ -57,20 +57,20 @@ initial implementation used approximately 85 minutes.
   The hosted signer successfully authenticated with that environment's pair.
   The four historical repository-scoped aliases were then removed; a final
   metadata read confirms that only the environment pair remains.
-- [Release preparation](https://github.com/Quince-Pie/stackma/actions/runs/36270471675)
-  succeeded and created [version PR #5](https://github.com/Quince-Pie/stackma/pull/5).
+- [Release preparation](https://github.com/Quince-Pie/tab-gantry/actions/runs/36270471675)
+  succeeded and created [version PR #5](https://github.com/Quince-Pie/tab-gantry/pull/5).
   Its four files contain only the intended version fields and new immutable
   `v1.1.5` intent. The bot-triggered CI required approval; the owner-authorized
-  approval was performed, and [that CI passed](https://github.com/Quince-Pie/stackma/actions/runs/36270530428).
+  approval was performed, and [that CI passed](https://github.com/Quince-Pie/tab-gantry/actions/runs/36270530428).
   The PR is deliberately unmerged while 1.1.4 awaits Mozilla review.
 
-The [live 1.1.4 controller run](https://github.com/Quince-Pie/stackma/actions/runs/36270030489)
+The [live 1.1.4 controller run](https://github.com/Quince-Pie/tab-gantry/actions/runs/36270030489)
 exercises current-controller recovery of the historical source. It resolves and
 tests commit `997087de3e07b3ffb0b3968e1617b80997a42a6b`, reconciles its protected
 tag, and checks the existing AMO version instead of creating a replacement.
 It completed successfully with `awaiting-review`; permanent installation and
 GitHub publication were correctly skipped. The independently dispatched
-[resume workflow](https://github.com/Quince-Pie/stackma/actions/runs/36270820273)
+[resume workflow](https://github.com/Quince-Pie/tab-gantry/actions/runs/36270820273)
 also passed and correctly found no approved version ready to publish. This
 exercises the scheduled workflow's controller, not GitHub's delivery of a future
 cron event.
@@ -97,7 +97,7 @@ does not establish them all.
 
 The automatic resumer is enabled on its six-hour schedule. After approval it
 reuses all release checks. A maintainer can run it sooner with
-`gh workflow run resume-release.yml --ref main --repo Quince-Pie/stackma`.
+`gh workflow run resume-release.yml --ref main --repo Quince-Pie/tab-gantry`.
 GitHub can delay/drop scheduled runs or disable schedules after inactivity;
 see the [recovery procedures](releases.md). This record does not promise a
 completion deadline while either provider is unavailable.
@@ -112,9 +112,9 @@ unchanged ID and default update service still select compatible listed updates.
 Verify the old package against its release attestation first:
 
 ```sh
-gh release verify-asset v1.1.4 /path/to/stackma-1.1.4.xpi --repo Quince-Pie/stackma
+gh release verify-asset v1.1.4 /path/to/release-1.1.4.xpi --repo Quince-Pie/tab-gantry
 node scripts/release/update-test.js \
-  --from-xpi=/path/to/stackma-1.1.4.xpi \
+  --from-xpi=/path/to/release-1.1.4.xpi \
   --from-version=1.1.4 \
   --to-version=1.1.5 \
   --to-sha256=VERIFIED_SIGNED_XPI_SHA256 \

@@ -4,7 +4,7 @@
 
 Authority: the user's naming request and `/home/quince/Downloads/Pro.md`; existing
 pin/window/source boundaries and preference for lower state and bounded work still
-apply. New Stackma-created groups receive one generated native title. Joining or
+apply. New Tab Gantry-created groups receive one generated native title. Joining or
 reusing a native group never grants permission to rename it. Existing, restored,
 and manually named groups remain authoritative. Firefox still selects colors.
 

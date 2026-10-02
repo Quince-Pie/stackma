@@ -165,7 +165,7 @@ export async function publishRelease({ github, record, directory, notesPath, ver
   assert.deepEqual(files[names[1]], record.source);
   const expectedSums = names.slice(0, 3).map(name => `${files[name].sha256}  ${name}\n`).join("");
   assert.equal(await readFile(`${directory}/SHA256SUMS`, "utf8"), expectedSums);
-  const marker = `<!-- stackma-release:${tag}:${commit}:${record.unsigned.sha256}:${record.source.sha256} -->`;
+  const marker = `<!-- tab-gantry-release:${tag}:${commit}:${record.unsigned.sha256}:${record.source.sha256} -->`;
   assert.equal(await github.commit(tag), commit, "Remote tag moved since verification");
   await amoCheck(record);
   let history = await github.releases();

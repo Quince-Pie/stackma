@@ -19,7 +19,7 @@ export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 sudo --non-interactive true
 
 script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-work=$(mktemp -d "$RUNNER_TEMP/stackma-nix.XXXXXXXXXX")
+work=$(mktemp -d "$RUNNER_TEMP/tab-gantry-nix.XXXXXXXXXX")
 trap 'rm -rf -- "$work"' EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM

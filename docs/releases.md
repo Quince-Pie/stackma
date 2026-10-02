@@ -56,7 +56,7 @@ These administrator actions require authorization separately from implementation
 6. Keep **Resume approved releases** enabled and monitor failed runs. GitHub
    can delay/drop schedules and disables schedules in inactive public repositories
    after 60 days. Keep the schedule owner's notifications enabled.
-7. Keep the **Stackma release workflow events** Actions policy active. It applies
+7. Keep the **Tab Gantry release workflow events** Actions policy active. It applies
    only to `.github/workflows/release.yml` and allows `pull_request_target` and
    `workflow_dispatch`. The target trigger runs only for merged, same-repository
    release PRs whose integrated source passes the main-history checks. This
@@ -198,10 +198,9 @@ level. A delayed older release does not displace a newer Latest release.
 Keep the generated identity marker at the beginning of release notes; it identifies
 controller-owned publications for recovery.
 
-Versions through 1.1.7 retain their original `stackma-` asset names and record
-format. Branding is read from the frozen release source, so a later rename does
-not rewrite an older release. The add-on ID, AMO slug, repository URL, ownership
-markers and existing Actions policy/concurrency names remain stable identifiers.
+Branding is read from the frozen release source, so a later rename does not
+rewrite an older release. Releases published before 1.1.14 carry an earlier
+ownership marker; they are complete and are not recovered automatically.
 
 AMO may make the listed version available before GitHub publication. There is no
 cross-service transaction or rollback. Firefox keeps ID `stackma@extensions.local`,

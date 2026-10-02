@@ -11,7 +11,7 @@ if (!["exploratory", "confirmation"].includes(phase)) throw new Error("Unknown p
 const variants = option("variants", "fifo,batch,wide-batch,query,selective-query,dependency").split(",");
 const repetitions = phase === "confirmation" ? 12 : 3;
 const warmups = phase === "confirmation" ? 2 : 1;
-const fixture = await mkdtemp(join(tmpdir(), "stackma-benchmark-"));
+const fixture = await mkdtemp(join(tmpdir(), "tab-gantry-benchmark-"));
 const report = {
   phase, variants, repetitions, warmups, date: new Date().toISOString(),
   node: process.version, cpu: cpus()[0].model,
@@ -30,10 +30,10 @@ try {
   await cp("experiments/query-stacker.js", join(fixture, "query-stacker.js"));
   if (variants.includes("dependency")) await cp("experiments/dependency-stacker.js", join(fixture, "dependency-stacker.js"));
   await writeFile(join(fixture, "manifest.json"), JSON.stringify({
-    manifest_version: 3, name: "Stackma isolated benchmark", version: "1.0.0",
+    manifest_version: 3, name: "Tab Gantry isolated benchmark", version: "1.0.0",
     permissions: ["webNavigation"],
     background: { scripts: ["benchmark.js"], type: "module" },
-    browser_specific_settings: { gecko: { id: "stackma-benchmark@extensions.local", strict_min_version: "156.0", data_collection_permissions: { required: ["none"] } } },
+    browser_specific_settings: { gecko: { id: "tab-gantry-benchmark@extensions.local", strict_min_version: "156.0", data_collection_permissions: { required: ["none"] } } },
   }));
   await writeFile(join(fixture, "benchmark.js"), `
 import { createStacker } from './stacker.js';
@@ -62,7 +62,7 @@ function receive(relation) {
 browser.tabs.onCreated.addListener(tab => receive({tabId:tab.id,sourceTabId:tab.openerTabId,windowId:tab.windowId}));
 browser.webNavigation.onCreatedNavigationTarget.addListener(details => receive(details));
 browser.tabs.onRemoved.addListener(id => current?.forget(id));
-globalThis.stackmaBenchmark = async function(variant, ids, shape, flow) {
+globalThis.tabGantryBenchmark = async function(variant, ids, shape, flow) {
   const calls = { get: 0, query: 0, group: 0, move: 0, records: 0 };
   const api = { tabs: {} };
   for (const name of ['get', 'query', 'group', 'move']) {
@@ -172,7 +172,7 @@ globalThis.stackmaBenchmark = async function(variant, ids, shape, flow) {
       const order = [...cycle.slice(rotation), ...cycle.slice(0, rotation)];
       for (const variant of order) {
         const sample = await driver.addon(id, (browser, variant, ids, shape, flow) =>
-          window.stackmaBenchmark(variant, ids, shape, flow), variant, pools.get(tabs), shape, flow);
+          window.tabGantryBenchmark(variant, ids, shape, flow), variant, pools.get(tabs), shape, flow);
         if (repetition >= 0) report.samples.push({ tabs, shape, flow, repetition, variant, ...sample });
       }
     }

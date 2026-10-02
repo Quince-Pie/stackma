@@ -15,7 +15,7 @@ let extensionPath = "extension";
 let temporaryExtension;
 if (candidate) {
   if (candidate !== "dependency") throw new Error("Unsupported candidate");
-  temporaryExtension = await mkdtemp(join(tmpdir(), "stackma-candidate-"));
+  temporaryExtension = await mkdtemp(join(tmpdir(), "tab-gantry-candidate-"));
   extensionPath = join(temporaryExtension, "extension");
   await cp("extension", extensionPath, { recursive: true });
   await cp("experiments/dependency-stacker.js", join(extensionPath, "stacker.js"));
@@ -27,7 +27,7 @@ for (const file of files) hash.update(file).update(await readFile(`${extensionPa
 const report = { sourceSha256: hash.digest("hex"), startedAt: new Date().toISOString(), results: [] };
 const server = createServer((request, response) => {
   response.setHeader("Content-Type", "text/html; charset=utf-8");
-  response.end(`<!doctype html><title>Stackma browser fixture</title>
+  response.end(`<!doctype html><title>Tab Gantry browser fixture</title>
     <a id="link" target="_blank" href="/target">Related link</a>
     <a id="noreferrer" target="_blank" rel="noreferrer" href="/target">Noreferrer link</a>
     ${request.url === "/frame" ? "" : '<iframe src="/frame"></iframe>'}`);
@@ -329,9 +329,9 @@ try {
   await test("navigation-source-without-tab-opener", async () => {
     const source = await page();
     await driver.addon(id, browser => {
-      window.stackmaCreationProbe = [];
-      window.stackmaProbeListener = tab => window.stackmaCreationProbe.push({ id: tab.id, opener: tab.openerTabId ?? null });
-      browser.tabs.onCreated.addListener(window.stackmaProbeListener);
+      window.tabGantryCreationProbe = [];
+      window.tabGantryProbeListener = tab => window.tabGantryCreationProbe.push({ id: tab.id, opener: tab.openerTabId ?? null });
+      browser.tabs.onCreated.addListener(window.tabGantryProbeListener);
     });
     await driver.chrome((sourceId, url) => {
       const { ExtensionParent } = ChromeUtils.importESModule("resource://gre/modules/ExtensionParent.sys.mjs");
@@ -346,10 +346,10 @@ try {
     }, source.id, `${base}/target`);
     const result = await expectLinkGroup(source.id);
     const created = await driver.addon(id, (browser, childId) => {
-      browser.tabs.onCreated.removeListener(window.stackmaProbeListener);
-      const result = window.stackmaCreationProbe.find(tab => tab.id === childId);
-      delete window.stackmaProbeListener;
-      delete window.stackmaCreationProbe;
+      browser.tabs.onCreated.removeListener(window.tabGantryProbeListener);
+      const result = window.tabGantryCreationProbe.find(tab => tab.id === childId);
+      delete window.tabGantryProbeListener;
+      delete window.tabGantryCreationProbe;
       return result;
     }, result.childId);
     assert.equal(created.opener, null, "This case must exercise navigation's independent source signal");
@@ -387,10 +387,10 @@ try {
 
   await test("named-target-reuse", async () => {
     const source = await page();
-    await driver.tab(source.id, target => { window.open(target, "stackma-named"); }, `${base}/target`);
+    await driver.tab(source.id, target => { window.open(target, "tab-gantry-named"); }, `${base}/target`);
     const initial = await expectLinkGroup(source.id);
     await driver.addon(id, (browser, tabId) => browser.tabs.ungroup(tabId), initial.childId);
-    await driver.tab(source.id, target => { window.open(target, "stackma-named"); }, `${base}/target?reused`);
+    await driver.tab(source.id, target => { window.open(target, "tab-gantry-named"); }, `${base}/target?reused`);
     await driver.addon(id, async (browser, sourceId, childId) => {
       await new Promise(resolve => setTimeout(resolve, 250));
       if ((await browser.tabs.get(childId)).groupId !== -1) throw new Error("Reused named target was grouped again");

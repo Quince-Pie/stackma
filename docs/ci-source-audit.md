@@ -1,7 +1,7 @@
 # CI source audit and design selection
 
 Source review date: **2026-09-23**. The selection is for a read-only,
-GitHub-hosted Ubuntu 24.04 job that checks Stackma against Firefox **156.0**,
+GitHub-hosted Ubuntu 24.04 job that checks Tab Gantry against Firefox **156.0**,
 validates its existing Nix development environment, and produces a verified
 unsigned XPI. See [CI operation and verification](ci.md) for the workflow contract,
 commands, and actual execution coverage.
@@ -25,7 +25,7 @@ tag.
 Both release API responses reported `immutable: false`. Full commit pins bind
 the reviewed executable, while same-line release comments make updates reviewable.
 Both actions use Node 24 internally, requiring Actions Runner 2.327.1 or newer;
-this runtime is separate from the Node version used to test Stackma.
+this runtime is separate from the Node version used to test Tab Gantry.
 
 **Checkout.** The [pinned changelog](https://github.com/actions/checkout/blob/3d3c42e5aac5ba805825da76410c181273ba90b1/CHANGELOG.md)
 was read together with its metadata, input parser, unsafe-PR guard,
@@ -122,7 +122,7 @@ Zizmor-action v0.6.4 selects analyzer 1.30.1 through a checked-in image digest.
 Native Dependabot covers the selected action references, npm dependencies, and
 the branch-tracking Nix flake lock. GitHub announced
 [Nix version-update support](https://github.blog/changelog/2026-04-07-dependabot-version-updates-now-support-the-nix-ecosystem/)
-for public repositories; Stackma's public repository and branch-tracking input
+for public repositories; Tab Gantry's public repository and branch-tracking input
 match that scope. No claim is made here about unsupported Nix input forms.
 GitHub subsequently introduced a
 [default three-day package cooldown](https://github.blog/changelog/2026-07-14-dependabot-version-updates-introduce-default-package-cooldown/).

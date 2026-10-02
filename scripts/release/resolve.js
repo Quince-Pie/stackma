@@ -35,7 +35,7 @@ export async function resolveRelease({ eventName, event, repository, workflowRef
     assert.match(pr.head.ref, /^release\/v\d+\.\d+\.\d+$/u);
     tag = pr.head.ref.slice("release/".length);
     versionFromTag(tag);
-    const marker = /^<!-- stackma-release-pr:(v\d+\.\d+\.\d+):([a-f0-9]{40}):([a-f0-9]{40}) -->/u.exec(pr.body ?? "");
+    const marker = /^<!-- tab-gantry-release-pr:(v\d+\.\d+\.\d+):([a-f0-9]{40}):([a-f0-9]{40}) -->/u.exec(pr.body ?? "");
     assert(marker && marker[1] === tag, "Release PR preparation marker is missing or inconsistent");
     commit = pr.merge_commit_sha;
     assert.match(commit, /^[a-f0-9]{40}$/u);

@@ -14,7 +14,7 @@ const body = Buffer.from("Verified browser archive fixture\n");
 const digest = algorithm => createHash(algorithm).update(body).digest("hex");
 
 async function fixture(t) {
-  const directory = await mkdtemp(join(tmpdir(), "stackma-download-test-"));
+  const directory = await mkdtemp(join(tmpdir(), "tab-gantry-download-test-"));
   t.after(() => rm(directory, { recursive: true, force: true }));
   const payload = join(directory, "payload");
   const trace = join(directory, "curl-args");
@@ -22,22 +22,22 @@ async function fixture(t) {
   const curl = join(directory, "curl");
   await writeFile(curl, `#!/usr/bin/env bash
 set -euo pipefail
-printf '%s\\0' "$@" > "$STACKMA_CURL_TRACE"
+printf '%s\\0' "$@" > "$TAB_GANTRY_CURL_TRACE"
 output=
 while [[ $# -gt 0 ]]; do
   if [[ $1 == --output ]]; then output=$2; shift 2; else shift; fi
 done
 [[ -n $output ]]
-if [[ $STACKMA_CURL_MODE == truncated ]]; then
-  head -c 7 "$STACKMA_CURL_PAYLOAD" > "$output"
+if [[ $TAB_GANTRY_CURL_MODE == truncated ]]; then
+  head -c 7 "$TAB_GANTRY_CURL_PAYLOAD" > "$output"
   exit 18
 fi
-if [[ $STACKMA_CURL_MODE == paused ]]; then
-  head -c 7 "$STACKMA_CURL_PAYLOAD" > "$output"
-  touch "$STACKMA_CURL_TRACE.ready"
-  while [[ ! -e $STACKMA_CURL_TRACE.resume ]]; do sleep 0.01; done
+if [[ $TAB_GANTRY_CURL_MODE == paused ]]; then
+  head -c 7 "$TAB_GANTRY_CURL_PAYLOAD" > "$output"
+  touch "$TAB_GANTRY_CURL_TRACE.ready"
+  while [[ ! -e $TAB_GANTRY_CURL_TRACE.resume ]]; do sleep 0.01; done
 fi
-cp -- "$STACKMA_CURL_PAYLOAD" "$output"
+cp -- "$TAB_GANTRY_CURL_PAYLOAD" "$output"
 `);
   await chmod(curl, 0o700);
   return {
@@ -45,9 +45,9 @@ cp -- "$STACKMA_CURL_PAYLOAD" "$output"
     env: {
       ...process.env,
       PATH: `${directory}${delimiter}${process.env.PATH}`,
-      STACKMA_CURL_TRACE: trace,
-      STACKMA_CURL_PAYLOAD: payload,
-      STACKMA_CURL_MODE: "",
+      TAB_GANTRY_CURL_TRACE: trace,
+      TAB_GANTRY_CURL_PAYLOAD: payload,
+      TAB_GANTRY_CURL_MODE: "",
     },
   };
 }
@@ -88,7 +88,7 @@ for (const algorithm of ["sha256", "sha512"]) {
       [algorithm, "https://example.invalid/archive", digest(algorithm), destination], data.env);
     assert.equal(result.code, 0, result.stderr);
     assert.deepEqual(await readFile(destination), body);
-    assert(!(await readdir(data.directory)).some(name => name.startsWith(".stackma-download.")));
+    assert(!(await readdir(data.directory)).some(name => name.startsWith(".tab-gantry-download.")));
   });
 }
 
@@ -98,7 +98,7 @@ test("readers retain the accepted archive throughout a successful replacement do
   await writeFile(destination, "accepted bytes");
   const pending = run(downloader,
     ["sha256", "https://example.invalid/archive", digest("sha256"), destination],
-    { ...data.env, STACKMA_CURL_MODE: "paused" });
+    { ...data.env, TAB_GANTRY_CURL_MODE: "paused" });
   try {
     const deadline = Date.now() + 3_000;
     while (!(await readdir(data.directory)).includes("curl-args.ready")) {
@@ -123,7 +123,7 @@ test("a wrong digest preserves the existing destination and removes untrusted by
   assert.notEqual(result.code, 0);
   assert.match(result.stderr, /mismatch/);
   assert.equal(await readFile(destination, "utf8"), "accepted bytes");
-  assert(!(await readdir(data.directory)).some(name => name.startsWith(".stackma-download.")));
+  assert(!(await readdir(data.directory)).some(name => name.startsWith(".tab-gantry-download.")));
 });
 
 test("a truncated failed transfer never replaces an accepted destination", async t => {
@@ -132,10 +132,10 @@ test("a truncated failed transfer never replaces an accepted destination", async
   await writeFile(destination, "accepted bytes");
   const result = await run(downloader,
     ["sha256", "https://example.invalid/archive", digest("sha256"), destination],
-    { ...data.env, STACKMA_CURL_MODE: "truncated" });
+    { ...data.env, TAB_GANTRY_CURL_MODE: "truncated" });
   assert.equal(result.code, 18, result.stderr);
   assert.equal(await readFile(destination, "utf8"), "accepted bytes");
-  assert(!(await readdir(data.directory)).some(name => name.startsWith(".stackma-download.")));
+  assert(!(await readdir(data.directory)).some(name => name.startsWith(".tab-gantry-download.")));
 });
 
 test("invalid algorithms, malformed digests and non-HTTPS URLs fail before transfer", async t => {
@@ -176,7 +176,7 @@ test("Firefox installer never extracts an archive that fails verification", asyn
   await mockRunnerPlatform(data.directory);
   const extractionTrace = join(data.directory, "extracted");
   const tar = join(data.directory, "tar");
-  await writeFile(tar, '#!/usr/bin/env bash\nprintf attempted > "$STACKMA_EXTRACT_TRACE"\n');
+  await writeFile(tar, '#!/usr/bin/env bash\nprintf attempted > "$TAB_GANTRY_EXTRACT_TRACE"\n');
   await chmod(tar, 0o700);
   const envFile = join(data.directory, "github-env");
   await writeFile(envFile, "");
@@ -184,13 +184,13 @@ test("Firefox installer never extracts an archive that fails verification", asyn
     ...data.env,
     RUNNER_TEMP: data.directory,
     GITHUB_ENV: envFile,
-    STACKMA_EXTRACT_TRACE: extractionTrace,
+    TAB_GANTRY_EXTRACT_TRACE: extractionTrace,
   });
   assert.notEqual(result.code, 0);
   assert.match(result.stderr, /mismatch/);
   const files = await readdir(data.directory);
   assert(!files.includes("extracted"));
-  assert(!files.some(name => name.startsWith("stackma-firefox")));
+  assert(!files.some(name => name.startsWith("tab-gantry-firefox")));
   assert.equal(await readFile(envFile, "utf8"), "");
 });
 
@@ -199,7 +199,7 @@ test("Chrome installer never extracts or grants setuid to an archive that fails 
   await mockRunnerPlatform(data.directory);
   const trace = join(data.directory, "privileged");
   for (const command of ["unzip", "sudo"]) {
-    await writeFile(join(data.directory, command), `#!/usr/bin/env bash\nprintf '${command} ' >> "$STACKMA_PRIVILEGED_TRACE"\n`);
+    await writeFile(join(data.directory, command), `#!/usr/bin/env bash\nprintf '${command} ' >> "$TAB_GANTRY_PRIVILEGED_TRACE"\n`);
     await chmod(join(data.directory, command), 0o700);
   }
   const envFile = join(data.directory, "github-env");
@@ -208,7 +208,7 @@ test("Chrome installer never extracts or grants setuid to an archive that fails 
     ...data.env,
     RUNNER_TEMP: data.directory,
     GITHUB_ENV: envFile,
-    STACKMA_PRIVILEGED_TRACE: trace,
+    TAB_GANTRY_PRIVILEGED_TRACE: trace,
   });
   assert.notEqual(result.code, 0);
   assert.match(result.stderr, /mismatch/);
