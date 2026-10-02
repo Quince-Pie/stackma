@@ -125,6 +125,16 @@ test("nothing is dispatched while the listing or the version is not publicly app
   assert.equal(w.requests.filter(request => /\/versions\//u.test(request.url.pathname)).length, 0, "a non-public listing needs no version reads");
 });
 
+test("an explicitly retired approved tag is never dispatched and does not hide the next approved tag", async () => {
+  const w = world();
+  assert.equal((await planResume({ github: w.github, fetchImpl: w.fetchImpl, retired: new Set(["v1.1.4"]) })).action, "none");
+  assert.equal(w.posts().length, 0);
+  const both = world({ tags: ["v1.1.4", "v1.1.5"], versions: { "1.1.4": "public", "1.1.5": "public" } });
+  const plan = await runResume({ github: both.github, fetchImpl: both.fetchImpl, retired: new Set(["v1.1.4"]), log: () => {} });
+  assert.equal(plan.tag, "v1.1.5");
+  assert.deepEqual(JSON.parse(both.posts()[0].body), { ref: "main", inputs: { tag: "v1.1.5" } });
+});
+
 test("a queued, running or waiting publisher defers dispatch", async () => {
   for (const status of ["queued", "in_progress", "waiting", "requested", "pending"]) {
     const w = world({ active: { [status]: 1 } });
