@@ -1,14 +1,12 @@
 # Releasing Tab Gantry
 
 Use the canonical repository `Quince-Pie/tab-gantry` and AMO slug `tab-gantry`.
-The [URL and icon migration](url-and-icon-rename.md) preserves the add-on ID.
-The [latest icon refresh](icon-refresh.md) delivers unlisted 1.1.11 and listed
-1.1.12's verified submission, replacing pending 1.1.10. Dispatch historical recovery from current `main` in
-the renamed repository; old event snapshots can still contain the old name.
-
-The [Tab Gantry rename](tab-gantry-rename.md) covers unlisted 1.1.8, listed 1.1.9,
-and the owner's explicit replacement of pending 1.1.7. Keep the established ID
-and historical release identities when recovering older versions.
+The add-on ID `stackma@extensions.local` is permanent: AMO and every installed
+copy identify the add-on by it. The [latest icon refresh](icon-refresh.md)
+delivers unlisted 1.1.11 and listed 1.1.12's verified submission, replacing
+pending 1.1.10. Dispatch historical recovery from current `main`. Tags before
+v1.1.8 predate the current product name; they are terminal, and the controller
+no longer stages or publishes them.
 
 **Release** prepares a version PR. Human merge authorizes submission to the
 existing listed Mozilla add-on and subsequent GitHub publication. **Publish

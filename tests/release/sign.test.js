@@ -8,7 +8,7 @@ import { temporary } from "./fixtures.js";
 
 async function fixture(t, result) {
   const directory = await temporary(t);
-  const context = { tag: "v1.1.5", commit: "c".repeat(40), version: "1.1.5", id: "stackma@extensions.local", channel: "listed" };
+  const context = { tag: "v1.1.5", commit: "c".repeat(40), version: "1.1.5", id: "stackma@extensions.local", channel: "listed", displayName: "Tab Gantry", artifactPrefix: "tab-gantry" };
   await writeFile(`${directory}/context.json`, JSON.stringify(context));
   const env = { RELEASE_TAG: "v1.1.5", RELEASE_COMMIT: context.commit, GITHUB_OUTPUT: `${directory}/output`, GITHUB_STEP_SUMMARY: `${directory}/summary` };
   const logs = [], warnings = [], calls = [];
