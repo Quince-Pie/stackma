@@ -3,6 +3,7 @@ import { appendFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { versionFromTag } from "./package.js";
+import { readRetirements } from "./retirement.js";
 
 const api = "https://api.github.com";
 const amoAddon = "https://addons.mozilla.org/api/v5/addons/addon/stackma%40extensions.local/";
@@ -333,12 +334,14 @@ async function incompletePublications(github, owned, runs) {
  * Decide the next action. At most one approved unpublished tag or incomplete
  * owned publication is dispatched, and never while a publisher is active.
  */
-export async function planResume({ github, fetchImpl = fetch }) {
+export async function planResume({ github, fetchImpl = fetch, retired }) {
+  // A retired tag never receives a GitHub release; resolve and sign refuse it too.
+  retired ??= await readRetirements();
   const refs = await github.get("git/matching-refs/tags/v");
   assert(Array.isArray(refs), "Cannot list release tags");
   const published = await publishedTags(github);
   const unpublished = refs.map(ref => String(ref.ref).replace(/^refs\/tags\//u, ""))
-    .filter(tag => stable(tag) && !published.tags.has(tag)).sort(compareTags).reverse();
+    .filter(tag => stable(tag) && !published.tags.has(tag) && !retired.has(tag)).sort(compareTags).reverse();
   const notes = [];
   const attention = [];
   let approved;
@@ -380,10 +383,10 @@ export async function planResume({ github, fetchImpl = fetch }) {
 
 const command = text => text.replaceAll("%", "%25").replaceAll("\r", "%0D").replaceAll("\n", "%0A");
 
-export async function runResume({ github, fetchImpl = fetch, dryRun = false, summary, log = console.log }) {
+export async function runResume({ github, fetchImpl = fetch, retired, dryRun = false, summary, log = console.log }) {
   let plan;
   try {
-    plan = await planResume({ github, fetchImpl });
+    plan = await planResume({ github, fetchImpl, retired });
     if (plan.action === "dispatch" && !dryRun) plan.run = await github.dispatch(plan.tag);
   } catch (error) {
     if (!(error instanceof TransientError)) throw error;

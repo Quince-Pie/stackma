@@ -18,7 +18,7 @@ const serialize = value => JSON.stringify(value, null, 2) + "\n";
 test("preparation and publication transport load without installed npm dependencies", async t => {
   const directory = await temporary(t);
   await writeFile(`${directory}/package.json`, '{"type":"module"}');
-  for (const file of ["prepare.js", "intent.js", "repository.js", "github.js", "package.js", "resume.js"]) {
+  for (const file of ["prepare.js", "intent.js", "repository.js", "github.js", "package.js", "resume.js", "retirement.js"]) {
     await copyFile(resolve(`scripts/release/${file}`), `${directory}/${file}`);
   }
   const result = await run(process.execPath, ["--input-type=module", "-e", "await import('./prepare.js'); await import('./github.js'); await import('./resume.js'); console.log('loaded')"],
