@@ -60,9 +60,9 @@ silently relabeled as measurements of a changed artifact.
 Authority: supplied MDN at `8530cf97b809705c3524e733afcb69124b305b2e` and Firefox
 156.0 release `3bf8f468258c2181f455e23d4ffcd6acb8f4cdb1`.
 
-| Property | Firefox 156 behavior and Stackma policy |
+| Property | Firefox 156 behavior and Tab Gantry policy |
 | --- | --- |
-| Title | `Tabbrowser.addTabGroup` defaults `label` to the empty string. This is the real API title; localized “Unnamed Group” is an accessibility/tooltip fallback, not a saved name. Stackma does not read page titles or invent names. |
+| Title | `Tabbrowser.addTabGroup` defaults `label` to the empty string. This is the real API title; localized “Unnamed Group” is an accessibility/tooltip fallback, not a saved name. Tab Gantry does not read page titles or invent names. |
 | Color | `tabgroup-menu.js` nextUnusedColor scans open groups across windows of the same privacy class. Palette order: blue, purple, cyan, orange, yellow, pink, green, gray, red. First unused wins; after exhaustion Firefox chooses randomly. No uniqueness guarantee beyond available colors. Public tabGroups APIs spell gray as `grey`. |
 | Collapsed | New groups start expanded. API group/move of existing tabs does not rewrite this flag, but native new-tab insertion expands an inherited collapsed group before the extension event. The extension preserves these native semantics. |
 | ID and window | Retained group identity remains intact during the fix; IDs are browser-owned and not promised stable across restore. Cross-window relationships stay excluded. |

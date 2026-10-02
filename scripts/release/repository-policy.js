@@ -9,17 +9,17 @@ import { promisify } from "node:util";
 export const rulesets = [
   // Releases resolve tags by name and require them never to move. Creation stays
   // open: Publish release creates each tag with GITHUB_TOKEN after verification.
-  { name: "Stackma release tags", target: "tag", enforcement: "active", bypass_actors: [],
+  { name: "Tab Gantry release tags", target: "tag", enforcement: "active", bypass_actors: [],
     conditions: { ref_name: { include: ["refs/tags/v*"], exclude: [] } },
     rules: [{ type: "deletion" }, { type: "update" }] },
   // Release resolution relies on merged history. Ordinary pushes stay allowed.
-  { name: "Stackma main history", target: "branch", enforcement: "active", bypass_actors: [],
+  { name: "Tab Gantry main history", target: "branch", enforcement: "active", bypass_actors: [],
     conditions: { ref_name: { include: ["~DEFAULT_BRANCH"], exclude: [] } },
     rules: [{ type: "deletion" }, { type: "non_fast_forward" }] },
 ];
 export const environments = ["release-signing", "release-publication", "release-chrome-web-store"];
 export const releaseEventPolicy = {
-  name: "Stackma release workflow events", enforcement: "active",
+  name: "Tab Gantry release workflow events", enforcement: "active",
   conditions: { workflow_path: { include: [".github/workflows/release.yml"], exclude: [] } },
   rules: [{ type: "restrict_action_events", parameters: { allowed_events: ["pull_request_target", "workflow_dispatch"] } }],
 };

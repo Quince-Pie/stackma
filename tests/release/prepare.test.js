@@ -51,7 +51,7 @@ async function fixture(t) {
   await git("reset", "--hard", "HEAD");
   const refs = new Map(), commits = new Map(), pulls = [], calls = [];
   const state = { failAfter: null };
-  const repository = "Quince-Pie/stackma";
+  const repository = "Quince-Pie/tab-gantry";
   const github = {
     repository,
     async get(path) {
@@ -125,7 +125,7 @@ test("isolated version tree preserves both staged and unstaged unrelated work", 
 test("prepare creates only a branch and PR; identical retry makes no writes", async t => {
   const f = await fixture(t), result = await prepareRelease(f.options);
   assert.equal(result.tree, f.tree);
-  assert.equal(result.url, "https://github.com/Quince-Pie/stackma/pull/1");
+  assert.equal(result.url, "https://github.com/Quince-Pie/tab-gantry/pull/1");
   assert.equal(f.refs.size, 1); assert(f.refs.has("heads/release/v1.1.1"));
   assert.match(f.pulls[0].body, /release-intents\/v1\.1\.1\.json/u);
   const writes = f.calls.length;
@@ -199,7 +199,7 @@ for (const conflict of ["message", "tree", "closed", "marker", "fork"]) {
     if (conflict === "tree") commit.tree.sha = "f".repeat(40);
     if (conflict === "closed") f.pulls[0].state = "closed";
     if (conflict === "marker") f.pulls[0].body = "unrelated PR";
-    if (conflict === "fork") f.pulls[0].head.repo.full_name = "someone/stackma";
+    if (conflict === "fork") f.pulls[0].head.repo.full_name = "someone/tab-gantry";
     await assert.rejects(() => prepareRelease(f.options));
     assert.equal(f.calls.length, writes);
   });
@@ -251,7 +251,7 @@ test("tag creation is recoverable and never changes an existing tag", async t =>
 
 test("write transport is create-only, bounded, redirect-free and does not expose service error bodies", async () => {
   const requests = [];
-  const github = new RepositoryGitHub("Quince-Pie/stackma", "credential", async (url, options) => {
+  const github = new RepositoryGitHub("Quince-Pie/tab-gantry", "credential", async (url, options) => {
     requests.push({ url, options }); return Response.json({ sha: "a".repeat(40) }, { status: 201 });
   });
   await github.post("git/refs", { ref: "refs/tags/v1.1.1", sha: "a".repeat(40) });
@@ -260,7 +260,7 @@ test("write transport is create-only, bounded, redirect-free and does not expose
   assert.equal(requests[0].options.headers["X-GitHub-Api-Version"], "2026-03-10");
   await assert.rejects(() => github.post("git/refs/heads/main", {}));
   for (const status of [401, 403, 409, 422, 500]) {
-    const failing = new RepositoryGitHub("Quince-Pie/stackma", "credential", async () => new Response("private server body", { status }));
+    const failing = new RepositoryGitHub("Quince-Pie/tab-gantry", "credential", async () => new Response("private server body", { status }));
     await assert.rejects(() => failing.post("pulls", {}), error => error.message.includes(`HTTP ${status}`) && !error.message.includes("private"));
   }
 });
@@ -317,7 +317,7 @@ test("explicit merged-PR recovery uses current code to recreate missing-tag auth
   assert.deepEqual(await resolveRelease({ ...options, recoveryPull }), { tag: "v1.1.1", commit: prepared.head, createTag: true });
   for (const changes of [
     { merged: false }, { head: { ...recoveryPull.head, ref: "release/v1.1.2" } },
-    { head: { ...recoveryPull.head, repo: { full_name: "fork/stackma" } } },
+    { head: { ...recoveryPull.head, repo: { full_name: "fork/tab-gantry" } } },
     { body: "unrelated merged PR" }, { merge_commit_sha: f.mainCommit },
   ]) await assert.rejects(() => resolveRelease({ ...options, recoveryPull: { ...recoveryPull, ...changes } }));
   await assert.rejects(() => resolveRelease({ ...options, eventName: "pull_request", recoveryPull }), /explicit dispatch/u);
@@ -377,7 +377,7 @@ for (const mergeMode of ["merge", "squash", "rebase"]) for (const eventName of [
     const options = { eventName, event, repository: f.github.repository, workflowRef: "refs/heads/main", mainCommit, cwd: f.cwd };
     assert.deepEqual(await resolveRelease(options), { tag: "v1.1.1", commit: mainCommit, createTag: true });
     for (const alter of [
-      pr => { pr.merged = false; }, pr => { pr.head.repo.full_name = "fork/stackma"; },
+      pr => { pr.merged = false; }, pr => { pr.head.repo.full_name = "fork/tab-gantry"; },
       pr => { pr.head.ref = "feature"; }, pr => { pr.body = "ordinary PR"; },
       pr => { pr.head.ref = "release/v1.1.2"; }, pr => { pr.merge_commit_sha = f.mainCommit; },
     ]) {

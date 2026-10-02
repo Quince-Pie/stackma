@@ -16,7 +16,7 @@ separate product checkout for installation comparison. Ordinary CI stays read-on
 
 ## Scope and budget
 
-Add validation and maintenance for Stackma's existing Firefox 156 extension.
+Add validation and maintenance for Tab Gantry's existing Firefox 156 extension.
 Preserve the extension, the approved names, browser support and the uncommitted
 WTFPL changes. CI may produce unsigned build artifacts; it does not sign, publish
 an AMO release, deploy, auto-approve or auto-merge changes. The repository is public

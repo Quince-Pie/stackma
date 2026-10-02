@@ -6,9 +6,9 @@ creating 1.1.9. Keep this record and its source/tag; use the
 [Tab Gantry handoff](tab-gantry-rename.md) for current review and update acceptance.
 Do not resume 1.1.7 or run the historical 1.1.6 → 1.1.7 test below.
 
-**Submitted:** [version PR #10](https://github.com/Quince-Pie/stackma/pull/10)
+**Submitted:** [version PR #10](https://github.com/Quince-Pie/tab-gantry/pull/10)
 merged as `bc43c338e5a245a3116084d33ecbaa170885c358` after CI passed. The
-[automatic publisher](https://github.com/Quince-Pie/stackma/actions/runs/36281036540)
+[automatic publisher](https://github.com/Quince-Pie/tab-gantry/actions/runs/36281036540)
 passed source verification, created the protected tag and started its signing
 job under the unchanged main-only environment policy. Mozilla accepted **listed
 version 6517688 / 1.1.7** with source attached and inherited license `10390`.
@@ -30,7 +30,7 @@ the existing immutable GitHub releases. No pending version is superseded.
 
 ## Why the earlier attempt did not submit
 
-[1.1.5 run 36274506473](https://github.com/Quince-Pie/stackma/actions/runs/36274506473)
+[1.1.5 run 36274506473](https://github.com/Quince-Pie/tab-gantry/actions/runs/36274506473)
 verified and tagged its source, but GitHub rejected the signing job before
 allocating a runner: `runner_id: 0`, `steps: []`. The environment annotation names
 `refs/pull/5/merge` as disallowed by the `main`-only signing policy. No signer step
@@ -130,7 +130,7 @@ update service from signed 1.1.6 in a disposable profile:
 
 ```sh
 node scripts/release/update-test.js \
-  --from-xpi=/path/to/verified/stackma-1.1.6.xpi \
+  --from-xpi=/path/to/verified-1.1.6.xpi \
   --from-version=1.1.6 --to-version=1.1.7 \
   --to-sha256=VERIFIED_SIGNED_1_1_7_SHA256 \
   --output=artifacts/update-1.1.6-to-1.1.7.json

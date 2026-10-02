@@ -22,7 +22,7 @@ esac
 [[ ! -d $destination ]] || fail 'the destination must not be a directory'
 
 # A sibling temporary file makes the final rename atomic on the same filesystem.
-temporary=$(mktemp --tmpdir="$(dirname -- "$destination")" .stackma-download.XXXXXXXXXX)
+temporary=$(mktemp --tmpdir="$(dirname -- "$destination")" .tab-gantry-download.XXXXXXXXXX)
 trap 'rm -f -- "$temporary"' EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM

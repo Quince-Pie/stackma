@@ -23,7 +23,7 @@ async function fixture(t, overrides = {}) {
     signal: AbortSignal.timeout(2000), pollMs: 1,
     async fetchJson(url) {
       if (url.pathname.endsWith("site/")) return { read_only: state.readOnly ?? false };
-      return { guid: state.guid ?? context.id, slug: state.slug ?? "stackma", status: state.addonStatus ?? (state.addonPublic ? "public" : "nominated"), is_disabled: state.addonDisabled ?? false };
+      return { guid: state.guid ?? context.id, slug: state.slug ?? "tab-gantry", status: state.addonStatus ?? (state.addonPublic ? "public" : "nominated"), is_disabled: state.addonDisabled ?? false };
     },
     async version(_id, version = context.version) {
       events.push("get-version");
@@ -419,7 +419,7 @@ test("v5 client creates a version with source and verified inherited terms in on
   const context={id:"stackma@extensions.local",version:"1.1.1",channel:"listed",unsigned:{sha256:sha256(unsigned)},source:{sha256:sha256(source)},license:{name:"Project terms",sha256:sha256(license)}};
   let created=false,attached=false,lists=0;const writes=[];
   const uuid="00000000000040008000000000000042"; // deployed UUIDField(format="hex")
-  const addon={guid:context.id,slug:"stackma",status:"public",is_disabled:false};
+  const addon={guid:context.id,slug:"tab-gantry",status:"public",is_disabled:false};
   const detail=()=>({id:42,version:context.version,channel:"listed",is_disabled:false,license:{text:{"en-US":license}},source:attached?"https://addons.mozilla.org/download/source/42":null,
     file:{status:attached?"public":"unreviewed",size:(attached?signed:unsigned).length,hash:`sha256:${sha256(attached?signed:unsigned)}`,url:"https://addons.mozilla.org/download/file/42"}});
   const client=new ReleaseClient({apiKey:"fixture-issuer",apiSecret:"fixture-secret",timeoutMs:3000,pollMs:1,fetchImpl:async(url,options)=>{

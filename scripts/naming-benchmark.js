@@ -36,7 +36,7 @@ for (let i = 1; i < names.length && (!single || !sparse); i++) {
 }
 assert(single && sparse, 'Required challenger-favorable cases must exist');
 scenarios.push(single, sparse);
-const fixture = await mkdtemp(join(tmpdir(), 'stackma-naming-bench-'));
+const fixture = await mkdtemp(join(tmpdir(), 'tab-gantry-naming-bench-'));
 const report = {
   phase, cacheComparison, repetitions, warmups, iterations, startedAt: new Date().toISOString(),
   toolchain: { node: process.version },
@@ -67,8 +67,8 @@ try {
     report.sourceSha256[`candidate-${variant}.js`] = digest(code);
   }
   const manifest = JSON.parse(await readFile(join(fixture, 'manifest.json'), 'utf8'));
-  manifest.name = 'Stackma isolated naming benchmark';
-  manifest.browser_specific_settings.gecko.id = 'stackma-naming-benchmark@extensions.local';
+  manifest.name = 'Tab Gantry isolated naming benchmark';
+  manifest.browser_specific_settings.gecko.id = 'tab-gantry-naming-benchmark@extensions.local';
   manifest.background.scripts = ['naming-bench-bg.js'];
   await writeFile(join(fixture, 'manifest.json'), JSON.stringify(manifest));
   await writeFile(join(fixture, 'naming-bench-bg.js'), `

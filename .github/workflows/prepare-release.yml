@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: stackma-release-preparation
+  group: tab-gantry-release-preparation
   cancel-in-progress: false
   queue: max
 

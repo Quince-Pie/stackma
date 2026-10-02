@@ -1,9 +1,5 @@
 # Tab Gantry
 
-Formerly Stackma. The Firefox add-on ID and existing update path are unchanged.
-The repository and AMO URL use `tab-gantry`; see the
-[URL and icon migration](docs/url-and-icon-rename.md).
-
 Automatic related-tab stacks for **Firefox desktop 156** and **Chrome 148 or
 later** using native tab groups. Open a link in a new tab: it joins the opener's
 group, or starts a group with the opener. Descendants stay together, including

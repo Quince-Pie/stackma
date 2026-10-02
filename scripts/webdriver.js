@@ -55,7 +55,7 @@ export class FirefoxDriver {
   } = {}) {
     const driver = new FirefoxDriver();
     driver.#timeout = timeoutMs;
-    driver.profileRoot = await mkdtemp(join(tmpdir(), "stackma-firefox-"));
+    driver.profileRoot = await mkdtemp(join(tmpdir(), "tab-gantry-firefox-"));
     try {
       const ready = Promise.withResolvers();
       driver.#process = spawn(geckodriver, [
@@ -209,7 +209,7 @@ export class FirefoxDriver {
       const actor = context.browsingContext.currentWindowGlobal.getActor("MarionetteCommands");
       return actor.executeScript(`return (${source})(browser, ...arguments);`, parameters, {
         timeout, async: false, sandboxName: null, newSandbox: true,
-        file: "stackma-browser-test", line: 1,
+        file: "tab-gantry-browser-test", line: 1,
       });
     }, id, fn.toString(), args, this.#timeout - 2_000);
   }
@@ -223,7 +223,7 @@ export class FirefoxDriver {
       const actor = tab.linkedBrowser.browsingContext.currentWindowGlobal.getActor("MarionetteCommands");
       return actor.executeScript(`return (${source})(...arguments);`, parameters, {
         timeout, async: false, sandboxName: null, newSandbox: true,
-        file: "stackma-content-test", line: 1,
+        file: "tab-gantry-content-test", line: 1,
       });
     }, tabId, fn.toString(), args, this.#timeout - 2_000);
   }

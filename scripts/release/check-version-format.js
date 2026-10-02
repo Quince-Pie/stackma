@@ -7,7 +7,7 @@ import { run, versionFromTag } from "./package.js";
 
 // Exercise the ecosystem oracle as well as our parser. These are temporary
 // installs in an isolated browser profile, never AMO submissions or releases.
-const directory = await mkdtemp(join(tmpdir(), "stackma-version-format-"));
+const directory = await mkdtemp(join(tmpdir(), "tab-gantry-version-format-"));
 const output = resolve("artifacts/release-version-format.json");
 const versions = ["65536.0.0", "999999999.999999999.999999999"];
 let driver;

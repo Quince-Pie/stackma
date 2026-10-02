@@ -6,7 +6,7 @@
 This is the original preparation design record. The
 [policy review and corrections](release-policy-review.md) supersede its workflow
 display names and its mistaken 65535 version-component limit. Current operator
-instructions are in [Releasing Stackma](releases.md).
+instructions are in [Releasing Tab Gantry](releases.md).
 
 Reviewed 2026-09-24 against `538841aaab029d984e31e469ebf42fc275322460`.
 The original manual publication command required a version update and a pushed
@@ -46,7 +46,7 @@ file hashes, completed commands, and elapsed budget. The existing untracked
 | --- | --- |
 | Manual version edits, tag, dispatch | Conventional control. Works with correct prerequisites, but caused the reported failure and leaves four synchronized fields plus tag creation to the operator. Superseded for new releases; retained for existing-tag recovery. |
 | Direct version commit/push from dispatch | Could remove a merge step but needs direct-main update policy and race handling against concurrent main changes. The user explicitly chose a reviewed PR. |
-| Release Please action **5.0.0** / library **17.11.2** | Maintained release-PR family; Node 24 in action v5, explicit `release-as` and JSON extra-file updates exist. However, the inspected `buildReleasePullRequest` still skips empty/non-user-facing conventional changelogs even with an explicit version. Stackma uses subsystem commit subjects, with no authorized conventional-commit/changelog policy. A customized strategy and separate AMO publisher could work, but adds a second release manifest/history policy without removing our required guards. Not selected for this explicit-version contract. |
+| Release Please action **5.0.0** / library **17.11.2** | Maintained release-PR family; Node 24 in action v5, explicit `release-as` and JSON extra-file updates exist. However, the inspected `buildReleasePullRequest` still skips empty/non-user-facing conventional changelogs even with an explicit version. Tab Gantry uses subsystem commit subjects, with no authorized conventional-commit/changelog policy. A customized strategy and separate AMO publisher could work, but adds a second release manifest/history policy without removing our required guards. Not selected for this explicit-version contract. |
 | Changesets action **2.1.2** | Modern Node 24 subactions separate versioning from publishing and default to API-created commits. It requires Changesets CLI v3, changeset/package state, and a Firefox-manifest hook. `runVersion` recreates its version branch, and `pushChanges` uses `force: true`. A custom version script and recovery guard would still be needed. Not selected for one manually versioned extension. |
 | `create-pull-request` **8.1.1** | Strong general PR challenger. v8 uses Node 24; 8.1.1 repairs post-creation 422 consistency retries. Its normal branch reconciliation resets changed branches; Git pushes use force-with-lease and API signing uses `updateRef(force: true)`. Those intentional update semantics conflict with preserving observed edits to an existing release PR. Wrapping it would retain our identity/recovery machinery around another branch updater. |
 | `release-it` **21.1.0** | Strong explicit-version CLI control. The current changelog includes the semver-to-verkit migration and coercion corrections. Its version strategy accepts/coerces broader SemVer inputs, and its Git lifecycle stages/commits/tags/pushes with rollback. PR creation, Firefox constraints, and conflict-preserving recovery still require a coordinator. It is useful for a different operator flow. |

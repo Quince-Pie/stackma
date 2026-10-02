@@ -37,7 +37,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: stackma-release
+  group: tab-gantry-release
   cancel-in-progress: false
   queue: max
 

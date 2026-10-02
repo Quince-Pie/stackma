@@ -29,7 +29,7 @@ The inspected addons-server revision is
   runs manifest normalization when enabled, writing `json.dumps(data, indent=2)`.
   Its default ASCII escaping and lack of a trailing newline account for all
   differences in the captured manifest. The signing GUID-injection path was
-  also inspected; Stackma already declares its GUID.
+  also inspected; Tab Gantry already declares its GUID.
 
 The preserved constraints are complete license terms, checked link destinations,
 unchanged add-on identity/behavior, exact original XPI member bytes, fixed source
@@ -62,7 +62,7 @@ namespaces, attributes, parse errors and comments fail. Each anchor must have
 non-HTTP fallback. URL destinations must match the displayed URL, including
 decoding the production outgoing wrapper. The entire decoded text is hashed;
 there is no whitespace trimming/collapsing or legal-clause omission. The scope
-is Stackma's plain-text license documents presented by AMO, not arbitrary authored
+is Tab Gantry's plain-text license documents presented by AMO, not arbitrary authored
 HTML license documents. The API/HTML checks do not prove equality of inaccessible
 database raw text; the package and source copies retain their exact byte checks.
 
@@ -77,7 +77,7 @@ total execution bound. No lock-free or wait-free claim applies.
 For the manifest, semantic-only ZIP exceptions and tolerance for arbitrary
 rewrites were rejected. Instead, the checked-in manifest and version preparer
 use the provider's serialization profile **before** testing/packaging. The exact
-byte comparator is unchanged. This encoding is qualified against Stackma's
+byte comparator is unchanged. This encoding is qualified against Tab Gantry's
 manifest fields and captured AMO output; it is not a general replacement for
 Python's JSON encoder over arbitrary JavaScript values. If future fields produce
 different provider bytes, the unchanged payload gate stops publication.

@@ -5,7 +5,7 @@ import { serializeManifest } from "../../scripts/release/package.js";
 import { bumpVersions } from "../../scripts/release/prepare.js";
 
 test("manifest serialization matches AMO's captured normalization without changing values", async () => {
-  const normalized = await readFile("tests/release/fixtures/amo-manifest-1.1.2.json", "utf8");
+  const normalized = await readFile("tests/release/fixtures/amo-manifest-1.1.13.json", "utf8");
   const manifest = JSON.parse(normalized);
   assert.equal(serializeManifest(manifest), normalized);
   assert.deepEqual(JSON.parse(serializeManifest(manifest)), manifest);

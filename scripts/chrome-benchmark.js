@@ -64,7 +64,7 @@ const factories = {
 };
 let failures = [];
 function fail(error) { failures.push(String(error)); }
-globalThis.stackmaBenchmark = async function(variant, ids, shape) {
+globalThis.tabGantryBenchmark = async function(variant, ids, shape) {
   const calls = { get: 0, query: 0, group: 0, move: 0, records: 0 };
   const api = { tabs: {} };
   for (const name of ['get', 'query', 'group', 'move']) {
@@ -232,7 +232,7 @@ try {
         const order = [...cycle.slice(rotation), ...cycle.slice(0, rotation)];
         for (const variant of order) {
           const sample = await driver.extension(id, (browser, variant, ids, shape) =>
-            globalThis.stackmaBenchmark(variant, ids, shape), variant, pools.get(tabs), shape);
+            globalThis.tabGantryBenchmark(variant, ids, shape), variant, pools.get(tabs), shape);
           if (repetition >= 0) report.samples.push({ tabs, shape, repetition, variant, ...sample });
         }
       }

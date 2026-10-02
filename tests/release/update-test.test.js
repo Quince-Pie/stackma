@@ -35,7 +35,7 @@ function world({ noUpdate = false, checkError = 0, wrongVersion = false, badSign
     } };
   const install = { version: wrongVersion ? "1.1.6" : "1.1.5", existingAddon: current, state: 0, error: 0,
     addon: { id: current.id, version: "1.1.5", signedState: badSignature ? -1 : 2 },
-    sourceURI: { spec: "https://addons.mozilla.org/firefox/downloads/file/42/stackma.xpi" }, file: { path: "/disposable/download.xpi" },
+    sourceURI: { spec: "https://addons.mozilla.org/firefox/downloads/file/42/tab_gantry.xpi" }, file: { path: "/disposable/download.xpi" },
     addListener(listener) { listeners.add(listener); }, removeListener(listener) { listeners.delete(listener); },
     cancel() { calls.push("cancel-install"); },
     install() {
