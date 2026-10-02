@@ -4,9 +4,9 @@ import test from "node:test";
 import { matchesAmoLicense } from "../../scripts/release/license.js";
 import { sha256 } from "../../scripts/release/package.js";
 
-test("the captured AMO 1.1.2 license matches the exact submitted WTFPL and CMU text", async () => {
+test("the captured AMO license 10390 matches the exact submitted WTFPL and CMU text", async () => {
   const raw = `${await readFile("LICENSE", "utf8")}\nCMU pronunciation data and derived metadata retain the following terms:\n\n${await readFile("naming-data/CMU-LICENSE.txt", "utf8")}`.trim();
-  const api = await readFile("tests/release/fixtures/amo-license-1.1.2.txt", "utf8");
+  const api = await readFile("tests/release/fixtures/amo-license-10390.txt", "utf8");
   assert.notEqual(api, raw, "This fixture must exercise real API rendering");
   assert(matchesAmoLicense(api, sha256(raw)));
   for (const changed of [
@@ -16,7 +16,7 @@ test("the captured AMO 1.1.2 license matches the exact submitted WTFPL and CMU t
     api.replace("retain the above copyright", "omit the above copyright"),
     api.replace('href="/"', 'href="https://evil.invalid/"'),
     api.replace('rel="nofollow"', 'rel="nofollow" style="display:none"'),
-    api.replace("Stackma\n", "Stackma<br>\n"),
+    api.replace("Tab Gantry\n", "Tab Gantry<br>\n"),
     api.replace("All rights reserved.", "All rights reserved.<!-- change -->"),
     `${api}\n`,
   ]) assert(!matchesAmoLicense(changed, sha256(raw)), "Unreviewed changes must not be normalized away");
