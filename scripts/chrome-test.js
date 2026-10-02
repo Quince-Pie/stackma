@@ -139,7 +139,7 @@ try {
   await test("packaged-files-manifest-and-chrome-diagnostics", async () => {
     const actual = await sw(browser => browser.runtime.getManifest());
     assert.equal(actual.version, firefoxManifest.version);
-    assert.equal(actual.name, firefoxManifest.name);
+    assert.equal(actual.name, manifest.name);
     assert.deepEqual(actual.permissions, ["webNavigation", "tabGroups", "storage"]);
     assert.equal(actual.minimum_chrome_version, String(MINIMUM_MAJOR));
     assert.deepEqual(actual.background, { service_worker: "service-worker.js", type: "module" });

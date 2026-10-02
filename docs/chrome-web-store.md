@@ -56,7 +56,9 @@ Only an owner can do these steps; nothing here is automated.
      ([image requirements](https://developer.chrome.com/docs/webstore/images)).
      Upload `listing/chrome/small-promo-tile.png`, then
      `listing/chrome/screenshot-1.png` and `screenshot-2.png` in that order.
-     The 128px icon comes from the package. The
+     The 128px icon comes from the package, and the store title from the manifest
+     `name`, **Tab Gantry - Automatic Tab Groups**. Unlike AMO, the dashboard has
+     no separate title field, so the name carries the searchable words. The
      [branding guidelines](https://developer.chrome.com/docs/webstore/branding)
      require "for Google Chrome™" wording if the listing names Chrome.
    - [Privacy](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy):
