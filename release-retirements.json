@@ -3,5 +3,10 @@
     "reason": "The only signing attempt was rejected by GitHub's environment policy before any runner step; the owner now requests listed 1.1.7.",
     "evidence": "Run https://github.com/Quince-Pie/stackma/actions/runs/36274506473 attempt 1, signing job 108494911780: runner_id 0, steps [], deployment ref refs/pull/5/merge rejected by the main-only environment. Full retained release history inspected 2026-09-26 contains no other 1.1.5 attempt and no active publisher; authenticated AMO inventory has no 1.1.5. See evidence/release/listed-recovery.json. The pre-execution denial establishes no AMO write started; a 404 or timeout alone would not.",
     "noInFlightRequests": true
+  },
+  "v1.1.12": {
+    "reason": "Mozilla approved listed 1.1.12, but 1.1.13 superseded it on AMO and GitHub before its GitHub release. The owner renamed the AMO license that both versions share, so 1.1.12's frozen source license can no longer match AMO; by owner decision it gets no GitHub release.",
+    "evidence": "Public AMO API on 2026-10-01: 1.1.12 (version 6519819) file status public; 1.1.13 (6529589) is current. Both reference license 10390, whose text passes scripts/release/license.js for this repository's renamed LICENSE and fails for LICENSE at af369f2. Run https://github.com/Quince-Pie/tab-gantry/actions/runs/36348733406 created 1.1.12 with source attached. GitHub release v1.1.13 is published. Automatic runs 36786276694, 36824987500 and 36871706972 each failed in Submit or resume Mozilla signing within seconds and skipped publication; for an existing listed version with attached source the signer only reads. No release run was queued or active on 2026-10-01.",
+    "noInFlightRequests": true
   }
 }

@@ -254,7 +254,10 @@ later human recovery runs. Missing/expired history is not lifetime proof of
 completion. Human-triggered failures also need the initiating maintainer to follow
 their notification. The planner never deletes a public release to retry it.
 
-### Retire an unsubmitted version
+### Retire a version
+
+Retirement means a tag will never receive a GitHub release. Resolve, signing,
+Chrome submission and **Resume approved releases** all skip or refuse it.
 
 Intent records stay immutable. To abandon a version that cannot pass build or
 upload validation, first stop further attempts and establish that **no tag or
@@ -287,6 +290,12 @@ current main for further recovery. A retirement with an unknown outcome is unsaf
 and is outside the operated contract. Version 1.1.5 is retired with the
 [recorded pre-execution failure](listed-1.1.7.md); its tag and intent remain intact.
 
+An approved AMO version can also be retired when a newer release has already
+superseded it and its frozen source can no longer pass publication checks. Its
+AMO version stays as it is. Record why it cannot publish, that the newer release
+is complete, and that no release run is queued or active. Version 1.1.12 is
+retired this way.
+
 ## Existing versions and rollout
 
 Current and historical release states are recorded separately; observations are
@@ -308,8 +317,11 @@ not reservations or approval:
   with revised artwork to replace it, and Mozilla disabled its pending file.
 - **1.1.11** is the signed, published unlisted build with the revised SVG;
   actual 1.1.8 → 1.1.11 manual upgrade checks passed.
-- **1.1.12** is the matching listed submission, `tab_gantry-1.1.12.zip`, awaiting
-  review. See the [current icon/release record](icon-refresh.md).
+- **1.1.12** is the matching listed submission. Mozilla approved it, but 1.1.13
+  superseded it before its GitHub release. The owner then renamed the AMO license
+  that both versions share, so 1.1.12's frozen license text can no longer match;
+  it is retired from GitHub publication. See the [icon/release record](icon-refresh.md).
+- **1.1.13** is the signed, published listed release.
 - **1.1.0, 1.1.2 and 1.1.3** have disabled AMO files. Preserve them. Older missing
   sources and the normalization incident are recorded in [AMO formats](amo-formats.md).
 - **v1.1.1** is immutable with no assets, at a commit declaring 1.1.0. It cannot
