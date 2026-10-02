@@ -21,6 +21,7 @@ test('the Chrome manifest is derived, not duplicated, and never drifts from Fire
   assert.deepEqual(Object.keys(manifest).slice(0, 3), ['manifest_version', 'name', 'version']);
   assert.equal(manifest.version, firefox.version);
   assert.deepEqual(manifest.permissions, firefox.permissions);
+  assert.equal(manifest.name, 'Tab Gantry - Automatic Tab Groups');
   assert.equal(manifest.minimum_chrome_version, '148');
   assert.equal(manifest.incognito, 'spanning');
   assert(!Object.hasOwn(manifest, 'browser_specific_settings'));
@@ -28,6 +29,9 @@ test('the Chrome manifest is derived, not duplicated, and never drifts from Fire
   assert.throws(() => chromeManifest(firefox, { ...template, version: '1.0.0' }), /takes its version/);
   assert.throws(() => chromeManifest(firefox, { ...template, permissions: [...template.permissions, 'tabs'] }), /differ in permissions/);
   assert.throws(() => chromeManifest(firefox, { ...template, name: 'Other' }), /differ in name/);
+  assert.throws(() => chromeManifest(firefox, { ...template, name: `${firefox.name}Other` }), /differ in name/);
+  assert.throws(() => chromeManifest(firefox, { ...template, name: `${firefox.name} - ${'x'.repeat(73 - firefox.name.length)}` }), /75 characters/);
+  assert.equal(chromeManifest(firefox, { ...template, name: firefox.name }).name, firefox.name);
   assert.throws(() => chromeManifest(firefox, { ...template, action: { ...template.action, default_popup: 'other.html' } }), /action\.default_popup/);
   assert.throws(() => chromeManifest(firefox, { ...template, description: 'x'.repeat(133) }), /132/);
   assert.throws(() => chromeManifest(firefox, { ...template, background: { service_worker: 'service-worker.js' } }));

@@ -29,9 +29,11 @@ export function chromeManifest(firefox, template) {
   assert.equal(template.manifest_version, 3);
   assert(!Object.hasOwn(template, "version"), "chrome/manifest.json takes its version from extension/manifest.json");
   assert(!Object.hasOwn(template, "browser_specific_settings"));
-  for (const field of ["name", "permissions"]) {
-    assert.deepEqual(template[field], firefox[field], `Chrome and Firefox manifests differ in ${field}`);
-  }
+  assert.deepEqual(template.permissions, firefox.permissions, "Chrome and Firefox manifests differ in permissions");
+  // The Chrome Web Store takes its listing title from the manifest name, while
+  // AMO's is edited separately. Chrome may append a descriptor, never rebrand.
+  assert(template.name === firefox.name || (typeof template.name === "string" && template.name.startsWith(`${firefox.name} - `)),
+    `Chrome and Firefox manifests differ in name; Chrome may only append " - <descriptor>" to ${JSON.stringify(firefox.name)}`);
   for (const field of ["default_title", "default_popup"]) {
     assert.equal(template.action?.[field], firefox.action?.[field], `Chrome and Firefox manifests differ in action.${field}`);
   }
